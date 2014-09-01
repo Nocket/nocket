@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head>
+</head>
+<body>
+	<wicket:panel>
+		<form wicket:id="modalPanelform" action="#">
+			<div class="modal-header">
+				<span wicket:id="title"></span>
+				<button id="close" wicket:id="close" class="close" data-dismiss="modal" aria-hidden="true" type="button">&times;</button>
+			</div>
+			<div wicket:id="innerInnerModal" id="innerInnerModal"	class="modal-body">
+				<span wicket:id="innerContent">[Hier kommen die anderen	Panels rein]</span>
+			</div>
+		</form>
+	</wicket:panel>
+</body>
+</html>

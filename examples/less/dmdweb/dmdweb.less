@@ -1,0 +1,441 @@
+/*!
+ * DMDWeb Framework Styles.
+ *
+ * File contains supplemntary CSS styles definitions required by
+ * DMD web applications and not supplied by Bootstrap framework.
+ * 
+ * ATTENTION:
+ * Normally, you shouldn't do any changes in this file. If you 
+ * need some application specific styles, define them in 
+ * "application.less" or configure variables in the "dmdweb-variables.less" file.  
+ * 
+ * Copyright 2013 Arvato Services
+ */
+@import "../bootstrap/variables.less"; /* From Bootstrap */
+@import "../bootstrap/mixins.less"; /* From Bootstrap */
+
+@import "dmdweb-variables.less";
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Please consider the following style guide if writeing CSS or HTML files: http://codeguide.co                 
+//                                                                                                              
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*
+ * Helper Methods 
+ */
+
+// clips text and shows an ellipsis ("...") with supported browsers
+.show-ellipsis() {
+    display: inline-block;
+    
+    overflow: hidden;
+    white-space: nowrap;
+    -ms-text-overflow: clip; // IE < 10 kann kein "..."
+        text-overflow: ellipsis;
+}
+
+/**
+ * add padding because we use a fixed navbar
+ */
+body {
+    padding-top: 62px;  
+}
+
+@media (max-width: 979px) {
+    // remove padding because the navbar is not fixed anymore
+    body {
+        padding-top: 0;  
+    }
+}
+ 
+/*
+ * Icons  
+ */
+
+i.disabled {
+    color: @grayDisabled;
+}
+
+/*
+ * vertical navigation / menu
+ */
+
+// Correction for the vertical menu. Otherwise you will get a white line below it. 
+aside * .nav {
+	margin-bottom: 0;
+}
+
+
+/*
+ * tabs
+ */
+
+// aktiver Tab ist *fett*
+.nav-tabs > .active > a {
+	font-weight: 600;
+	
+	&:focus {
+		outline: none;
+	}
+}
+
+/*
+ * Datepicker
+ */
+
+/*
+The following style causes the the icons for calendar input assistence for date fields to be placed
+*inside* the input field rather than *behind* it. This is important to keep the icon from messing up
+table-based mask layouts. Margin-right is important when using tooltip-based validation error
+presentation (see style validation-error-icon). It ensures a proper placement of the error icon.
+*/
+.yui-skin-sam {
+	margin-left: -30px;
+	margin-right: 6px;
+}
+
+/*
+ * Forms
+ */
+
+// required fields have a colored border
+input.required, 
+select.required,
+textarea.required
+{
+    border: 1px solid @requiredBorder !important;
+}
+
+// and a different colored border for errors
+input.required.error, 
+select.required.error,
+textarea.required.error
+{
+    border: 1px solid @errorText !important;
+}
+
+// "*"-icon shown before required field labels
+label.required:before {
+    font-family: @iconFont;
+    font-weight: 600;
+    content: " * ";
+    
+    color: @red;
+}
+
+label.error,
+label.required.error {
+    color: @errorText; 
+}   
+
+// styling for validation error messages
+p.error {
+    margin-bottom: 0px;
+    
+    font-size: @fontSizeSmall;
+    
+    color: @errorText;
+}
+
+/**
+ * Style for the <div> which includes the error icon when using tooltip-based field validation error presentation.
+ * The absolute position with negative margin causes the div to be placed in the upper right corner of the
+ * input control, the error icon is associated to.
+ */
+.error-icon {
+	position: absolute;
+	margin-left: -5px;
+	margin-top: -7px;
+
+	i {
+		color: @errorText;
+	}
+}
+  
+/*
+ * Tables
+ */ 
+
+thead > tr {
+    background-color: @grayLightest;    
+}
+
+// fuer IE
+tr.headers {
+    background-color: @grayLightest;    
+}
+
+tr.navigation {
+	background-color: white;
+	
+	> td {
+		padding-bottom: 12px;
+	}
+}
+
+// shows a horizontal scroll bar if the table has a greater width than
+// the current layout allows (backported from bootstrap 3)
+.table-responsive {
+    margin-bottom: (@baseLineHeight * 0.75);
+    overflow-y: hidden;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+
+    > .table {
+        margin-bottom: 0;
+    
+        > thead,
+        > tbody,
+        > tfoot {
+            > tr {
+                > th,
+                > td {
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+}
+
+// dmdweb table -> columns with action buttons
+.dmdweb-action-column {
+    width: 22px !important;
+    padding: 8px 5px !important;
+    
+	text-align: center;
+    vertical-align: text-bottom;
+}
+
+// sort icons for sortable table columns
+th.wicket_orderUp:before,
+th.wicket_orderDown:before {
+    margin-left: -3px;
+    padding: 3px 6px 3px 0;
+    
+    font-family: @iconFont !important;
+    -moz-osx-font-smoothing: grayscale;
+     -webkit-font-smoothing: antialiased;
+
+    color: @red;
+}
+
+// icon arrow down
+th.wicket_orderUp:before {
+    content: "9";
+}
+
+// icon arrow up
+th.wicket_orderDown:before {
+    content: "!";
+}
+
+// center checkboxes in tables
+td > input[type="checkbox"] {
+    margin-top: 2px;
+    
+    vertical-align: top;
+}
+
+/*
+ * default wicket pager, bootstrap themed
+ */ 
+
+.navigation td {
+    padding: 12px 0 0 0;
+}
+
+.navigator {
+    margin: 6px 0 0 0;
+    white-space: nowrap;
+
+    a {
+        text-decoration: none;
+    }
+
+    .goto,
+    .prev,
+    .next,
+    .first,
+    .last {
+        display: inline-block;
+        width: 30px;
+        margin: 0;
+        border: 1px @grayBorder solid;
+    
+        line-height: 30px;
+        text-align: center;
+
+        color: @grayLight;
+        
+        &:hover {
+            background: @grayLightest;
+        }
+
+        em {
+            display: inline-block;
+            height: 100%;;
+            width: 100%;
+            background: @grayLightest;
+        }           
+    }
+    
+    .goto em {
+        padding: 0px;
+        margin: 0px;
+    
+        font-style: normal;
+        font-weight: 600;
+        
+        color: white;
+        background: @linkColor;
+    }   
+
+    .first {
+        display: inline-block;
+        margin-right: -4px;
+        .border-top-left-radius(@roundCornerRadius);
+        .border-bottom-left-radius(@roundCornerRadius);
+    }
+    
+    .prev {
+        margin-right: -5px;
+    }
+    
+    .next {
+        margin-left: -5px;
+    }
+    
+    .last {
+        display: inline-block;
+        margin-left: -5px;
+        .border-top-right-radius(@roundCornerRadius);
+        .border-bottom-right-radius(@roundCornerRadius);
+    }
+}
+
+
+/**
+ * This is the Stylesheet for the blocker overlay. A blocker overlay is a translucent layer filling 
+ * the whole browser window. It has a loading indicator icon and a "Please wait..." text.
+ * 
+ * It is by default added to all generated buttons and buttons actionicons ins tables. 
+ * If you want to use the feature to native wicket Ajax Links and Buttons then please see
+ * the class DMDOnClickIndicatorAttributeModifier.java
+ * 
+ * You can also find the javascript which renders the blocker html in a file called blocker.js
+ * in the same package.
+ * 
+ * The blocker overlay is used to block all mouse input from the user to the web page.
+ * z-index: 9999 is set to set the overlay on to of everything in the web page.
+ * translucescens is achieved using a bootstrap function for crossbrowser css opacity.
+ * We set the position fixed to top left of the browser window and size the overlay div to 100% of it.
+ * The font size is set to double of the given font size of the parent element, which is in fact
+ * the body tag of the html page. The inner div in the lesscss definition is used to center the
+ * indicator and the text.
+ * 
+ * If you want your overlay to show up invisible rather then haven the "Please wait..." screen,
+ * then overwrite the opacity setting by calling .opacity(100);
+ * 
+ * If you don't want to use this feature, just delete this part of the lesscss definition.
+ */
+.blocker {
+	z-index: 15999;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0px;
+	left: 0;
+	
+	text-align: center;
+	font-size: 2em;
+	zoom: 1;
+	
+	color: @gray;
+	background-color: @grayLight;
+	#translucent.background(@grayLight, 0.4);
+	filter: alpha(opacity=50);
+
+	img {
+		display: block;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	
+	div {
+		padding: 25px;
+		margin: 0;
+		position: fixed;
+		top: 35%;
+		left: 40%;
+		width: 20%;
+
+		color: @grayDark;
+		background-color: white;
+		#translucent.background(white, 0.8);
+
+		.border-radius(@roundCornerRadius);
+	}
+}
+
+/*
+ * Modal Dialogs
+ */
+
+// Required to show in DMDMessageBox the hint text in the proper way. 
+
+div.wicket-modal div.w_caption h3 {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+// Remove padding for modal-footer, when it is displayed within a form.
+.form-horizontal {
+	.modal-footer {
+		margin: 0 -15px -15px -15px;
+	}
+}
+
+// Required for DMDModalMessagePanel
+#innerModal {
+	z-index: @zindexModal;
+}
+
+/**
+ * Redesign of Wicket debug bar, putting it on the right side 
+ * of the page right above Ajax Debug 
+ */
+div#wicketDebugBar {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border: 1px solid @navbarBorder;
+
+	position: fixed;
+	width: 153px;
+	height: initial;
+	top: initial;
+	right: 10px;
+	bottom: 50px;
+	
+	background-color: @navbarBackground;
+ 	z-index:2000;
+ 	
+	img {
+    	margin: 3px 5px 2px 0px;
+  	}
+	
+	span.contributor {
+		display: block;
+	}
+	
+	span.wicketversioncontrib {
+		margin: 0 -10px;
+		background-color: transparent;
+		opacity: 1;
+	}
+	
+	a#wicketDebugBarRemove {
+		display: none;
+	}
+}

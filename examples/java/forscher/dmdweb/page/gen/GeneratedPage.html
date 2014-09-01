@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+	<wicket:extend>
+		<!-- <div wicket:id='feedback'></div>  -->
+		<div wicket:id="modal"></div>
+		<span wicket:id="somethingUnknown"></span>
+		<form wicket:id="form" class="form-horizontal">
+			<section>
+				<header class="section-header">
+					<span class="headline">Generated Form</span>
+				</header>
+				<fieldset>
+					<div class="control-group">
+						<label class="control-label" wicket:for="BlueValue"> <wicket:label>
+                             Field changes color according to value 
+                        </wicket:label></label>
+						<div class="controls">
+							<input id="BlueValue" type="text" wicket:id="BlueValue" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="FormattedDouble" class="control-label" wicket:id="FormattedDouble.label">Formatted Double</label>
+						<div class="controls">
+							<input class="generated" id="FormattedDouble" type="text" wicket:id="FormattedDouble" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="DateAssisted" class="control-label" wicket:id="DateAssisted.label">Date Assisted</label>
+						<div class="controls">
+							<input id="DateAssisted" type="text" wicket:id="DateAssisted" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="RadioChoiceNullable" class="control-label" wicket:id="RadioChoiceNullable.label">Radio Choice Nullable</label>
+						<div class="controls">
+							<input id="RadioChoiceNullable" type="radio" wicket:id="RadioChoiceNullable" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="RadioChoice"> <wicket:label>
+                             Radio Choice 
+                        </wicket:label></label>
+						<div class="controls">
+							<input id="RadioChoice" type="radio" wicket:id="RadioChoice" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="EnumChoicer"> <wicket:label>
+                             Enum Choicer 
+                        </wicket:label></label>
+						<div class="controls">
+							<select id="EnumChoicer" wicket:id="EnumChoicer"></select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="NotNullableEnumChoicer"> <wicket:label>
+                             Not nullable enum choicer 
+                        </wicket:label></label>
+						<div class="controls">
+							<select id="NotNullableEnumChoicer" wicket:id="NotNullableEnumChoicer"></select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="RadioEnumChoicer"> <wicket:label>
+                             Radio Enum Choicer 
+                        </wicket:label></label>
+						<div class="controls">
+							<input id="RadioEnumChoicer" type="radio" wicket:id="RadioEnumChoicer" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="SimpleChoicer"> <wicket:label>
+                             Simple Choicer 
+                        </wicket:label></label>
+						<div class="controls">
+							<select id="SimpleChoicer" wicket:id="SimpleChoicer"></select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="ListChoicer"> <wicket:label>
+                             List Choicer 
+                        </wicket:label></label>
+						<div class="controls">
+							<select id="ListChoicer" multiple="multiple" wicket:id="ListChoicer"></select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="BlazekChoicer" class="control-label" wicket:id="BlazekChoicer.label">Blazek Choicer</label>
+						<div class="controls">
+							<select id="BlazekChoicer" multiple="multiple" size="1" wicket:id="BlazekChoicer"></select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="CheckboxNullable"> <wicket:label>
+                             Checkbox Nullable 
+                        </wicket:label></label>
+						<div class="controls">
+							<input id="CheckboxNullable" type="checkbox" wicket:id="CheckboxNullable" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="LongText"> <wicket:label>
+                             Long Text 
+                        </wicket:label></label>
+						<div class="controls">
+							<input id="LongText" type="text" wicket:id="LongText" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="EmptyChoicer"> <wicket:label>
+                             Empty Choicer 
+                        </wicket:label></label>
+						<div class="controls">
+							<select id="EmptyChoicer" multiple="multiple" wicket:id="EmptyChoicer"></select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="StructuredChoicer"> <wicket:label>
+                             Structured Choicer 
+                        </wicket:label></label>
+						<div class="controls">
+							<select id="StructuredChoicer" multiple="multiple" wicket:id="StructuredChoicer"></select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="StructuredArrayChoicer"> <wicket:label>
+                             Structured Array Choicer 
+                        </wicket:label></label>
+						<div class="controls">
+							<select id="StructuredArrayChoicer" multiple="multiple" wicket:id="StructuredArrayChoicer"></select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="StructuredSingleChoicer"> <wicket:label>
+                             Structured Single Choicer 
+                        </wicket:label></label>
+						<div class="controls">
+							<select id="StructuredSingleChoicer" wicket:id="StructuredSingleChoicer"></select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="Touched"> <wicket:label>
+                             Touched 
+                        </wicket:label></label>
+						<div class="controls">
+							<input id="Touched" type="checkbox" wicket:id="Touched" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="Name"> <wicket:label>
+                             Name 
+                        </wicket:label></label>
+						<div class="controls">
+							<input id="Name" type="text" wicket:id="Name" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="BigDecimal"> <wicket:label>
+                             Big Decimal 
+                        </wicket:label></label>
+						<div class="controls">
+							<input id="BigDecimal" type="text" wicket:id="BigDecimal" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="Checkbox"> <wicket:label>
+                             Checkbox 
+                        </wicket:label></label>
+						<div class="controls">
+							<input id="Checkbox" type="checkbox" wicket:id="Checkbox" />
+						</div>
+					</div>
+				</fieldset>
+			</section>
+			<section>
+				<header class="section-header">
+					<span class="headline">Postfach</span>
+				</header>
+				<fieldset>
+					<div class="control-group">
+						<label class="control-label" wicket:for="Postfach.Nummer"> <wicket:label>
+                                 Nummer 
+                            </wicket:label></label>
+						<div class="controls">
+							<input id="Postfach.Nummer" type="text" wicket:id="Postfach.Nummer" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="Postfach.PLZ"> <wicket:label>
+                                 PLZ 
+                            </wicket:label></label>
+						<div class="controls">
+							<input id="Postfach.PLZ" type="text" wicket:id="Postfach.PLZ" />
+						</div>
+					</div>
+				</fieldset>
+			</section>
+			<section>
+				<header class="section-header">
+					<span class="headline">Merge</span>
+				</header>
+				<fieldset>
+					<div class="control-group">
+						<label class="control-label" wicket:for="Merge.IchBinEinFeld"> <wicket:label>
+                                 Ich Bin Ein Feld 
+                            </wicket:label></label>
+						<div class="controls">
+							<input id="Merge.IchBinEinFeld" type="text" wicket:id="Merge.IchBinEinFeld" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="Merge.IchBinDasSelbeFeldReadOnly"> <wicket:label>
+                                 Ich Bin Das Selbe Feld Read Only 
+                            </wicket:label></label>
+						<div class="controls">
+							<input id="Merge.IchBinDasSelbeFeldReadOnly" type="text" wicket:id="Merge.IchBinDasSelbeFeldReadOnly" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="Merge.IchBinDasSelbeFeldDasZweiteMalReadOnly"> <wicket:label>
+                                 Ich Bin Das Selbe Feld Das Zweite Mal Read Only 
+                            </wicket:label></label>
+						<div class="controls">
+							<input id="Merge.IchBinDasSelbeFeldDasZweiteMalReadOnly" type="text" wicket:id="Merge.IchBinDasSelbeFeldDasZweiteMalReadOnly" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="Merge.IchBinDasSelbeFeldDasDritteMalReadOnly"> <wicket:label>
+                                 Ich Bin Das Selbe Feld Das Dritte Mal Read Only 
+                            </wicket:label></label>
+						<div class="controls">
+							<input id="Merge.IchBinDasSelbeFeldDasDritteMalReadOnly" type="text" wicket:id="Merge.IchBinDasSelbeFeldDasDritteMalReadOnly" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="File"> <wicket:label>
+                                 File 
+                            </wicket:label></label>
+						<div class="controls">
+							<input id="File" type="file" wicket:id="File" />
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<input id="Download" type="button" wicket:id="Download" value="Download" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="Credential"> <wicket:label>
+                                 Credential 
+                            </wicket:label></label>
+						<div class="controls">
+							<input id="Credential" type="password" wicket:id="Credential" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" wicket:for="SeparatedConstraint"> <wicket:label>
+                                 Separated Constraint 
+                            </wicket:label></label>
+						<div class="controls">
+							<input id="SeparatedConstraint" type="text" wicket:id="SeparatedConstraint" />
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<img src="file:///D:/work/less02/plattform/trunk/06_Development/dmdweb/resources/webapp/img/wicket.png" id="Thumbnail"
+								wicket:id="Thumbnail" />
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<a target="_new" id="FullImage" wicket:id="FullImage"
+								href="file:///D:/work/less02/plattform/trunk/06_Development/dmdweb/resources/webapp/img/wicket_logo.png">Full Image</a>
+						</div>
+					</div>
+				</fieldset>
+			</section>
+			<section>
+				<ol id="GeneratedRepeatingViewPojo" wicket:id="GeneratedRepeatingViewPojo"></ol>
+				<header class="section-header">
+					<span class="headline">Tabelle</span>
+				</header>
+				<table id="Merge.Tabelle" class="table table-striped table-hover table-condensed table-navbar.bottom" wicket:id="Merge.Tabelle">
+					<thead>
+						<tr class="header">
+							<th id="FormattedDouble" class="wicket_orderUp"><a href="#">Formatted Double</a></th>
+							<th id="Spalte1" class="wicket_orderNone"><a href="#">Spalte1</a></th>
+							<th id="Spalte2" class="wicket_orderNone"><a href="#">Spalte2</a></th>
+							<th id="Spalte3" class="wicket_orderNone"><a href="#">Spalte3</a></th>
+							<th id="FormattedDate" class="wicket_orderNone"><a href="#">Formatted Date</a></th>
+							<th id="buttonTabelle">Button Tabelle</th>
+							<th id="removeFromTabelle">Remove From Tabelle</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>&nbsp;</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<section>
+				<header class="section-header">
+					<span class="headline">Tabelle2</span>
+				</header>
+				<table id="Merge.Tabelle2" wicket:id="Merge.Tabelle2">
+					<thead>
+						<tr class="header">
+							<th id="FormattedDouble" class="wicket_orderNone"><a href="#">Formatted Double</a></th>
+							<th id="Spalte1" class="wicket_orderDown"><a href="#">Spalte1</a></th>
+							<th id="Spalte2" class="wicket_orderNone"><a href="#">Spalte2</a></th>
+							<th id="Spalte3" class="wicket_orderNone"><a href="#">Spalte3</a></th>
+							<th id="FormattedDate" class="wicket_orderNone"><a href="#">Formatted Date</a></th>
+							<th id="buttonTabelle">Button Tabelle</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>&nbsp;</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<section>
+				<header class="section-header">
+					<span class="headline">Table Choice</span>
+				</header>
+				<table id="TableChoicer" wicket:id="TableChoicer">
+					<thead>
+						<tr class="header">
+							<th id="TableChoicer" class="wicket_orderUp"><a href="#">Table Choicer</a></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<button id="someButton" class="btn" wicket:id="someButton" type="submit">
+				<span wicket:id="someButton.label">Some Button</span>
+			</button>
+			<button id="someButtonToo" class="btn" wicket:id="someButtonToo" type="submit">
+				<span wicket:id="someButtonToo.label">Some Button Too</span>
+			</button>
+			<button id="testRedirect" class="btn" wicket:id="testRedirect" type="submit">
+				<span wicket:id="testRedirect.label">Test Redirect</span>
+			</button>
+			<button id="forcedButton" class="btn" wicket:id="forcedButton" type="submit">
+				<span wicket:id="forcedButton.label">Forced Button</span>
+			</button>
+			<button id="testRuntimeException" class="btn" wicket:id="testRuntimeException" type="submit">
+				<span wicket:id="testRuntimeException.label">Test Runtime Exception</span>
+			</button>
+			<button id="testException" class="btn" wicket:id="testException" type="submit">
+				<span wicket:id="testException.label">Test Exception</span>
+			</button>
+			<button id="testIgnoredExceptionWithoutDialog" class="btn" wicket:id="testIgnoredExceptionWithoutDialog" type="submit">
+				<span wicket:id="testIgnoredExceptionWithoutDialog.label">Test Ignored Exception Without Dialog</span>
+			</button>
+			<button id="touch" class="btn" wicket:id="touch" type="submit">
+				<span wicket:id="touch.label">Touch</span>
+			</button>
+			<button id="untouch" class="btn" wicket:id="untouch" type="submit">
+				<span wicket:id="untouch.label">Untouch</span>
+			</button>
+			<button id="printStatus" class="btn" wicket:id="printStatus" type="submit">
+				<span wicket:id="printStatus.label">Print Status</span>
+			</button>
+			<button id="pageless" class="btn" wicket:id="pageless" type="submit">
+				<span wicket:id="pageless.label">Pageless</span>
+			</button>
+			<button id="panelless" class="btn" wicket:id="panelless" type="submit">
+				<span wicket:id="panelless.label">Panelless</span>
+			</button>
+		</form>
+		<div wicket:id="seperateForm"></div>
+	</wicket:extend>
+</body>
+</html>

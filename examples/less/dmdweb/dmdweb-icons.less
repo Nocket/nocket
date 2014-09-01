@@ -1,0 +1,355 @@
+@charset "UTF-8";
+
+/*
+ * Die Icons werden im Gegensatz zum "Bootstrap 2.3"-Standard nicht als Images gerendert 
+ * sondern über eine Icon-Font (siehe unten @font-face). Eine Vorschau der Icons findet 
+ * man unter:
+ *
+ * /16_BriefingToolPortal/DLC BriefingTool MockUps/dlc/icons-reference.html 
+ * 
+ * Erweiterungen der Icon-Font können über http://fontastic.me vorgenommen werden 
+ * (Login: jens.rehpoehler@bertelsmann.de, Pwd: dlcfont)
+ *
+ * Vorteil dieser Lösung: die Icons können ohne Qualitätsverlust in verschiedenen Größen
+ * angezeigt werden da eine Font immer Vector-basiert ist.
+ */
+
+@import "dmdweb-variables.less";
+
+@font-face {
+  font-family: @iconFont;
+  src:url("../fonts/dmdweb.eot");
+  src:url("../fonts/dmdweb.eot?#iefix") format("embedded-opentype"),
+      url("../fonts/dmdweb.ttf") format("truetype"),
+      url("../fonts/dmdweb.svg#dlc") format("svg"),
+      url("../fonts/dmdweb.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-node]:before
+[data-icon]:before {
+  font-family: @iconFont !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="node-"]:before,
+[class*=" node-"]:before,
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: @iconFont !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.node-coupon:before,
+.icon-barcode:before {
+  content: "a";
+}
+
+.icon-copy:before {
+  content: "c";
+}
+
+.icon-search:before {
+  content: "d";
+}
+
+.icon-home:before {
+  content: "e";
+}
+
+.icon-like:before {
+  content: "f";
+}
+
+.node-kampagne:before,
+.icon-briefing:before {
+  content: "g";
+}
+
+.icon-bell:before {
+  content: "h";
+}
+
+.icon-dislike:before {
+  content: "i";
+}
+
+.icon-document:before {
+  content: "j";
+}
+
+.icon-edit:before {
+  content: "k";
+}
+
+.icon-creditcard:before {
+  content: "l";
+}
+
+.icon-shutdown:before {
+  content: "m";
+}
+
+.icon-treeclosed:before {
+  content: "n";
+}
+
+.icon-download:before {
+  content: "o";
+}
+
+.icon-left:before {
+  content: "q";
+}
+
+.icon-treeopen:before {
+  content: "r";
+}
+
+.icon-calendar:before {
+  content: "s";
+}
+
+.icon-quote:before {
+  content: "t";
+}
+
+.icon-plane:before {
+  content: "v";
+}
+
+.node-whitemailkommunikation:before,
+.icon-whitemail:before {
+  margin-left: 1px;
+  content: "w";
+}
+
+.icon-tags:before {
+  content: "x";
+}
+
+.icon-phone:before {
+  content: "y";
+}
+
+.icon-help2:before {
+  content: "z";
+}
+
+.icon-trash:before {
+  content: "A";
+}
+
+.icon-attachment:before {
+  content: "B";
+}
+
+.icon-print:before {
+  content: "C";
+}
+
+.icon-more:before {
+  content: "F";
+}
+
+.icon-document2:before {
+  content: "G";
+}
+
+.icon-image:before {
+  content: "H";
+}
+
+.icon-location:before {
+  content: "I";
+}
+
+.icon-bookmark:before {
+  content: "J";
+}
+
+.icon-right:before {
+  content: "L";
+}
+
+.icon-target:before {
+  content: "M";
+}
+
+.icon-calendar2:before {
+  content: "N";
+}
+
+.icon-undo:before {
+  content: "Q";
+}
+
+.icon-ok:before {
+  content: "S";
+}
+
+.icon-umbrella:before {
+  content: "U";
+}
+
+.icon-chain:before {
+  content: "V";
+}
+
+.icon-orgchart:before {
+  content: "W";
+}
+
+.icon-arrowleft:before {
+  content: "X";
+}
+
+.icon-puzzle:before {
+  content: "Z";
+}
+
+.icon-discussion2:before {
+  content: "#";
+}
+
+.icon-lab:before {
+  content: "+";
+}
+
+.icon-fork:before {
+  content: "-";
+}
+
+.node-emailkommunikation:before,
+.icon-email:before {
+  content: ".";
+}
+
+.icon-plus:before {
+  content: ",";
+}
+
+.icon-redo:before {
+  content: "P";
+}
+
+.icon-bag:before {
+  content: "u";
+}
+
+.icon-menu:before {
+  content: "0";
+}
+
+.icon-anchor:before {
+  content: "2";
+}
+
+.icon-people:before {
+  content: "Y";
+}
+
+.icon-person:before {
+  content: "R";
+}
+
+.icon-person2:before {
+  content: "5";
+}
+
+.icon-people2:before {
+  content: "6";
+}
+
+.icon-download2:before {
+  content: "7";
+}
+
+.icon-right-open:before {
+  content: "T";
+}
+
+.icon-left-open:before {
+  content: "D";
+}
+
+.node-zielgruppe-empfaenger:before,
+.icon-target2:before {
+  content: "E";
+}
+
+.icon-clock:before {
+  content: "$";
+}
+
+.icon-close:before {
+  content: "b";
+}
+
+.icon-save:before {
+  content: "K";
+}
+
+
+.icon-doubleright:before {
+  content: "p";
+}
+
+.icon-play:before {
+  content: "O";
+}
+
+.icon-stern:before {
+  content: "1";
+}
+
+.icon-sort:before {
+  content: "3";
+}
+
+.icon-sort-asc2:before {
+  content: "4";
+}
+
+.icon-sort-desc2:before {
+  content: "8";
+}
+
+.icon-sort-asc:before {
+  content: "9";
+}
+
+.icon-sort-desc:before {
+  content: "!";
+}
+
+.icon-validation-error:before,
+.icon-error:before {
+  content: "f";
+}
+
+.icon-receiving2:before {
+  content: "+";
+}
+
+.node-zielgruppe-kontroll:before,
+.icon-receiving:before {
+  content: "6";
+}

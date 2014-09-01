@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head>
+<link href="../../../../../../resources/webapp/css/bootstrap.css" type="text/css" rel="stylesheet" />
+<link href="../../../../../../resources/webapp/css/arvatoStyle.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+	<wicket:panel>
+		<!-- <div wicket:id='feedback'></div>  -->
+		<div wicket:id="modal"></div>
+		<form wicket:id="form" class="form-horizontal">
+			<fieldset>
+				<div class="control-group">
+					<label for="Kontonr" class="control-label" wicket:id="Kontonr.label">Kontonr</label>
+					<div class="controls">
+						<input id="Kontonr" type="text" wicket:id="Kontonr" />
+					</div>
+				</div>
+			</fieldset>
+			<button id="pruefen" class="btn" wicket:id="pruefen" type="submit">
+				<span wicket:id="pruefen.label">Pr&uuml;fen</span>
+			</button>
+		</form>
+	</wicket:panel>
+</body>
+</html>

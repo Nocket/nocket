@@ -1,0 +1,121 @@
+// Standard Bootstrap Importe
+@import "bootstrap/bootstrap.less";
+@import "bootstrap/responsive.less"; 
+
+// Icons (as icon font)
+@import "dmdweb/dmdweb-icons.less";
+
+// DMDWeb default styles
+@import "dmdweb/dmdweb.less";
+
+// optional: if you use deprecated html table based layouts.
+// @import "dmdweb/dmdweb-tablegrid.less";
+
+// optional: if you use chosen-Multiselects and want them to look like bootstrap form elements
+// @import "add-on/bootstrap-chosen.less";
+
+// optional: if you want to use an alternative, bootstrap styled datepicker
+// ATTENTION: to use the alternative datepicker you have to remove the @Assisted annotation in the java classes.
+@import "add-on/bootstrap-datepicker.less";
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Please consider the following style guide if writeing CSS or HTML files: http://codeguide.co                 
+//                                                                                                              
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*
+ * Custom Navbar
+ */
+
+.arvato-navbar {
+    border-bottom: 1px solid @blueDark !important;
+    
+    background-color: @blue !important;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+
+    .logo {
+        margin-top: 6px;
+        padding: 0px 20px !important;
+    }
+
+    .navbar-inner {
+        background-color: @blue !important;
+    }
+
+    .navbar-nav {
+        li > a {
+            color: white !important;
+        }
+    
+        .active > a,
+        .active > a:hover {
+            background-color: @blueDark;
+            color: white;
+        }
+    }
+    
+    .navbar-last {
+        padding-right: 0px !important;
+    }
+}
+
+/*
+ * Custom Form styling
+ */
+
+/** first section on page */
+.section-first {
+	margin-top: 0px !important;
+}
+
+/** header style for section headers  */
+.section-header {
+    margin-top: @baseLineHeight;
+    margin-bottom: 0;
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid @tableBorder;
+    
+    color: @grayDark;
+       
+    .headline {
+        font-size: @baseFontSize * 1.2;
+        line-height: @baseLineHeight * 2;
+        
+        color: @blue;
+    }
+}
+
+/** footer style for section footers */
+.section-footer {
+    margin-top: @baseLineHeight;
+    margin-bottom: 0;
+    padding: 0 0 12px 0;
+    border: 0;
+    
+    color: @grayDark;
+}
+
+/* gray background for fieldsets for better readability */
+fieldset {
+    padding: 15px 12px 0px 6px !important;
+    border-bottom: 1px solid @tableBorder;
+    
+    background-color: @grayLightest;
+}
+
+header.form-actions {
+	margin-top: 0;
+    padding: 10px 10px 15px 5px;
+}
+
+footer.form-actions {
+	margin-top: 0;
+    padding: 10px 10px 15px 5px;
+	border: 0;
+
+    background-color: transparent !important;
+}
+ 

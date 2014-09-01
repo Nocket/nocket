@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head>
+<link href="../../../../../../resources/webapp/css/bootstrap.css" type="text/css" rel="stylesheet" />
+<link href="../../../../../../resources/webapp/css/arvatoStyle.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+	<wicket:extend>
+		<!-- <div wicket:id='feedback'></div>  -->
+		<div wicket:id="modal"></div>
+		<form wicket:id="form" class="form-horizontal">
+			<section>
+				<header class="section-header">
+					<span class="headline">Group</span>
+					<div class="pull-right">
+						<button id="bestellung" class="btn" wicket:id="bestellung" type="submit">
+							<span wicket:id="bestellung.label">Bestellung</span>
+						</button>
+					</div>
+				</header>
+				<fieldset>
+					<div class="control-group">
+						<label for="ApplikationsName" class="control-label" wicket:id="ApplikationsName.label">Applikations Name</label>
+						<div class="controls">
+							<input id="ApplikationsName" type="text" wicket:id="ApplikationsName" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="AllowTabChange" class="control-label" wicket:id="AllowTabChange.label">Allow Tab Change</label>
+						<div class="controls">
+							<input id="AllowTabChange" type="checkbox" wicket:id="AllowTabChange" />
+						</div>
+					</div>
+				</fieldset>
+			</section>
+			<p>&nbsp;</p>
+			<section>
+				<ul wicket:id="groupTabbedPanel"></ul>
+			</section>
+		</form>
+	</wicket:extend>
+</body>
+</html>

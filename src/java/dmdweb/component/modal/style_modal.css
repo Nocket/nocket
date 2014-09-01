@@ -1,0 +1,301 @@
+body {
+  font-family: verdana, sans-serif;
+  font-size: 82%;
+  background-color: white;
+}
+/* -----------------------------------
+	Buttons
+   ----------------------------------- */
+button,
+a.button,
+input[type="submit"],
+input[type="reset"] {
+  color: black;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font: 13px/100% Arial, Helvetica, sans-serif;
+  padding: .5em 1.5em .55em;
+  margin: 0 3px 3px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+button:hover,
+a.button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+  text-decoration: none;
+}
+button:active,
+a.button:active,
+input[type="submit"]:active,
+input[type="reset"]:active {
+  position: relative;
+  top: 1px;
+}
+button img,
+a.button img,
+input[type="submit"] img,
+input[type="reset"] img {
+  vertical-align: bottom;
+  margin-right: 3px;
+}
+button.small,
+a.button.small,
+input[type="submit"].small,
+input[type="reset"].small {
+  padding: .3em 1em .35em;
+}
+button.big,
+a.button.big,
+input[type="submit"].big,
+input[type="reset"].big {
+  padding: .6em 1.5em .65em;
+  font-size: 1.2em;
+}
+.blue {
+  color: #ffffff;
+  border: solid 1px #00547f;
+  background: #0076b2;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #0076b2), color-stop(1, #0087cb));
+  background: -ms-linear-gradient(bottom, #0076b2, #0087cb);
+  background: -moz-linear-gradient(center bottom, #0076b2 0%, #0087cb 100%);
+  background: -o-linear-gradient(bottom, #0076b2, #0087cb);
+  background: linear-gradient(bottom, #0076b2, #0087cb);
+  color: white !important;
+}
+.blue:hover {
+  background: #0087cb;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #0087cb), color-stop(1, #0098e5));
+  background: -ms-linear-gradient(bottom, #0087cb, #0098e5);
+  background: -moz-linear-gradient(center bottom, #0087cb 0%, #0098e5 100%);
+  background: -o-linear-gradient(bottom, #0087cb, #0098e5);
+  background: linear-gradient(bottom, #0087cb, #0098e5);
+}
+.blue:active {
+  background: #0076b2;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #0087cb), color-stop(1, #0076b2));
+  background: -ms-linear-gradient(bottom, #0087cb, #0076b2);
+  background: -moz-linear-gradient(center bottom, #0087cb 0%, #0076b2 100%);
+  background: -o-linear-gradient(bottom, #0087cb, #0076b2);
+  background: linear-gradient(bottom, #0087cb, #0076b2);
+}
+.blue:focus {
+  background: #0087cb;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #0087cb), color-stop(1, #0098e5));
+  background: -ms-linear-gradient(bottom, #0087cb, #0098e5);
+  background: -moz-linear-gradient(center bottom, #0087cb 0%, #0098e5 100%);
+  background: -o-linear-gradient(bottom, #0087cb, #0098e5);
+  background: linear-gradient(bottom, #0087cb, #0098e5);
+  border: 1px solid #0076b2;
+}
+.raspberry {
+  color: #ffffff;
+  border: solid 1px #b90c33;
+  background: #e90f40;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #e90f40), color-stop(1, #f12150));
+  background: -ms-linear-gradient(bottom, #e90f40, #f12150);
+  background: -moz-linear-gradient(center bottom, #e90f40 0%, #f12150 100%);
+  background: -o-linear-gradient(bottom, #e90f40, #f12150);
+  background: linear-gradient(bottom, #e90f40, #f12150);
+}
+.raspberry:hover {
+  background: #f12150;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f12150), color-stop(1, #f23962));
+  background: -ms-linear-gradient(bottom, #f12150, #f23962);
+  background: -moz-linear-gradient(center bottom, #f12150 0%, #f23962 100%);
+  background: -o-linear-gradient(bottom, #f12150, #f23962);
+  background: linear-gradient(bottom, #f12150, #f23962);
+}
+.raspberry:active {
+  background: #e90f40;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f12150), color-stop(1, #e90f40));
+  background: -ms-linear-gradient(bottom, #f12150, #e90f40);
+  background: -moz-linear-gradient(center bottom, #f12150 0%, #e90f40 100%);
+  background: -o-linear-gradient(bottom, #f12150, #e90f40);
+  background: linear-gradient(bottom, #f12150, #e90f40);
+}
+.raspberry:focus {
+  background: #f12150;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f12150), color-stop(1, #f23962));
+  background: -ms-linear-gradient(bottom, #f12150, #f23962);
+  background: -moz-linear-gradient(center bottom, #f12150 0%, #f23962 100%);
+  background: -o-linear-gradient(bottom, #f12150, #f23962);
+  background: linear-gradient(bottom, #f12150, #f23962);
+  border: 1px solid #0076b2;
+}
+.green {
+  color: #ffffff;
+  border: solid 1px #729923;
+  background: #91c32c;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #91c32c), color-stop(1, #9ed237));
+  background: -ms-linear-gradient(bottom, #91c32c, #9ed237);
+  background: -moz-linear-gradient(center bottom, #91c32c 0%, #9ed237 100%);
+  background: -o-linear-gradient(bottom, #91c32c, #9ed237);
+  background: linear-gradient(bottom, #91c32c, #9ed237);
+  color: #000000;
+}
+.green:hover {
+  background: #9ed237;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #9ed237), color-stop(1, #a8d64c));
+  background: -ms-linear-gradient(bottom, #9ed237, #a8d64c);
+  background: -moz-linear-gradient(center bottom, #9ed237 0%, #a8d64c 100%);
+  background: -o-linear-gradient(bottom, #9ed237, #a8d64c);
+  background: linear-gradient(bottom, #9ed237, #a8d64c);
+}
+.green:active {
+  background: #91c32c;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #9ed237), color-stop(1, #91c32c));
+  background: -ms-linear-gradient(bottom, #9ed237, #91c32c);
+  background: -moz-linear-gradient(center bottom, #9ed237 0%, #91c32c 100%);
+  background: -o-linear-gradient(bottom, #9ed237, #91c32c);
+  background: linear-gradient(bottom, #9ed237, #91c32c);
+}
+.green:focus {
+  background: #9ed237;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #9ed237), color-stop(1, #a8d64c));
+  background: -ms-linear-gradient(bottom, #9ed237, #a8d64c);
+  background: -moz-linear-gradient(center bottom, #9ed237 0%, #a8d64c 100%);
+  background: -o-linear-gradient(bottom, #9ed237, #a8d64c);
+  background: linear-gradient(bottom, #9ed237, #a8d64c);
+  border: 1px solid #0076b2;
+}
+.yellow {
+  color: #ffffff;
+  border: solid 1px #d19d00;
+  background: #ffc105;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ffc105), color-stop(1, #ffc71f));
+  background: -ms-linear-gradient(bottom, #ffc105, #ffc71f);
+  background: -moz-linear-gradient(center bottom, #ffc105 0%, #ffc71f 100%);
+  background: -o-linear-gradient(bottom, #ffc105, #ffc71f);
+  background: linear-gradient(bottom, #ffc105, #ffc71f);
+  color: #000000;
+}
+.yellow:hover {
+  background: #ffc71f;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ffc71f), color-stop(1, #ffce38));
+  background: -ms-linear-gradient(bottom, #ffc71f, #ffce38);
+  background: -moz-linear-gradient(center bottom, #ffc71f 0%, #ffce38 100%);
+  background: -o-linear-gradient(bottom, #ffc71f, #ffce38);
+  background: linear-gradient(bottom, #ffc71f, #ffce38);
+}
+.yellow:active {
+  background: #ffc105;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ffc71f), color-stop(1, #ffc105));
+  background: -ms-linear-gradient(bottom, #ffc71f, #ffc105);
+  background: -moz-linear-gradient(center bottom, #ffc71f 0%, #ffc105 100%);
+  background: -o-linear-gradient(bottom, #ffc71f, #ffc105);
+  background: linear-gradient(bottom, #ffc71f, #ffc105);
+}
+.yellow:focus {
+  background: #ffc71f;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ffc71f), color-stop(1, #ffce38));
+  background: -ms-linear-gradient(bottom, #ffc71f, #ffce38);
+  background: -moz-linear-gradient(center bottom, #ffc71f 0%, #ffce38 100%);
+  background: -o-linear-gradient(bottom, #ffc71f, #ffce38);
+  background: linear-gradient(bottom, #ffc71f, #ffce38);
+  border: 1px solid #0076b2;
+}
+.orange {
+  color: #ffffff;
+  border: solid 1px #d3450f;
+  background: #f05d25;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f05d25), color-stop(1, #f26f3d));
+  background: -ms-linear-gradient(bottom, #f05d25, #f26f3d);
+  background: -moz-linear-gradient(center bottom, #f05d25 0%, #f26f3d 100%);
+  background: -o-linear-gradient(bottom, #f05d25, #f26f3d);
+  background: linear-gradient(bottom, #f05d25, #f26f3d);
+}
+.orange:hover {
+  background: #f26f3d;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f26f3d), color-stop(1, #f38055));
+  background: -ms-linear-gradient(bottom, #f26f3d, #f38055);
+  background: -moz-linear-gradient(center bottom, #f26f3d 0%, #f38055 100%);
+  background: -o-linear-gradient(bottom, #f26f3d, #f38055);
+  background: linear-gradient(bottom, #f26f3d, #f38055);
+}
+.orange:active {
+  background: #f05d25;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f26f3d), color-stop(1, #f05d25));
+  background: -ms-linear-gradient(bottom, #f26f3d, #f05d25);
+  background: -moz-linear-gradient(center bottom, #f26f3d 0%, #f05d25 100%);
+  background: -o-linear-gradient(bottom, #f26f3d, #f05d25);
+  background: linear-gradient(bottom, #f26f3d, #f05d25);
+}
+.orange:focus {
+  background: #f26f3d;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f26f3d), color-stop(1, #f38055));
+  background: -ms-linear-gradient(bottom, #f26f3d, #f38055);
+  background: -moz-linear-gradient(center bottom, #f26f3d 0%, #f38055 100%);
+  background: -o-linear-gradient(bottom, #f26f3d, #f38055);
+  background: linear-gradient(bottom, #f26f3d, #f38055);
+  border: 1px solid #0076b2;
+}
+.white {
+  color: #ffffff;
+  border: solid 1px #cccccc;
+  background: #e6e6e6;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #e6e6e6), color-stop(1, #f2f2f2));
+  background: -ms-linear-gradient(bottom, #e6e6e6, #f2f2f2);
+  background: -moz-linear-gradient(center bottom, #e6e6e6 0%, #f2f2f2 100%);
+  background: -o-linear-gradient(bottom, #e6e6e6, #f2f2f2);
+  background: linear-gradient(bottom, #e6e6e6, #f2f2f2);
+  color: #333333;
+  border: 1px solid #9e9e9e;
+}
+.white:hover {
+  background: #f2f2f2;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f2f2f2), color-stop(1, #ffffff));
+  background: -ms-linear-gradient(bottom, #f2f2f2, #ffffff);
+  background: -moz-linear-gradient(center bottom, #f2f2f2 0%, #ffffff 100%);
+  background: -o-linear-gradient(bottom, #f2f2f2, #ffffff);
+  background: linear-gradient(bottom, #f2f2f2, #ffffff);
+}
+.white:active {
+  background: #e6e6e6;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f2f2f2), color-stop(1, #e6e6e6));
+  background: -ms-linear-gradient(bottom, #f2f2f2, #e6e6e6);
+  background: -moz-linear-gradient(center bottom, #f2f2f2 0%, #e6e6e6 100%);
+  background: -o-linear-gradient(bottom, #f2f2f2, #e6e6e6);
+  background: linear-gradient(bottom, #f2f2f2, #e6e6e6);
+}
+.white:focus {
+  background: #f2f2f2;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f2f2f2), color-stop(1, #ffffff));
+  background: -ms-linear-gradient(bottom, #f2f2f2, #ffffff);
+  background: -moz-linear-gradient(center bottom, #f2f2f2 0%, #ffffff 100%);
+  background: -o-linear-gradient(bottom, #f2f2f2, #ffffff);
+  background: linear-gradient(bottom, #f2f2f2, #ffffff);
+  border: 1px solid #0076b2;
+}
+.modal-buttons {
+  position: absolute;
+  bottom: 10px;
+  left: 40%;
+}
+.center {
+  text-align: center;
+}
+/*---------------------------------------------------
+    LESS Elements 0.6
+  ---------------------------------------------------
+    A set of useful LESS mixins by Dmitry Fadeyev
+    Special thanks for mixin suggestions to:
+      Kris Van Herzeele,
+      Benoit Adam,
+      Portenart Emile-Victor,
+      Ryan Faerman
+
+    More info at: http://lesselements.com
+-----------------------------------------------------*/
+

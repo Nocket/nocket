@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <head>
+        <link href="../../../../../../resources/webapp/css/bootstrap.css" type="text/css" rel="stylesheet" />
+        <link href="../../../../../../resources/webapp/css/arvatoStyle.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <wicket:extend>
+            <!-- <div wicket:id='feedback'></div>  -->
+            <div wicket:id="modal"></div>
+            <form wicket:id="form" class="form-horizontal">
+                <table cellspacing="4" width="100%" class="tablegrid" cellpadding="4">
+                    <colgroup>
+                        <col width="100" span="1" />
+                        <col width="250" span="1" />
+                        <col width="100" span="1" />
+                        <col width="250" span="1" />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td align="right"><label for="Assisted" wicket:id="Assisted.label">Assisted</label></td>
+                            <td><input id="Assisted" type="text" wicket:id="Assisted" /></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td align="right"><label for="Textfield" wicket:id="Textfield.label">Textfield</label></td>
+                            <td><input id="Textfield" type="text" wicket:id="Textfield" /></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td align="right"><label for="Textarea" wicket:id="Textarea.label">Textarea</label></td>
+                            <td><input id="Textarea" type="text" wicket:id="Textarea" /></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td align="right"><label for="Numberfield" wicket:id="Numberfield.label">Numberfield</label></td>
+                            <td><input id="Numberfield" type="text" wicket:id="Numberfield" /></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td align="right"><label for="Datefield" wicket:id="Datefield.label">Datefield</label></td>
+                            <td><input id="Datefield" type="text" wicket:id="Datefield" /></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td align="right"><label for="Checkbox" wicket:id="Checkbox.label">Checkbox</label></td>
+                            <td><input id="Checkbox" type="checkbox" wicket:id="Checkbox" /></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td align="right"><label for="Combobox" wicket:id="Combobox.label">Combobox</label></td>
+                            <td><select id="Combobox" wicket:id="Combobox"></select></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td align="right"><label for="Listbox" wicket:id="Listbox.label">Listbox</label></td>
+                            <td><select id="Listbox" multiple="multiple" wicket:id="Listbox"></select></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td align="right"><label for="Label" wicket:id="Label.label">Label</label></td>
+                            <td><input id="Label" type="text" wicket:id="Label" /></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><legend><label>Nested.text</label></legend></td>
+                        </tr>
+                        <tr>
+                            <td align="right"><label for="Nested.Textfield" wicket:id="Nested.Textfield.label">Textfield</label></td>
+                            <td><input id="Nested.Textfield" type="text" wicket:id="Nested.Textfield" /></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><button id="Nested.button" class="btn" wicket:id="Nested.button" type="submit"><span wicket:id="Nested.button.label">Button</span></button></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><legend><label>Table.text</label></legend></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <table id="Table" class="table table-striped table-hover table-condensed" wicket:id="Table">
+                                    <thead>
+                                        <tr class="header">
+                                            <th id="Textfield" class="wicket_orderUp"><a href="#">Textfield</a></th>
+                                            <th id="button" class="actionColumn">Button</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><button id="button" class="btn" wicket:id="button" type="submit"><span wicket:id="button.label">Button</span></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </wicket:extend>
+    </body>
+</html>

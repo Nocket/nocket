@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head>
+<link href="../../../../../../resources/webapp/css/bootstrap.css" type="text/css" rel="stylesheet" />
+<link href="../../../../../../resources/webapp/css/arvatoStyle.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+	<wicket:extend>
+		<!-- <div wicket:id='feedback'></div>  -->
+		<div wicket:id="modal"></div>
+		<form wicket:id="form" class="form-horizontal">
+			<section>
+				<header class="section-header">
+					<span class="headline">Bootstrap Plain</span>
+				</header>
+				<fieldset>
+					<div class="control-group">
+						<label for="Assisted" class="control-label" wicket:id="Assisted.label">Assisted</label>
+						<div class="controls">
+							<input id="Assisted" type="text" wicket:id="Assisted" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="Textfield" class="control-label" wicket:id="Textfield.label">Textfield</label>
+						<div class="controls">
+							<input id="Textfield" type="text" wicket:id="Textfield" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="Textarea" class="control-label" wicket:id="Textarea.label">Textarea</label>
+						<div class="controls">
+							<input id="Textarea" type="text" wicket:id="Textarea" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="Numberfield" class="control-label" wicket:id="Numberfield.label">Numberfield</label>
+						<div class="controls">
+							<input id="Numberfield" type="text" wicket:id="Numberfield" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="Datefield" class="control-label" wicket:id="Datefield.label">Datefield</label>
+						<div class="controls">
+							<input id="Datefield" type="text" wicket:id="Datefield" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="Checkbox" class="control-label" wicket:id="Checkbox.label">Checkbox</label>
+						<div class="controls">
+							<input id="Checkbox" type="checkbox" wicket:id="Checkbox" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="Combobox" class="control-label" wicket:id="Combobox.label">Combobox</label>
+						<div class="controls">
+							<select id="Combobox" wicket:id="Combobox"></select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="Listbox" class="control-label" wicket:id="Listbox.label">Listbox</label>
+						<div class="controls">
+							<select id="Listbox" multiple="multiple" wicket:id="Listbox"></select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="Label" class="control-label" wicket:id="Label.label">Label</label>
+						<div class="controls">
+							<input id="Label" type="text" wicket:id="Label" />
+						</div>
+					</div>
+				</fieldset>
+			</section>
+			<section>
+				<header class="section-header">
+					<span class="headline">Nested</span>
+					<div class="pull-right">
+						<button id="Nested.button" class="btn" wicket:id="Nested.button" type="submit">
+							<span wicket:id="Nested.button.label">Button</span>
+						</button>
+					</div>
+				</header>
+				<fieldset>
+					<div class="control-group">
+						<label for="Nested.Textfield" class="control-label" wicket:id="Nested.Textfield.label">Textfield</label>
+						<div class="controls">
+							<input id="Nested.Textfield" type="text" wicket:id="Nested.Textfield" />
+						</div>
+					</div>
+				</fieldset>
+			</section>
+			<section>
+				<header class="section-header">
+					<span class="headline"><label>Table.text</label></span>
+				</header>
+				<table id="Table" wicket:id="Table">
+					<thead>
+						<tr class="header">
+							<th id="Textfield" class="wicket_orderUp"><a href="#">Textfield</a></th>
+							<th id="button" class="actionColumn">Button</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>&nbsp;</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<button id="button" class="btn btn-primary" wicket:id="button" type="submit">
+				<span wicket:id="button.label">Button</span>
+			</button>
+		</form>
+	</wicket:extend>
+</body>
+</html>

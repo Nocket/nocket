@@ -19,3 +19,7 @@ hs_err_pid*
 
 # OSX
 .DS_Store
+
+examples/webapp/css/application.css
+
+examples/webapp/css/application.map

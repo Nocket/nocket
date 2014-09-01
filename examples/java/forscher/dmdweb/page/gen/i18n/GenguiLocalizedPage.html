@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head>
+<link href="../../../../../../resources/webapp/css/bootstrap.css" type="text/css" rel="stylesheet" />
+<link href="../../../../../../resources/webapp/css/arvatoStyle.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+	<wicket:extend>
+		<p>
+			<label>mein.statischer.text</label><br> <label>Ein nicht &uuml;bersetzter Text</label>
+		</p>
+		<!-- <div wicket:id='feedback'></div>  -->
+		<div wicket:id="modal"></div>
+		<form wicket:id="form" class="form-horizontal">
+			<section>
+				<fieldset>
+					<div class="control-group">
+						<label for="Unit" class="control-label" wicket:id="Unit.label">Unit</label>
+						<div class="controls">
+							<select id="Unit" wicket:id="Unit"></select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="MyString" class="control-label" wicket:id="MyString.label">My String</label>
+						<div class="controls">
+							<input id="MyString" type="text" wicket:id="MyString" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="RadioChoice" class="control-label" wicket:id="RadioChoice.label">Radio Choice</label>
+						<div class="controls">
+							<input id="RadioChoice" type="radio" wicket:id="RadioChoice" />
+						</div>
+					</div>
+				</fieldset>
+			</section>
+			<section>
+				<header class="section-header">
+					<span class="headline"><label>forscher.dmdweb.page.gen.i18n.GenguiLocalized._Auto.text</label></span>
+				</header>
+				<fieldset>
+					<div class="control-group">
+						<label for="Auto.Kennzeichen" class="control-label" wicket:id="Auto.Kennzeichen.label">Kennzeichen</label>
+						<div class="controls">
+							<input id="Auto.Kennzeichen" type="text" wicket:id="Auto.Kennzeichen" />
+						</div>
+					</div>
+				</fieldset>
+			</section>
+			<section>
+				<header class="section-header">
+					<span class="headline"><label>forscher.dmdweb.page.gen.i18n.GenguiLocalized._Table.text</label></span>
+				</header>
+				<table id="Table" class="table table-hover" wicket:id="Table">
+					<thead>
+						<tr class="header">
+							<th style="width: 35%" id="Column2" class="wicket_orderDown"><a href="#">Column2</a></th>
+							<th style="width: 25%" id="Column1" class="wicket_orderNone"><a href="#">Column1</a></th>
+							<th style="width: 15%" id="Column3" class="wicket_orderNone"><a href="#">Column3</a></th>
+							<th style="width: 25%" id="method" class="actionColumn">Method</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>&nbsp;</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<button id="method" class="btn" wicket:id="method" type="submit">
+				<span wicket:id="method.label">Method</span>
+			</button>
+		</form>
+	</wicket:extend>
+</body>
+</html>

@@ -20,11 +20,9 @@ hs_err_pid*
 .DS_Store
 
 examples/webapp/css/application.css
-
 examples/webapp/css/application.map
 
+.settings/gradle
 .settings/org.eclipse.jdt.core.prefs
-
 .settings/org.eclipse.wst.common.component
-
 .settings/*.xml

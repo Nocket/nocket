@@ -14,7 +14,7 @@ ext {
 
 // using semantic versioning, see http://semver.org/
 group = "org.nocket"
-version = new Version(major: 1, minor: 1, revision: 0)
+version = new Version(major: 0, minor: 1, revision: 0)
 
 sourceCompatibility = config.java.source
 
@@ -164,6 +164,7 @@ dependencies {
 	def wicketVersion = "6.9.+"
 
 	compile files("lib/gengui-1.0.jar")
+	compile files("lib/examples/jfd-loader.jar") // Has to be there because of gengui
 
 	// wicket
 	compile "org.apache.wicket:wicket:${wicketVersion}"
@@ -181,9 +182,6 @@ dependencies {
 	compile "javax.validation:validation-api:1.1.0.Final"
 	compile "org.hibernate:hibernate-validator:4.0.1.GA"
 	compile "org.slf4j:slf4j-log4j12:1.+"
-
-	// jetty?
-	compile "org.eclipse.jetty:jetty-webapp:7.5.4.v20111024"
 
 	// needed for examples
 	examplesCompile sourceSets.main.output

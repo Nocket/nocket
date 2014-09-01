@@ -171,6 +171,8 @@ dependencies {
 	compile "org.apache.wicket:wicket-extensions:${wicketVersion}"
 	compile "org.apache.wicket:wicket-datetime:${wicketVersion}"
 	compile "org.apache.wicket:wicket-devutils:${wicketVersion}"
+
+	providedCompile "javax.servlet:javax.servlet-api:3.1.+"
 	
 	// utils
 	compile "commons-beanutils:commons-beanutils:1.9.2"

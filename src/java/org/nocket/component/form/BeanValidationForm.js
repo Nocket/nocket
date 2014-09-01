@@ -1,0 +1,38 @@
+/**
+ * Add placeholder functionality to older browsers
+ */
+$(document).ready(function() {
+	if(!Modernizr.input.placeholder) {
+		$('input[placeholder]').focus(function() {
+			var input = $(this);
+			if(input.val() == '' || input.val() == input.attr('placeholder')) {
+				input.val('');
+				input.removeClass('placeholder');
+			}
+		}).blur(function() {
+			var input = $(this);
+			if(input.val() == '' || input.val() == input.attr('placeholder')) {
+				input.addClass('placeholder');
+				input.val(input.attr('placeholder'));
+			}
+		}).blur();
+	
+		$('[placeholder]').parents('form').submit(function() {
+			$(this).find('[placeholder]').each(function() {
+				var input = $(this);
+				if (input.val() == input.attr('placeholder')) {
+					input.val('');
+				}
+			})
+		});	
+		
+		$('[placeholder]').parents('form').find(':submit').focus(function() {
+			$(this).find('[placeholder]').each(function() {
+				var input = $(this);
+				if (input.val() == input.attr('placeholder')) {
+					input.val('');
+				}
+			})
+		});
+	}
+});

@@ -212,7 +212,8 @@ task buildSnapshot(dependsOn: ["build"]) {
 	description "Assembles the outputs of this project for a SNAPSHOT Release."
 
 	doLast { 
-		announce.local.send "Snapshot ${project.name}-${version}", "finished"
+		def state = didWork ? "finished" : "with error"
+		announce.local.send "Snapshot ${project.name}-${version}", state
 	} 
 }
 
@@ -220,7 +221,8 @@ task buildRelease(dependsOn: ["build"]) {
 	description "Assembles the outputs of this project for a Release."
 	
     doLast { 
-        announce.local.send "Releasing ${project.name}-${version}", "finished"
+		def state = didWork ? "finished" : "with error"
+        announce.local.send "Releasing ${project.name}-${version}", state
     } 
 }
 

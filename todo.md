@@ -1,8 +1,11 @@
 # TODOs:
 
-- Muss die jetty-all-server-7.5.0.v20110901.jar und servlet-api-2.5.jar mitgeliefert werden?
+- Umbennen von DMD-Klassen in Nocket-Klassen
 - Wird der Generator ein eigenes Projekt?
-- Sind Logger eigebtlich Serialisierbar??? Häääh.
+- Basis-Webseite fÃ¼r Nocket 
+  - mit Download-Button
+  - Komponenten-Dokumation
+- Jira nach Github umziehen 
 
 ### TODO meis026 
 
@@ -10,9 +13,10 @@
   die SWJ-spezifisch sind. Aber von der NocketWebApplication gibt es eine Ableitung DMDGenericWebApplication. 
   Das funzt nicht.
 
-### Änderungen
+### Ã„nderungen
 
 - Err.handler().process durch log.debug ersetzt
-- ArgReader aus Cuba übernommen
+- ArgReader aus Cuba Ã¼bernommen
   - Package gelassen
   - cuba.util.ArgumentException durch IllegalArgumentException ersetzt
+- Muss die jetty-all-server-7.5.0.v20110901.jar und servlet-api-2.5.jar mitgeliefert werden?

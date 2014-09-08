@@ -72,7 +72,7 @@ eclipse{
 	classpath {
 		defaultOutputDir = file("build/classes-eclipse")
 		downloadSources = true
-		downloadJavadoc = false
+		downloadJavadoc = true
 
 		file {
 			withXml {
@@ -82,6 +82,9 @@ eclipse{
 				node.appendNode("classpathentry", [kind:"con", path: config.eclipse.servletRuntimeClasspath])
 					.appendNode("attributes")
 					.appendNode("attribute", [name: "owner.project.facets", value: "jst.web"])
+				
+				// remove web container to enable source.jars in eclipse
+				node.remove( node.find { it.@path == 'org.eclipse.jst.j2ee.internal.web.container' } )
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 
 # Nocket
 
-### This is the branch with the ongoing development. If you are looking for a stable release go to the master branch.
+### This is the branch for the ongoing development. If you are looking for a stable release go to the master branch.
 
 
 ### Vorbereitung

@@ -10,7 +10,7 @@ import org.nocket.page.FactoryHelper;
  * rather than <i>page classes</i> in the application's main menu. If in-memory
  * compilation and on-the-fly HTML creation is configured, neither the page
  * class nor the corresponding HTML must exist in advance. See
- * {@link DMDGenericWebApplication} how to enable these features.
+ * {@link NocketGenericWebApplication} how to enable these features.
  * 
  * @author less02
  */

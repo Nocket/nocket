@@ -5,9 +5,9 @@ import gengui.util.I18n;
 import gengui.util.I18nPropertyBasedImpl;
 
 import org.apache.wicket.Page;
-import org.nocket.gen.DMDGenericWebApplication;
+import org.nocket.NocketWebApplication;
 
-public class ForscherWebApplication extends DMDGenericWebApplication {
+public class ForscherWebApplication extends NocketWebApplication {
 
 	@Override
 	public void init() {

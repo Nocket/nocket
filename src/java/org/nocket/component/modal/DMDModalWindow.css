@@ -6,7 +6,7 @@ div.blockerModal {
 	background-color: black;
 	color: #bbb;
 	.opacity(.50);
-	z-index: 999;
+	z-index: 990;
 	text-align: center;
 	font-size: 2em;
 	display: none;
@@ -37,9 +37,9 @@ div.blockerModal div.inv {
 }
 
 div#blockerModalMessagePanel {
-	z-index: 19999;
+	z-index: 995;
 }
 
 div.modalMessagePanelInnerModal {
-	z-index:20000 !important;
+	z-index:999 !important;
 }

@@ -6,7 +6,7 @@ div.blockerModal {
 	background-color: black;
 	color: #bbb;
 	.opacity(.50);
-	z-index: 9999;
+	z-index: 999;
 	text-align: center;
 	font-size: 2em;
 	display: none;

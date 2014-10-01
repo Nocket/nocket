@@ -166,7 +166,7 @@ repositories {
 dependencies {
 	def wicketVersion = "6.9.+"
 
-	compile files("lib/gengui-1.0.jar")
+	compile files("lib/gengui-1.1.jar")
 	compile files("lib/examples/jfd-loader.jar") // Has to be there because of gengui
 
 	// wicket

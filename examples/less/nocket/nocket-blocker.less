@@ -45,8 +45,9 @@
  * 
  * If you don't want to use this feature, just delete this part of the lesscss definition.
  */
-.blocker {
-    z-index: 15999;
+.blocker,
+.blockerModal {
+    z-index: @zindexModalBackdrop;
     position: fixed;
     height: 100%;
     width: 100%;
@@ -69,6 +70,7 @@
     }
     
     div {
+        z-index: @zindexModal;
         padding: 25px;
         margin: 0;
         position: fixed;
@@ -84,72 +86,20 @@
     }
 }
 
-/*
- * Modal Dialogs
- */
-
-// Required to show in DMDMessageBox the hint text in the proper way. 
-
-div.wicket-modal div.w_caption h3 {
-    font-size: 12px;
-    line-height: 18px;
-}
-
-// Remove padding for modal-footer, when it is displayed within a form.
-.form-horizontal {
-    .modal-footer {
-        margin: 0 -15px -15px -15px;
-    }
-}
-
-// Required for DMDModalMessagePanel
-#innerModal {
-    z-index: @zindexModal;
-}
-
-
-.blockerModal {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    top: 0; left: 0;
-    background-color: black;
-    color: #bbb;
-    .opacity(.50);
-    z-index: 990;
-    text-align: center;
-    font-size: 2em;
-    display: none;
-    -moz-opacity: .5;
-    -khtml-opacity: .5;
-    -webkit-opacity: .5;
-    opacity: .5;
-    filter: alpha(opacity=50) !important;
-    zoom: 1;
-}
-
-.blockerModal div {
-    display: inline-block;
-    text-position: center;
-    width: 100%;
-    position: absolute;
-    left: 0%;
-    top: 30%;
-}
-    
-.blockerModal div.inv {
-    -moz-opacity: 0;
-    -khtml-opacity: 0;
-    -webkit-opacity: 0;
-    opacity: 0;
-    filter: alpha(opacity=0) !important;
-    zoom: 1;
-}
-
 #blockerModalMessagePanel {
+    z-index: @zindexModalBackdrop;
+}
+
+#innerModal {
     z-index: @zindexModal;
 }
 
 .modalMessagePanelInnerModal {
     z-index: @zindexModal !important;
+}
+
+// Required to show in DMDMessageBox the hint text in the proper way. 
+div.wicket-modal div.w_caption h3 {
+    font-size: @baseFontSize;
+    line-height: @baseLineHeight;
 }

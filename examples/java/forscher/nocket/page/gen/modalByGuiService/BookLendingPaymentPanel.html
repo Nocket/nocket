@@ -9,13 +9,17 @@
 		<!-- <div wicket:id='feedback'></div>  -->
 		<div wicket:id="modal"></div>
 		<form wicket:id="form" class="form-horizontal">
-			<label>Is this the book you want to pay for:</label> <label id="Book" wicket:id="Book"></label>
-			<button id="pay" class="btn" wicket:id="pay" type="submit">
-				<span wicket:id="pay.label">Pay</span>
-			</button>
-			<button id="cancel" class="btn" wicket:id="cancel" type="submit">
-				<span wicket:id="cancel.label">Cancel</span>
-			</button>
+			<div class="modal-body">
+				<label>Is this the book you want to pay for:</label> <label id="Book" wicket:id="Book"></label>
+			</div>
+			<div class="modal-footer">
+				<button id="pay" class="btn" wicket:id="pay" type="submit">
+					<span wicket:id="pay.label">Pay</span>
+				</button>
+				<button id="cancel" class="btn" wicket:id="cancel" type="submit">
+					<span wicket:id="cancel.label">Cancel</span>
+				</button>
+			</div>
 		</form>
 	</wicket:panel>
 </body>

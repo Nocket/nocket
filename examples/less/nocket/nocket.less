@@ -63,6 +63,37 @@ body {
 	}
 }
 
+/* no border for nocket modal windows */
+.modal {
+	border: 0 !important;
+}
+
+// Cursor-Handle um zu kennzeichnen, dass Dialoge verschoben werden koennen
+.modal-header:hover {
+    cursor: move;
+}
+
+// Kopfzeile des Dialogs
+.nocket-modal-header {
+    .border-top-radius(5px);
+    
+    background-color: @blue;
+    color: @white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    
+    .close {
+        margin-top: -3px;
+        
+        color: @white !important;
+    }
+    
+    .headline {
+        font-size: @baseFontSize * 1.25;
+        line-height: @baseLineHeight * 1.5;
+    }
+}
+
+
 /*
  * Default Datepicker
  *

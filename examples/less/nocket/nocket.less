@@ -1,0 +1,116 @@
+/*!
+ * Nocket Framework Styles.
+ *
+ * File contains supplemntary CSS styles definitions required by
+ * Nocket web applications and not supplied by Bootstrap framework.
+ * 
+ * ATTENTION:
+ * Normally, you shouldn't do any changes in this file. If you 
+ * need some application specific styles, define them in 
+ * "application.less" or configure variables in the "dmdweb-variables.less" file.  
+ * 
+ * Copyright 2013 Arvato Services
+ */
+@import "../bootstrap/variables.less"; /* From Bootstrap */
+@import "../bootstrap/mixins.less"; /* From Bootstrap */
+
+@import "nocket-variables.less";
+@import "nocket-blocker.less";
+@import "nocket-forms.less";
+@import "nocket-sidebar.less";
+@import "nocket-tables.less";
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Please consider the following style guide if writeing CSS or HTML files: http://codeguide.co                 
+//                                                                                                              
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*
+ * Helper Methods 
+ */
+
+// clips text and shows an ellipsis ("...") with supported browsers
+.show-ellipsis() {
+    display: inline-block;
+    
+    overflow: hidden;
+    white-space: nowrap;
+    -ms-text-overflow: clip; // IE < 10 is not able to display "..."
+        text-overflow: ellipsis;
+}
+
+/**
+ * add padding because we use a fixed navbar
+ */
+body {
+    padding-top: 62px;  
+}
+
+@media (max-width: 979px) {
+    // remove padding because the navbar is not fixed anymore
+    body {
+        padding-top: 0;  
+    }
+}
+ 
+/* override bootstrap default: active tab is *bold* */
+.nav-tabs > .active > a {
+	font-weight: 600;
+	
+	&:focus {
+		outline: none;
+	}
+}
+
+/*
+ * Default Datepicker
+ *
+ * The following style causes the icons for calendar input assistence for date fields to be placed
+ * *inside* the input field rather than *behind* it. This is important to keep the icon from messing up
+ * table-based mask layouts. Margin-right is important when using tooltip-based validation error
+ * presentation (see style validation-error-icon). It ensures a proper placement of the error icon.
+ */
+.yui-skin-sam {
+	margin-left: -30px;
+	margin-right: 6px;
+}
+
+
+/**
+ * Redesign of Wicket debug bar, putting it on the right side 
+ * of the page right above Ajax Debug 
+ */
+div#wicketDebugBar {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border: 1px solid @navbarBorder;
+
+	position: fixed;
+	width: 153px;
+	height: initial;
+	top: initial;
+	right: 10px;
+	bottom: 50px;
+	
+	background-color: @navbarBackground;
+ 	z-index:2000;
+ 	
+	img {
+    	margin: 3px 5px 2px 0px;
+  	}
+	
+	span.contributor {
+		display: block;
+	}
+	
+	span.wicketversioncontrib {
+		margin: 0 -10px;
+		background-color: transparent;
+		opacity: 1;
+	}
+	
+	a#wicketDebugBarRemove {
+		display: none;
+	}
+}

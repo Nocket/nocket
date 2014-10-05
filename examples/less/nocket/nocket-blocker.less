@@ -1,0 +1,155 @@
+/*!
+ * Nocket Framework Styles.
+ *
+ * File contains supplemntary CSS styles definitions required by
+ * Nocket web applications and not supplied by Bootstrap framework.
+ * 
+ * ATTENTION:
+ * Normally, you shouldn't do any changes in this file. If you 
+ * need some application specific styles, define them in 
+ * "application.less" or configure variables in the "dmdweb-variables.less" file.  
+ * 
+ * Copyright 2013 Arvato Services
+ */
+@import "../bootstrap/variables.less"; /* From Bootstrap */
+@import "../bootstrap/mixins.less"; /* From Bootstrap */
+@import "nocket-variables.less";
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Please consider the following style guide if writeing CSS or HTML files: http://codeguide.co                 
+//                                                                                                              
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * This is the Stylesheet for the blocker overlay. A blocker overlay is a translucent layer filling 
+ * the whole browser window. It has a loading indicator icon and a "Please wait..." text.
+ * 
+ * It is by default added to all generated buttons and buttons actionicons ins tables. 
+ * If you want to use the feature to native wicket Ajax Links and Buttons then please see
+ * the class DMDOnClickIndicatorAttributeModifier.java
+ * 
+ * You can also find the javascript which renders the blocker html in a file called blocker.js
+ * in the same package.
+ * 
+ * The blocker overlay is used to block all mouse input from the user to the web page.
+ * z-index: 9999 is set to set the overlay on to of everything in the web page.
+ * translucescens is achieved using a bootstrap function for crossbrowser css opacity.
+ * We set the position fixed to top left of the browser window and size the overlay div to 100% of it.
+ * The font size is set to double of the given font size of the parent element, which is in fact
+ * the body tag of the html page. The inner div in the lesscss definition is used to center the
+ * indicator and the text.
+ * 
+ * If you want your overlay to show up invisible rather then haven the "Please wait..." screen,
+ * then overwrite the opacity setting by calling .opacity(100);
+ * 
+ * If you don't want to use this feature, just delete this part of the lesscss definition.
+ */
+.blocker {
+    z-index: 15999;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0;
+    
+    text-align: center;
+    font-size: 2em;
+    zoom: 1;
+    
+    color: @gray;
+    background-color: @grayLight;
+    #translucent.background(@grayLight, 0.4);
+    filter: alpha(opacity=50);
+
+    img {
+        display: block;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    
+    div {
+        padding: 25px;
+        margin: 0;
+        position: fixed;
+        top: 35%;
+        left: 40%;
+        width: 20%;
+
+        color: @grayDark;
+        background-color: white;
+        #translucent.background(white, 0.8);
+
+        .border-radius(@roundCornerRadius);
+    }
+}
+
+/*
+ * Modal Dialogs
+ */
+
+// Required to show in DMDMessageBox the hint text in the proper way. 
+
+div.wicket-modal div.w_caption h3 {
+    font-size: 12px;
+    line-height: 18px;
+}
+
+// Remove padding for modal-footer, when it is displayed within a form.
+.form-horizontal {
+    .modal-footer {
+        margin: 0 -15px -15px -15px;
+    }
+}
+
+// Required for DMDModalMessagePanel
+#innerModal {
+    z-index: @zindexModal;
+}
+
+
+.blockerModal {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0; left: 0;
+    background-color: black;
+    color: #bbb;
+    .opacity(.50);
+    z-index: 990;
+    text-align: center;
+    font-size: 2em;
+    display: none;
+    -moz-opacity: .5;
+    -khtml-opacity: .5;
+    -webkit-opacity: .5;
+    opacity: .5;
+    filter: alpha(opacity=50) !important;
+    zoom: 1;
+}
+
+.blockerModal div {
+    display: inline-block;
+    text-position: center;
+    width: 100%;
+    position: absolute;
+    left: 0%;
+    top: 30%;
+}
+    
+.blockerModal div.inv {
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    -webkit-opacity: 0;
+    opacity: 0;
+    filter: alpha(opacity=0) !important;
+    zoom: 1;
+}
+
+#blockerModalMessagePanel {
+    z-index: @zindexModal;
+}
+
+.modalMessagePanelInnerModal {
+    z-index: @zindexModal !important;
+}

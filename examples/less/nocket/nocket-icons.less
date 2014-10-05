@@ -1,28 +1,39 @@
+/*!
+ * Nocket Framework Styles.
+ *
+ * File contains supplemntary CSS styles definitions required by
+ * Nocket web applications and not supplied by Bootstrap framework.
+ * 
+ * ATTENTION:
+ * Normally, you shouldn't do any changes in this file. If you 
+ * need some application specific styles, define them in 
+ * "application.less" or configure variables in the "dmdweb-variables.less" file.  
+ * 
+ * Copyright 2013 Arvato Services
+ */
+@import "../bootstrap/variables.less"; /* From Bootstrap */
+@import "../bootstrap/mixins.less"; /* From Bootstrap */
+@import "nocket-variables.less";
+
 @charset "UTF-8";
 
-/*
- * Die Icons werden im Gegensatz zum "Bootstrap 2.3"-Standard nicht als Images gerendert 
- * sondern über eine Icon-Font (siehe unten @font-face). Eine Vorschau der Icons findet 
- * man unter:
- *
- * /16_BriefingToolPortal/DLC BriefingTool MockUps/dlc/icons-reference.html 
- * 
- * Erweiterungen der Icon-Font können über http://fontastic.me vorgenommen werden 
- * (Login: jens.rehpoehler@bertelsmann.de, Pwd: dlcfont)
- *
- * Vorteil dieser Lösung: die Icons können ohne Qualitätsverlust in verschiedenen Größen
- * angezeigt werden da eine Font immer Vector-basiert ist.
- */
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Please consider the following style guide if writeing CSS or HTML files: http://codeguide.co                 
+//                                                                                                              
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@import "dmdweb-variables.less";
+i.disabled {
+    color: @grayDisabled;
+}
 
 @font-face {
   font-family: @iconFont;
-  src:url("../fonts/dmdweb.eot");
-  src:url("../fonts/dmdweb.eot?#iefix") format("embedded-opentype"),
-      url("../fonts/dmdweb.ttf") format("truetype"),
-      url("../fonts/dmdweb.svg#dlc") format("svg"),
-      url("../fonts/dmdweb.woff") format("woff");
+  src:url("../fonts/nocket.eot");
+  src:url("../fonts/nocket.eot?#iefix") format("embedded-opentype"),
+      url("../fonts/nocket.ttf") format("truetype"),
+      url("../fonts/nocket.svg#dlc") format("svg"),
+      url("../fonts/nocket.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 
@@ -57,7 +68,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.node-coupon:before,
 .icon-barcode:before {
   content: "a";
 }
@@ -78,7 +88,6 @@
   content: "f";
 }
 
-.node-kampagne:before,
 .icon-briefing:before {
   content: "g";
 }
@@ -135,7 +144,6 @@
   content: "v";
 }
 
-.node-whitemailkommunikation:before,
 .icon-whitemail:before {
   margin-left: 1px;
   content: "w";
@@ -237,7 +245,6 @@
   content: "-";
 }
 
-.node-emailkommunikation:before,
 .icon-email:before {
   content: ".";
 }
@@ -290,7 +297,6 @@
   content: "D";
 }
 
-.node-zielgruppe-empfaenger:before,
 .icon-target2:before {
   content: "E";
 }
@@ -349,7 +355,6 @@
   content: "+";
 }
 
-.node-zielgruppe-kontroll:before,
 .icon-receiving:before {
   content: "6";
 }

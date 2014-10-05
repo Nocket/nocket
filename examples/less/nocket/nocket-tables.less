@@ -1,0 +1,185 @@
+/*!
+ * Nocket Framework Styles.
+ *
+ * File contains supplemntary CSS styles definitions required by
+ * Nocket web applications and not supplied by Bootstrap framework.
+ * 
+ * ATTENTION:
+ * Normally, you shouldn't do any changes in this file. If you 
+ * need some application specific styles, define them in 
+ * "application.less" or configure variables in the "dmdweb-variables.less" file.  
+ * 
+ * Copyright 2013 Arvato Services
+ */
+@import "../bootstrap/variables.less"; /* From Bootstrap */
+@import "../bootstrap/mixins.less"; /* From Bootstrap */
+@import "nocket-variables.less";
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Please consider the following style guide if writeing CSS or HTML files: http://codeguide.co                 
+//                                                                                                              
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+thead > tr {
+    background-color: @grayLightest;    
+}
+
+// fuer IE
+tr.headers {
+    background-color: @grayLightest;    
+}
+
+tr.navigation {
+    background-color: white;
+    
+    > td {
+        padding-bottom: 12px;
+    }
+}
+
+/* 
+ * shows a horizontal scroll bar if the table has a greater width than
+ * the current layout allows (backported from bootstrap 3)
+ */
+.table-responsive {
+    margin-bottom: (@baseLineHeight * 0.75);
+    overflow-y: hidden;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+
+    > .table {
+        margin-bottom: 0;
+    
+        > thead,
+        > tbody,
+        > tfoot {
+            > tr {
+                > th,
+                > td {
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+}
+
+/*
+ * dmdweb table -> columns with action buttons
+ */
+.dmdweb-action-column {
+    width: 22px !important;
+    padding: 8px 5px !important;
+    
+    text-align: center;
+    vertical-align: text-bottom;
+}
+
+/*
+ * sort icons for sortable table columns
+ */
+th.wicket_orderUp:before,
+th.wicket_orderDown:before {
+    margin-left: -3px;
+    padding: 3px 6px 3px 0;
+    
+    font-family: @iconFont !important;
+    -moz-osx-font-smoothing: grayscale;
+     -webkit-font-smoothing: antialiased;
+
+    color: @red;
+}
+
+// icon arrow down
+th.wicket_orderUp:before {
+    content: "9";
+}
+
+// icon arrow up
+th.wicket_orderDown:before {
+    content: "!";
+}
+
+// center checkboxes in tables
+td > input[type="checkbox"] {
+    margin-top: 2px;
+    
+    vertical-align: top;
+}
+
+/*
+ * default wicket pager, bootstrap themed
+ */ 
+
+.navigation td {
+    padding: 12px 0 0 0;
+}
+
+.navigator {
+    margin: 6px 0 0 0;
+    white-space: nowrap;
+
+    a {
+        text-decoration: none;
+    }
+
+    .goto,
+    .prev,
+    .next,
+    .first,
+    .last {
+        display: inline-block;
+        width: 30px;
+        margin: 0;
+        border: 1px @grayBorder solid;
+    
+        line-height: 30px;
+        text-align: center;
+
+        color: @grayLight;
+        
+        &:hover {
+            background: @grayLightest;
+        }
+
+        em {
+            display: inline-block;
+            height: 100%;;
+            width: 100%;
+            background: @grayLightest;
+        }           
+    }
+    
+    .goto em {
+        padding: 0px;
+        margin: 0px;
+    
+        font-style: normal;
+        font-weight: 600;
+        
+        color: white;
+        background: @linkColor;
+    }   
+
+    .first {
+        display: inline-block;
+        margin-right: -4px;
+        .border-top-left-radius(@roundCornerRadius);
+        .border-bottom-left-radius(@roundCornerRadius);
+    }
+    
+    .prev {
+        margin-right: -5px;
+    }
+    
+    .next {
+        margin-left: -5px;
+    }
+    
+    .last {
+        display: inline-block;
+        margin-left: -5px;
+        .border-top-right-radius(@roundCornerRadius);
+        .border-bottom-right-radius(@roundCornerRadius);
+    }
+}

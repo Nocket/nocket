@@ -1,0 +1,392 @@
+<!doctype html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<title>Wicket examples</title>
+</head>
+<body>
+	<wicket:extend>
+		<div class="row-fluid">
+			<form class="form-horizontal">
+				<header class="form-actions">
+					<div class="pull-right">
+						<button class="btn btn-primary">Formular speichern</button>
+					</div>
+				</header>
+				<div class="row-fluid">
+					<section>
+						<header class="section-header">
+							<span class="headline">Kamppagne</span>
+							<div class="pull-right">
+								<button id="btn1" class="btn" name="btn1" type="button" title="Partner Aktion 1">
+									<i class="icon-ok"></i> Kamppagne Aktion 1
+								</button>
+								<button id="btn2" class="btn" name="btn2" type="button" title="Partner Aktion 2">
+									<i class="icon-people"></i> Kamppagne Aktion 2
+								</button>
+							</div>
+
+						</header>
+						<fieldset>
+							<div class="row-fluid">
+								<div class="control-group span6">
+									<label class="control-label required" for="Kampagne.Name">Name </label>
+									<div class="controls">
+										<input id="Kampagne.Name" class="span12 warning required" maxlength="100" type="text" placeholder="Name der kampagne" />
+									</div>
+								</div>
+								<div class="control-group span6">
+									<label class="control-label required" for="Kampagne.Typ">Kampagnen Typ </label>
+									<div class="controls">
+										<select id="Kampagne.Typ" class="span12 required"></select>
+									</div>
+								</div>
+							</div>
+							<div class="row-fluid">
+								<div class="control-group span6">
+									<label class="control-label" for="Kampagne.Status"> Status </label>
+									<div class="controls">
+										<select id="Kampagne.Status" class="span12"></select>
+									</div>
+								</div>
+								<div class="control-group span6">
+									<label class="control-label required" for="Kampagne.Subtyp"> Kampagnensubtyp </label>
+									<div class="controls">
+										<select id="Kampagne.Subtyp" class="span12 required"></select>
+									</div>
+								</div>
+							</div>
+							<div class="row-fluid">
+								<div class="control-group span6">
+									<label class="control-label required" for="Kampagne.GeplanterPAL"> Versandtermin </label>
+									<div class="controls">
+										<div class="input-append span4">
+											<div class="span10">
+												<input id="Kampagne.GeplanterPAL" class="span12 datepicker required" type="text" placeholder="TT.MM.JJJJ" autocomplete="off" />
+											</div>
+											<span class="add-on"><i class="icon-calendar"></i></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+					</section>
+
+					<!-- Tabs -->
+					<section id="stickyTabs" class="hidden-print">
+						<p>&nbsp;</p>
+						<ul id="kampagnenViewTab" class="nav nav-tabs">
+							<li class="active"><a href="#partner" data-toggle="tab">Partner &amp; Kommunikation</a></li>
+							<li><a href="#daten" data-toggle="tab"><span id="datenTabFehler"></span>Daten &amp; Wellenmailing</a></li>
+							<li><a href="#werbeerfolg" data-toggle="tab"><span id="werbeerfolgTabFehler"></span>Werbeerfolg</a></li>
+						</ul>
+					</section>
+
+					<!-- Tab-Content -->
+					<div class="tab-content">
+						<div id="partner" class="tab-pane active">
+							<section class="row-fluid">
+								<header class="section-header section-first">
+									<span class="headline">Partner</span>
+									<div class="pull-right">
+										<button id="promotionenZurPartnerfreigabe" class="btn" title="Promotionen von selektierten Partnern freigeben lassen"
+											type="button">
+											<i class="icon-ok"></i> <span>Promotionen Zur Partnerfreigabe</span>
+										</button>
+										<button id="kampagnenPartnerHinzufuegen" class="btn" title="Kampagnen-Partner hinzuf&uuml;gen" type="button">
+											<i class="icon-people"></i> <span>neuer Partner</span>
+										</button>
+									</div>
+								</header>
+								<table id="KampagnenPartnerListElement" class="table table-hover" wicket_id="KampagnenPartnerListElement">
+									<thead>
+										<tr class="header">
+											<th id="bearbeiten" style="width: 24px;"></th>
+											<th id="loeschen" style="width: 24px;"></th>
+											<th id="ausgewaehlt" style="width: 24px;"></th>
+											<th id="PublicPartnerId" class="wicket_orderNone" style="width: 12%"><a href="#">Public Partner Id</a></th>
+											<th id="KampagnenPartnername" class="wicket_orderUp" style="width: 48%;"><a href="#">Name</a></th>
+											<th id="PromotionenAngelegt" style="width: 5%;">An</th>
+											<th id="PromotionenInternFreigegeben" style="width: 5%;">In</th>
+											<th id="PromotionenZurPartnerfreigabe" style="width: 5%;">Pa</th>
+											<th id="PromotionenAbgelehnt" style="width: 5%;">Ab</th>
+											<th id="PromotionenOnHold" style="width: 5%;">Ho</th>
+											<th id="PromotionenExternFreigegeben" style="width: 5%;">Fr</th>
+											<th id="PromotionenAktiv" style="width: 5%;">Ak</th>
+										</tr>
+									</thead>
+									<tr>
+										<td class="action-column" style="width: 24px;"><i class="icon-edit"></i></td>
+										<td class="action-column" style="width: 24px;"><i class="icon-delete disabled"></i></td>
+										<td style="width: 24px;"><input type="checkbox"></td>
+										<td style="width: 12%">123123</td>
+										<td style="width: 48%;">Edeka</td>
+										<td style="width: 5%;">0</td>
+										<td style="width: 5%;">0</td>
+										<td style="width: 5%;">0</td>
+										<td style="width: 5%;">0</td>
+										<td style="width: 5%;">0</td>
+										<td style="width: 5%;">0</td>
+										<td style="width: 5%;">0</td>
+									</tr>
+								</table>
+							</section>
+							<section class="row-fluid">
+								<div id="htmlIdKampagnenAnsprechpartnerWarnungen" class="alert alert-warning" style="display: none">
+									<a class="close" onclick="hideAlertBox('htmlIdKampagnenAnsprechpartnerWarnungen');">&times;</a> <span
+										id="htmlIdKampagnenAnsprechpartnerWarnungenMsg">Kampagnen Ansprechpartner Warnungen</span>
+								</div>
+								<header class="section-header">
+									<span class="headline">Ansprechpartner</span>
+									<button id="kampagnenAnsprechpartnerHinzufuegen" class="btn pull-right" title="Kampagnen-Ansprechpartner hinzuf&uuml;gen"
+										wicket_id="kampagnenAnsprechpartnerHinzufuegen" type="button">
+										<i class="icon-person"></i> <span wicket_id="kampagnenAnsprechpartnerHinzufuegen.label">neuer Ansprechpartner</span>
+									</button>
+								</header>
+								<table id="KampagnenAnsprechpartnerListElement" class="table table-hover" wicket_id="KampagnenAnsprechpartnerListElement">
+									<thead>
+										<tr class="header">
+											<th id="bearbeiten" style="width: 24px;"></th>
+											<th id="loeschen" style="width: 24px;"></th>
+											<th id="AnsprechpartnerName" class="wicket_orderNone" style="width: 50%;"><a href="#">Name</a></th>
+											<th id="Bereich" class="wicket_orderUp" style="width: 50%;"><a href="#">Bereich</a></th>
+										</tr>
+									</thead>
+								</table>
+							</section>
+							<section class="row-fluid">
+								<header class="section-header">
+									<span class="headline">Kommunikation</span>
+									<div class="pull-right">
+										<button id="eMailKommHinzufuegen" class="btn" title="EMail Kommunikation hinzuf&uuml;gen" wicket_id="eMailKommHinzufuegen"
+											type="button">
+											<i class="icon-email"></i> <span wicket_id="eMailKommHinzufuegen.label">EMail Komm Hinzufuegen</span>
+										</button>
+										<button id="whiteMailKommHinzufuegen" class="btn" title="Whitemail Kommunikation hinzuf&uuml;gen"
+											wicket_id="whiteMailKommHinzufuegen" type="button">
+											<i class="icon-whitemail"></i> <span wicket_id="whiteMailKommHinzufuegen.label">White Mail Komm Hinzufuegen</span>
+										</button>
+									</div>
+								</header>
+								<table id="KommListElement" class="table table-hover" wicket_id="KommListElement">
+									<thead>
+										<tr class="header">
+											<th id="bearbeiten" class="actionColumn" style="width: 48px;"></th>
+											<th id="KommName" class="wicket_orderNone" style="width: 50%;"><a href="#">Komm Name</a></th>
+											<th id="KommArt" class="wicket_orderUp" style="width: 50%;"><a href="#">Komm Art</a></th>
+										</tr>
+									</thead>
+								</table>
+							</section>
+						</div>
+
+						<!-- Daten und Wellenmailing -->
+						<div class="tab-pane" id="daten">
+							<section class="row-fluid">
+								<header class="section-header section-first">
+									<span class="headline">Daten</span>
+								</header>
+								<fieldset>
+									<div class="row-fluid">
+										<div class="control-group">
+											<label class="control-label" for="Kampagne.GeplanteAuflage"> Geplante Auflage </label>
+											<div class="controls control-row">
+												<div class="input-append span3">
+													<div class="span10">
+														<input id="Kampagne.GeplanteAuflage" class="span12" maxlength="10" type="text" placeholder="Anzahl" value=""
+															name="Kampagne.GeplanteAuflage" />
+													</div>
+													<span class="add-on">St&uuml;ck</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row-fluid">
+										<div class="control-group">
+											<label class="control-label" for="Kampagne.AktionszeitraumBeginn"> Aktionszeitraum </label>
+											<div class="controls control-row">
+												<div class="input-append span3">
+													<div class="span10">
+														<input id="Kampagne.AktionszeitraumBeginn" class="span12 datepicker" type="text" placeholder="von" autocomplete="off" value=""
+															name="Kampagne.AktionszeitraumBeginn" />
+													</div>
+													<span class="add-on"><i class="icon-calendar"></i></span>
+												</div>
+												<div class="input-append span3">
+													<div class="span10">
+														<input id="Kampagne.AktionszeitraumEnde" class="span12 datepicker" type="text" placeholder="bis" autocomplete="off" value=""
+															name="Kampagne.AktionszeitraumEnde" />
+													</div>
+													<span class="add-on"><i class="icon-calendar"></i></span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row-fluid">
+										<div class="control-group">
+											<label class="control-label" for="Kampagne.Zielbeschreibung"> Ziel des Mailings, Auftragsgegenstand</label>
+											<div class="controls control-row">
+												<textarea id="Kampagne.Zielbeschreibung" class="span12" maxlength="2000" rows="3" placeholder="Zielbeschreibung"
+													name="Kampagne.Zielbeschreibung"></textarea>
+											</div>
+										</div>
+									</div>
+									<div class="row-fluid">
+										<div class="control-group">
+											<label class="control-label" for="Kampagne.Sonstiges"> Sonstiges </label>
+											<div class="controls">
+												<textarea id="Kampagne.Sonstiges" class="span12" rows="3" maxlength="2000" type="text" placeholder="Sonstiges"
+													name="Kampagne.Sonstiges"></textarea>
+											</div>
+										</div>
+									</div>
+								</fieldset>
+							</section>
+							<section class="row-fluid">
+								<header class="section-header">
+									<span class="headline">Wellenmailing</span>
+								</header>
+								<fieldset>
+									<div class="row-fluid">
+										<div class="control-group">
+											<label class="control-label" for="Kampagne.Wellenmailing"> Wellenmailing </label>
+											<div class="controls control-row">
+												<input id="Kampagne.Wellenmailing" type="checkbox" name="Kampagne.Wellenmailing" />
+											</div>
+										</div>
+									</div>
+									<div class="row-fluid">
+										<div class="control-group">
+											<label class="control-label" for="Kampagne.Wellenmailingbeschreibung"> Beschreibung des Wellenmailings </label>
+											<div class="controls control-row">
+												<textarea id="Kampagne.Wellenmailingbeschreibung" class="span12" maxlength="2000" rows="3"
+													placeholder="Beschreibung des Wellenmailings" name="Kampagne.Wellenmailingbeschreibung"></textarea>
+											</div>
+										</div>
+									</div>
+								</fieldset>
+							</section>
+						</div>
+						<div class="tab-pane" id="werbeerfolg">
+							<section>
+								<header class="section-header section-first">
+									<span class="headline">Aktionseffektzeitraum</span>
+								</header>
+								<fieldset>
+									<div class="control-group">
+										<div class="controls">
+											<label class="checkbox" for="Kampagne.StandardWerbeerfolgszeitraumUeberschreiben">Standard Zeitraum deaktivieren und
+												folgenden Zeitraum verwenden: <input id="Kampagne.StandardWerbeerfolgszeitraumUeberschreiben" type="checkbox"
+												name="Kampagne.StandardWerbeerfolgszeitraumUeberschreiben" />
+											</label>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label disabled" for="Kampagne.WerbeerfolgszeitraumBeginn"> Abweichender Zeitraum </label>
+										<div class="controls">
+											<div class="input-append span3">
+												<div class="span10">
+													<input id="Kampagne.WerbeerfolgszeitraumBeginn" class="span12 datepicker" type="text" placeholder="von" autocomplete="off"
+														value="" name="Kampagne.WerbeerfolgszeitraumBeginn" title="Es gilt der Standard f�r den Aktionseffektzeitraum"
+														readonly="readonly" />
+												</div>
+												<span class="add-on"> <i class="icon-calendar"></i></span>
+											</div>
+											<div class="input-append span3">
+												<div class="span10">
+													<input id="Kampagne.WerbeerfolgszeitraumEnde" class="span12 datepicker" type="text" placeholder="bis" autocomplete="off"
+														value="" name="Kampagne.WerbeerfolgszeitraumEnde" title="Es gilt der Standard f�r den Aktionseffektzeitraum"
+														readonly="readonly" />
+												</div>
+												<span class="add-on"><i class="icon-calendar"></i></span>
+											</div>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="Kampagne.Langzeitanalyse" id="id13d">Langzeitanalyse</label>
+										<div class="controls">
+											<input id="Kampagne.Langzeitanalyse" type="checkbox" name="Kampagne.Langzeitanalyse" />
+										</div>
+									</div>
+								</fieldset>
+							</section>
+							<section>
+								<header class="section-header">
+									<span class="headline">Nachaktionszeitraum</span>
+								</header>
+								<fieldset>
+									<div class="control-group">
+										<div class="controls">
+											<label class="checkbox" for="Kampagne.StandardKampagnenzeitraumUeberschreiben">Standard Zeitraum deaktivieren und
+												folgenden Zeitraum verwenden: <input id="Kampagne.StandardKampagnenzeitraumUeberschreiben" type="checkbox"
+												name="Kampagne.StandardKampagnenzeitraumUeberschreiben" />
+											</label>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label disabled" for="Kampagne.Nachaktionszeitraum"> Abweichender Zeitraum </label>
+										<div class="controls">
+											<div class="input-append span3">
+												<div class="span10">
+													<input id="Kampagne.Nachaktionszeitraum" class="span12" type="text" maxlength="3" placeholder="Anzahl Tage" value=""
+														name="Kampagne.Nachaktionszeitraum" title="Es gilt der Standard f�r den Nachaktionszeitraum" readonly="readonly" />
+												</div>
+												<span class="add-on">Tage</span>
+											</div>
+										</div>
+									</div>
+								</fieldset>
+							</section>
+							<section>
+								<header class="section-header">
+									<span class="headline">Konfiguration Reporting</span>
+								</header>
+								<fieldset>
+									<div class="control-group" title="Mindestteilnehmerzahl f&uuml;r Quer-L&auml;ngsschnitt-Messung">
+										<label class="control-label" for="Kampagne.MindestfallzahlQLM">Mindestfallzahl QLM</label>
+										<div class="controls">
+											<div class="input-append span3">
+												<div class="span10">
+													<input id="Kampagne.MindestfallzahlQLM" class="span12" type="text" maxlength="3" placeholder="Anz. Teilnehmer" value="70"
+														name="Kampagne.MindestfallzahlQLM" />
+												</div>
+												<span class="add-on">TN</span>
+											</div>
+										</div>
+									</div>
+									<div class="control-group" title="Mindestteilnehmerzahl f&uuml;r Querschnitt-Messung">
+										<label class="control-label" for="Kampagne.MindestfallzahlQSM">Mindestfallzahl QSM</label>
+										<div class="controls">
+											<div class="input-append span3">
+												<div class="span10">
+													<input id="Kampagne.MindestfallzahlQSM" class="span12" type="text" maxlength="3" placeholder="Anz. Teilnehmer" value="30"
+														name="Kampagne.MindestfallzahlQSM" />
+												</div>
+												<span class="add-on">TN</span>
+											</div>
+										</div>
+									</div>
+									<div class="control-group hidden">
+										<label for="Kampagne.ZwischenauswertungKampagneneffekt" class="control-label" id="id13e">Zwischenauswertung
+											Kampagneneffekt</label>
+										<div class="controls">
+											<input id="Kampagne.ZwischenauswertungKampagneneffekt" class="span12" type="checkbox" maxlength="3"
+												name="Kampagne.ZwischenauswertungKampagneneffekt" />
+										</div>
+									</div>
+								</fieldset>
+							</section>
+						</div>
+					</div>
+				</div>
+				<footer>
+					<div class="form-actions">
+						<div class="pull-right">
+							<button class="btn btn-primary">Formular speichern</button>
+						</div>
+					</div>
+				</footer>
+			</form>
+		</div>
+	</wicket:extend>
+</body>
+</html>

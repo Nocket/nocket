@@ -1,0 +1,80 @@
+/*
+ * Nocket Framework Styles.
+ *
+ * File contains supplemntary CSS styles definitions required by
+ * Nocket web applications and not supplied by Bootstrap framework.
+ * 
+ * ATTENTION:
+ * Normally, you shouldn't do any changes in this file. If you 
+ * need some application specific styles, define them in 
+ * "application.less" or configure variables in the "dmdweb-variables.less" file.  
+ * 
+ * Copyright 2013 CRM-IT, BA der arvato business support GmBH
+ */
+@import "../bootstrap/variables.less"; /* From Bootstrap */
+@import "../bootstrap/mixins.less"; /* From Bootstrap */
+@import "nocket-variables.less";
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Please consider the following style guide if writeing CSS or HTML files: http://codeguide.co                 
+//                                                                                                              
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * navigation menu of the page, works as accordion
+ */
+
+@sidebarBackground:         @grayLighter;
+
+@sidebarLinkColor:          @gray;
+@sidebarLinkBackground:     @grayLightest;
+@sidebarLinkHover:          @grayLight;
+@sidebarLinkActive:         @blue;
+
+#accordion .nav {
+    margin-bottom: 0;
+}
+
+#accordion li a {
+    display: block;
+    padding: 10px 8px;
+	
+    color: @sidebarLinkColor;
+    background: @sidebarLinkBackground;
+}
+
+#accordion li a img {
+    vertical-align: middle;
+}
+
+#accordion li a:hover {
+    background: @sidebarBackground;
+}
+
+#accordion li ul {
+    background: @sidebarBackground;
+    -webkit-box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.1);
+       -moz-box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+#accordion li ul li a {
+    padding: 10px 15px;
+	border: none;
+	
+	background: none;
+}
+
+#accordion li ul li a:hover {
+	color: white;
+    background: @sidebarLinkActive;
+}
+
+#accordion li ul li.active {
+    background: @sidebarLinkActive;
+
+    a {
+        color: white;
+    }
+}

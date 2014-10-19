@@ -1,5 +1,10 @@
+/*!
+ * Nocket Framework Javascript.
+ *
+ * Copyright 2013 CRM-IT, BA der arvato business support GmBH
+ */
+
 // Simplified user notifications based on jQuery Pines Notify (pnotify) Plugin 1.2.0
-// Provided by team of Peter Chojecki
 // There is a Java-side hook for this functionality in dmdweb.gen.notify.Notifier
 var Notifier = function () {
     var self = this;

@@ -9,15 +9,15 @@
 		<!-- <div wicket:id='feedback'></div>  -->
 		<div wicket:id="modal"></div>
 		<form wicket:id="form" class="form-horizontal">
-			<fieldset>
+			<div class="modal-body">
 				<div class="control-group">
 					<label for="Book" class="control-label" wicket:id="Book.label">Book</label>
 					<div class="controls">
 						<select id="Book" wicket:id="Book"></select>
 					</div>
 				</div>
-			</fieldset>
-			<div class="form-actions">
+			</div>
+			<div class="modal-footer">
 				<button id="pay" class="btn" wicket:id="pay" type="submit">
 					<span wicket:id="pay.label">Pay</span>
 				</button>

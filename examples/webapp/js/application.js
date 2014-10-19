@@ -1,3 +1,9 @@
+/*!
+ * Nocket Framework Javascript.
+ *
+ * Copyright 2013 CRM-IT, BA der arvato business support GmBH
+ */
+
 var isDirty;
 
 /**

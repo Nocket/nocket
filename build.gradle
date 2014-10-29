@@ -153,6 +153,7 @@ jar {
 
 javadoc {
 	failOnError = false
+	options.encoding = "ISO-8859-15"
 }
 
 war {
@@ -327,8 +328,8 @@ gradle.taskGraph.whenReady { taskGraph ->
 	println "*** build configured for: '${version.conf}'\n"
     
 	tasks.withType(JavaCompile) {
-		compileJava.options.encoding = "UTF-8"
-		compileJava.options.warnings = false
+		[ compileJava, compileTestJava ]*.options*.encoding = "ISO-8859-15"
+		[ compileJava, compileTestJava ]*.options*.warnings = false
 	}
 }
 

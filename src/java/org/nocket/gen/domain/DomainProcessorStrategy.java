@@ -28,7 +28,7 @@ import org.nocket.gen.domain.visitor.DomainElementVisitorI;
 import org.nocket.gen.page.element.synchronizer.SynchronizerHelper;
 
 /**
- * Die DomainProcessorStrategy traversiert über das Domain-Objekt und ruft
+ * Die DomainProcessorStrategy traversiert Ã¼ber das Domain-Objekt und ruft
  * Visitor auf (siehe Visitor-Pattern).
  * 
  * @author meis026

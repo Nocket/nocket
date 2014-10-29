@@ -12,10 +12,10 @@ public class DMDInternalErrorPage extends DMDWebPage {
 
     public DMDInternalErrorPage(Throwable t) {
 
-	// TODO meis026 Die Klasse brauchen wir doch nicht wirklich! Die Derzeitiges Ausgabe ist natürlich bloedsinn.
+	// TODO meis026 Die Klasse brauchen wir doch nicht wirklich! Die Derzeitiges Ausgabe ist natÃ¼rlich bloedsinn.
 
 
-	// Die Variable t war eine Member-Variable. Leider kann im Cause einer Throwable eine Exception stecken, die nicht Serialisierbar ist. Das führt, tata, zu einer Exception.
+	// Die Variable t war eine Member-Variable. Leider kann im Cause einer Throwable eine Exception stecken, die nicht Serialisierbar ist. Das fÃ¼hrt, tata, zu einer Exception.
 	// Also wurde alles in den Konstruktor verlagert.
 	//	String errorID = Err.handler().process(t);
 

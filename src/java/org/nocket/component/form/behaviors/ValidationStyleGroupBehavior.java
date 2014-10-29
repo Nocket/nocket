@@ -69,7 +69,7 @@ public class ValidationStyleGroupBehavior extends AbstractTransformerBehavior {
     /**
      * Wenn Radios und Checkboxen mit Wicket und Bootstrap verwendet werden,
      * darf der Fehlertext nicht wie bei den einzelnen Inputfeldern hinten
-     * angef�gt werden, sondern er muss in das Controls-Div hinein operiert.
+     * angefÃŒgt werden, sondern er muss in das Controls-Div hinein operiert.
      * werden
      * 
      * <pre>

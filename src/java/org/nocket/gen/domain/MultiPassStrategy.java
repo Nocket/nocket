@@ -19,11 +19,11 @@ import org.nocket.gen.domain.visitor.DomainElementVisitorI;
  * der Generierung der HTML- und Java-Artefakte benutzt. Hat ein Domain-Objekt
  * Attribute, die mit der @see gengui.annotations.Group-Annotation versehen
  * sind, so muss diesem Domain-Objekt mehr als ein HTML-File erzeugt werden. Es
- * entsteht das HTML für die Page und ein oder mehrere HTML-Seiten für die
- * Panels, die für die @see GeneratedGroupTabbedPanel Komponente benötigt
+ * entsteht das HTML fÃ¼r die Page und ein oder mehrere HTML-Seiten fÃ¼r die
+ * Panels, die fÃ¼r die @see GeneratedGroupTabbedPanel Komponente benÃ¶tigt
  * werden. <br>
  * <br>
- * Weiterführende Beschreibung @see org.nocket.gen.domain.DomainProcessorStrategy
+ * WeiterfÃ¼hrende Beschreibung @see org.nocket.gen.domain.DomainProcessorStrategy
  * 
  * @author meis026
  * 

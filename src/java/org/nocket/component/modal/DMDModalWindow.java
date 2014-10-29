@@ -37,7 +37,7 @@ public class DMDModalWindow extends Panel {
 	}
 
 	/**
-	 * Höhe eines Standardheaders
+	 * HÃ¶he eines Standardheaders
 	 */
 	protected static final double MODAL_HEADER_SIZE = 20;
 
@@ -50,11 +50,11 @@ public class DMDModalWindow extends Panel {
 	private Dimension dimension;
 
 	/**
-	 * Das Modal Window existiert einmal pro Page und wird für verschiedene
-	 * Dialoge mit unterschiedlichen ModalPanels bestückt. Wenn aus einem
+	 * Das Modal Window existiert einmal pro Page und wird fÃ¼r verschiedene
+	 * Dialoge mit unterschiedlichen ModalPanels bestÃ¼ckt. Wenn aus einem
 	 * bestehenden Dialog heraus ein neuer Dialog angezeigt werden soll, darf
 	 * das Modal Window noch nicht geschlossen werden. closePrevented sorgt
-	 * dafür, dass genau dann das Schließen des Modal Windows verhindert wird,
+	 * dafÃ¼r, dass genau dann das SchlieÃŸen des Modal Windows verhindert wird,
 	 * damit nachfolgend im ModalWindow eingereichte Panels nicht direkt
 	 * geschlossen sind.
 	 */
@@ -69,8 +69,8 @@ public class DMDModalWindow extends Panel {
 		super(id);
 
 		/**
-		 * Das ist das Div über das Bootstrap die Anzeige des Panels steuert.
-		 * Hier wird show oder hide als class ergänzt.
+		 * Das ist das Div Ã¼ber das Bootstrap die Anzeige des Panels steuert.
+		 * Hier wird show oder hide als class ergÃ¤nzt.
 		 */
 		WebMarkupContainer divModal = new WebMarkupContainer(
 				"innerModal") {
@@ -178,7 +178,7 @@ public class DMDModalWindow extends Panel {
 				setDimensionToModalFooter = "dmdModalWindowSetzeHoeheAnModalBody(" + (int) dimension.getHeight() + ", " + 1200 + ");";
 			}
 			// Bootstrap macht bei jeder Form einen margin-bottom von 20px.
-			// Dieses ist in der modalen Box sehr störend und muss per
+			// Dieses ist in der modalen Box sehr stÃ¶rend und muss per
 			// Javascript korrigiert werden
 			response.render(OnDomReadyHeaderItem.forScript("dmdModalWindowKorrigiereFormMargin(); zeigeBlockerWennModalPanelVorhanden(); "
 					+ setDimensionToModalFooter));
@@ -196,8 +196,8 @@ public class DMDModalWindow extends Panel {
 		if (!closePrevented) {
 			doShow = false;
 		}
-		// nachdem einmal das Schließen des ModalWindow verhindert wurde
-		// kann das Fenster wieder zum Schließen freigegeben werden
+		// nachdem einmal das SchlieÃŸen des ModalWindow verhindert wurde
+		// kann das Fenster wieder zum SchlieÃŸen freigegeben werden
 		closePrevented = false;
 		target.add(this);
 	}

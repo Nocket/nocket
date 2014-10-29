@@ -8,7 +8,7 @@ import org.apache.wicket.request.cycle.RequestCycleContext;
 
 /**
  * Die derzeit einzige Funktion des DMDRequestCycle ist die SessionId dem Log4J
- * per MCD zur Verfügung zu stellen.
+ * per MCD zur VerfÃ¼gung zu stellen.
  * 
  * @author meis026
  * 

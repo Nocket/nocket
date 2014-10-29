@@ -9,16 +9,16 @@ import org.apache.wicket.markup.html.list.LoopItem;
 
 /**
  * Die TabbedPanel-Konponente von Wicket benutzt andere class-Definitionen als
- * Bootstrap benötigt. Deswegen, war es notwendig die Wicket-Komponente
- * abzuleiten. Wicket benutzt eine andere Markierung für das gerade aktive Tab
+ * Bootstrap benÃ¶tigt. Deswegen, war es notwendig die Wicket-Komponente
+ * abzuleiten. Wicket benutzt eine andere Markierung fÃ¼r das gerade aktive Tab
  * und in HTML muss tab
  * <ul>
- * -Element an Bootstrap angepasst werden. Außerdem verwenden wir für DMD ein
- * <i>Ajax</i>TabbedPanel, weil dieses erlaubt, über ein Überschreiben der
+ * -Element an Bootstrap angepasst werden. AuÃŸerdem verwenden wir fÃ¼r DMD ein
+ * <i>Ajax</i>TabbedPanel, weil dieses erlaubt, Ã¼ber ein Ãœberschreiben der
  * Methode {@link #newLink(String, int)} beim Tabwechsel das Synchronisieren der
- * Modelle aller Forms anzustoßen. Andernfalls gehen alle Eingaben im jeweils
- * verlassenen Tab verloren. Außerdem sieht es viel gefälliger aus, wenn sich
- * beim Tabwechsel nur der Inhalt des Tab-Bereichs ändert und nicht die ganze
+ * Modelle aller Forms anzustoÃŸen. Andernfalls gehen alle Eingaben im jeweils
+ * verlassenen Tab verloren. AuÃŸerdem sieht es viel gefÃ¤lliger aus, wenn sich
+ * beim Tabwechsel nur der Inhalt des Tab-Bereichs Ã¤ndert und nicht die ganze
  * Seite neu aufbaut.
  * 
  * @author meis026

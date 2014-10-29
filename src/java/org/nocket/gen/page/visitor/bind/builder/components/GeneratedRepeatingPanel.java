@@ -38,23 +38,23 @@ public class GeneratedRepeatingPanel extends RepeatingView {
     @SuppressWarnings({ "rawtypes", "unchecked" })
     protected void onBeforeRender() {
         /*
-         * FIXME: vocke03 Das hier ist nur ein Quickfix für DER-Touristik
-         * (DMDVIER-210), der dafür sorgt, dass beim Rendern von
+         * FIXME: vocke03 Das hier ist nur ein Quickfix fÃ¼r DER-Touristik
+         * (DMDVIER-210), der dafÃ¼r sorgt, dass beim Rendern von
          * GeneratedRepeatingPanels immer jeder bisherige Inhalt weggeworfen
-         * wird (removeAll()) und danach der korrekt Inhalt neu hinzugefügt
+         * wird (removeAll()) und danach der korrekt Inhalt neu hinzugefÃ¼gt
          * wird. Vorher hatte die Abfrage von hasBeenRendered() verhindert, dass
          * GeneratedRepeatingPanels neu gerendert wurden, sobald in ihren
-         * Children irgendwo Elemente in einer List-Property hinzugefügt oder
+         * Children irgendwo Elemente in einer List-Property hinzugefÃ¼gt oder
          * entfernt wurden (siehe auch test.dmdweb.tests.gen.listviews.OuterView
-         * als Testfall). Problematisch an dieser Lösung ist, dass jetzt _immer_
+         * als Testfall). Problematisch an dieser LÃ¶sung ist, dass jetzt _immer_
          * removeAll() aufgerufen und neu gerendert wird, obwohl es in den
-         * meisten Fällen überhaupt nicht notwendig ist.
+         * meisten FÃ¤llen Ã¼berhaupt nicht notwendig ist.
          * 
-         * Eine Behebung des Problems könnte so aussehen, dass sich im Rahmen
+         * Eine Behebung des Problems kÃ¶nnte so aussehen, dass sich im Rahmen
          * dieses GeneratedRepeatingPanels der Status der Children in Form eines
-         * HashCodes gemerkt werden, und beim nächsten Aufruf von onBeforeRender
-         * geprüft wird, ob sich dieser Status geändert hat und in diesem Fall
-         * ein removeAll() ausgeführt und das erneute Rendering angestoßen wird.
+         * HashCodes gemerkt werden, und beim nÃ¤chsten Aufruf von onBeforeRender
+         * geprÃ¼ft wird, ob sich dieser Status geÃ¤ndert hat und in diesem Fall
+         * ein removeAll() ausgefÃ¼hrt und das erneute Rendering angestoÃŸen wird.
          */
         //        removeAll();
         //if(!hasBeenRendered()) {
@@ -88,7 +88,7 @@ public class GeneratedRepeatingPanel extends RepeatingView {
         for (int i = 0; i < items.size(); i++) {
             Object view = items.get(i);
             // Wenn die Liste ein Nullelement liefert, ist es das Problem des Lieferanten der Liste. 
-            // Also wird das Element kommentarlos übergangen.
+            // Also wird das Element kommentarlos Ã¼bergangen.
             if (view != null) {
                 Panel panel = DMDPanelFactory.getViewPanelInstance(view, newChildId());
 
@@ -96,7 +96,7 @@ public class GeneratedRepeatingPanel extends RepeatingView {
 
                     @Override
                     public void onComponentTag(Component component, ComponentTag tag) {
-                        // Hiermit wird der Tag-Name des Parents geändert. Ziel ist es das <ul> in ein <div> zu verändern, so dass wir nicht dem ul-CSS unterliegen. Warum Wicket das aber bei dem Panel macht, weiß nur Wicket!
+                        // Hiermit wird der Tag-Name des Parents geÃ¤ndert. Ziel ist es das <ul> in ein <div> zu verÃ¤ndern, so dass wir nicht dem ul-CSS unterliegen. Warum Wicket das aber bei dem Panel macht, weiÃŸ nur Wicket!
                         tag.setName("div");
                         super.onComponentTag(component, tag);
                     }

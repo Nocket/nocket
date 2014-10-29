@@ -83,7 +83,7 @@ public class TouchedRegistry implements Serializable {
     }
 
     private void doWithMatchingModels(ModelCallback callback, String... wicketIdPrefixes) {
-        // TODO ES: startsWith ist nicht die beste Lösung. Bei einem Prefix von hallo.name würde hallo.name, halle.nameDenIchGarnichtWill gefunden werden. Letzteres ist nicht korrekt
+        // TODO ES: startsWith ist nicht die beste LÃ¶sung. Bei einem Prefix von hallo.name wÃ¼rde hallo.name, halle.nameDenIchGarnichtWill gefunden werden. Letzteres ist nicht korrekt
         for (TouchedRegistryData data : getDatas()) {
             for (TouchedListenerModelWrapper<?> l : data.getModels().values()) {
                 if (wicketIdPrefixes == null || wicketIdPrefixes.length == 0

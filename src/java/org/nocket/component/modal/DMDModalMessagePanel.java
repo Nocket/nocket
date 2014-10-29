@@ -22,7 +22,7 @@ import org.nocket.component.table.LabelHtmlizer;
 public class DMDModalMessagePanel extends Panel {
 
 	/**
-	 * Der Callback, der nach dem Button-Klick ausgeführt wird
+	 * Der Callback, der nach dem Button-Klick ausgefÃ¼hrt wird
 	 */
 	private ModalCallback callback;
 
@@ -58,8 +58,8 @@ public class DMDModalMessagePanel extends Panel {
 			 * Wenn bspw. nach einer Confirm-Box noxh ein modaler Dialog
 			 * aufgemacht wird, darf das show-Flag nicht auf false gesetzt
 			 * werden, da ansonsten das folgende Panel nicht dargestellt wird.
-			 * Der Grund liegt darin, dass wir die Instance, das die Panels hält
-			 * wieder benutzten. Im Moment würde ich sagen, eine recht
+			 * Der Grund liegt darin, dass wir die Instance, das die Panels hÃ¤lt
+			 * wieder benutzten. Im Moment wÃ¼rde ich sagen, eine recht
 			 * suboptimale Entscheidung. Das sollte refactored werden. meis026
 			 */
 			Boolean doClose = getCallback().doAction(target, flag);

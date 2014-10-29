@@ -13,7 +13,7 @@ import org.nocket.gen.page.element.TableElement;
 /**
  * This class analyses a TableElement for the presence of an example table
  * header which it may extract hand-modified details from to adopt them in
- * Wicket¥s dynamically created table component.<br>
+ * Wicket≈Ωs dynamically created table component.<br>
  * As example content tends to by out of date, the class is designed relatively
  * tolerant against content which does not fit the domain class' structure any
  * more.

@@ -16,93 +16,92 @@ import org.nocket.component.table.behavior.CssStyleAttributeBehavior;
 import org.nocket.component.table.columns.IDMDStyledColumn;
 
 public class DMDHeadersToolbar extends AbstractToolbar {
-    private static final long serialVersionUID = 1L;
 
-    /**
-     * Constructor
-     * 
-     * @param <T>
-     *            the column data type
-     * @param table
-     *            data table this toolbar will be attached to
-     * @param stateLocator
-     *            locator for the ISortState implementation used by sortable
-     *            headers
-     */
-    public DMDHeadersToolbar(final DataTable<?, String> table, final ISortStateLocator<String> stateLocator) {
-        super(table);
+	private static final long serialVersionUID = 1L;
 
-        RepeatingView headers = new RepeatingView("headers");
-        add(headers);
+	/**
+	 * Constructor
+	 * 
+	 * @param table
+	 *            data table this toolbar will be attached to
+	 * @param stateLocator
+	 *            locator for the ISortState implementation used by sortable
+	 *            headers
+	 */
+	public DMDHeadersToolbar(final DataTable<?, String> table, final ISortStateLocator<String> stateLocator) {
+		super(table);
 
-        final List<? extends IColumn<?, String>> columns = table.getColumns();
-        for (final IColumn<?, String> column : columns) {
-            AbstractItem item = new AbstractItem(headers.newChildId());
-            headers.add(item);
+		RepeatingView headers = new RepeatingView("headers");
+		add(headers);
 
-            WebMarkupContainer header = null;
-            if (column.isSortable()) {
-                header = newSortableHeader("header", column.getSortProperty(), stateLocator);
-            } else {
-                header = new WebMarkupContainer("header");
-            }
+		final List<? extends IColumn<?, String>> columns = table.getColumns();
+		for (final IColumn<?, String> column : columns) {
+			AbstractItem item = new AbstractItem(headers.newChildId());
+			headers.add(item);
 
-            if (column instanceof IStyledColumn<?, ?>) {
-                header.add(new CssClassAttributeBehaviour()
-                {
-                    private static final long serialVersionUID = 1L;
+			WebMarkupContainer header = null;
+			if (column.isSortable()) {
+				header = newSortableHeader("header", column.getSortProperty(), stateLocator);
+			}
+			else {
+				header = new WebMarkupContainer("header");
+			}
 
-                    @Override
-                    protected String getCssClass()
-                    {
-                        return ((IStyledColumn<?, ?>) column).getCssClass();
-                    }
-                });
-            }
+			if (column instanceof IStyledColumn<?, ?>) {
+				header.add(new CssClassAttributeBehaviour() {
 
-            if (column instanceof IDMDStyledColumn<?, ?>) {
-                header.add(new CssStyleAttributeBehavior()
-                {
-                    private static final long serialVersionUID = 1L;
+					private static final long serialVersionUID = 1L;
 
-                    @Override
-                    protected String getColumnCssStyleAttribute()
-                    {
-                        return ((IDMDStyledColumn<?, ?>) column).getCssStyleAttribute();
-                    }
-                });
+					@Override
+					protected String getCssClass() {
+						return ((IStyledColumn<?, ?>) column).getCssClass();
+					}
+				});
+			}
 
-            }
+			if (column instanceof IDMDStyledColumn<?, ?>) {
+				header.add(new CssStyleAttributeBehavior() {
 
-            item.add(header);
-            item.setRenderBodyOnly(true);
-            header.add(column.getHeader("label"));
-        }
-    }
+					private static final long serialVersionUID = 1L;
 
-    /**
-     * Factory method for sortable header components. A sortable header
-     * component must have id of <code>headerId</code> and conform to markup
-     * specified in <code>HeadersToolbar.html</code>
-     * 
-     * @param headerId
-     *            header component id
-     * @param property
-     *            property this header represents
-     * @param locator
-     *            sort state locator
-     * @return created header component
-     */
-    protected WebMarkupContainer newSortableHeader(final String headerId, final String property,
-            final ISortStateLocator locator) {
-        return new OrderByBorder(headerId, property, locator) {
-            private static final long serialVersionUID = 1L;
+					@Override
+					protected String getColumnCssStyleAttribute() {
+						return ((IDMDStyledColumn<?, ?>) column).getCssStyleAttribute();
+					}
+				});
 
-            @Override
-            protected void onSortChanged() {
-                getTable().setCurrentPage(0);
-            }
-        };
-    }
+			}
+
+			item.add(header);
+			item.setRenderBodyOnly(true);
+			header.add(column.getHeader("label"));
+		}
+	}
+
+	/**
+	 * Factory method for sortable header components. A sortable header
+	 * component must have id of <code>headerId</code> and conform to markup
+	 * specified in <code>HeadersToolbar.html</code>
+	 * 
+	 * @param headerId
+	 *            header component id
+	 * @param property
+	 *            property this header represents
+	 * @param locator
+	 *            sort state locator
+	 * @return created header component
+	 */
+	protected WebMarkupContainer newSortableHeader(final String headerId, final String property, final ISortStateLocator locator) {
+		return new OrderByBorder(
+				headerId, property, locator) {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected void onSortChanged() {
+				getTable().setCurrentPage(0);
+			}
+		};
+	}
 
 }

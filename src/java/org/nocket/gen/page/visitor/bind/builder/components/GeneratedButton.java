@@ -55,9 +55,9 @@ public class GeneratedButton extends DMDFormOverlayAjaxButton {
     public FormComponent<String> setLabel(IModel<String> labelModel) {
         /*
          * Hier wird die Standard-Methode zum Setzen eines Labels ein bisschen
-         * verbogen. Da wir beim GeneratedButton ein eigenes Label hinzufügen.
+         * verbogen. Da wir beim GeneratedButton ein eigenes Label hinzufÃ¼gen.
          * Muss hier das entsprechende Label und nicht das internalLabel einer
-         * FormComponent geändert werden.
+         * FormComponent geÃ¤ndert werden.
          */
         Label label = (Label) this.get(this.getId() + ".label");
         label.setDefaultModel(labelModel);

@@ -9,7 +9,7 @@ import org.apache.wicket.request.cycle.RequestCycle;
 
 /**
  * Behavior zum Fokusieren einer Formularkomponente beim Darstellen der Seite im
- * Browser. Zus�tzlich wird der Inhalt der Formularkomponente markiert.
+ * Browser. ZusÃ€tzlich wird der Inhalt der Formularkomponente markiert.
  *
  * @author arens01/janz04
  * @deprecated use HTML5 focus attribute instead
@@ -37,18 +37,18 @@ public class DefaultFocusBehavior extends Behavior {
 				+ focusRadioChoice;
 		/*
 		 * janz04: Unterscheidung Ajax-Request vs. normalen Pageload Bei einem
-		 * Request per Ajax wird der Dom ausgetauscht, was dazu f�hrt, dass
-		 * JavaScript nicht ausgef�hrt wird. Deshalb reicht es bei einem
+		 * Request per Ajax wird der Dom ausgetauscht, was dazu fÃŒhrt, dass
+		 * JavaScript nicht ausgefÃŒhrt wird. Deshalb reicht es bei einem
 		 * AjaxCall nicht das Javascript in die Respone zu setzten. Wicket
-		 * bietet die M�glichkeit JavaScript per appendJavaScript hinzuzuf�gen,
-		 * dieses wird im Anschluss ausgef�hrt Ein Problem aus Riester war, dass
-		 * wenn man nur das JavaScript ausf�hrt, der Focus erst beim zweiten
-		 * Aufruf tats�chlich gesetzt wird. Dies wird dadurch erzwungen, dass
-		 * zus�tzlich die M�glichkeit von Wicket genutzt wird dem
+		 * bietet die MÃ¶glichkeit JavaScript per appendJavaScript hinzuzufÃŒgen,
+		 * dieses wird im Anschluss ausgefÃŒhrt Ein Problem aus Riester war, dass
+		 * wenn man nur das JavaScript ausfÃŒhrt, der Focus erst beim zweiten
+		 * Aufruf tatsÃ€chlich gesetzt wird. Dies wird dadurch erzwungen, dass
+		 * zusÃ€tzlich die MÃ¶glichkeit von Wicket genutzt wird dem
 		 * AjaxRequestTarget mitzuteilen welche Komponente den Fokus erhalten
 		 * soll. Die Methode focusComponent reicht alleine nicht, da die hier
-		 * �bergebene Component als span gerendert wird. Sollte hier jemand eine
-		 * bessere Idee haben, h�re ich mir gerne gemecker an.
+		 * ÃŒbergebene Component als span gerendert wird. Sollte hier jemand eine
+		 * bessere Idee haben, hÃ¶re ich mir gerne gemecker an.
 		 */
 		AjaxRequestTarget ajaxRequestTarget = RequestCycle.get().find(AjaxRequestTarget.class);
 		if (ajaxRequestTarget != null) {

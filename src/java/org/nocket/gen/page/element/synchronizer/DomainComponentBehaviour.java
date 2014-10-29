@@ -180,7 +180,7 @@ public class DomainComponentBehaviour extends AbstractValidator<Object> {
      * eager-updated attributes must perform their job very fast anyway.<br>
      * The setter is called with the current attribute's value, which should be
      * OK for a re-invokation according to the
-     * "Stang'sches Synchronisierungskalkül". If the attribute's value may be
+     * "Stang'sches SynchronisierungskalkÃ¼l". If the attribute's value may be
      * influenced by other attributes' setters, these other attributes should
      * also be eager-updated. This in turn means that their appropriate GUI
      * components won't change their value in this phase here and therefore

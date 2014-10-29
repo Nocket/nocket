@@ -682,8 +682,8 @@ public class SynchronizerHelper implements Serializable {
 			target.add(object);
 		    }
 		    // TODO blaz02: Wicket6. Zuerst den Checkbox oder RadioChoice immer zum
-		    // Target hinzufügen. Die Methode "modelChangedBetweenrEquestsProcessing"
-		    // liefert immer false. -> Für eine Checkbox oder ein RadioChoice muss es entweder einen eigenen TouchedListenerModelWrapper oder ein eigenes State, so das das eqausl anders programmiert wird. Der Weg ist ein schlechter Hack.
+		    // Target hinzufÃ¼gen. Die Methode "modelChangedBetweenrEquestsProcessing"
+		    // liefert immer false. -> FÃ¼r eine Checkbox oder ein RadioChoice muss es entweder einen eigenen TouchedListenerModelWrapper oder ein eigenes State, so das das eqausl anders programmiert wird. Der Weg ist ein schlechter Hack.
 		    if (object instanceof CheckBox || object instanceof RadioChoice) {
 			target.add(object);
 		    }
@@ -695,7 +695,7 @@ public class SynchronizerHelper implements Serializable {
 		    }
 		}
 		// Zwar ist das GenericDataTablePanel eine generische Komponente, aber der Inhalt dieser Tabelle nicht. So kann nicht festgestellt werden, ob sich der Inhalt
-		// der Tabelle geändert hat. Deswegen muss jedesmal die komplette Tabelle in das Ajax-Target geschrieben werden. Blöde Lösung! meis026
+		// der Tabelle geÃ¤ndert hat. Deswegen muss jedesmal die komplette Tabelle in das Ajax-Target geschrieben werden. BlÃ¶de LÃ¶sung! meis026
 		if (object instanceof GenericDataTablePanel) {
 		    target.add(object);
 		}

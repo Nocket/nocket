@@ -17,11 +17,11 @@ import org.slf4j.LoggerFactory;
  * getrimmt und wenn es dann ein Leestring ist zu NULL gemacht. Dies ist nur
  * bedingt gut. Es gibt doch Projekte, die ihre Daten, auch wenn sie schlecht
  * sind, behalten wollen. Allerdings kann es sinnvoll sein einen richtigen
- * Leerstring zu NULL zu wandeln. Diese Entit�t liesst den Defaultwert f�r das
- * Verhalten aus den gengui.properties (InputStringConvertStrategy). Ge�ndert
+ * Leerstring zu NULL zu wandeln. Diese EntitÃ€t liesst den Defaultwert fÃŒr das
+ * Verhalten aus den gengui.properties (InputStringConvertStrategy). GeÃ€ndert
  * kann die verwendete Strategie mit der Methode <code>
  * setConvertInputStringModus(InputStringConvertStrategy convertInputStringModus)
- * </code> F�r die InputStringConvertStrategy gibt es folgende M�glichkeiten:<br>
+ * </code> FÃŒr die InputStringConvertStrategy gibt es folgende MÃ¶glichkeiten:<br>
  * <ul>
  * <li>none = keine Konvertiertung</li>
  * <li>trimAndEmptyToNull = nur Leerstrings werden zu null (kein Trim)</li>

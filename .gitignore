@@ -26,3 +26,4 @@ examples/webapp/css/application.map
 .settings/org.eclipse.jdt.core.prefs
 .settings/org.eclipse.wst.common.component
 .settings/*.xml
+/bin/

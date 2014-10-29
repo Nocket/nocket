@@ -94,10 +94,10 @@ public class TouchedListenerModelWrapper<E> implements IModel<E> {
          * Dies ist ein halbgarer Workaround. Bisher stand an dieser Stelle der
          * direkte zugriff auf den Delegate "delegate.setObject(object);". Dies
          * funktioniert zwar immer, aber ist nicht korrekt. Ist ein Setter
-         * intercepted, so wuerde die Interception ignoriert. Für die Fälle,
+         * intercepted, so wuerde die Interception ignoriert. FÃ¼r die FÃ¤lle,
          * dass der Delegate ein PropertyModel ist, d.h. direkt auf das Model
          * zugegriffen wird, wird nun der SynchronizerHelper benutzt. In den
-         * Fällen, dass es ein anderes Model ist, wird gehofft, dass diese
+         * FÃ¤llen, dass es ein anderes Model ist, wird gehofft, dass diese
          * Aufgabe das "andere" Model sprich das Delegate uebernimmt.<br>
          * Offen:<br>
          * - FileDownloadElement<br>

@@ -82,9 +82,9 @@ public class ButtonCallback implements Serializable {
     }
 
     /**
-     * Interceptor für ButtonCallbacks um in den onSubmit-Process eingreifen zu
-     * können. Dabei gibt es mehrere Punkte an denen man eingreifen kann. Wird
-     * ein Button gedrückt, wird im Interceptor die Method
+     * Interceptor fÃ¼r ButtonCallbacks um in den onSubmit-Process eingreifen zu
+     * kÃ¶nnen. Dabei gibt es mehrere Punkte an denen man eingreifen kann. Wird
+     * ein Button gedrÃ¼ckt, wird im Interceptor die Method
      * 
      * <pre>
      * <code>        protected void onSubmit(AjaxRequestTarget target) {
@@ -105,14 +105,14 @@ public class ButtonCallback implements Serializable {
      * <code>Object onSubmitProcess(MethodExceptionHandlerImpl methodExceptionHandler)</code>
      * , das Verarbeiten von Exceptions bzw das Schliessen von Dialogen
      * <code>onSubmitPost(MethodExceptionHandlerImpl methodExceptionHandler, Object result)</code>
-     * und schließlich das Deregistrieren des AjaxTargets
-     * <code>onSubmitFinally(AjaxRequestTarget target)</code> durchgeführt.<br>
-     * Alle diese Methode können überschrieben werden. Wird eine Methode nicht
-     * überschrieben, wird die entsprechende Methode am ButtonCallback
-     * ausgeführt. In den meisten Fällen wird die Methode
+     * und schlieÃŸlich das Deregistrieren des AjaxTargets
+     * <code>onSubmitFinally(AjaxRequestTarget target)</code> durchgefÃ¼hrt.<br>
+     * Alle diese Methode kÃ¶nnen Ã¼berschrieben werden. Wird eine Methode nicht
+     * Ã¼berschrieben, wird die entsprechende Methode am ButtonCallback
+     * ausgefÃ¼hrt. In den meisten FÃ¤llen wird die Methode
      * <code>Object onSubmitProcess(MethodExceptionHandlerImpl methodExceptionHandler)</code>
-     * überschrieben werden. Gründe dafür könnten sein, es soll vor oder nach
-     * dem Aufruf der Pojo-Button-Methode noch eine Funktion durchgeführt
+     * Ã¼berschrieben werden. GrÃ¼nde dafÃ¼r kÃ¶nnten sein, es soll vor oder nach
+     * dem Aufruf der Pojo-Button-Methode noch eine Funktion durchgefÃ¼hrt
      * werden.<br>
      * Ein Beispiel ist in @see GeneratedPage
      * 

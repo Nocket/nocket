@@ -10,7 +10,7 @@ import org.apache.wicket.markup.transformer.AbstractTransformerBehavior;
 
 /**
  * Zeigt ein ?-Image hinter dem fehlerhaften Eingabefeld an. Das Image hat einen
- * Tooltip, der die Fehlermeldung enthält.
+ * Tooltip, der die Fehlermeldung enthÃ¤lt.
  * 
  * @auto meis026
  * 
@@ -25,7 +25,7 @@ public class ValidationTooltipStyleBehavior extends AbstractTransformerBehavior 
 
     public ValidationTooltipStyleBehavior(boolean irgendeinWert) {
         super();
-        // Mir ist vollkommen unklar, wafür der Paramter ist. Sinn macht er für mich nicht. Aber er wird aus dem Generator mit boolean aufgerufen
+        // Mir ist vollkommen unklar, wafÃ¼r der Paramter ist. Sinn macht er fÃ¼r mich nicht. Aber er wird aus dem Generator mit boolean aufgerufen
     }
 
     @Override

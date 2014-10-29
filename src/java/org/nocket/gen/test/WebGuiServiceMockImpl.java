@@ -100,7 +100,7 @@ public class WebGuiServiceMockImpl implements WebGuiServiceI {
         modalObject = null;
     }
 
-    /** Setzt das gewollte Ergebnis für eine modale Operation */
+    /** Setzt das gewollte Ergebnis fÃ¼r eine modale Operation */
     public static Object getModalObject() {
         return modalObject;
     }
@@ -118,12 +118,12 @@ public class WebGuiServiceMockImpl implements WebGuiServiceI {
         return getMockResults().pop();
     }
 
-    /** Setzt das gewollte ConfirmResult für confirm Operation */
+    /** Setzt das gewollte ConfirmResult fÃ¼r confirm Operation */
     public static void addConfirmResult(ButtonFlag confirmResult) {
         WebGuiServiceMockImpl.confirmResults.offer(confirmResult);
     }
 
-    /** Setzt das gewollte Result für modal Operation */
+    /** Setzt das gewollte Result fÃ¼r modal Operation */
     public static void addModalResult(Object modalResult) {
         WebGuiServiceMockImpl.modalResults.offer(modalResult);
     }

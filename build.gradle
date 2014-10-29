@@ -4,16 +4,22 @@ apply plugin: "eclipse"
 apply plugin: "eclipse-wtp"
 apply plugin: "lesscss"
 apply plugin: "announce"
+apply plugin: "maven"
 
 ext {
 	// current user
 	username = System.properties["user.name"]
+	// default repository
+	repositoryURL = ""
 	// define config property to load user specific *build* configuration
 	config = loadConfiguration()
 }
 
+print "Starting after configuration!"
+
 // using semantic versioning, see http://semver.org/
 group = "org.nocket"
+archivesBaseName = "nocket"
 version = new Version(major: 0, minor: 1, revision: 0)
 
 sourceCompatibility = config.java.source
@@ -139,24 +145,91 @@ lesscDaemon {
 
 jar {
 	from sourceSets.main.output
-
+	
 	manifest {
 		attributes("Implementation-Title": project.name, "Implementation-Version": version)
 	}
 }
 
+javadoc {
+	failOnError = false
+}
+
 war {
 	dependsOn "lessc"
-	baseName "${project.name}-examples"
+	appendix =  "examples"
 	
 	from "examples/webapp"
 	classpath sourceSets.examples.runtimeClasspath
+}
+
+task javadocJar(type: Jar) {
+	description "Assembles a jar archive containing the javadoc files"
+	
+	classifier = 'javadoc'
+	from javadoc
+}
+
+task sourcesJar(type: Jar) {
+	description "Assembles a jar archive containing the source files"
+	
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+artifacts {
+	archives jar, javadocJar, sourcesJar
 }
 
 assemble {
     dependsOn "cleanResources"
     dependsOn "jar"
     dependsOn "war"
+}
+
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			repository(url: config.repository.url) {
+				authentication(userName: config.repository.user, password: config.repository.password)
+			}
+  
+			addFilter('default') {artifact, file ->
+				artifact.name == 'nocket'
+			}
+			
+			addFilter('examples') {artifact, file ->
+				artifact.name ==~ '.*-examples'
+			}
+			
+			pom.project {
+				name 'Nocket'
+				description 'Nocket: Naked Objects for Wicket'
+				url 'https://github.com/Nocket/'
+  
+				licenses {
+					license {
+						name 'The MIT License (MIT)'
+						url 'http://opensource.org/licenses/MIT'
+					}
+				}
+			}
+		}
+	}
+}
+
+task deployRelease {
+	description "Deploy a Release to a repository"
+	
+	dependsOn "buildRelease"
+	dependsOn "uploadArchives"
+} 
+
+task deploySnapshot {
+	description "Deploy a Snapshot to a repository"
+	
+	dependsOn "buildSnapshot"
+	dependsOn "uploadArchives"
 }
 
 repositories { 
@@ -230,10 +303,13 @@ task buildRelease(dependsOn: ["build"]) {
 }
 
 task cleanResources(type: Delete) {
+	description "Deletes all ressources in the build directory"
+	
     delete fileTree(dir: "${buildDir}/resources")
 }
 
 gradle.taskGraph.whenReady { taskGraph ->
+	
 	if( taskGraph.hasTask(buildRelease)) {
 		version.release = true
 		version.conf = "RELEASE"
@@ -247,11 +323,11 @@ gradle.taskGraph.whenReady { taskGraph ->
 	
 	sourceSets.main.resources.srcDir "src/config/${version.configuration}"
 	sourceSets.examples.resources.srcDir "examples/config/${version.configuration}"
-
+	
 	println "*** build configured for: '${version.conf}'\n"
     
 	tasks.withType(JavaCompile) {
-		compileJava.options.encoding = "ISO-8859-15"
+		compileJava.options.encoding = "UTF-8"
 		compileJava.options.warnings = false
 	}
 }

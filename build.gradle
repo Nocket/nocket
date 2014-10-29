@@ -9,8 +9,6 @@ apply plugin: "maven"
 ext {
 	// current user
 	username = System.properties["user.name"]
-	// default repository
-	repositoryURL = ""
 	// define config property to load user specific *build* configuration
 	config = loadConfiguration()
 }
@@ -282,7 +280,7 @@ buildscript {
 }
 
 wrapper { 
-	gradleVersion = "2.0" 
+	gradleVersion = "2.1" 
 }
 
 task buildSnapshot(dependsOn: ["build"]) { 

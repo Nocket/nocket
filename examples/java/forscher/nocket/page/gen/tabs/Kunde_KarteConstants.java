@@ -7,7 +7,7 @@ public final class Kunde_KarteConstants {
 
     /** SimplePropertyElement: Kontonr */
     public static final String Kontonr = "Kontonr";
-    /** ButtonElement: Prüfen */
+    /** ButtonElement: PrÃ¼fen */
     public static final String pruefen = "pruefen";
 
     public final class Properties {
@@ -16,7 +16,7 @@ public final class Kunde_KarteConstants {
 
         /** Kontonr */
         public static final String Kontonr = "Kontonr";
-        /** Prüfen */
+        /** PrÃ¼fen */
         public static final String pruefen = "pruefen";
     }
 

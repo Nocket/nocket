@@ -188,6 +188,10 @@ dependencies {
 	compile "org.hibernate:hibernate-validator:4.0.1.GA"
 	compile "org.slf4j:slf4j-log4j12:1.+"
 
+	// Selenium
+	compile "org.seleniumhq.selenium:selenium-firefox-driver:2.43.1"
+	compile "org.seleniumhq.selenium:selenium-support:2.43.1"
+
 	// needed for examples
 	examplesCompile sourceSets.main.output
 	examplesCompile configurations.compile

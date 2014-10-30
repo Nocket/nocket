@@ -162,20 +162,6 @@ war {
 	classpath sourceSets.examples.runtimeClasspath
 }
 
-task javadocJar(type: Jar) {
-	description "Assembles a jar archive containing the javadoc files"
-	
-	classifier = 'javadoc'
-	from javadoc
-}
-
-task sourcesJar(type: Jar) {
-	description "Assembles a jar archive containing the source files"
-	
-	classifier = 'sources'
-	from sourceSets.main.allSource
-}
-
 artifacts {
 	archives jar, javadocJar, sourcesJar
 }
@@ -193,6 +179,10 @@ uploadArchives {
 				authentication(userName: config.repository.user, password: config.repository.password)
 			}
   
+			snapshotRepository(url: config.repository.snapshot) {
+				authentication(userName: config.repository.user, password: config.repository.password)
+			}
+			
 			addFilter('default') {artifact, file ->
 				artifact.name == 'nocket'
 			}
@@ -217,12 +207,36 @@ uploadArchives {
 	}
 }
 
+task cleanResources(type: Delete) {
+	description "Deletes all ressources in the build directory"
+	
+	delete fileTree(dir: "${buildDir}/resources")
+}
+
+task buildSnapshot(dependsOn: ["build"]) {
+	description "Assembles the outputs of this project for a SNAPSHOT Release."
+
+	doLast {
+		def state = didWork ? "finished" : "with error"
+		announce.local.send "Snapshot ${project.name}-${version}", state
+	}
+}
+
+task buildRelease(dependsOn: ["build"]) {
+	description "Assembles the outputs of this project for a Release."
+	
+	doLast {
+		def state = didWork ? "finished" : "with error"
+		announce.local.send "Releasing ${project.name}-${version}", state
+	}
+}
+
 task deployRelease {
 	description "Deploy a Release to a repository"
 	
 	dependsOn "buildRelease"
 	dependsOn "uploadArchives"
-} 
+}
 
 task deploySnapshot {
 	description "Deploy a Snapshot to a repository"
@@ -281,30 +295,6 @@ buildscript {
 
 wrapper { 
 	gradleVersion = "2.1" 
-}
-
-task buildSnapshot(dependsOn: ["build"]) { 
-	description "Assembles the outputs of this project for a SNAPSHOT Release."
-
-	doLast { 
-		def state = didWork ? "finished" : "with error"
-		announce.local.send "Snapshot ${project.name}-${version}", state
-	} 
-}
-
-task buildRelease(dependsOn: ["build"]) {
-	description "Assembles the outputs of this project for a Release."
-	
-    doLast { 
-		def state = didWork ? "finished" : "with error"
-        announce.local.send "Releasing ${project.name}-${version}", state
-    } 
-}
-
-task cleanResources(type: Delete) {
-	description "Deletes all ressources in the build directory"
-	
-    delete fileTree(dir: "${buildDir}/resources")
 }
 
 gradle.taskGraph.whenReady { taskGraph ->

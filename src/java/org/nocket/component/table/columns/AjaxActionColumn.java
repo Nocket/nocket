@@ -10,6 +10,7 @@ import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 import org.nocket.component.table.GenericDataTablePanel;
 
+// TODO: Auto-generated Javadoc
 /**
  * Column with Ajax link.
  * 
@@ -20,10 +21,18 @@ import org.nocket.component.table.GenericDataTablePanel;
 @SuppressWarnings("serial")
 public abstract class AjaxActionColumn<T> extends DMDAbstractColumn<T> {
 
+    /**
+     * Instantiates a new ajax action column.
+     *
+     * @param headerLabel the header label
+     */
     public AjaxActionColumn(IModel<String> headerLabel) {
         super(headerLabel);
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator#populateItem(org.apache.wicket.markup.repeater.Item, java.lang.String, org.apache.wicket.model.IModel)
+     */
     public void populateItem(Item<ICellPopulator<T>> cellItem, String componentId, IModel<T> rowModel) {
         cellItem.add(new LinkPanel<T>(componentId, this, rowModel));
     }
@@ -66,9 +75,9 @@ public abstract class AjaxActionColumn<T> extends DMDAbstractColumn<T> {
 
     /**
      * Called when a link is clicked.
-     * 
-     * @param model
-     *            Model of the line.
+     *
+     * @param clicked the clicked
+     * @param target the target
      */
     protected abstract void onClick(IModel<T> clicked, AjaxRequestTarget target);
 
@@ -84,9 +93,21 @@ public abstract class AjaxActionColumn<T> extends DMDAbstractColumn<T> {
         return null;
     }
 
+    /**
+     * The Class LinkPanel.
+     *
+     * @param <T> the generic type
+     */
     @SuppressWarnings("hiding")
     private class LinkPanel<T> extends Panel {
 
+        /**
+         * Instantiates a new link panel.
+         *
+         * @param id the id
+         * @param column the column
+         * @param rowModel the row model
+         */
         public LinkPanel(String id, final AjaxActionColumn<T> column, IModel<T> rowModel) {
             super(id);
             AjaxLink<T> link = new AjaxLink<T>("link", rowModel) {

@@ -25,60 +25,94 @@ import org.nocket.gen.domain.element.MultivaluePropertyElement;
 import org.nocket.gen.domain.element.ResourceElement;
 import org.nocket.gen.domain.element.SimplePropertyElement;
 
+// TODO: Auto-generated Javadoc
 /**
  * This visitor creates property file according to Wicket rules. The file is
  * placed in "resources" folder. Default name is "gengui_de.properties". If file
  * does exists, new properties are added to it. Old properties are never
  * overwritten.
- * 
+ *
  * @author blaz02
+ * @param <E> the element type
  */
 public class GenguiPropertiesVisitor<E extends AbstractDomainReference> extends AbstractPropertiesVisitor<E> {
 
+    /** The Constant TABLE_HEADER. */
     private static final String TABLE_HEADER = "%s.%s.table.header";
+    
+    /** The last property file. */
     protected File lastPropertyFile;
 
+    /**
+     * Instantiates a new gengui properties visitor.
+     *
+     * @param context the context
+     */
     public GenguiPropertiesVisitor(DMDWebGenContext<E> context) {
 	super(context);
     }
 
+    /* (non-Javadoc)
+     * @see org.nocket.gen.domain.visitor.properties.AbstractPropertiesVisitor#getPropertiesFile()
+     */
     @Override
     protected File getPropertiesFile() {
 	String propertiesFilePath = ResourceBundleAccess.determineResourceFileForCurrentLocaleFromClasspath();
 	return new File(propertiesFilePath);
     }
 
+    /* (non-Javadoc)
+     * @see org.nocket.gen.domain.visitor.properties.AbstractPropertiesVisitor#finish()
+     */
     @Override
     public void finish() {
 	super.finish();
 	ResourceBundleAccess.clearResourceBundleCache();
     }
 
+    /* (non-Javadoc)
+     * @see org.nocket.gen.domain.visitor.DomainElementVisitorI#visitSimpleProperty(org.nocket.gen.domain.element.SimplePropertyElement)
+     */
     @Override
     public void visitSimpleProperty(SimplePropertyElement<E> e) {
 	addProperty(getPropertyKey(e), e.getPromptFormatted());
     }
 
+    /* (non-Javadoc)
+     * @see org.nocket.gen.domain.visitor.DomainElementVisitorI#visitChoicerProperty(org.nocket.gen.domain.element.ChoicerPropertyElement)
+     */
     @Override
     public void visitChoicerProperty(ChoicerPropertyElement<E> e) {
 	addProperty(getPropertyKey(e), e.getPromptFormatted());
     }
 
+    /* (non-Javadoc)
+     * @see org.nocket.gen.domain.visitor.DomainElementVisitorI#visitCheckboxProperty(org.nocket.gen.domain.element.CheckboxPropertyElement)
+     */
     @Override
     public void visitCheckboxProperty(CheckboxPropertyElement<E> e) {
 	addProperty(getPropertyKey(e), e.getPromptFormatted());
     }
 
+    /* (non-Javadoc)
+     * @see org.nocket.gen.domain.visitor.DomainElementVisitorI#visitButton(org.nocket.gen.domain.element.ButtonElement)
+     */
     @Override
     public void visitButton(ButtonElement<E> e) {
 	addProperty(getPropertyKey(e), e.getPrompt());
     }
 
+    /* (non-Javadoc)
+     * @see org.nocket.gen.domain.visitor.DomainElementVisitorI#visitResource(org.nocket.gen.domain.element.ResourceElement)
+     */
     @Override
     public void visitResource(ResourceElement<E> e) {
 	addProperty(getPropertyKey(e), e.getPrompt());
     }
 
+    /* (non-Javadoc)
+     * @see org.nocket.gen.domain.visitor.DomainElementVisitorI#visitFieldsetOpen(org.nocket.gen.domain.element.HeadlineElement)
+     */
     @Override
     public void visitFieldsetOpen(HeadlineElement<E> e) {
 	// add prompt
@@ -86,6 +120,9 @@ public class GenguiPropertiesVisitor<E extends AbstractDomainReference> extends 
 	addProperty(key, e.getPrompt());
     }
 
+    /* (non-Javadoc)
+     * @see org.nocket.gen.domain.visitor.DomainElementVisitorI#visitMultivalueProperty(org.nocket.gen.domain.element.MultivaluePropertyElement)
+     */
     @Override
     public void visitMultivalueProperty(MultivaluePropertyElement<E> e) {
 	for (MultivalueColumnElement<E> column : e.getColumns()) {
@@ -103,11 +140,17 @@ public class GenguiPropertiesVisitor<E extends AbstractDomainReference> extends 
 	}
     }
 
+    /* (non-Javadoc)
+     * @see org.nocket.gen.domain.visitor.DomainElementVisitorI#visitFieldsetClose()
+     */
     @Override
     public void visitFieldsetClose() {
 	// ignore
     }
 
+    /* (non-Javadoc)
+     * @see org.nocket.gen.domain.visitor.DomainElementVisitorI#visitHiddenProperty(org.nocket.gen.domain.element.HiddenPropertyElement)
+     */
     @Override
     public void visitHiddenProperty(HiddenPropertyElement<E> e) {
 	// ignore
@@ -117,10 +160,9 @@ public class GenguiPropertiesVisitor<E extends AbstractDomainReference> extends 
      * Returns property key according to gengui rules. This will be either the
      * value of @Prompt annotation or key will be assembled in this way:
      * package.Class._propertyname.text
-     * 
-     * @param e
-     * 
-     * @return
+     *
+     * @param e the e
+     * @return the property key
      */
     private String getPropertyKey(AbstractDomainElement<E> e) {
 	String key = FormBuilder.buildPromptIdentifier(e.getAccessor().getClassRef(), e.getMethod(),

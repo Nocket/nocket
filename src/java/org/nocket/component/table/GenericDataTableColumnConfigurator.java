@@ -13,25 +13,52 @@ import org.apache.wicket.model.IModel;
 import org.nocket.component.table.columns.CustomRenderingPropertyTableColumn;
 import org.nocket.component.table.columns.renderer.ColumnRenderer;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GenericDataTableColumnConfigurator.
+ *
+ * @param <T> the generic type
+ */
 public class GenericDataTableColumnConfigurator<T extends Serializable> implements Serializable {
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
+    /** The Constant log. */
     private static final Logger log = Logger.getLogger(GenericDataTableColumnConfigurator.class);
 
+    /** The column order. */
     protected LinkedList<ColumnType> columnOrder;
+    
+    /** The column renderers. */
     protected Map<String, ColumnRenderer<T>> columnRenderers;
 
+    /** The columns. */
     protected List<String> columns;
 
+    /** The sortable. */
     protected List<String> sortable;
 
+    /** The table. */
     protected GenericDataTablePanel<T> table;
 
+    /**
+     * Instantiates a new generic data table column configurator.
+     *
+     * @param columns the columns
+     * @param sortableColumns the sortable columns
+     */
     public GenericDataTableColumnConfigurator(List<String> columns, List<String> sortableColumns) {
         this(columns, sortableColumns, getDefaultColumnOrder());
     }
 
+    /**
+     * Instantiates a new generic data table column configurator.
+     *
+     * @param columns the columns
+     * @param sortableColumns the sortable columns
+     * @param columnOrder the column order
+     */
     public GenericDataTableColumnConfigurator(List<String> columns, List<String> sortableColumns,
             LinkedList<ColumnType> columnOrder) {
         this.columns = columns;
@@ -40,19 +67,41 @@ public class GenericDataTableColumnConfigurator<T extends Serializable> implemen
         columnRenderers = new HashMap<String, ColumnRenderer<T>>();
     }
 
+    /**
+     * Gets the table.
+     *
+     * @return the table
+     */
     protected GenericDataTablePanel<T> getTable() {
         return table;
     }
 
+    /**
+     * Adds the column renderer.
+     *
+     * @param columnId the column id
+     * @param renderer the renderer
+     */
     public void addColumnRenderer(String columnId, ColumnRenderer<T> renderer) {
         columnRenderers.put(columnId, renderer);
     }
 
+    /**
+     * Construct column definitions.
+     *
+     * @param table the table
+     * @return the list
+     */
     public List<IColumn<T, String>> constructColumnDefinitions(GenericDataTablePanel<T> table) {
         this.table = table;
         return newColumnDefinitions();
     }
 
+    /**
+     * Gets the default column order.
+     *
+     * @return the default column order
+     */
     private static LinkedList<ColumnType> getDefaultColumnOrder() {
         LinkedList<ColumnType> columnOrder = new LinkedList<ColumnType>();
         columnOrder.add(ColumnType.DATA);
@@ -61,6 +110,11 @@ public class GenericDataTableColumnConfigurator<T extends Serializable> implemen
         return columnOrder;
     }
 
+    /**
+     * Sets the column order.
+     *
+     * @param columns the new column order
+     */
     public void setColumnOrder(ColumnType... columns) {
         LinkedList<ColumnType> order = new LinkedList<ColumnType>();
         for (ColumnType col : columns) {
@@ -92,9 +146,9 @@ public class GenericDataTableColumnConfigurator<T extends Serializable> implemen
     }
 
     /**
-     * 
-     * @param colDefs
-     *            Instance of the list with the columns.
+     * New data columns.
+     *
+     * @param colDefs            Instance of the list with the columns.
      */
     protected void newDataColumns(List<IColumn<T, String>> colDefs) {
         for (String column : this.columns) {
@@ -106,6 +160,13 @@ public class GenericDataTableColumnConfigurator<T extends Serializable> implemen
         }
     }
 
+    /**
+     * Creates the property column.
+     *
+     * @param column the column
+     * @param sort the sort
+     * @return the i column
+     */
     protected IColumn<T, String> createPropertyColumn(final String column, String sort) {
         IModel<String> columnNameModel = getColumnNameModel(column);
         if (log.isDebugEnabled()) {
@@ -160,18 +221,27 @@ public class GenericDataTableColumnConfigurator<T extends Serializable> implemen
      *     // Do here something with the Model of &lt;T&gt;
      *   });
      * </pre>
-     * 
-     * @param columns
-     *            Instance of the list with the columns.
+     *
+     * @param colDefs the col defs
      */
     protected void newActionColumns(List<IColumn<T, String>> colDefs) {
         // By the default no column with action
     }
 
+    /**
+     * Gets the sortable.
+     *
+     * @return the sortable
+     */
     public List<String> getSortable() {
         return sortable;
     }
 
+    /**
+     * Gets the columns.
+     *
+     * @return the columns
+     */
     public List<String> getColumns() {
         return columns;
     }

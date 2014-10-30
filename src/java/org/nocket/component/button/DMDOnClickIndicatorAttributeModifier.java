@@ -14,6 +14,7 @@ import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 
+// TODO: Auto-generated Javadoc
 /**
  * TheDMDOnClickIndicatorAttributeModifier is adds a blocker overlay script to 
  * ajax buttons and links. The script call is added upfront to the onlick event. 
@@ -32,14 +33,29 @@ import org.apache.wicket.request.resource.ResourceReference;
  * @author wund013, blaz02
  */
 public class DMDOnClickIndicatorAttributeModifier extends AttributeModifier {
+    
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
+    
+    /** The Constant BLOCKER_SCRIPT. */
     private static final String BLOCKER_SCRIPT = "block('%s', '%s', '%s');";
+    
+    /** The Constant BLOCKER_REMOVE_SCRIPT. */
     private static final String BLOCKER_REMOVE_SCRIPT = "unblock();";
+    
+    /** The Constant LOADING_TITLE. */
     private static final String LOADING_TITLE = "loading.title";
+    
+    /** The Constant OVERLAY_ICON. */
     private static final String OVERLAY_ICON = "blockericon.gif";
+    
+    /** The Constant BLOCKER_JS. */
     private static final String BLOCKER_JS = "blocker.js";
+    
+    /** The Constant ONCLICK. */
     private static final String ONCLICK = "onclick";
 
+    /** The Constant INDICATOR. */
     private static final ResourceReference INDICATOR = new PackageResourceReference(
             DMDOnClickIndicatorAttributeModifier.class, OVERLAY_ICON);
 
@@ -78,7 +94,10 @@ public class DMDOnClickIndicatorAttributeModifier extends AttributeModifier {
      * We override the newValue method of the AttributeAppender to create a
      * AttributePrepender. Scripts are add pre the normal wicket onclick
      * scripts.
-     * 
+     *
+     * @param currentValue the current value
+     * @param replacementValue the replacement value
+     * @return the string
      * @see org.apache.wicket.AttributeModifier#newValue(java.lang.String,
      *      java.lang.String)
      */
@@ -90,8 +109,8 @@ public class DMDOnClickIndicatorAttributeModifier extends AttributeModifier {
     /**
      * Returns the Blocker remove script. Add this script to your
      * {@link AjaxRequestTarget} to remove the blocker overlay.
-     * 
-     * @return
+     *
+     * @return the blocker remove script
      */
     public static String getBlockerRemoveScript() {
         return BLOCKER_REMOVE_SCRIPT;
@@ -100,7 +119,8 @@ public class DMDOnClickIndicatorAttributeModifier extends AttributeModifier {
     /**
      * We override the model value of the replacement model if a component is
      * deactivated. No deactivated component should have a onclick blocker.
-     * 
+     *
+     * @param component the component
      * @see org.apache.wicket.behavior.Behavior#onConfigure(org.apache.wicket.Component)
      */
     @SuppressWarnings("unchecked")
@@ -114,9 +134,10 @@ public class DMDOnClickIndicatorAttributeModifier extends AttributeModifier {
 
     /**
      * RenderHead adds the blocker javascript file to the page.
-     * 
-     * @see org.apache.wicket.behavior.Behavior#renderHead(org.apache.wicket.Component,
-     *      org.apache.wicket.markup.html.IHeaderResponse)
+     *
+     * @param component the component
+     * @param response the response
+     * @see org.apache.wicket.behavior.Behavior#renderHead(Component, IHeaderResponse)
      */
     @Override
     public void renderHead(Component component, IHeaderResponse response) {

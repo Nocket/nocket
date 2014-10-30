@@ -15,20 +15,26 @@ import org.nocket.component.table.behavior.CssClassAttributeBehaviour;
 import org.nocket.component.table.behavior.CssStyleAttributeBehavior;
 import org.nocket.component.table.columns.IDMDStyledColumn;
 
+// TODO: Auto-generated Javadoc
 /**
  * Creates table headers for JavaScript Tables and enables sorting by clicking
  * on table headers. This class also takes care about disabling the sort
  * function for specific headers
- * 
+ *
  * @author blaz02
- * 
- * @param <T>
  */
 
 public class JavaScriptHeaderToolbar extends AbstractToolbar {
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Instantiates a new java script header toolbar.
+     *
+     * @param table the table
+     * @param stateLocator the state locator
+     */
     public JavaScriptHeaderToolbar(final DataTable<?, String> table, final ISortStateLocator<String> stateLocator) {
         super(table);
 

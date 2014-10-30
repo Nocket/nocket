@@ -11,15 +11,24 @@ import org.apache.wicket.request.cycle.RequestCycleContext;
  * per MCD zur Verfügung zu stellen.
  * 
  * @author meis026
- * 
  */
 public class DMDRequestCycle extends RequestCycle {
+    
+    /** The Constant SESSION_ID. */
     public final static String SESSION_ID = "SESSION_ID";
 
+    /**
+     * Instantiates a new DMD request cycle.
+     *
+     * @param context the context
+     */
     public DMDRequestCycle(RequestCycleContext context) {
         super(context);
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.wicket.request.cycle.RequestCycle#onBeginRequest()
+     */
     @Override
     protected void onBeginRequest() {
         String id = Session.get().getId();
@@ -29,6 +38,9 @@ public class DMDRequestCycle extends RequestCycle {
         super.onBeginRequest();
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.wicket.request.cycle.RequestCycle#onEndRequest()
+     */
     @Override
     protected void onEndRequest() {
         super.onEndRequest();
@@ -36,9 +48,9 @@ public class DMDRequestCycle extends RequestCycle {
     }
 
     /**
-     * Convenience method, that returns the AjaxRequestTarget
-     * 
-     * @return
+     * Convenience method, that returns the AjaxRequestTarget.
+     *
+     * @return the ajax request target
      */
     public static AjaxRequestTarget getAjaxRequestTarget() {
         return get().find(AjaxRequestTarget.class);

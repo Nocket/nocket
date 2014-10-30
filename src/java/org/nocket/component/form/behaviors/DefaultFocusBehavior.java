@@ -7,6 +7,7 @@ import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.request.cycle.RequestCycle;
 
+// TODO: Auto-generated Javadoc
 /**
  * Behavior zum Fokusieren einer Formularkomponente beim Darstellen der Seite im
  * Browser. ZusÃ€tzlich wird der Inhalt der Formularkomponente markiert.
@@ -17,8 +18,12 @@ import org.apache.wicket.request.cycle.RequestCycle;
 @Deprecated
 public class DefaultFocusBehavior extends Behavior {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -1L;
 
+	/* (non-Javadoc)
+	 * @see org.apache.wicket.behavior.Behavior#bind(org.apache.wicket.Component)
+	 */
 	@Override
 	public void bind(org.apache.wicket.Component component) {
 		if (!(component instanceof FormComponent)) {
@@ -27,6 +32,9 @@ public class DefaultFocusBehavior extends Behavior {
 		component.setOutputMarkupId(true);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.apache.wicket.behavior.Behavior#renderHead(org.apache.wicket.Component, org.apache.wicket.markup.head.IHeaderResponse)
+	 */
 	@Override
 	public void renderHead(org.apache.wicket.Component component, IHeaderResponse response) {
 		super.renderHead(component, response);

@@ -11,23 +11,37 @@ import org.jsoup.select.Elements;
 import org.nocket.component.form.ComponentGroup;
 import org.nocket.component.select.DMDRadioChoice;
 
+// TODO: Auto-generated Javadoc
 /**
  * This behavior adds to a group of the components a paragraph with error
  * messages coming from these components.
  * 
- * @auto blaz02
+ * @author blaz02
  * 
  */
 public class ValidationStyleGroupBehavior extends AbstractTransformerBehavior {
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
+    /** The Constant BR. */
     private final static String BR = "<br/>";
+    
+    /** The Constant BEFORE_MESSAGE. */
     private final static String BEFORE_MESSAGE = "<p class=\"error\">";
+    
+    /** The Constant BEFORE_CS. */
     private final static String BEFORE_CS = "<div class=\"control-group error\">";
+    
+    /** The Constant AFTER_MESSAGE. */
     private final static String AFTER_MESSAGE = "</p>";
+    
+    /** The Constant AFTER_CS. */
     private final static String AFTER_CS = "</div>";
 
+    /* (non-Javadoc)
+     * @see org.apache.wicket.markup.transformer.AbstractTransformerBehavior#transform(org.apache.wicket.Component, java.lang.CharSequence)
+     */
     @Override
     public CharSequence transform(Component component, CharSequence cs) {
         boolean added = false;
@@ -90,12 +104,10 @@ public class ValidationStyleGroupBehavior extends AbstractTransformerBehavior {
      *                 &lt;/div>
      * 
      * </pre>
-     * 
-     * @param cs
-     *            vorhandener HTML-Code
-     * @param messageBuffer
-     *            Fehlertexte
-     * @return
+     *
+     * @param cs            vorhandener HTML-Code
+     * @param messageBuffer            Fehlertexte
+     * @return the string buffer
      */
     private StringBuffer buildOutputForRadioOrCheckbox(CharSequence cs, StringBuffer messageBuffer) {
         StringBuffer b = new StringBuffer(BEFORE_CS);
@@ -114,6 +126,13 @@ public class ValidationStyleGroupBehavior extends AbstractTransformerBehavior {
         return b;
     }
 
+    /**
+     * Builds the output.
+     *
+     * @param cs the cs
+     * @param messageBuffer the message buffer
+     * @return the string buffer
+     */
     private StringBuffer buildOutput(CharSequence cs, StringBuffer messageBuffer) {
         StringBuffer b = new StringBuffer(BEFORE_CS).append(cs);
         b.append(messageBuffer);

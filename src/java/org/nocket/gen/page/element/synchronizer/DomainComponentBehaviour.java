@@ -27,6 +27,7 @@ import org.nocket.gen.page.element.TextInputElement;
 import org.nocket.gen.page.guiservice.DMDWebGenGuiServiceProvider;
 import org.nocket.gen.page.visitor.bind.builder.components.GeneratedButton;
 
+// TODO: Auto-generated Javadoc
 /**
  * This behavior class manipulates components in several ways.<br>
  * <br>
@@ -37,15 +38,29 @@ import org.nocket.gen.page.visitor.bind.builder.components.GeneratedButton;
  * - it switches disabled Textfields and TextAreas to readonly<br>
  */
 public class DomainComponentBehaviour extends AbstractValidator<Object> {
+    
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
+    /** The Constant TITLE. */
     private static final String TITLE = "title";
+    
+    /** The Constant ONCHANGE. */
     private static final String ONCHANGE = "onchange";
+    
+    /** The Constant ONCLICK. */
     private static final String ONCLICK = "onclick";
+    
+    /** The Constant READONLY. */
     private static final String READONLY = "readonly";
+    
+    /** The Constant DISABLED. */
     private static final String DISABLED = "disabled";
 
+    /** The helper. */
     private final SynchronizerHelper helper;
+    
+    /** The hide button. */
     private final boolean hideButton;
 
     /**
@@ -74,6 +89,9 @@ public class DomainComponentBehaviour extends AbstractValidator<Object> {
     }
 
     /**
+     * On configure.
+     *
+     * @param component the component
      * @see org.apache.wicket.behavior.Behavior#onConfigure(org.apache.wicket.Component)
      */
     @Override
@@ -86,6 +104,9 @@ public class DomainComponentBehaviour extends AbstractValidator<Object> {
     }
 
     /**
+     * On validate.
+     *
+     * @param validatable the validatable
      * @see org.apache.wicket.validation.validator.AbstractValidator#onValidate(org.apache.wicket.validation.IValidatable)
      */
     @Override
@@ -111,6 +132,9 @@ public class DomainComponentBehaviour extends AbstractValidator<Object> {
     }
 
     /**
+     * Validate on null value.
+     *
+     * @return true, if successful
      * @see org.apache.wicket.validation.validator.AbstractValidator#validateOnNullValue()
      */
     @Override
@@ -242,10 +266,10 @@ public class DomainComponentBehaviour extends AbstractValidator<Object> {
     /**
      * This method checks whether the form contains an invisible or disabled
      * button that should now be re-enabled or re-displayed by sending it with
-     * the AjaxRequestTarget
-     * 
-     * @param target
-     * @return
+     * the AjaxRequestTarget.
+     *
+     * @param target the target
+     * @return true, if successful
      */
     protected boolean formCreatesInvisibleOrDisabledButton(AjaxRequestTarget target) {
         for (Component comp : target.getComponents()) {

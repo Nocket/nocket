@@ -150,7 +150,6 @@ jar {
 }
 
 javadoc {
-	failOnError = false
 	options.encoding = "ISO-8859-15"
 }
 
@@ -160,16 +159,6 @@ war {
 	
 	from "examples/webapp"
 	classpath sourceSets.examples.runtimeClasspath
-}
-
-artifacts {
-	archives jar, javadocJar, sourcesJar
-}
-
-assemble {
-    dependsOn "cleanResources"
-    dependsOn "jar"
-    dependsOn "war"
 }
 
 uploadArchives {
@@ -213,6 +202,20 @@ task cleanResources(type: Delete) {
 	delete fileTree(dir: "${buildDir}/resources")
 }
 
+task javadocJar(type: Jar) {
+	description "Assembles a jar archive containing the javadoc files"
+	
+	classifier = 'javadoc'
+	from javadoc
+}
+
+task sourcesJar(type: Jar) {
+	description "Assembles a jar archive containing the source files"
+	
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
 task buildSnapshot(dependsOn: ["build"]) {
 	description "Assembles the outputs of this project for a SNAPSHOT Release."
 
@@ -243,6 +246,16 @@ task deploySnapshot {
 	
 	dependsOn "buildSnapshot"
 	dependsOn "uploadArchives"
+}
+
+artifacts {
+	archives jar, javadocJar, sourcesJar
+}
+
+assemble {
+	dependsOn "cleanResources"
+	dependsOn "jar"
+	dependsOn "war"
 }
 
 repositories { 

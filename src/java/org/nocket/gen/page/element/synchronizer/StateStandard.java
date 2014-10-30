@@ -10,14 +10,37 @@ import org.apache.wicket.Component;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.feedback.FeedbackMessages;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class StateStandard.
+ *
+ * @param <E> the element type
+ */
 @SuppressWarnings("serial")
 public class StateStandard<E> implements State<E> {
+    
+    /** The getter. */
     E getter;
+    
+    /** The choicer. */
     Object[] choicer;
+    
+    /** The enabled. */
     boolean enabled;
+    
+    /** The feedback messages. */
     private final Collection<String> feedbackMessages;
+    
+    /** The touched listener model wrapper. */
     private TouchedListenerModelWrapper<E> touchedListenerModelWrapper;
 
+    /**
+     * Instantiates a new state standard.
+     *
+     * @param touchedListenerModelWrapper the touched listener model wrapper
+     * @param component the component
+     * @param helper the helper
+     */
     @SuppressWarnings("unchecked")
     public StateStandard(TouchedListenerModelWrapper<E> touchedListenerModelWrapper, Component component,
             SynchronizerHelper helper) {
@@ -50,9 +73,9 @@ public class StateStandard<E> implements State<E> {
      * Wenn es eine Collection ist, dann nutzt es nicht sich den Wert zu holfen,
      * da es nunmal eine Referenz ist. Also muss diese Collection geclont
      * werden. Der Rest, sprich der Inhalt der Collection interessiert nicht.
-     * 
-     * @param object
-     * @return
+     *
+     * @param object the object
+     * @return the e
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     private E pimpCollections(E object) {
@@ -64,6 +87,13 @@ public class StateStandard<E> implements State<E> {
         return object;
     }
 
+    /**
+     * Pimp array.
+     *
+     * @param <T> the generic type
+     * @param object the object
+     * @return the t[]
+     */
     @SuppressWarnings({ "unchecked" })
     private <T> T[] pimpArray(T[] object) {
         Class<? extends T[]> newType = (Class<? extends T[]>) object.getClass();
@@ -77,6 +107,12 @@ public class StateStandard<E> implements State<E> {
         return copy;
     }
 
+    /**
+     * Pimp collection.
+     *
+     * @param oldCollection the old collection
+     * @return the collection
+     */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     protected Collection pimpCollection(Collection oldCollection) {
         Collection newCollection;
@@ -91,6 +127,9 @@ public class StateStandard<E> implements State<E> {
         }
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -103,6 +142,9 @@ public class StateStandard<E> implements State<E> {
         return result;
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -155,6 +197,12 @@ public class StateStandard<E> implements State<E> {
 
     }
 
+    /**
+     * Feedback message to string list.
+     *
+     * @param feedbackMessages the feedback messages
+     * @return the collection
+     */
     private Collection<String> feedbackMessageToStringList(FeedbackMessages feedbackMessages) {
         ArrayList<String> result = new ArrayList<String>();
         for (FeedbackMessage feedbackMessage : feedbackMessages) {
@@ -163,6 +211,11 @@ public class StateStandard<E> implements State<E> {
         return result;
     }
 
+    /**
+     * Gets the outer type.
+     *
+     * @return the outer type
+     */
     private TouchedListenerModelWrapper<E> getOuterType() {
         return touchedListenerModelWrapper;
     }

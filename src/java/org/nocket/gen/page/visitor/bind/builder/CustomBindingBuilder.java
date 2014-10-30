@@ -46,8 +46,8 @@ import org.nocket.gen.page.visitor.bind.builder.components.GeneratedNumberTextFi
  * self-written binding interceptors, but providing by members is much more
  * convenient (as long as it is suitable ;-)
  * 
- * The framework's pre-defined components like {@link GeneratedNumberTextFields}
- * and {@link GeneratedDaeTextield} provide simplified constructors to
+ * The framework's pre-defined components like {@link GeneratedNumberTextField}
+ * and {@link GeneratedDateTextField} provide simplified constructors to
  * instanciate them with minimal parameterization as a member and
  * post-initialize them later by this binding builder here.
  * 

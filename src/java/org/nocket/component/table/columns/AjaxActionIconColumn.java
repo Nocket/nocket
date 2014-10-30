@@ -13,6 +13,7 @@ import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 import org.nocket.component.table.GenericDataTablePanel;
 
+// TODO: Auto-generated Javadoc
 /**
  * Column with ajax link shown as image.
  * 
@@ -23,21 +24,41 @@ import org.nocket.component.table.GenericDataTablePanel;
 @SuppressWarnings("serial")
 public abstract class AjaxActionIconColumn<T> extends DMDAbstractColumn<T> {
 
+    /** The Constant ICON_ENABLED. */
     private final static String ICON_ENABLED = "icon-enabled.png";
+    
+    /** The Constant ICON_DISBALED. */
     private final static String ICON_DISBALED = "icon-disabled.png";
 
+    /**
+     * Instantiates a new ajax action icon column.
+     *
+     * @param headerLabel the header label
+     */
     public AjaxActionIconColumn(IModel<String> headerLabel) {
         this(headerLabel, null);
     }
 
+    /**
+     * Instantiates a new ajax action icon column.
+     *
+     * @param headerLabel the header label
+     * @param image the image
+     */
     public AjaxActionIconColumn(IModel<String> headerLabel, String image) {
         super(headerLabel);
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator#populateItem(org.apache.wicket.markup.repeater.Item, java.lang.String, org.apache.wicket.model.IModel)
+     */
     public void populateItem(Item<ICellPopulator<T>> cellItem, String componentId, IModel<T> rowModel) {
         cellItem.add(new LinkImagePanel<T>(componentId, this, rowModel));
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn#getCssClass()
+     */
     @Override
     public String getCssClass() {
         return "org.nocket-action-column";
@@ -99,15 +120,27 @@ public abstract class AjaxActionIconColumn<T> extends DMDAbstractColumn<T> {
 
     /**
      * Called when a link is clicked.
-     * 
-     * @param model
-     *            Model of the line.
+     *
+     * @param model            Model of the line.
+     * @param target the target
      */
     protected abstract void onClick(IModel<T> model, AjaxRequestTarget target);
 
+    /**
+     * The Class LinkImagePanel.
+     *
+     * @param <T> the generic type
+     */
     @SuppressWarnings("hiding")
     private class LinkImagePanel<T> extends Panel {
 
+        /**
+         * Instantiates a new link image panel.
+         *
+         * @param id the id
+         * @param column the column
+         * @param rowModel the row model
+         */
         public LinkImagePanel(String id, final AjaxActionIconColumn<T> column, IModel<T> rowModel) {
             super(id);
 

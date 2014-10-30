@@ -7,7 +7,7 @@ package de.bertelsmann.coins.general.error;
  * <p>
  * Description: Severe exception thrown by the {@link Assert} class in case of
  * an assertion violation. Deriving this assertion from
- * {@link LoggedSevereException} makes it a runtime exception which therefore
+ * LoggedSevereException makes it a runtime exception which therefore
  * doesn't have to be declared in the methods' signatures.
  * 
  * <p>

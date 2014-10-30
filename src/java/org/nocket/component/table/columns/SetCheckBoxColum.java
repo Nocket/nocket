@@ -5,6 +5,7 @@ import java.util.Set;
 import org.apache.wicket.extensions.model.AbstractCheckBoxModel;
 import org.apache.wicket.model.IModel;
 
+// TODO: Auto-generated Javadoc
 /**
  * Column adds check-box per table item. Information about the checked state is
  * hold in the Set.
@@ -17,13 +18,23 @@ import org.apache.wicket.model.IModel;
 @SuppressWarnings("serial")
 public class SetCheckBoxColum<T> extends CheckBoxColumn<T> {
 
+    /** The selected. */
     private Set<T> selected;
 
+    /**
+     * Instantiates a new sets the check box colum.
+     *
+     * @param displayModel the display model
+     * @param selected the selected
+     */
     public SetCheckBoxColum(IModel<String> displayModel, Set<T> selected) {
         super(displayModel);
         this.selected = selected;
     }
 
+    /* (non-Javadoc)
+     * @see org.nocket.component.table.columns.CheckBoxColumn#newCheckBoxModel(org.apache.wicket.model.IModel)
+     */
     @Override
     protected IModel<Boolean> newCheckBoxModel(final IModel<T> rowModel) {
         return new AbstractCheckBoxModel() {

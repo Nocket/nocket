@@ -9,6 +9,7 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 
+// TODO: Auto-generated Javadoc
 /**
  * Panel showing if user is logged in or not. The panel conatins "Login" or 
  * "Logout" depending on login status.
@@ -18,6 +19,11 @@ import org.apache.wicket.model.ResourceModel;
 @SuppressWarnings("serial")
 abstract public class LoginStatusBar extends Panel {
 		
+	/**
+	 * Instantiates a new login status bar.
+	 *
+	 * @param id the id
+	 */
 	public LoginStatusBar(String id) {
 		super(id);
 		final Label userStatus = new Label("loggedin", new AbstractReadOnlyModel<String>() {
@@ -47,7 +53,8 @@ abstract public class LoginStatusBar extends Panel {
 	 * Method return true if the user is logged in. Normally you do not have 
 	 * to overwrite it.
 	 *  
-	 * @return 
+	 *
+	 * @return true, if is logged in
 	 */
 	protected boolean isLoggedIn() {
 		return getLoggedInUserName() != null;
@@ -81,16 +88,32 @@ abstract public class LoginStatusBar extends Panel {
 	 */
 	abstract protected String getLoggedInUserName();
 
+	/**
+	 * The Class MyLabel.
+	 */
 	class MyLabel extends Label {
+		
+		/** The Constant serialVersionUID. */
 		private static final long serialVersionUID = 1L;
 		
+		/** The show if logged in. */
 		private boolean showIfLoggedIn;
 		
+		/**
+		 * Instantiates a new my label.
+		 *
+		 * @param id the id
+		 * @param model the model
+		 * @param showIfLoggedIn the show if logged in
+		 */
 		public MyLabel(String id, IModel<String> model, boolean showIfLoggedIn ) {
 			super(id, model);
 			this.showIfLoggedIn = showIfLoggedIn;
 		}
 		
+		/* (non-Javadoc)
+		 * @see org.apache.wicket.Component#isVisible()
+		 */
 		@Override
 		public boolean isVisible() {
 			return (LoginStatusBar.this.isLoggedIn() ? showIfLoggedIn : !showIfLoggedIn);

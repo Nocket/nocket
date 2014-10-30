@@ -8,6 +8,7 @@ import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 import org.nocket.component.table.GenericDataTablePanel;
 
+// TODO: Auto-generated Javadoc
 /**
  * Column with link.
  * 
@@ -18,10 +19,18 @@ import org.nocket.component.table.GenericDataTablePanel;
 @SuppressWarnings("serial")
 public abstract class ActionColumn<T> extends DMDAbstractColumn<T> {
 
+    /**
+     * Instantiates a new action column.
+     *
+     * @param headerLabel the header label
+     */
     public ActionColumn(IModel<String> headerLabel) {
         super(headerLabel);
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator#populateItem(org.apache.wicket.markup.repeater.Item, java.lang.String, org.apache.wicket.model.IModel)
+     */
     public void populateItem(Item<ICellPopulator<T>> cellItem, String componentId, IModel<T> rowModel) {
         cellItem.add(new LinkPanel<T>(componentId, this, rowModel));
     }
@@ -70,9 +79,21 @@ public abstract class ActionColumn<T> extends DMDAbstractColumn<T> {
      */
     protected abstract void onClick(IModel<T> model);
 
+    /**
+     * The Class LinkPanel.
+     *
+     * @param <T> the generic type
+     */
     @SuppressWarnings("hiding")
     private class LinkPanel<T> extends Panel {
 
+        /**
+         * Instantiates a new link panel.
+         *
+         * @param id the id
+         * @param column the column
+         * @param rowModel the row model
+         */
         public LinkPanel(String id, final ActionColumn<T> column, IModel<T> rowModel) {
             super(id);
             Link<T> link = new Link<T>("link", rowModel) {

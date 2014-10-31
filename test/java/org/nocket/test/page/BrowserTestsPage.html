@@ -27,7 +27,6 @@
 
 <!-- required javascript -->
 <script type="text/javascript" src="js/libs/modernizr.js"></script>
-<script type="text/javascript" src="js/libs/jquery-1.8.2.min.js"></script>
 <script type="text/javascript" src="js/libs/jquery-ui.js"></script>
 <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/add-ons/hubspot.messenger.js"></script>
@@ -60,8 +59,8 @@
 					<ul class="nav navbar-nav pull-left">
 						<!-- Main Navigation of the app -->
 						<li><a href="/nocket">Forscher</a></li>
-						<li class="active"><a href="/nocket/examples">CSS</a></li>
-						<li><a href="/nocket/tests">Tests</a></li>
+						<li><a href="/nocket/examples">CSS</a></li>
+						<li class="active"><a href="/nocket/tests">Tests</a></li>
 					</ul>
 				</div>
 				<div wicket:id="loginstatus"></div>
@@ -69,21 +68,29 @@
 		</div>
 	</header>
 
+
 	<div class="container">
 		<div class="row-fluid">
-			<section class="span12" id="application">
-				<ul class="nav nav-pills">
-					<li wicket:id="layouts"><a href="#">Layouts</a></li>
-					<li wicket:id="forms"><a href="#">Simple Forms example</a></li>
-					<li wicket:id="complexForms"><a href="#">Complex Forms example</a></li>
-				</ul>
-			</section>
-			<hr>
-			<wicket:child>
-				<p class="span12">Please select an example from the links above.</p>
-			</wicket:child>
+			<div class="span3">
+				<aside id="sidebar">
+					<div wicket:id="menu"></div>
+				</aside>
+			</div>
+			<div class="span9">
+				<wicket:child>
+					<p>[Content of child pages goes here.]</p>
+				</wicket:child>
+			</div>
 		</div>
 	</div>
+
+	<footer id="footer">
+		<div class="container">
+			<p class="muted credit">
+				Design based on <a href="http://getbootstrap.com/2.3.2/">Twitter Bootstrap v 2.3.2</a>.
+			</p>
+		</div>
+	</footer>
 
 	<!-- if you use application specific javascript you should initialize it here -->
 	<script type="text/javascript">
@@ -91,7 +98,6 @@
 	        initComponents();
         });
 	</script>
+
 </body>
 </html>
-
-

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <head>
+        <link href="../../../../../../resources/webapp/css/bootstrap.css" type="text/css" rel="stylesheet" />
+        <link href="../../../../../../resources/webapp/css/arvatoStyle.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <wicket:extend>
+            <!-- <div wicket:id='feedback'></div>  -->
+            <div wicket:id="modal"></div>
+            <form wicket:id="form" class="form-horizontal">
+            <section>
+				<p>
+					<strong>Test Case: Validation of the form with eager fields.</strong>
+				</p>
+				<p>
+					While
+				</p>
+				<p>
+					<strong>Expected test sequence:</strong>
+				</p>
+				<ol>
+					<li>Enter "Text Eager" field. Write input write any input in this field and leave it.</li>
+					<li>Field "Text Eager Echo" must get value same as field "Text Eager". Field "Text" remains blank.</li>
+				</ol>  
+				<fieldset>          
+	                <div class="control-group">
+	                    <label for="TextEager" class="control-label" wicket:id="TextEager.label">Text Eager</label>
+	                    <div class="controls">
+	                        <input id="TextEager" type="text" wicket:id="TextEager" />
+	                    </div>
+	                </div>
+	                <div class="control-group">
+	                    <label for="TextEagerEcho" class="control-label required" wicket:id="TextEagerEcho.label">Text Eager Echo</label>
+	                    <div class="controls">
+	                        <input id="TextEagerEcho" class="required" type="text" wicket:id="TextEagerEcho" />
+	                    </div>
+	                </div>
+	                <div class="control-group">
+	                    <label for="Text" class="control-label required" wicket:id="Text.label">Text</label>
+	                    <div class="controls">
+	                        <input id="Text" class="required" type="text" wicket:id="Text" />
+	                    </div>
+	                </div>
+                </fieldset>
+            </section>
+			<footer class="form-actions">
+                <button id="save" class="btn" wicket:id="save" type="submit"><span wicket:id="save.label">Save</span></button>
+            </footer>
+            </form>
+        </wicket:extend>
+    </body>
+</html>

@@ -49,3 +49,15 @@ Die generierten Dateien findet man unter `build/libs`, für das Testen in Eclips
 - Release
 
     `gradle buildRelease`  // generiert das JAR und ein WAR mit den Beispielen
+
+    
+### Release in Gradle einbinden
+
+    dependencies {
+        compile "org.nocket:nocket:0.1.0"
+    }
+    
+    repositories { 
+        mavenCentral()
+        maven { url "https://raw.githubusercontent.com/Nocket/mvn-repository/master/releases" }
+    }

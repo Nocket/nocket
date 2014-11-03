@@ -150,6 +150,7 @@ jar {
 }
 
 javadoc {
+	failOnError = false
 	options.encoding = "ISO-8859-15"
 }
 

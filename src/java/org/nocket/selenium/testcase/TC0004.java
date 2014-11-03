@@ -15,17 +15,18 @@ public class TC0004 extends SeleniumTestCase {
 
 	@BeforeClass
 	public static void setUpClass() {
-		driver = getFirefoxWebDriverInstance();
+		driver = getWebDriverInstance(BootstrapPlainTestData.TESTBROWSER.toString());
 	}
 
 	@Before
 	public void setUp() throws Exception {
-		getFirefoxWindow(BootstrapPlainTestData.SITE_URL);
+		getWindow(BootstrapPlainTestData.SITE_URL);
 	}
 
 	@Test
 	public void testNotNull() {
 		clickButtonByXpath(submitXpath);
+		assertErrorMessageNotNull(listboxErrorID);
 		assertErrorMessage(listboxErrorID, "At least one entry must be selected!");
 	}
 

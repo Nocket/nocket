@@ -15,18 +15,19 @@ public class TC0003 extends SeleniumTestCase {
 
 	@BeforeClass
 	public static void setUpClass() {
-		driver = getFirefoxWebDriverInstance();
+		driver = getWebDriverInstance(BootstrapPlainTestData.TESTBROWSER.toString());
 	}
 
 	@Before
 	public void setUp() throws Exception {
-		getFirefoxWindow(BootstrapPlainTestData.SITE_URL);
+		getWindow(BootstrapPlainTestData.SITE_URL);
 	}
 
 	@Test
 	public void testNotSelected() {
 		selectComboboxValue(comboboxID, BootstrapPlainTestData.NULL);
 		clickButtonByXpath(submitXpath);
+		assertErrorMessageNotNull(comboboxErrorID);
 		assertErrorMessage(comboboxErrorID, "Bitte tragen Sie einen Wert im Feld 'Combobox' ein.");
 	}
 

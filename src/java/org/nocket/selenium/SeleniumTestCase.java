@@ -12,28 +12,45 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.Select;
 
-public class SeleniumTestCase {
+public abstract class SeleniumTestCase {
+
 	private static final int DEFAULT_PORT = 8070;
+	private static final int TIMEOUT_SEC = 3;
 	private static final String BASE_URL = "http://localhost:";
-
-	protected static WebDriver driver;
 	private static StringBuffer verificationErrors = new StringBuffer();
+	private static DesiredCapabilities dCaps;
+	protected static WebDriver driver;
 
-	public static WebDriver getFirefoxWebDriverInstance() {
+	public static WebDriver getWebDriverInstance(String browser) {
 		if (driver == null) {
-			setupFirefoxDriver();
+			if (browser.equals("FIREFOX")) {
+				setupFirefoxDriver();
+			} else {
+				setupPhantomJSDriver();
+			}
 		}
 		return driver;
 	}
 
-	private static void setupFirefoxDriver() {
-		driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+	private static void setupPhantomJSDriver() {
+		dCaps = new DesiredCapabilities();
+		dCaps.setJavascriptEnabled(true);
+		dCaps.setCapability("takesScreenshot", false);
+
+		driver = new PhantomJSDriver(dCaps);
+		driver.manage().timeouts().implicitlyWait(TIMEOUT_SEC, TimeUnit.SECONDS);
 	}
 
-	protected static void getFirefoxWindow(String siteUrl) {
+	private static void setupFirefoxDriver() {
+		driver = new FirefoxDriver();
+		driver.manage().timeouts().implicitlyWait(TIMEOUT_SEC, TimeUnit.SECONDS);
+	}
+
+	protected static void getWindow(String siteUrl) {
 		driver.get(BASE_URL + DEFAULT_PORT + siteUrl);
 	}
 
@@ -94,6 +111,19 @@ public class SeleniumTestCase {
 
 	protected void assertNoError(String errorID) {
 		assertTrue(!isElementPresent(By.id(errorID)));
+	}
+
+	protected void assertErrorMessageNotNull(String errorID) {
+		if (isElementPresent(By.id(errorID))) {
+			assertTrue("Error visible, but no error message implemented!", isErrorNotNull(errorID));
+		}
+	}
+
+	private boolean isErrorNotNull(String errorID) {
+		if (driver.findElement(By.id(errorID)).getText().equals("")) {
+			return false;
+		}
+		return true;
 	}
 
 	protected boolean isElementPresent(By by) {

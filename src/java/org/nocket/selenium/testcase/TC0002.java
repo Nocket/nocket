@@ -15,18 +15,19 @@ public class TC0002 extends SeleniumTestCase {
 
 	@BeforeClass
 	public static void setUpClass() {
-		driver = getFirefoxWebDriverInstance();
+		driver = getWebDriverInstance(BootstrapPlainTestData.TESTBROWSER.toString());
 	}
 
 	@Before
 	public void setUp() throws Exception {
-		getFirefoxWindow(BootstrapPlainTestData.SITE_URL);
+		getWindow(BootstrapPlainTestData.SITE_URL);
 	}
 
 	@Test
 	public void testNotNullError() {
 		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NULL);
 		clickButtonByXpath(submitXpath);
+		assertErrorMessageNotNull(numberfieldErrorID);
 		assertErrorMessage(numberfieldErrorID, "Bitte tragen Sie einen Wert im Feld 'Numberfield' ein.");
 	}
 
@@ -34,6 +35,7 @@ public class TC0002 extends SeleniumTestCase {
 	public void testSizeMinError() {
 		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NF_VALUE_MIN_FALSE);
 		clickButtonByXpath(submitXpath);
+		assertErrorMessageNotNull(numberfieldErrorID);
 		assertErrorMessage(numberfieldErrorID, "Der Wert " + BootstrapPlainTestData.NF_VALUE_MIN_FALSE
 				+ " im Feld 'Numberfield' muss größer sein als '18'.");
 	}
@@ -49,6 +51,7 @@ public class TC0002 extends SeleniumTestCase {
 	public void testSizeMaxError() {
 		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NF_VALUE_MAX_FALSE);
 		clickButtonByXpath(submitXpath);
+		assertErrorMessageNotNull(numberfieldErrorID);
 		assertErrorMessage(numberfieldErrorID, "Der Wert " + BootstrapPlainTestData.NF_VALUE_MAX_FALSE
 				+ " im Feld 'Numberfield' muss kleiner sein als '75'.");
 	}
@@ -64,6 +67,7 @@ public class TC0002 extends SeleniumTestCase {
 	public void testNegatives() {
 		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NF_PATTERN_NEGATIVE);
 		clickButtonByXpath(submitXpath);
+		assertErrorMessageNotNull(numberfieldErrorID);
 		assertErrorMessage(numberfieldErrorID, "Der Wert " + BootstrapPlainTestData.NF_PATTERN_NEGATIVE
 				+ " im Feld 'Numberfield' muss größer sein als '18'.");
 	}
@@ -72,31 +76,51 @@ public class TC0002 extends SeleniumTestCase {
 	public void testPlus() {
 		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NF_PATTERN_PLUS);
 		clickButtonByXpath(submitXpath);
-		// <p class="error"> visible, but no error message implemented.
-		assertErrorMessage(numberfieldErrorID, BootstrapPlainTestData.NULL);
+
+		assertErrorMessageNotNull(numberfieldErrorID);
+		/*
+		 * <p class="error"> visible, but no error message implemented. If
+		 * fixed: uncomment the following line and add the expected error
+		 * message -> assertErrorMessage(numberfieldErrorID, "ErrorMessage");
+		 */
 	}
 
 	@Test
 	public void testAlphanumeric() {
 		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NF_PATTERN_ALPHANUMERIC);
 		clickButtonByXpath(submitXpath);
-		// <p class="error"> visible, but no error message implemented.
-		assertErrorMessage(numberfieldErrorID, BootstrapPlainTestData.NULL);
+
+		assertErrorMessageNotNull(numberfieldErrorID);
+		/*
+		 * <p class="error"> visible, but no error message implemented. If
+		 * fixed: uncomment the following line and add the expected error
+		 * message -> assertErrorMessage(numberfieldErrorID, "ErrorMessage");
+		 */
 	}
 
 	@Test
 	public void testDecimalDot() {
 		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NF_PATTERN_DOT);
 		clickButtonByXpath(submitXpath);
-		// <p class="error"> visible, but no error message implemented.
-		assertErrorMessage(numberfieldErrorID, BootstrapPlainTestData.NULL);
+
+		assertErrorMessageNotNull(numberfieldErrorID);
+		/*
+		 * <p class="error"> visible, but no error message implemented. If
+		 * fixed: uncomment the following line and add the expected error
+		 * message -> assertErrorMessage(numberfieldErrorID, "ErrorMessage");
+		 */
 	}
 
 	@Test
 	public void testDecimalComma() {
 		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NF_PATTERN_COMMA);
 		clickButtonByXpath(submitXpath);
-		// <p class="error"> visible, but no error message implemented.
-		assertErrorMessage(numberfieldErrorID, BootstrapPlainTestData.NULL);
+
+		assertErrorMessageNotNull(numberfieldErrorID);
+		/*
+		 * <p class="error"> visible, but no error message implemented. If
+		 * fixed: uncomment the following line and add the expected error
+		 * message -> assertErrorMessage(numberfieldErrorID, "ErrorMessage");
+		 */
 	}
 }

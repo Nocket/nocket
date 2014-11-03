@@ -15,18 +15,19 @@ public class TC0006 extends SeleniumTestCase {
 
 	@BeforeClass
 	public static void setUpClass() {
-		driver = getFirefoxWebDriverInstance();
+		driver = getWebDriverInstance(BootstrapPlainTestData.TESTBROWSER.toString());
 	}
 
 	@Before
 	public void setUp() throws Exception {
-		getFirefoxWindow(BootstrapPlainTestData.SITE_URL);
+		getWindow(BootstrapPlainTestData.SITE_URL);
 	}
 
 	@Test
 	public void testNotNull() {
 		setFieldValueByID(datefieldID, BootstrapPlainTestData.NULL);
 		clickButtonByXpath(submitXpath);
+		assertErrorMessageNotNull(datefieldErrorID);
 		assertErrorMessage(datefieldErrorID, "Bitte tragen Sie einen Wert im Feld 'Datefield' ein.");
 	}
 
@@ -69,15 +70,25 @@ public class TC0006 extends SeleniumTestCase {
 	public void testNumber() {
 		setFieldValueByID(datefieldID, BootstrapPlainTestData.DF_NUMBER);
 		clickButtonByXpath(submitXpath);
-		// <p class="error"> visible, but no error message implemented.
-		assertErrorMessage(datefieldErrorID, BootstrapPlainTestData.NULL);
+
+		assertErrorMessageNotNull(datefieldErrorID);
+		/*
+		 * <p class="error"> visible, but no error message implemented. If
+		 * fixed: uncomment the following line and add the expected error
+		 * message -> assertErrorMessage(datefieldErrorID, "ErrorMessage");
+		 */
 	}
 
 	@Test
 	public void testAlphanumeric() {
 		setFieldValueByID(datefieldID, BootstrapPlainTestData.DF_ALPHANUMERIC);
 		clickButtonByXpath(submitXpath);
-		// <p class="error"> visible, no error message implemented.
-		assertErrorMessage(datefieldErrorID, BootstrapPlainTestData.NULL);
+
+		assertErrorMessageNotNull(datefieldErrorID);
+		/*
+		 * <p class="error"> visible, but no error message implemented. If
+		 * fixed: uncomment the following line and add the expected error
+		 * message -> assertErrorMessage(datefieldErrorID, "ErrorMessage");
+		 */
 	}
 }

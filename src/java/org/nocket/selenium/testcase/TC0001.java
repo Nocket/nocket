@@ -15,18 +15,19 @@ public class TC0001 extends SeleniumTestCase {
 
 	@BeforeClass
 	public static void setUpClass() {
-		driver = getFirefoxWebDriverInstance();
+		driver = getWebDriverInstance(BootstrapPlainTestData.TESTBROWSER.toString());
 	}
 
 	@Before
 	public void setUp() throws Exception {
-		getFirefoxWindow(BootstrapPlainTestData.SITE_URL);
+		getWindow(BootstrapPlainTestData.SITE_URL);
 	}
 
 	@Test
 	public void testNotNullError() {
 		setFieldValueByID(textFieldID, BootstrapPlainTestData.NULL);
 		clickButtonByXpath(submitXpath);
+		assertErrorMessageNotNull(textFieldErrorID);
 		assertErrorMessage(textFieldErrorID, "Bitte tragen Sie einen Wert im Feld 'Textfield' ein.");
 	}
 
@@ -34,6 +35,7 @@ public class TC0001 extends SeleniumTestCase {
 	public void testPatternNumber() {
 		setFieldValueByID(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_NUMBER);
 		clickButtonByXpath(submitXpath);
+		assertErrorMessageNotNull(textFieldErrorID);
 		assertErrorMessage(textFieldErrorID, "Der Wert '" + BootstrapPlainTestData.TXTF_PATTERN_NUMBER
 				+ "' im Feld 'Textfield' entspricht nicht dem erforderlichen Muster '[A-Za-z]*'.");
 	}
@@ -42,6 +44,7 @@ public class TC0001 extends SeleniumTestCase {
 	public void testPatternMixed() {
 		setFieldValueByID(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_MIXED);
 		clickButtonByXpath(submitXpath);
+		assertErrorMessageNotNull(textFieldErrorID);
 		assertErrorMessage(textFieldErrorID, "Der Wert '" + BootstrapPlainTestData.TXTF_PATTERN_MIXED
 				+ "' im Feld 'Textfield' entspricht nicht dem erforderlichen Muster '[A-Za-z]*'.");
 	}
@@ -50,6 +53,7 @@ public class TC0001 extends SeleniumTestCase {
 	public void testPatternBlank() {
 		setFieldValueByID(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_BLANK);
 		clickButtonByXpath(submitXpath);
+		assertErrorMessageNotNull(textFieldErrorID);
 		assertErrorMessage(textFieldErrorID, "Der Wert '" + BootstrapPlainTestData.TXTF_PATTERN_BLANK
 				+ "' im Feld 'Textfield' entspricht nicht dem erforderlichen Muster '[A-Za-z]*'.");
 	}
@@ -58,6 +62,7 @@ public class TC0001 extends SeleniumTestCase {
 	public void testPatternBlanks() {
 		setFieldValueByID(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_BLANKS);
 		clickButtonByXpath(submitXpath);
+		assertErrorMessageNotNull(textFieldErrorID);
 		assertErrorMessage(textFieldErrorID, "Bitte tragen Sie einen Wert im Feld 'Textfield' ein.");
 	}
 
@@ -65,6 +70,7 @@ public class TC0001 extends SeleniumTestCase {
 	public void testPatternSymbols() {
 		setFieldValueByID(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_SYMBOLS);
 		clickButtonByXpath(submitXpath);
+		assertErrorMessageNotNull(textFieldErrorID);
 		assertErrorMessage(textFieldErrorID, "Der Wert '" + BootstrapPlainTestData.TXTF_PATTERN_SYMBOLS
 				+ "' im Feld 'Textfield' entspricht nicht dem erforderlichen Muster '[A-Za-z]*'.");
 	}
@@ -73,6 +79,7 @@ public class TC0001 extends SeleniumTestCase {
 	public void testPatternUmlaute() {
 		setFieldValueByID(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_UMLAUT);
 		clickButtonByXpath(submitXpath);
+		assertErrorMessageNotNull(textFieldErrorID);
 		assertErrorMessage(textFieldErrorID, "Der Wert '" + BootstrapPlainTestData.TXTF_PATTERN_UMLAUT
 				+ "' im Feld 'Textfield' entspricht nicht dem erforderlichen Muster '[A-Za-z]*'.");
 	}
@@ -81,6 +88,7 @@ public class TC0001 extends SeleniumTestCase {
 	public void testSizeMinError() {
 		setFieldValueByID(textFieldID, BootstrapPlainTestData.TXTF_SIZE_MIN_FALSE);
 		clickButtonByXpath(submitXpath);
+		assertErrorMessageNotNull(textFieldErrorID);
 		assertErrorMessage(textFieldErrorID, "Der Wert " + BootstrapPlainTestData.TXTF_SIZE_MIN_FALSE
 				+ " im Feld 'Textfield' muss zwischen 2 und 20 liegen.");
 	}
@@ -96,6 +104,7 @@ public class TC0001 extends SeleniumTestCase {
 	public void testSizeMaxError() {
 		setFieldValueByID(textFieldID, BootstrapPlainTestData.TXTF_SIZE_MAX_FALSE);
 		clickButtonByXpath(submitXpath);
+		assertErrorMessageNotNull(textFieldErrorID);
 		assertErrorMessage(textFieldErrorID, "Der Wert " + BootstrapPlainTestData.TXTF_SIZE_MAX_FALSE
 				+ " im Feld 'Textfield' muss zwischen 2 und 20 liegen.");
 	}

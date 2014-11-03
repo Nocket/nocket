@@ -6,6 +6,13 @@ public abstract class BootstrapPlainTestData {
 
 	public final static String NULL = "";
 
+	/* BootstrapPlain TestBrowser */
+	public enum TestBrowser {
+		FIREFOX, PHANTOMJS
+	};
+
+	public final static TestBrowser TESTBROWSER = TestBrowser.FIREFOX;
+
 	/* BootstrapPlain URL */
 	public final static String SITE_URL = "/nocket/wicket/bookmarkable/forscher.nocket.page.gen.layout.AllComponentsBootstrapPlainPage";
 

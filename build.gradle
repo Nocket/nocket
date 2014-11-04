@@ -13,12 +13,10 @@ ext {
 	config = loadConfiguration()
 }
 
-print "Starting after configuration!"
-
 // using semantic versioning, see http://semver.org/
 group = "org.nocket"
 archivesBaseName = "nocket"
-version = new Version(major: 0, minor: 1, revision: 0)
+version = new Version(major: 0, minor: 1, revision: 1)
 
 sourceCompatibility = config.java.source
 
@@ -40,7 +38,7 @@ sourceSets {
 	}
 	// example sources -> used for building war-file
 	examples {
-		java { 
+		java {
 			srcDirs = ["examples/java"]
 		}
 		resources {
@@ -49,11 +47,11 @@ sourceSets {
 	}
 	// unit and selenium tests
 	test {
-		java { 
-			srcDirs = ["test/java"] 
+		java {
+			srcDirs = ["test/java"]
 		}
-		resources { 
-			srcDirs = ["test/resources"] 
+		resources {
+			srcDirs = ["test/resources"]
 		}
 	}
 }
@@ -128,16 +126,16 @@ lessc {
 	
 	doLast {
 	   def state = didWork ? "finished" : "with error"
-       announce.local.send "${project.name}: compling LESS", state
-    }
+	   announce.local.send "${project.name}: compling LESS", state
+	}
 }
 
 lesscDaemon {
 	description "Use from shell only! Compiles LESS files automatically on every file change."
-    lesscTaskName = "lessc"
+	lesscTaskName = "lessc"
 
-    engine = config.less.engine
-    lesscExecutable = config.less.executable
+	engine = config.less.engine
+	lesscExecutable = config.less.executable
 	interval = config.less.daemonIntervall
 }
 
@@ -235,15 +233,15 @@ task buildRelease(dependsOn: ["build"]) {
 	}
 }
 
-task deployRelease {
-	description "Deploy a Release to a repository"
+task publishRelease {
+	description "Publish a RELEASE to a repository"
 	
 	dependsOn "buildRelease"
 	dependsOn "uploadArchives"
 }
 
-task deploySnapshot {
-	description "Deploy a Snapshot to a repository"
+task publishSnapshot {
+	description "Publish a SNAPSHOT to a repository"
 	
 	dependsOn "buildSnapshot"
 	dependsOn "uploadArchives"
@@ -259,15 +257,8 @@ assemble {
 	dependsOn "war"
 }
 
-repositories { 
-	mavenCentral() 
-}
-
 dependencies {
 	def wicketVersion = "6.9.+"
-
-	compile files("lib/gengui-1.1.jar")
-	compile files("lib/examples/jfd-loader.jar") // Has to be there because of gengui
 
 	// wicket
 	compile "org.apache.wicket:wicket:${wicketVersion}"
@@ -278,6 +269,7 @@ dependencies {
 	providedCompile "javax.servlet:javax.servlet-api:3.1.+"
 	
 	// utils
+	compile "org.nocket:gengui:1.1"
 	compile "commons-beanutils:commons-beanutils:1.9.2"
 	compile "commons-collections:commons-collections:3.2.1"
 	compile "commons-lang:commons-lang:2.6"
@@ -297,18 +289,23 @@ dependencies {
 	testCompile "junit:junit:4.11"
 }
 
+repositories {
+	mavenCentral()
+	maven { url "https://raw.githubusercontent.com/Nocket/mvn-repository/master/releases" }
+}
+
 buildscript {
-	repositories { 
-		mavenCentral() 
+	repositories {
+		mavenCentral()
 	}
 
-	dependencies { 
-		classpath "com.github.houbie:lesscss-gradle-plugin:1.0.3-less-1.7.0" 
+	dependencies {
+		classpath "com.github.houbie:lesscss-gradle-plugin:1.0.3-less-1.7.0"
 	}
 }
 
-wrapper { 
-	gradleVersion = "2.1" 
+wrapper {
+	gradleVersion = "2.1"
 }
 
 gradle.taskGraph.whenReady { taskGraph ->
@@ -328,7 +325,7 @@ gradle.taskGraph.whenReady { taskGraph ->
 	sourceSets.examples.resources.srcDir "examples/config/${version.configuration}"
 	
 	println "*** build configured for: '${version.conf}'\n"
-    
+	
 	tasks.withType(JavaCompile) {
 		[ compileJava, compileTestJava ]*.options*.encoding = "ISO-8859-15"
 		[ compileJava, compileTestJava ]*.options*.warnings = false
@@ -353,7 +350,7 @@ def loadConfiguration() {
 	mkdir("examples/config/${username}")
 
 	try {
-		def configFile = "gradle/" + username + ".config"
+		def configFile = "config/gradle/" + username + ".config"
 		def config = new ConfigSlurper().parse(file(configFile).toURL())
 
 		println "\n*** using *build* configuration for user: '${username}'"
@@ -362,7 +359,7 @@ def loadConfiguration() {
 	catch (all) {
 		def configFile = file("gradle/default.config")
 
-        println "\n*** using default *build* configuration!"
+		println "\n*** using default *build* configuration!"
 		return new ConfigSlurper().parse(configFile.toURL())
 	}
 }

@@ -4,20 +4,21 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class BootstrapPlainTestData {
 
-	public final static String NULL = "";
-
 	/* BootstrapPlain TestBrowser */
 	public enum TestBrowser {
 		FIREFOX, PHANTOMJS
 	};
 
-	public final static TestBrowser TESTBROWSER = TestBrowser.FIREFOX;
+	/* Set the Testbrowser */
+	public final static TestBrowser TESTBROWSER = TestBrowser.PHANTOMJS;
 
 	/* BootstrapPlain URL */
 	public final static String SITE_URL = "/nocket/wicket/bookmarkable/forscher.nocket.page.gen.layout.AllComponentsBootstrapPlainPage";
 
 	/* Button Submit */
 	public final static String BUTTON_SUBMIT_XPATH = "//button[@id='button']";
+
+	public final static String NULL_VALUE = "";
 
 	/* Data for Textfield - TC0001 */
 	public final static String TXTF_ID = "Textfield";

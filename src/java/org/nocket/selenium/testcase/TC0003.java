@@ -25,7 +25,7 @@ public class TC0003 extends SeleniumTestCase {
 
 	@Test
 	public void testNotSelected() {
-		selectComboboxValue(comboboxID, BootstrapPlainTestData.NULL);
+		selectComboboxValue(comboboxID, BootstrapPlainTestData.NULL_VALUE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(comboboxErrorID);
 		assertErrorMessage(comboboxErrorID, "Bitte tragen Sie einen Wert im Feld 'Combobox' ein.");

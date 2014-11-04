@@ -5,49 +5,25 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.Select;
 
 public abstract class SeleniumTestCase {
 
 	private static final int DEFAULT_PORT = 8070;
-	private static final int TIMEOUT_SEC = 3;
 	private static final String BASE_URL = "http://localhost:";
 	private static StringBuffer verificationErrors = new StringBuffer();
-	private static DesiredCapabilities dCaps;
 	protected static WebDriver driver;
 
 	public static WebDriver getWebDriverInstance(String browser) {
 		if (driver == null) {
-			if (browser.equals("FIREFOX")) {
-				setupFirefoxDriver();
-			} else {
-				setupPhantomJSDriver();
-			}
+			driver = SeleniumWebDriver.getInstanceOfWebDriver(browser);
 		}
 		return driver;
-	}
-
-	private static void setupPhantomJSDriver() {
-		dCaps = new DesiredCapabilities();
-		dCaps.setJavascriptEnabled(true);
-		dCaps.setCapability("takesScreenshot", false);
-
-		driver = new PhantomJSDriver(dCaps);
-		driver.manage().timeouts().implicitlyWait(TIMEOUT_SEC, TimeUnit.SECONDS);
-	}
-
-	private static void setupFirefoxDriver() {
-		driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(TIMEOUT_SEC, TimeUnit.SECONDS);
 	}
 
 	protected static void getWindow(String siteUrl) {
@@ -110,7 +86,7 @@ public abstract class SeleniumTestCase {
 	}
 
 	protected void assertNoError(String errorID) {
-		assertTrue(!isElementPresent(By.id(errorID)));
+		assertTrue("Error-Element '" + errorID + "' is visible!", !isElementPresent(By.id(errorID)));
 	}
 
 	protected void assertErrorMessageNotNull(String errorID) {

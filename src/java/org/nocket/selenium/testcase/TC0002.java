@@ -25,7 +25,7 @@ public class TC0002 extends SeleniumTestCase {
 
 	@Test
 	public void testNotNullError() {
-		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NULL);
+		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NULL_VALUE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(numberfieldErrorID);
 		assertErrorMessage(numberfieldErrorID, "Bitte tragen Sie einen Wert im Feld 'Numberfield' ein.");

@@ -14,7 +14,7 @@ public class TCListbox extends SeleniumTestCase {
 
 	@Before
 	public void setUp() throws Exception {
-		getWindow(BootstrapPlainTestData.SITE_URL);
+		getSite(BootstrapPlainTestData.SITE_URL);
 	}
 
 	@Test

@@ -14,12 +14,12 @@ public class TCDatefield extends SeleniumTestCase {
 
 	@Before
 	public void setUp() throws Exception {
-		getWindow(BootstrapPlainTestData.SITE_URL);
+		getSite(BootstrapPlainTestData.SITE_URL);
 	}
 
 	@Test
 	public void testNotNull() {
-		setFieldValueByID(datefieldID, BootstrapPlainTestData.NULL_VALUE);
+		setFieldValue(datefieldID, BootstrapPlainTestData.NULL_VALUE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(datefieldErrorID);
 		assertErrorMessage(datefieldErrorID, "Bitte tragen Sie einen Wert im Feld 'Datefield' ein.");
@@ -27,42 +27,42 @@ public class TCDatefield extends SeleniumTestCase {
 
 	@Test
 	public void testFullDate() {
-		setFieldValueByID(datefieldID, BootstrapPlainTestData.DF_FULLDATE);
+		setFieldValue(datefieldID, BootstrapPlainTestData.DF_FULLDATE);
 		clickButtonByXpath(submitXpath);
 		assertNoError(datefieldErrorID);
 	}
 
 	@Test
 	public void testPast() {
-		setFieldValueByID(datefieldID, BootstrapPlainTestData.DF_PAST);
+		setFieldValue(datefieldID, BootstrapPlainTestData.DF_PAST);
 		clickButtonByXpath(submitXpath);
 		assertNoError(datefieldErrorID);
 	}
 
 	@Test
 	public void testShortDate() {
-		setFieldValueByID(datefieldID, BootstrapPlainTestData.DF_SHORTDATE);
+		setFieldValue(datefieldID, BootstrapPlainTestData.DF_SHORTDATE);
 		clickButtonByXpath(submitXpath);
 		assertNoError(datefieldErrorID);
 	}
 
 	@Test
 	public void testFormat() {
-		setFieldValueByID(datefieldID, BootstrapPlainTestData.DF_FORMAT);
+		setFieldValue(datefieldID, BootstrapPlainTestData.DF_FORMAT);
 		clickButtonByXpath(submitXpath);
 		assertNoError(datefieldErrorID);
 	}
 
 	@Test
 	public void testOutOfRange() {
-		setFieldValueByID(datefieldID, BootstrapPlainTestData.DF_RANGE);
+		setFieldValue(datefieldID, BootstrapPlainTestData.DF_RANGE);
 		clickButtonByXpath(submitXpath);
 		assertNoError(datefieldErrorID);
 	}
 
 	@Test
 	public void testNumber() {
-		setFieldValueByID(datefieldID, BootstrapPlainTestData.DF_NUMBER);
+		setFieldValue(datefieldID, BootstrapPlainTestData.DF_NUMBER);
 		clickButtonByXpath(submitXpath);
 
 		assertErrorMessageNotNull(datefieldErrorID);
@@ -75,7 +75,7 @@ public class TCDatefield extends SeleniumTestCase {
 
 	@Test
 	public void testAlphanumeric() {
-		setFieldValueByID(datefieldID, BootstrapPlainTestData.DF_ALPHANUMERIC);
+		setFieldValue(datefieldID, BootstrapPlainTestData.DF_ALPHANUMERIC);
 		clickButtonByXpath(submitXpath);
 
 		assertErrorMessageNotNull(datefieldErrorID);

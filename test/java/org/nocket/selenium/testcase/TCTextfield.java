@@ -14,12 +14,12 @@ public class TCTextfield extends SeleniumTestCase {
 
 	@Before
 	public void setUp() throws Exception {
-		getWindow(BootstrapPlainTestData.SITE_URL);
+		getSite(BootstrapPlainTestData.SITE_URL);
 	}
 
 	@Test
 	public void testNotNullError() {
-		setFieldValueByID(textFieldID, BootstrapPlainTestData.NULL_VALUE);
+		setFieldValue(textFieldID, BootstrapPlainTestData.NULL_VALUE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(textFieldErrorID);
 		assertErrorMessage(textFieldErrorID, "Bitte tragen Sie einen Wert im Feld 'Textfield' ein.");
@@ -27,7 +27,7 @@ public class TCTextfield extends SeleniumTestCase {
 
 	@Test
 	public void testPatternNumber() {
-		setFieldValueByID(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_NUMBER);
+		setFieldValue(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_NUMBER);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(textFieldErrorID);
 		assertErrorMessage(textFieldErrorID, "Der Wert '" + BootstrapPlainTestData.TXTF_PATTERN_NUMBER
@@ -36,7 +36,7 @@ public class TCTextfield extends SeleniumTestCase {
 
 	@Test
 	public void testPatternMixed() {
-		setFieldValueByID(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_MIXED);
+		setFieldValue(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_MIXED);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(textFieldErrorID);
 		assertErrorMessage(textFieldErrorID, "Der Wert '" + BootstrapPlainTestData.TXTF_PATTERN_MIXED
@@ -45,7 +45,7 @@ public class TCTextfield extends SeleniumTestCase {
 
 	@Test
 	public void testPatternBlank() {
-		setFieldValueByID(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_BLANK);
+		setFieldValue(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_BLANK);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(textFieldErrorID);
 		assertErrorMessage(textFieldErrorID, "Der Wert '" + BootstrapPlainTestData.TXTF_PATTERN_BLANK
@@ -54,7 +54,7 @@ public class TCTextfield extends SeleniumTestCase {
 
 	@Test
 	public void testPatternBlanks() {
-		setFieldValueByID(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_BLANKS);
+		setFieldValue(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_BLANKS);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(textFieldErrorID);
 		assertErrorMessage(textFieldErrorID, "Bitte tragen Sie einen Wert im Feld 'Textfield' ein.");
@@ -62,7 +62,7 @@ public class TCTextfield extends SeleniumTestCase {
 
 	@Test
 	public void testPatternSymbols() {
-		setFieldValueByID(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_SYMBOLS);
+		setFieldValue(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_SYMBOLS);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(textFieldErrorID);
 		assertErrorMessage(textFieldErrorID, "Der Wert '" + BootstrapPlainTestData.TXTF_PATTERN_SYMBOLS
@@ -71,7 +71,7 @@ public class TCTextfield extends SeleniumTestCase {
 
 	@Test
 	public void testPatternUmlaute() {
-		setFieldValueByID(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_UMLAUT);
+		setFieldValue(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_UMLAUT);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(textFieldErrorID);
 		assertErrorMessage(textFieldErrorID, "Der Wert '" + BootstrapPlainTestData.TXTF_PATTERN_UMLAUT
@@ -80,7 +80,7 @@ public class TCTextfield extends SeleniumTestCase {
 
 	@Test
 	public void testSizeMinError() {
-		setFieldValueByID(textFieldID, BootstrapPlainTestData.TXTF_SIZE_MIN_FALSE);
+		setFieldValue(textFieldID, BootstrapPlainTestData.TXTF_SIZE_MIN_FALSE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(textFieldErrorID);
 		assertErrorMessage(textFieldErrorID, "Der Wert " + BootstrapPlainTestData.TXTF_SIZE_MIN_FALSE
@@ -89,14 +89,14 @@ public class TCTextfield extends SeleniumTestCase {
 
 	@Test
 	public void testSizeMin() {
-		setFieldValueByID(textFieldID, BootstrapPlainTestData.TXTF_SIZE_MIN_TRUE);
+		setFieldValue(textFieldID, BootstrapPlainTestData.TXTF_SIZE_MIN_TRUE);
 		clickButtonByXpath(submitXpath);
 		assertNoError(textFieldErrorID);
 	}
 
 	@Test
 	public void testSizeMaxError() {
-		setFieldValueByID(textFieldID, BootstrapPlainTestData.TXTF_SIZE_MAX_FALSE);
+		setFieldValue(textFieldID, BootstrapPlainTestData.TXTF_SIZE_MAX_FALSE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(textFieldErrorID);
 		assertErrorMessage(textFieldErrorID, "Der Wert " + BootstrapPlainTestData.TXTF_SIZE_MAX_FALSE
@@ -105,7 +105,7 @@ public class TCTextfield extends SeleniumTestCase {
 
 	@Test
 	public void testSizeMax() {
-		setFieldValueByID(textFieldID, BootstrapPlainTestData.TXTF_SIZE_MAX_TRUE);
+		setFieldValue(textFieldID, BootstrapPlainTestData.TXTF_SIZE_MAX_TRUE);
 		clickButtonByXpath(submitXpath);
 		assertNoError(textFieldErrorID);
 	}

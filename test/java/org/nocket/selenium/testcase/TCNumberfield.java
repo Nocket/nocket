@@ -14,12 +14,12 @@ public class TCNumberfield extends SeleniumTestCase {
 
 	@Before
 	public void setUp() throws Exception {
-		getWindow(BootstrapPlainTestData.SITE_URL);
+		getSite(BootstrapPlainTestData.SITE_URL);
 	}
 
 	@Test
 	public void testNotNullError() {
-		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NULL_VALUE);
+		setFieldValue(numberfieldID, BootstrapPlainTestData.NULL_VALUE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(numberfieldErrorID);
 		assertErrorMessage(numberfieldErrorID, "Bitte tragen Sie einen Wert im Feld 'Numberfield' ein.");
@@ -27,7 +27,7 @@ public class TCNumberfield extends SeleniumTestCase {
 
 	@Test
 	public void testSizeMinError() {
-		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NF_VALUE_MIN_FALSE);
+		setFieldValue(numberfieldID, BootstrapPlainTestData.NF_VALUE_MIN_FALSE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(numberfieldErrorID);
 		assertErrorMessage(numberfieldErrorID, "Der Wert " + BootstrapPlainTestData.NF_VALUE_MIN_FALSE
@@ -36,14 +36,14 @@ public class TCNumberfield extends SeleniumTestCase {
 
 	@Test
 	public void testSizeMin() {
-		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NF_VALUE_MIN_TRUE);
+		setFieldValue(numberfieldID, BootstrapPlainTestData.NF_VALUE_MIN_TRUE);
 		clickButtonByXpath(submitXpath);
 		assertNoError(numberfieldErrorID);
 	}
 
 	@Test
 	public void testSizeMaxError() {
-		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NF_VALUE_MAX_FALSE);
+		setFieldValue(numberfieldID, BootstrapPlainTestData.NF_VALUE_MAX_FALSE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(numberfieldErrorID);
 		assertErrorMessage(numberfieldErrorID, "Der Wert " + BootstrapPlainTestData.NF_VALUE_MAX_FALSE
@@ -52,14 +52,14 @@ public class TCNumberfield extends SeleniumTestCase {
 
 	@Test
 	public void testSizeMax() {
-		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NF_VALUE_MAX_TRUE);
+		setFieldValue(numberfieldID, BootstrapPlainTestData.NF_VALUE_MAX_TRUE);
 		clickButtonByXpath(submitXpath);
 		assertNoError(numberfieldErrorID);
 	}
 
 	@Test
 	public void testNegatives() {
-		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NF_PATTERN_NEGATIVE);
+		setFieldValue(numberfieldID, BootstrapPlainTestData.NF_PATTERN_NEGATIVE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(numberfieldErrorID);
 		assertErrorMessage(numberfieldErrorID, "Der Wert " + BootstrapPlainTestData.NF_PATTERN_NEGATIVE
@@ -68,7 +68,7 @@ public class TCNumberfield extends SeleniumTestCase {
 
 	@Test
 	public void testPlus() {
-		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NF_PATTERN_PLUS);
+		setFieldValue(numberfieldID, BootstrapPlainTestData.NF_PATTERN_PLUS);
 		clickButtonByXpath(submitXpath);
 
 		assertErrorMessageNotNull(numberfieldErrorID);
@@ -81,7 +81,7 @@ public class TCNumberfield extends SeleniumTestCase {
 
 	@Test
 	public void testAlphanumeric() {
-		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NF_PATTERN_ALPHANUMERIC);
+		setFieldValue(numberfieldID, BootstrapPlainTestData.NF_PATTERN_ALPHANUMERIC);
 		clickButtonByXpath(submitXpath);
 
 		assertErrorMessageNotNull(numberfieldErrorID);
@@ -94,7 +94,7 @@ public class TCNumberfield extends SeleniumTestCase {
 
 	@Test
 	public void testDecimalDot() {
-		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NF_PATTERN_DOT);
+		setFieldValue(numberfieldID, BootstrapPlainTestData.NF_PATTERN_DOT);
 		clickButtonByXpath(submitXpath);
 
 		assertErrorMessageNotNull(numberfieldErrorID);
@@ -107,7 +107,7 @@ public class TCNumberfield extends SeleniumTestCase {
 
 	@Test
 	public void testDecimalComma() {
-		setFieldValueByID(numberfieldID, BootstrapPlainTestData.NF_PATTERN_COMMA);
+		setFieldValue(numberfieldID, BootstrapPlainTestData.NF_PATTERN_COMMA);
 		clickButtonByXpath(submitXpath);
 
 		assertErrorMessageNotNull(numberfieldErrorID);

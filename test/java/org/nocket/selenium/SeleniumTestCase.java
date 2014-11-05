@@ -33,11 +33,11 @@ public abstract class SeleniumTestCase {
 		tearDown();
 	}
 
-	protected static void getWindow(String siteUrl) {
+	protected static void getSite(String siteUrl) {
 		driver.get(BASE_URL + DEFAULT_PORT + siteUrl);
 	}
 
-	protected void setFieldValueByID(String fieldID, String value) {
+	protected void setFieldValue(String fieldID, String value) {
 		driver.findElement(By.id(fieldID)).clear();
 		driver.findElement(By.id(fieldID)).sendKeys(value);
 	}
@@ -88,6 +88,7 @@ public abstract class SeleniumTestCase {
 		driver.findElement(By.xpath(xpath)).click();
 	}
 
+	// compares expected errormessage with current errormessage
 	protected void assertErrorMessage(String errorID, String errorMessage) {
 		assertEquals(errorMessage, driver.findElement(By.id(errorID)).getText());
 	}

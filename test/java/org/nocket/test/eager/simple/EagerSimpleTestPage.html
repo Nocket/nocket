@@ -13,17 +13,20 @@
 		<div wicket:id="modal"></div>
 		<form wicket:id="form" class="form-horizontal">
 			<section>
+				<p><strong>Test Case: Basic usage of "@Eager" annotation</strong></p>
+				<p>"@Eager" annotation on the getter method causes, that changes done in the field on the web page
+					are posted immediately to the server. For input fields this occurs while the field loost focus.
+					For check boxes, select fields etc. it occurs after the change.</p>
 				<p>
-					<strong>Test Case: Basic usage of "@Eager" annotation</strong>
-				</p>
-				<p>"@Eager" annotation can be used, when changes done on the web
-					page should be submitted immediately to the server.</p>
-				<p>
-					<strong>Expected test sequence:</strong>
+					<strong>Test scenario:</strong>
 				</p>
 				<ol>
-					<li>Enter "Text Eager" field, write any input in this field and leave it.</li>
-					<li>Field "Text Eager Echo" must get value same as field "Text Eager". Field "Text" remains blank.</li>
+					<li>Focus "Text Eager" field. Write input "abc". Leave the field.</li>
+					<li>Field "Text Eager Echo" equals "abc". Field "Text" remains blank.</li>
+					<li>Focus "Text" field. Write input "efg". Leave the field.</li>
+					<li>Field "Text Eager Echo" equals "abc".</li>
+					<li>Focus "Text Eager" field. Write input "abcd". Leave the field.</li>
+					<li>Field "Text Eager Echo" equals "abcdef".</li>
 				</ol>
 				<fieldset>
 					<div class="control-group">

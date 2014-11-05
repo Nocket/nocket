@@ -11,17 +11,18 @@
             <form wicket:id="form" class="form-horizontal">
             <section>
 				<p>
-					<strong>Test Case: Validation of the form with eager fields.</strong>
+					<strong>Test Case: Validation of the form with "@Eager" fields.</strong>
 				</p>
+				<p>When change on the "@Eager" field is posted to the server, only this field 
+				should be validated by bean validation. Other Validation should be ommited.</p>
 				<p>
-					While
-				</p>
-				<p>
-					<strong>Expected test sequence:</strong>
+					<strong>Test scenario:</strong>
 				</p>
 				<ol>
-					<li>Enter "Text Eager" field. Write input write any input in this field and leave it.</li>
-					<li>Field "Text Eager Echo" must get value same as field "Text Eager". Field "Text" remains blank.</li>
+					<li>Focus "Text Eager" field. Write input "abc". Leave the field.</li>
+					<li>Field "Text Eager Echo" equals "abc". Field "Text" remains blank and is not marked as invalid.</li>
+					<li>Press "Save" button.</li>
+					<li>Field "Text" is marked as invalid now.</li>
 				</ol>  
 				<fieldset>          
 	                <div class="control-group">
@@ -45,7 +46,7 @@
                 </fieldset>
             </section>
 			<footer class="form-actions">
-                <button id="save" class="btn" wicket:id="save" type="submit"><span wicket:id="save.label">Save</span></button>
+                <button id="save" class="btn btn-primary" wicket:id="save" type="submit"><span wicket:id="save.label">Save</span></button>
             </footer>
             </form>
         </wicket:extend>

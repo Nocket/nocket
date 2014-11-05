@@ -4,13 +4,14 @@ import gengui.annotations.Eager;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang.StringUtils;
+
 public class EagerSimpleTest implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private String textEager;
 	private String textEagerEcho;
-	
 	private String text;  
     
     public EagerSimpleTest() {
@@ -24,7 +25,8 @@ public class EagerSimpleTest implements Serializable {
     @Eager
     public void setTextEager(String textEager) {
     	this.textEager = textEager;
-    	this.textEagerEcho = textEager;
+    	this.textEagerEcho = StringUtils.trimToEmpty(textEager) 
+    				+ StringUtils.trimToEmpty(text);
     	System.out.println("setTextEager(): " + this);
     }
     
@@ -40,7 +42,7 @@ public class EagerSimpleTest implements Serializable {
     
     public String disableTextEagerEcho() {
     	System.out.println("disableTextEagerEcho(): " + this);
-    	return "Disabled";
+    	return "Always disabled";
     }
     
     public String getText() {

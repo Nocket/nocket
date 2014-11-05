@@ -50,8 +50,13 @@ sourceSets {
 		}
 		resources { 
 			srcDirs = ["test/resources"] 
-		}
+		}	
 	}
+}
+
+test{
+	// exclusion of the test suite prevents double execution of test cases.
+	exclude '**/AllSeleniumTestSuite.class'
 }
 
 eclipse{

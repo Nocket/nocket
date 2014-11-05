@@ -33,7 +33,7 @@ import com.gargoylesoftware.htmlunit.BrowserVersion;
  */
 public final class WebDriverFactory {
 
-	public static final int DEFAULT_WAIT_TIME = 5;
+	public static final int DEFAULT_WAIT_TIME = 3;
 
 	public static final String baseDriverPath = "seleniumDrivers";
 

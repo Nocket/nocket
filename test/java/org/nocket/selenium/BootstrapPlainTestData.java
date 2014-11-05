@@ -10,7 +10,7 @@ public abstract class BootstrapPlainTestData {
 	/* BootstrapPlain URL */
 	public final static String SITE_URL = "/nocket/wicket/bookmarkable/forscher.nocket.page.gen.layout.AllComponentsBootstrapPlainPage";
 
-	/* Button Submit */
+	/* BootstrapPlain Button: Submit */
 	public final static String BUTTON_SUBMIT_XPATH = "//button[@id='button']";
 
 	public final static String NULL_VALUE = "";

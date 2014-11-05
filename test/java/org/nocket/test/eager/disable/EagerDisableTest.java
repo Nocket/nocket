@@ -10,52 +10,33 @@ public class EagerDisableTest implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String textEager;
-	private String textEagerEcho;
-	private String text;  
+	private Boolean eagerCheckbox = Boolean.FALSE;
+	private String text;
     
     public EagerDisableTest() {
     }
-
-    public String getTextEager() {
-    	System.out.println("getTextEager(): " + this);
-    	return textEager;
-    }
     
+    public Boolean getEagerCheckbox() {
+		return eagerCheckbox;
+	}
+
     @Eager
-    public void setTextEager(String textEager) {
-    	this.textEager = textEager;
-    	this.textEagerEcho = textEager;
-    	System.out.println("setTextEager(): " + this);
-    }
+	public void setEagerCheckbox(Boolean eagerCheckbox) {
+		this.eagerCheckbox = eagerCheckbox;
+	}
 
-    @NotNull
-    public String getTextEagerEcho() {
-    	System.out.println("getTextEagerEcho(): " + this);
-    	return textEagerEcho;
-    }
-    
-    public void setTextEagerEcho(String textEagerEcho) {
-    	this.textEagerEcho = textEagerEcho;
-    	System.out.println("setTextEagerEcho(): " + this);
-    }
-    
-    public String disableTextEagerEcho() {
-    	System.out.println("disableTextEagerEcho(): " + this);
-    	return "Disabled";
-    }
-    
-    @NotNull
+	@NotNull
     public String getText() {
-    	System.out.println("getText(): " + this);
     	return text;
     }
 
     public void setText(String text) {
     	this.text = text;
-    	System.out.println("setText(): " + this);
     }
 
+    public String disableText() {
+    	return this.eagerCheckbox ? "Disabled due checkbox" : null;
+    }
 	
 	public void save() {
 		System.out.println("save(): " + this);
@@ -63,8 +44,7 @@ public class EagerDisableTest implements Serializable {
 
 	@Override
 	public String toString() {
-		return "EagerDisableTest [textEager=" + textEager + ", textEagerEcho=" + textEagerEcho + ", text=" + text + "]";
+		return "EagerDisableTest [eagerCheckbox=" + eagerCheckbox + ", text=" + text + "]";
 	}
-	
 
 }

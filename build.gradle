@@ -357,7 +357,7 @@ def loadConfiguration() {
 		return config
 	}
 	catch (all) {
-		def configFile = file("gradle/default.config")
+		def configFile = file("config/gradle/default.config")
 
 		println "\n*** using default *build* configuration!"
 		return new ConfigSlurper().parse(configFile.toURL())

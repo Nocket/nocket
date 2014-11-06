@@ -29,3 +29,4 @@ examples/webapp/css/application.map
 /bin/
 
 .settings/org.eclipse.wst.validation.prefs
+/phantomjsdriver.log

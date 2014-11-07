@@ -22,7 +22,7 @@ public class TCCombobox extends SeleniumTestCase {
 		selectComboboxValue(comboboxID, BootstrapPlainTestData.NULL_VALUE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(comboboxErrorID);
-		assertErrorMessage(comboboxErrorID, "Bitte tragen Sie einen Wert im Feld 'Combobox' ein.");
+		assertErrorMessage(comboboxErrorID, "Das Feld 'Combobox' darf nicht leer sein.");
 	}
 
 	@Test

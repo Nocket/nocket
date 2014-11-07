@@ -12,6 +12,10 @@ public class TCTextfield extends SeleniumTestCase {
 	private String textFieldErrorID = BootstrapPlainTestData.TXTF_ERROR_ID;
 	private String submitXpath = BootstrapPlainTestData.BUTTON_SUBMIT_XPATH;
 
+	private final static String ERROR_NULL = "Das Feld 'Textfield' darf nicht leer sein.";
+	private final static String ERROR_PATTERN = "Der Wert im Feld 'Textfield' entspricht nicht dem erforderlichen Muster '[A-Za-z]*'.";
+	private final static String ERROR_LENGTH = "Der Wert im Feld 'Textfield' muss zwischen 2 und 20 liegen.";
+
 	@Before
 	public void setUp() throws Exception {
 		getSite(BootstrapPlainTestData.SITE_URL);
@@ -22,7 +26,7 @@ public class TCTextfield extends SeleniumTestCase {
 		setFieldValue(textFieldID, BootstrapPlainTestData.NULL_VALUE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(textFieldErrorID);
-		assertErrorMessage(textFieldErrorID, "Bitte tragen Sie einen Wert im Feld 'Textfield' ein.");
+		assertErrorMessage(textFieldErrorID, ERROR_NULL);
 	}
 
 	@Test
@@ -30,8 +34,7 @@ public class TCTextfield extends SeleniumTestCase {
 		setFieldValue(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_NUMBER);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(textFieldErrorID);
-		assertErrorMessage(textFieldErrorID, "Der Wert '" + BootstrapPlainTestData.TXTF_PATTERN_NUMBER
-				+ "' im Feld 'Textfield' entspricht nicht dem erforderlichen Muster '[A-Za-z]*'.");
+		assertErrorMessage(textFieldErrorID, ERROR_PATTERN);
 	}
 
 	@Test
@@ -39,8 +42,7 @@ public class TCTextfield extends SeleniumTestCase {
 		setFieldValue(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_MIXED);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(textFieldErrorID);
-		assertErrorMessage(textFieldErrorID, "Der Wert '" + BootstrapPlainTestData.TXTF_PATTERN_MIXED
-				+ "' im Feld 'Textfield' entspricht nicht dem erforderlichen Muster '[A-Za-z]*'.");
+		assertErrorMessage(textFieldErrorID, ERROR_PATTERN);
 	}
 
 	@Test
@@ -48,8 +50,7 @@ public class TCTextfield extends SeleniumTestCase {
 		setFieldValue(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_BLANK);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(textFieldErrorID);
-		assertErrorMessage(textFieldErrorID, "Der Wert '" + BootstrapPlainTestData.TXTF_PATTERN_BLANK
-				+ "' im Feld 'Textfield' entspricht nicht dem erforderlichen Muster '[A-Za-z]*'.");
+		assertErrorMessage(textFieldErrorID, ERROR_PATTERN);
 	}
 
 	@Test
@@ -57,7 +58,7 @@ public class TCTextfield extends SeleniumTestCase {
 		setFieldValue(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_BLANKS);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(textFieldErrorID);
-		assertErrorMessage(textFieldErrorID, "Bitte tragen Sie einen Wert im Feld 'Textfield' ein.");
+		assertErrorMessage(textFieldErrorID, ERROR_NULL);
 	}
 
 	@Test
@@ -65,8 +66,7 @@ public class TCTextfield extends SeleniumTestCase {
 		setFieldValue(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_SYMBOLS);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(textFieldErrorID);
-		assertErrorMessage(textFieldErrorID, "Der Wert '" + BootstrapPlainTestData.TXTF_PATTERN_SYMBOLS
-				+ "' im Feld 'Textfield' entspricht nicht dem erforderlichen Muster '[A-Za-z]*'.");
+		assertErrorMessage(textFieldErrorID, ERROR_PATTERN);
 	}
 
 	@Test
@@ -74,8 +74,7 @@ public class TCTextfield extends SeleniumTestCase {
 		setFieldValue(textFieldID, BootstrapPlainTestData.TXTF_PATTERN_UMLAUT);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(textFieldErrorID);
-		assertErrorMessage(textFieldErrorID, "Der Wert '" + BootstrapPlainTestData.TXTF_PATTERN_UMLAUT
-				+ "' im Feld 'Textfield' entspricht nicht dem erforderlichen Muster '[A-Za-z]*'.");
+		assertErrorMessage(textFieldErrorID, ERROR_PATTERN);
 	}
 
 	@Test
@@ -83,8 +82,7 @@ public class TCTextfield extends SeleniumTestCase {
 		setFieldValue(textFieldID, BootstrapPlainTestData.TXTF_SIZE_MIN_FALSE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(textFieldErrorID);
-		assertErrorMessage(textFieldErrorID, "Der Wert " + BootstrapPlainTestData.TXTF_SIZE_MIN_FALSE
-				+ " im Feld 'Textfield' muss zwischen 2 und 20 liegen.");
+		assertErrorMessage(textFieldErrorID, ERROR_LENGTH);
 	}
 
 	@Test
@@ -99,8 +97,7 @@ public class TCTextfield extends SeleniumTestCase {
 		setFieldValue(textFieldID, BootstrapPlainTestData.TXTF_SIZE_MAX_FALSE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(textFieldErrorID);
-		assertErrorMessage(textFieldErrorID, "Der Wert " + BootstrapPlainTestData.TXTF_SIZE_MAX_FALSE
-				+ " im Feld 'Textfield' muss zwischen 2 und 20 liegen.");
+		assertErrorMessage(textFieldErrorID, ERROR_LENGTH);
 	}
 
 	@Test

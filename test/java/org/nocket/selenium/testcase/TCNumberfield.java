@@ -12,6 +12,10 @@ public class TCNumberfield extends SeleniumTestCase {
 	private String numberfieldErrorID = BootstrapPlainTestData.NF_ERROR_ID;
 	private String submitXpath = BootstrapPlainTestData.BUTTON_SUBMIT_XPATH;
 
+	private final static String ERROR_NULL = "Das Feld 'Numberfield' darf nicht leer sein.";
+	private final static String ERROR_VALUE_MAX = "Der Wert im Feld 'Numberfield' muss kleiner sein als '75'.";
+	private final static String ERROR_VALUE_MIN = "Der Wert im Feld 'Numberfield' muss größer sein als '18'.";
+
 	@Before
 	public void setUp() throws Exception {
 		getSite(BootstrapPlainTestData.SITE_URL);
@@ -22,7 +26,7 @@ public class TCNumberfield extends SeleniumTestCase {
 		setFieldValue(numberfieldID, BootstrapPlainTestData.NULL_VALUE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(numberfieldErrorID);
-		assertErrorMessage(numberfieldErrorID, "Bitte tragen Sie einen Wert im Feld 'Numberfield' ein.");
+		assertErrorMessage(numberfieldErrorID, ERROR_NULL);
 	}
 
 	@Test
@@ -30,8 +34,7 @@ public class TCNumberfield extends SeleniumTestCase {
 		setFieldValue(numberfieldID, BootstrapPlainTestData.NF_VALUE_MIN_FALSE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(numberfieldErrorID);
-		assertErrorMessage(numberfieldErrorID, "Der Wert " + BootstrapPlainTestData.NF_VALUE_MIN_FALSE
-				+ " im Feld 'Numberfield' muss größer sein als '18'.");
+		assertErrorMessage(numberfieldErrorID, ERROR_VALUE_MIN);
 	}
 
 	@Test
@@ -46,8 +49,7 @@ public class TCNumberfield extends SeleniumTestCase {
 		setFieldValue(numberfieldID, BootstrapPlainTestData.NF_VALUE_MAX_FALSE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(numberfieldErrorID);
-		assertErrorMessage(numberfieldErrorID, "Der Wert " + BootstrapPlainTestData.NF_VALUE_MAX_FALSE
-				+ " im Feld 'Numberfield' muss kleiner sein als '75'.");
+		assertErrorMessage(numberfieldErrorID, ERROR_VALUE_MAX);
 	}
 
 	@Test
@@ -62,8 +64,7 @@ public class TCNumberfield extends SeleniumTestCase {
 		setFieldValue(numberfieldID, BootstrapPlainTestData.NF_PATTERN_NEGATIVE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(numberfieldErrorID);
-		assertErrorMessage(numberfieldErrorID, "Der Wert " + BootstrapPlainTestData.NF_PATTERN_NEGATIVE
-				+ " im Feld 'Numberfield' muss größer sein als '18'.");
+		assertErrorMessage(numberfieldErrorID, ERROR_VALUE_MIN);
 	}
 
 	@Test

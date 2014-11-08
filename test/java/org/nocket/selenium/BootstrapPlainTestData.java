@@ -4,9 +4,6 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class BootstrapPlainTestData {
 
-	/* Set the Testbrowser */
-	public final static String TESTBROWSER = "phantomjs";
-
 	/* BootstrapPlain URL */
 	public final static String SITE_URL = "/nocket/wicket/bookmarkable/forscher.nocket.page.gen.layout.AllComponentsBootstrapPlainPage";
 

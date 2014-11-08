@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.nocket.selenium.infrastructure.SeleniumProperties;
 import org.nocket.selenium.infrastructure.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -17,14 +18,15 @@ import org.openqa.selenium.support.ui.Select;
 
 public abstract class SeleniumTestCase {
 
-	private static final int DEFAULT_PORT = 8080;
-	private static final String BASE_URL = "http://localhost:";
+	private static final int DEFAULT_PORT = new Integer(
+			SeleniumProperties.getProperty(SeleniumProperties.WEBDRIVER_PORT)).intValue();
+	private static final String BASE_URL = SeleniumProperties.getProperty(SeleniumProperties.WEBDRIVER_URL);
 	private static StringBuffer verificationErrors = new StringBuffer();
 	protected static WebDriver driver;
 
 	@BeforeClass
 	public static void createDriver() throws Exception {
-		String webDriverName = BootstrapPlainTestData.TESTBROWSER;
+		String webDriverName = SeleniumProperties.getProperty(SeleniumProperties.WEBDRIVER);
 		driver = WebDriverFactory.getInstance(webDriverName, null, null, false);
 	}
 

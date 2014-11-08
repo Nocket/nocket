@@ -22,7 +22,7 @@ public class TCDatefield extends SeleniumTestCase {
 		setFieldValue(datefieldID, BootstrapPlainTestData.NULL_VALUE);
 		clickButtonByXpath(submitXpath);
 		assertErrorMessageNotNull(datefieldErrorID);
-		assertErrorMessage(datefieldErrorID, "Bitte tragen Sie einen Wert im Feld 'Datefield' ein.");
+		assertErrorMessage(datefieldErrorID, "Das Feld 'Datefield' darf nicht leer sein.");
 	}
 
 	@Test

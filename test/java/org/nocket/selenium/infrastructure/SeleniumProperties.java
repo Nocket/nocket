@@ -13,6 +13,8 @@ public class SeleniumProperties extends AbstractProperties {
 	public static final String NETWORK_PROXY_SSL = "network.proxy.ssl";
 	public static final String NETWORK_PROXY_SSL_PORT = "network.proxy.ssl_port";
 	public static final String WEBDRIVER = "webdriver";
+	public static final String WEBDRIVER_PORT = "webdriver.port";
+	public static final String WEBDRIVER_URL = "webdriver.url";
 
 	protected SeleniumProperties() {
 		super();

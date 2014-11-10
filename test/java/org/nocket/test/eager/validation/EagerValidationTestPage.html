@@ -8,47 +8,55 @@
         <wicket:extend>
             <!-- <div wicket:id='feedback'></div>  -->
             <div wicket:id="modal"></div>
-            <form wicket:id="form" class="form-horizontal">
-            <section>
-				<p>
-					<strong>Test Case: Validation of the form with "@Eager" fields.</strong>
-				</p>
-				<p>When change on the "@Eager" field is posted to the server, only this field 
-				should be validated by bean validation. Other Validation should be ommited.</p>
-				<p>
-					<strong>Test scenario:</strong>
-				</p>
-				<ol>
-					<li>Focus "Text Eager" field. Write input "abc". Leave the field.</li>
-					<li>Field "Text Eager Echo" equals "abc". Field "Text" remains blank and is not marked as invalid.</li>
-					<li>Press "Save" button.</li>
-					<li>Field "Text" is marked as invalid now.</li>
-				</ol>  
-				<fieldset>          
-	                <div class="control-group">
-	                    <label for="TextEager" class="control-label" wicket:id="TextEager.label">Text Eager</label>
-	                    <div class="controls">
-	                        <input id="TextEager" type="text" wicket:id="TextEager" />
+			<form wicket:id="form" class="form-horizontal">
+				<section>
+					<p><strong>Test Case: Validation of the form with "@Eager" fields.</strong></p>
+					<p>When change of the "@Eager" field is posted to the server, only this field should be validated by bean validation.</p>
+					<p>
+						<strong>Test scenario:</strong>
+					</p>
+					<ol>
+						<li>Focus "Text Eager" field. Write input "abc". Leave the field.</li>
+						<li>Field "Text Eager Echo" equals "Text Eager: abc".</li>
+						<li>Focus "Text Eager Nested" field. Write input "def". Leave the field.</li>
+						<li>Field "Text Eager Echo" equals "Text Eager Nested: def".</li>
+						<li>Focus "Text" field. Write input "qwe". Leave the field.</li>
+						<li>Field "Text Eager Echo" equals "Text Eager Nested: def".</li>
+					</ol>
+					<fieldset>
+						<div class="control-group">
+							<label for="TextEager" class="control-label">Text Eager</label>
+							<div class="controls">
+								<input id="TextEager" type="text" wicket:id="TextEager" />
+							</div>
+						</div>
+	                    <div class="control-group">
+	                        <label for="NestedObject.TextEager" class="control-label" wicket:id="NestedObject.TextEager.label">Text Eager</label>
+	                        <div class="controls">
+	                            <input id="NestedObject.TextEager" type="text" wicket:id="NestedObject.TextEager" />
+	                        </div>
 	                    </div>
-	                </div>
-	                <div class="control-group">
-	                    <label for="TextEagerEcho" class="control-label required" wicket:id="TextEagerEcho.label">Text Eager Echo</label>
-	                    <div class="controls">
-	                        <input id="TextEagerEcho" class="required" type="text" wicket:id="TextEagerEcho" />
-	                    </div>
-	                </div>
-	                <div class="control-group">
-	                    <label for="Text" class="control-label required" wicket:id="Text.label">Text</label>
-	                    <div class="controls">
-	                        <input id="Text" class="required" type="text" wicket:id="Text" />
-	                    </div>
-	                </div>
-                </fieldset>
-            </section>
-			<footer class="form-actions">
-                <button id="save" class="btn btn-primary" wicket:id="save" type="submit"><span wicket:id="save.label">Save</span></button>
-            </footer>
-            </form>
+						<div class="control-group">
+							<label for="TextEagerEcho" class="control-label">Text Eager Echo</label>
+							<div class="controls">
+								<input id="TextEagerEcho" type="text" wicket:id="TextEagerEcho" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label for="Text" class="control-label">Text</label>
+							<div class="controls">
+								<input id="Text" type="text" wicket:id="Text" />
+							</div>
+						</div>
+					</fieldset>
+				</section>
+				<footer class="form-actions">
+					<button id="save" class="btn btn-primary" wicket:id="save"
+						type="submit">
+						<span wicket:id="save.label">Save</span>
+					</button>
+				</footer>
+			</form>
         </wicket:extend>
     </body>
 </html>

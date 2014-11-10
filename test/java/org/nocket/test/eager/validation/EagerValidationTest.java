@@ -4,19 +4,23 @@ import gengui.annotations.Eager;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.apache.commons.lang.StringUtils;
 
 public class EagerValidationTest implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private String textEager;
+	private NestedObject nestedObject;
 	private String textEagerEcho;
 	private String text;  
     
     public EagerValidationTest() {
+    	nestedObject = new NestedObject(this);
     }
 
+    @Size(min=0, max=5)
     public String getTextEager() {
     	return textEager;
     }
@@ -24,12 +28,18 @@ public class EagerValidationTest implements Serializable {
     @Eager
     public void setTextEager(String textEager) {
     	this.textEager = textEager;
-    	this.textEagerEcho = textEager;
+    	this.textEagerEcho = "Text Eager: " + StringUtils.trimToEmpty(textEager);
     }
-
-    @NotNull
+    
     public String getTextEagerEcho() {
     	return textEagerEcho;
+    }
+
+    public String validateTextEager(String s) {
+    	if("Falsch".equals(s)) {
+    		return "Die Eingabe ist falsch!!!";
+    	}
+    	return null;
     }
     
     public void setTextEagerEcho(String textEagerEcho) {
@@ -40,7 +50,7 @@ public class EagerValidationTest implements Serializable {
     	return "Always disabled";
     }
     
-    @NotNull
+    @Size(min=0, max=5)
     public String getText() {
     	return text;
     }
@@ -54,10 +64,19 @@ public class EagerValidationTest implements Serializable {
 		System.out.println("save(): " + this);
 	}
 
+	public NestedObject getNestedObject() {
+		return nestedObject;
+	}
+
+	public void setNestedObject(NestedObject nestedObject) {
+		this.nestedObject = nestedObject;
+	}
+
 	@Override
 	public String toString() {
-		return "EagerDisableTest [textEager=" + textEager + ", textEagerEcho=" + textEagerEcho + ", text=" + text + "]";
+		return "EagerValidationTest [textEager=" + textEager + ", nestedObject="
+				+ nestedObject + ", textEagerEcho=" + textEagerEcho + ", text="
+				+ text + "]";
 	}
-	
 
 }

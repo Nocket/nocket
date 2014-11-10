@@ -16,34 +16,39 @@
 				<p><strong>Test Case: Basic usage of "@Eager" annotation</strong></p>
 				<p>"@Eager" annotation on the setter method causes, that changes done in the field on the web page
 					are posted immediately to the server. For input fields this occurs while the field lost focus.
-					For check-boxes, select fields etc. it occurs after the change.</p>
+					For check-boxes, select fields etc. it occurs right after the change.</p>
 				<p>
 					<strong>Test scenario:</strong>
 				</p>
 				<ol>
 					<li>Focus "Text Eager" field. Write input "abc". Leave the field.</li>
-					<li>Field "Text Eager Echo" equals "abc". Field "Text" remains blank.</li>
-					<li>Focus "Text" field. Write input "efg". Leave the field.</li>
-					<li>Field "Text Eager Echo" equals "abc".</li>
-					<li>Focus "Text Eager" field. Write input "abcd". Leave the field.</li>
-					<li>Field "Text Eager Echo" equals "abcdef".</li>
+					<li>Field "Text Eager Echo" equals "Text Eager: abc".</li>
+					<li>Focus "Text Eager Nested" field. Write input "def". Leave the field.</li>
+					<li>Field "Text Eager Echo" equals "Text Eager Nested: def".</li>
+					<li>Focus "Text" field. Write input "qwe". Leave the field.</li>
+					<li>Field "Text Eager Echo" equals "Text Eager Nested: def".</li>
 				</ol>
 				<fieldset>
 					<div class="control-group">
-						<label wicket:for="TextEager" class="control-label">Text Eager</label>
+						<label for="TextEager" class="control-label">Text Eager</label>
 						<div class="controls">
 							<input id="TextEager" type="text" wicket:id="TextEager" />
 						</div>
 					</div>
+                    <div class="control-group">
+                        <label for="NestedObject.TextEager" class="control-label" wicket:id="NestedObject.TextEager.label">Text Eager</label>
+                        <div class="controls">
+                            <input id="NestedObject.TextEager" type="text" wicket:id="NestedObject.TextEager" />
+                        </div>
+                    </div>
 					<div class="control-group">
-						<label wicket:for="Text" class="control-label">Text Eager
-							Echo</label>
+						<label for="TextEagerEcho" class="control-label">Text Eager Echo</label>
 						<div class="controls">
 							<input id="TextEagerEcho" type="text" wicket:id="TextEagerEcho" />
 						</div>
 					</div>
 					<div class="control-group">
-						<label wicket:for="Text" class="control-label">Text</label>
+						<label for="Text" class="control-label">Text</label>
 						<div class="controls">
 							<input id="Text" type="text" wicket:id="Text" />
 						</div>

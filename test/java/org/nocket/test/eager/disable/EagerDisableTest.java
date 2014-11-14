@@ -5,6 +5,7 @@ import gengui.annotations.Eager;
 import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class EagerDisableTest implements Serializable {
 
@@ -26,6 +27,7 @@ public class EagerDisableTest implements Serializable {
 	}
 
 	@NotNull
+	@Size(max=5)
     public String getText() {
     	return text;
     }
@@ -38,10 +40,11 @@ public class EagerDisableTest implements Serializable {
     	return this.eagerCheckbox ? "Disabled due checkbox" : null;
     }
 	
+	
 	public void save() {
 		System.out.println("save(): " + this);
 	}
-
+	
 	@Override
 	public String toString() {
 		return "EagerDisableTest [eagerCheckbox=" + eagerCheckbox + ", text=" + text + "]";

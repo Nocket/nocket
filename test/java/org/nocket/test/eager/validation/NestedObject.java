@@ -4,6 +4,8 @@ import gengui.annotations.Eager;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Size;
+
 public class NestedObject implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -16,6 +18,7 @@ public class NestedObject implements Serializable {
 		this.eagerSimpleTest = eagerSimpleTest;
 	}
 
+	@Size(max=5)
 	public String getTextEager() {
 		return textEager;
 	}

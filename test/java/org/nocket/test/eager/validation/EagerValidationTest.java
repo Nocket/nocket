@@ -20,7 +20,7 @@ public class EagerValidationTest implements Serializable {
     	nestedObject = new NestedObject(this);
     }
 
-    @Size(min=0, max=5)
+    @Size(max=5)
     public String getTextEager() {
     	return textEager;
     }
@@ -36,8 +36,8 @@ public class EagerValidationTest implements Serializable {
     }
 
     public String validateTextEager(String s) {
-    	if("Falsch".equals(s)) {
-    		return "Die Eingabe ist falsch!!!";
+    	if("qwe".equals(s)) {
+    		return "The value \"qwe\" is wrong!";
     	}
     	return null;
     }
@@ -50,7 +50,7 @@ public class EagerValidationTest implements Serializable {
     	return "Always disabled";
     }
     
-    @Size(min=0, max=5)
+    @Size(max=5)
     public String getText() {
     	return text;
     }

@@ -14,9 +14,8 @@
 		<form wicket:id="form" class="form-horizontal">
 			<section>
 				<p><strong>Test Case: Basic usage of "@Eager" annotation</strong></p>
-				<p>"@Eager" annotation on the setter method causes, that changes done in the field on the web page
-					are posted immediately to the server. For input fields this occurs while the field lost focus.
-					For check-boxes, select fields etc. it occurs right after the change.</p>
+				<p>Fields: "Text Eager" and "Text Eager Nested" are annotated with "@Eager". Changed done to these fields, are reflected in read-only 
+				field - "Text Eager Echo". Field "Text" is not eager. There are no validations.</p>
 				<p>
 					<strong>Test scenario:</strong>
 				</p>
@@ -26,7 +25,7 @@
 					<li>Focus "Text Eager Nested" field. Write input "def". Leave the field.</li>
 					<li>Field "Text Eager Echo" equals "Text Eager Nested: def".</li>
 					<li>Focus "Text" field. Write input "qwe". Leave the field.</li>
-					<li>Field "Text Eager Echo" equals "Text Eager Nested: def".</li>
+					<li>No change.</li>
 				</ol>
 				<fieldset>
 					<div class="control-group">

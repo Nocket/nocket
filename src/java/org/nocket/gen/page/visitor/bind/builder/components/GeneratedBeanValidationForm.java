@@ -85,7 +85,8 @@ public class GeneratedBeanValidationForm<T> extends BeanValidationForm<T> {
 	}
 
 	private String submittingComponentId;
-	private boolean isEagerProcessing;
+	private boolean eagerProcessing;
+	private boolean forcedProcessing;
 
 	private DMDWebGenPageContext context;
 
@@ -149,13 +150,19 @@ public class GeneratedBeanValidationForm<T> extends BeanValidationForm<T> {
 
 	public void process(IFormSubmitter submittingComponent) {
 		this.submittingComponentId = extractSubmittingComponentIdFromRequest();
-		this.isEagerProcessing = isEagerSubmit();
-		log.debug("Processing request: submittingComponentId=" + submittingComponentId + ", isEagerProcessing=" + isEagerProcessing);
+		this.eagerProcessing = isEagerSubmit();
+		this.forcedProcessing = isForcedSubmit();
+		System.err.println("*************************************");
+		log.debug("Processing request: submittingComponentId=" + submittingComponentId + ", isEagerProcessing=" + eagerProcessing + ", isForcedProcessing=" + forcedProcessing);
 		super.process(submittingComponent);
 	}
 
+	public boolean isForcedProcessing() {
+		return forcedProcessing;
+	}
+
 	public boolean isEagerProcessing() {
-		return isEagerProcessing;
+		return eagerProcessing;
 	}
 
 	public String getSubmittingComponentId() {
@@ -163,10 +170,18 @@ public class GeneratedBeanValidationForm<T> extends BeanValidationForm<T> {
 	}
 
 	private boolean isEagerSubmit() {
-		IRequestParameters postParameters = getRequest().getPostParameters();
-		return postParameters == null ? false : postParameters.getParameterValue(EagerAjaxFormSubmitBehavior.NOCKET_EAGER).toBoolean();
+		return getPostParameterAsBoolean(EagerAjaxFormSubmitBehavior.NOCKET_EAGER);
 	}
 
+	private boolean isForcedSubmit() {
+		return getPostParameterAsBoolean(EagerAjaxFormSubmitBehavior.NOCKET_FORCED);
+	}
+	
+	private boolean getPostParameterAsBoolean(String name) {
+		IRequestParameters postParameters = getRequest().getPostParameters();
+		return postParameters == null ? false : postParameters.getParameterValue(name).toBoolean();		
+	}
+	
 	protected String extractSubmittingComponentIdFromRequest() {
 		String res = null;
 		Set<String> parameterNames = getRequest().getQueryParameters().getParameterNames();

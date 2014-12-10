@@ -4,7 +4,6 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.ajax.form.AjaxFormSubmitBehavior;
-import org.apache.wicket.markup.html.form.Form;
 import org.nocket.NocketSession;
 import org.nocket.gen.page.guiservice.DMDWebGenGuiServiceProvider;
 import org.nocket.gen.page.visitor.bind.builder.components.GeneratedButton;
@@ -21,6 +20,7 @@ public class EagerAjaxFormSubmitBehavior extends AjaxFormSubmitBehavior {
 	private static final long serialVersionUID = 1L;
 
 	public static final String NOCKET_EAGER = "Nocket-Eager";
+	public static final String NOCKET_FORCED = "Nocket-Forced";
 
 	private SynchronizerHelper helper;
 
@@ -33,6 +33,9 @@ public class EagerAjaxFormSubmitBehavior extends AjaxFormSubmitBehavior {
 	protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
 		super.updateAjaxAttributes(attributes);
 		attributes.getExtraParameters().put(NOCKET_EAGER, Boolean.TRUE);
+		if(helper.isForced()) {
+			attributes.getExtraParameters().put(NOCKET_FORCED, Boolean.TRUE);	
+		}
 	}
 
 	@Override
@@ -42,7 +45,7 @@ public class EagerAjaxFormSubmitBehavior extends AjaxFormSubmitBehavior {
 
 	@Override
 	protected void onError(final AjaxRequestTarget target) {
-		SynchronizerHelper.synchronizeModelsForValidInput(Form.findForm(getComponent()));
+		//SynchronizerHelper.synchronizeModelsForValidInput(Form.findForm(getComponent()));
 		finalize(target);
 	}
 

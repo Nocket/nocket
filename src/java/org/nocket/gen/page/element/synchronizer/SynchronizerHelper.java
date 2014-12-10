@@ -523,7 +523,11 @@ public class SynchronizerHelper implements Serializable {
 	}
 
 	public boolean isForced() {
-		return isAnnotationPresent(getButtonMethod(), Forced.class);
+		if(getButtonMethod() != null) {
+			return isAnnotationPresent(getButtonMethod(), Forced.class);
+		} else {
+			return isAnnotationPresent(getSetterMethod(), Forced.class);
+		}
 	}
 
 	private boolean isAnnotationPresent(Method method, Class<? extends Annotation> annotation) {

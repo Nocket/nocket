@@ -123,6 +123,9 @@ public class DomainComponentBehaviour extends AbstractValidator<Object> {
 	private boolean performValidation(IValidatable<Object> validatable) {
 		GeneratedBeanValidationForm<?> form = getParentForm();
 		if (form.isEagerProcessing()) {
+			if(form.isForcedProcessing()) {
+				return false;
+			}
 			if (Objects.isEqual(validatable.getValue(), component.getDefaultModelObject())) {
 				if (log.isDebugEnabled()) {
 					log.debug(MessageFormat.format("No validation for component: wicket id={0}, old value={1}, new value={2}.",

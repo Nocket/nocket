@@ -1,6 +1,7 @@
 package org.nocket.test.eager.disable;
 
 import gengui.annotations.Eager;
+import gengui.annotations.Forced;
 
 import java.io.Serializable;
 
@@ -22,6 +23,7 @@ public class EagerDisableTest implements Serializable {
 	}
 
     @Eager
+    @Forced
 	public void setEagerCheckbox(Boolean eagerCheckbox) {
 		this.eagerCheckbox = eagerCheckbox;
 	}

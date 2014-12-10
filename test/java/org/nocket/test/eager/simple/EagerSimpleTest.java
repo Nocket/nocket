@@ -4,8 +4,6 @@ import gengui.annotations.Eager;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.Size;
-
 import org.apache.commons.lang.StringUtils;
 
 public class EagerSimpleTest implements Serializable {

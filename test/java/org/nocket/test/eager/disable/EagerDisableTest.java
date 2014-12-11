@@ -14,7 +14,7 @@ public class EagerDisableTest implements Serializable {
 
 	private Boolean eagerCheckbox = Boolean.FALSE;
 	private String text;
-    
+    	
     public EagerDisableTest() {
     }
     
@@ -26,6 +26,10 @@ public class EagerDisableTest implements Serializable {
     @Forced
 	public void setEagerCheckbox(Boolean eagerCheckbox) {
 		this.eagerCheckbox = eagerCheckbox;
+		if(this.eagerCheckbox) {
+			this.text = null;
+		}
+			
 	}
 
 	@NotNull

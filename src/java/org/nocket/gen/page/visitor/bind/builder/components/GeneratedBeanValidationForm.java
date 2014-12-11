@@ -152,7 +152,6 @@ public class GeneratedBeanValidationForm<T> extends BeanValidationForm<T> {
 		this.submittingComponentId = extractSubmittingComponentIdFromRequest();
 		this.eagerProcessing = isEagerSubmit();
 		this.forcedProcessing = isForcedSubmit();
-		System.err.println("*************************************");
 		log.debug("Processing request: submittingComponentId=" + submittingComponentId + ", isEagerProcessing=" + eagerProcessing + ", isForcedProcessing=" + forcedProcessing);
 		super.process(submittingComponent);
 	}

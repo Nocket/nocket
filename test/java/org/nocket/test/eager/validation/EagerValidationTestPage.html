@@ -1,62 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
-    <head>
-        <link href="../../../../../../resources/webapp/css/bootstrap.css" type="text/css" rel="stylesheet" />
-        <link href="../../../../../../resources/webapp/css/arvatoStyle.css" type="text/css" rel="stylesheet" />
-    </head>
-    <body>
-        <wicket:extend>
-            <!-- <div wicket:id='feedback'></div>  -->
-            <div wicket:id="modal"></div>
-			<form wicket:id="form" class="form-horizontal">
-				<section>
-					<p><strong>Test Case: Validation of the form with "@Eager" fields.</strong></p>
-					<p>When change of the "@Eager" field is posted to the server, only changed field should be validated. All fields are validated by 
-					"@Size(max=5)" annotation. Field "Text Eager" has additional "validate" Method. Inpit "qwe" is considered as wrong input and causes 
-					additional validation violation.</p>
-					<p>
-						<strong>Test scenario:</strong>
-					</p>
-					<ol>
-						<li>Focus "Text Eager" field. Write input "abc". Leave the field.</li>
-						<li>Field "Text Eager Echo" equals "Text Eager: abc". No validation errors.</li>
-						<li>Focus "Text Eager" field. Write input "abcdef". Leave the field.</li>
-						<li>Field "Text Eager Echo" remains unchanged. Validation error for "Text Eager" is displayed.</li>
-					</ol>
-					<fieldset>
-						<div class="control-group">
-							<label for="TextEager" class="control-label">Text Eager</label>
-							<div class="controls">
-								<input id="TextEager" type="text" wicket:id="TextEager" />
-							</div>
-						</div>
-	                    <div class="control-group">
-	                        <label for="NestedObject.TextEager" class="control-label" wicket:id="NestedObject.TextEager.label">Text Eager</label>
-	                        <div class="controls">
-	                            <input id="NestedObject.TextEager" type="text" wicket:id="NestedObject.TextEager" />
-	                        </div>
-	                    </div>
-						<div class="control-group">
-							<label for="TextEagerEcho" class="control-label">Text Eager Echo</label>
-							<div class="controls">
-								<input id="TextEagerEcho" type="text" wicket:id="TextEagerEcho" />
-							</div>
-						</div>
-						<div class="control-group">
-							<label for="Text" class="control-label">Text</label>
-							<div class="controls">
-								<input id="Text" type="text" wicket:id="Text" />
-							</div>
-						</div>
-					</fieldset>
-				</section>
-				<footer class="form-actions">
-					<button id="save" class="btn btn-primary" wicket:id="save"
-						type="submit">
-						<span wicket:id="save.label">Save</span>
-					</button>
-				</footer>
-			</form>
-        </wicket:extend>
+    <head> 
+        <link href="../../../../../../resources/webapp/css/bootstrap.css" type="text/css" rel="stylesheet" /> 
+        <link href="../../../../../../resources/webapp/css/arvatoStyle.css" type="text/css" rel="stylesheet" /> 
+    </head> 
+    <body> 
+        <wicket:extend> 
+            <!-- <div wicket:id='feedback'></div>  --> 
+            <div wicket:id="modal"></div> 
+            <form wicket:id="form" class="form-horizontal"> 
+                <section> 
+                    <p><strong>Test Case: Validation of the form with &quot;@Eager&quot; fields.</strong></p> 
+                    <p>When change of the &quot;@Eager&quot; field is posted to the server, only changed field should be validated. All fields are validated by &quot;@Size(max=5)&quot; annotation. Field &quot;Text Eager&quot; has additional &quot;validate&quot; Method. Inpit &quot;qwe&quot; is considered as wrong input and causes additional validation violation.</p> 
+                    <p> <strong>Test scenario:</strong> </p> 
+                    <ol> 
+                        <li>Focus &quot;Text Eager&quot; field. Write input &quot;abc&quot;. Leave the field.</li> 
+                        <li>Field &quot;Text Eager Echo&quot; equals &quot;Text Eager: abc&quot;. No validation errors.</li> 
+                        <li>Focus &quot;Text Eager&quot; field. Write input &quot;abcdef&quot;. Leave the field.</li> 
+                        <li>Field &quot;Text Eager Echo&quot; remains unchanged. Validation error for &quot;Text Eager&quot; is displayed.</li> 
+                    </ol> 
+                    <fieldset> 
+                        <div class="control-group"> 
+                            <label for="TextEager" class="control-label">Text Eager</label> 
+                            <div class="controls"> 
+                                <input id="TextEager" type="text" wicket:id="TextEager" /> 
+                            </div> 
+                        </div> 
+                        <div class="control-group"> 
+                            <label for="NestedObject.TextEager" class="control-label" wicket:id="NestedObject.TextEager.label">Text Eager</label> 
+                            <div class="controls"> 
+                                <input id="NestedObject.TextEager" type="text" wicket:id="NestedObject.TextEager" /> 
+                            </div> 
+                        </div> 
+                        <div class="control-group"> 
+                            <label for="TextEagerEcho" class="control-label">Text Eager Echo</label> 
+                            <div class="controls"> 
+                                <input id="TextEagerEcho" type="text" wicket:id="TextEagerEcho" /> 
+                            </div> 
+                        </div> 
+                        <div class="control-group"> 
+                            <label for="Text" class="control-label">Text</label> 
+                            <div class="controls"> 
+                                <input id="Text" type="text" wicket:id="Text" /> 
+                            </div> 
+                        </div> 
+		                <div class="control-group">
+		                    <label for="Number" class="control-label" wicket:id="Number.label">Number</label>
+		                    <div class="controls">
+		                        <input id="Number" type="text" wicket:id="Number" />
+		                    </div>
+		                </div>
+                    </fieldset> 
+                </section> 
+                <footer class="form-actions"> 
+                    <button id="save" class="btn btn-primary" wicket:id="save" type="submit"> <span wicket:id="save.label">Save</span> </button> 
+                </footer> 
+            </form> 
+        </wicket:extend>  
     </body>
 </html>

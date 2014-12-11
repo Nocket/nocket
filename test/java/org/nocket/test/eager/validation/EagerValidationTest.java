@@ -4,13 +4,16 @@ import gengui.annotations.Eager;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 import org.apache.commons.lang.StringUtils;
 
 public class EagerValidationTest implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private Integer number;
 	private String textEager;
 	private NestedObject nestedObject;
 	private String textEagerEcho;
@@ -20,6 +23,16 @@ public class EagerValidationTest implements Serializable {
     	nestedObject = new NestedObject(this);
     }
 
+    @NotNull
+    public Integer getNumber() {
+		return number;
+	}
+
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+
+	@NotNull
     @Size(max=5)
     public String getTextEager() {
     	return textEager;
@@ -50,6 +63,7 @@ public class EagerValidationTest implements Serializable {
     	return "Always disabled";
     }
     
+    @NotNull
     @Size(max=5)
     public String getText() {
     	return text;

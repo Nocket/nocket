@@ -1,7 +1,6 @@
 
 # Nocket
 
-
 ### Vorbereitung
 
 zu installierende Eclipse Plug-Ins:
@@ -51,7 +50,7 @@ Die generierten Dateien findet man unter `build/libs`, für das Testen in Eclips
 ### Release in Gradle einbinden
 
     dependencies {
-        compile "org.nocket:nocket:0.1.1"
+        compile "org.nocket:nocket:0.2.0"
     }
     
     repositories { 

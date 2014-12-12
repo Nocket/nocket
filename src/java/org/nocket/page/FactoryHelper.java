@@ -37,8 +37,8 @@ public final class FactoryHelper {
     public DMDWebPage getPageInstance() {
         DMDWebPage instance = null;
         List<PageReference> pageReferences = NocketSession.get().getPageReferences(view.hashCode());
-        // Iteriert über alle PageReferences, die zu dem HashCode der View hinterlegt sind.
-        // Dies ist im Normalfall genau eine PageReference, deshalb ist die Iteration hierüber nicht teuer 
+        // Iteriert Ã¼ber alle PageReferences, die zu dem HashCode der View hinterlegt sind.
+        // Dies ist im Normalfall genau eine PageReference, deshalb ist die Iteration hierÃ¼ber nicht teuer 
         for (PageReference pageReference : pageReferences) {
             try {
                 //try to lock failing fast: http://mail-archives.apache.org/mod_mbox/wicket-users/201211.mbox/%3CCANgwjP4xsMKo6kKjVSOOnf_qKvdV+nbhXh8bkZ0R6oZN1BS8YA@mail.gmail.com%3E
@@ -48,7 +48,7 @@ public final class FactoryHelper {
                 if (view.equals(page.getDefaultModel().getObject())) {
                     instance = (DMDWebPage) page;
                     //Das Modelobject muss ein sinnvolles Equals implementieren, dennoch kann sich innerhalb des 
-                    //View-Objektes etwas geŠndert haben, deshalb muss hier Das ModelObject neu gesetzt werden
+                    //View-Objektes etwas geÂŠndert haben, deshalb muss hier Das ModelObject neu gesetzt werden
                     instance.modelChanging();
                     ((IModel<Object>) instance.getDefaultModel()).setObject(view);
                     instance.modelChanged();
@@ -101,10 +101,10 @@ public final class FactoryHelper {
     }
 
     /**
-     * Erzeugt das Model für eine neue Page. Entweder gibt es in der Page-Klasse
+     * Erzeugt das Model fÃ¼r eine neue Page. Entweder gibt es in der Page-Klasse
      * eine statische Methode mit Namen 'createDefaultModel' oder es wir ein
      * Model.of(...) erezugt. Mit der createDefaultModel-Methode gibt es die
-     * Möglichekeit ein eigenes Model (z.b. ein LoadableDetachableModel) zu
+     * MÃ¶glichekeit ein eigenes Model (z.b. ein LoadableDetachableModel) zu
      * erzeugen.
      * 
      */

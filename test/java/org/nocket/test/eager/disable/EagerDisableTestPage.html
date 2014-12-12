@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <head>
+        <link href="../../../../../../resources/webapp/css/bootstrap.css" type="text/css" rel="stylesheet" />
+        <link href="../../../../../../resources/webapp/css/arvatoStyle.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <wicket:extend>
+            <!-- <div wicket:id='feedback'></div>  -->
+            <div wicket:id="modal"></div>
+            <form wicket:id="form" class="form-horizontal">
+	            <section>
+					<p><strong>Test Case: Disabling fields by "@Eager" field</strong></p>
+					<p>Changes done to "@Eager" field should disable / enable depending files. There should be not 
+					validation errors shown in such case.</p>
+					<p>
+						<strong>Test scenario:</strong>
+					</p>
+					<ol>
+						<li>Click on the "Eager checkbox".</li>
+						<li>Field "Text" should be disabled.</li>
+						<li>Click on the "Eager checkbox".</li>
+						<li>Field "Text" should be enabled.</li>
+						<li>Press "Save" button.</li>
+						<li>Field "Text" is marked as invalid now.</li>
+					</ol>
+					<fieldset>
+		                <div class="control-group">
+		                    <label for="EagerCheckbox" class="control-label" wicket:id="EagerCheckbox.label">Eager Checkbox</label>
+		                    <div class="controls">
+		                        <input id="EagerCheckbox" type="checkbox" wicket:id="EagerCheckbox" />
+		                    </div>
+		                </div>
+		                <div class="control-group">
+		                    <label for="Text" class="control-label" wicket:id="Text.label">Text</label>
+		                    <div class="controls">
+		                        <input id="Text" type="text" wicket:id="Text" />
+		                    </div>
+		                </div>
+					</fieldset>
+				</section>
+                <footer class="form-actions">
+                	<button id="save" class="btn btn-primary" wicket:id="save" type="submit"><span wicket:id="save.label">Save</span></button>
+                </footer>
+            </form>
+        </wicket:extend>
+    </body>
+</html>

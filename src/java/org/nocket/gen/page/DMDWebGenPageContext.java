@@ -416,7 +416,7 @@ public class DMDWebGenPageContext implements Serializable {
      * This method is not really deprecated but the very opposite: it is not yet fully functional
      */
     public void rebind(final MarkupContainer newPage) {
-        // Alle direkten Kinder übertragen, welche die Klasse *nicht* von der Basisklasse geerbt hat
+        // Alle direkten Kinder Ã¼bertragen, welche die Klasse *nicht* von der Basisklasse geerbt hat
         page.visitChildren(new IVisitor<Component, Object>() {
             @Override
             public void component(Component child, IVisit<Object> visit) {

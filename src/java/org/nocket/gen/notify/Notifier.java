@@ -19,14 +19,14 @@ public class Notifier {
 
         final String contextPath = WebApplication.get().getServletContext().getContextPath();
 
-        // Das hier ist etwas tricky: die Javascript-Module für die schicke Meldungsanzeige
-        // über PNotify müssen in den Body und nicht in den Header. Wir dürfen aber keine
-        // Annahme darüber treffen, ob die Module im Body der aktuellen Page bereits drin
+        // Das hier ist etwas tricky: die Javascript-Module fÃ¼r die schicke Meldungsanzeige
+        // Ã¼ber PNotify mÃ¼ssen in den Body und nicht in den Header. Wir dÃ¼rfen aber keine
+        // Annahme darÃ¼ber treffen, ob die Module im Body der aktuellen Page bereits drin
         // stecken. Insbesondere modale Dialoge sind direkt von DMDWebPage abgeleitet und
-        // erhalten keine Body-Bestandteile über irgend ein Basis-HTML. Deswegen laden wir
-        // die Skripte über eine enstrechende jQuery-Funktion dynamisch nach. Das Auslösen
+        // erhalten keine Body-Bestandteile Ã¼ber irgend ein Basis-HTML. Deswegen laden wir
+        // die Skripte Ã¼ber eine enstrechende jQuery-Funktion dynamisch nach. Das AuslÃ¶sen
         // der eigentlichen Benachrichtigung erfolgt dann als Callback, den jQuery nach dem
-        // vollständigen Laden der Skripte aufruft. Der Code ist nach den Beispielen auf
+        // vollstÃ¤ndigen Laden der Skripte aufruft. Der Code ist nach den Beispielen auf
         // http://api.jquery.com/jQuery.getScript/ gebaut.
         String escapedMessage = message.replace("'", "\\'").replace("\"", "&quot;");
         String script = "$.getScript('" + contextPath + "/js/add-ons/jquery.pnotify.js', function() {" + //

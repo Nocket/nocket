@@ -11,6 +11,7 @@ import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.model.IModel;
 import org.nocket.component.table.behavior.ClickAjaxEventBehavior;
 
+// TODO: Auto-generated Javadoc
 /**
  * Column adds check-box per table item. Information about the checked state is
  * hold in the Set. Clicks are submitted immediately via Ajax on the model.
@@ -22,13 +23,24 @@ import org.nocket.component.table.behavior.ClickAjaxEventBehavior;
  */
 @SuppressWarnings("serial")
 public class AjaxSetCheckBoxColum<T> extends SetCheckBoxColum<T> {
+    
+    /** The select checkbox js. */
     protected final String selectCheckboxJS = "var val=$(this).attr('checked'); $('." + uuid
             + "').each(function() { if($(this).attr('checked') !== val) { $(this).click(); }});";
 
+    /**
+     * Instantiates a new ajax set check box colum.
+     *
+     * @param displayModel the display model
+     * @param selected the selected
+     */
     public AjaxSetCheckBoxColum(IModel<String> displayModel, Set<T> selected) {
         super(displayModel, selected);
     }
 
+    /* (non-Javadoc)
+     * @see org.nocket.component.table.columns.CheckBoxColumn#getTableHeaderCheckboxBehavior()
+     */
     protected Behavior getTableHeaderCheckboxBehavior() {
         return new Behavior() {
             public void onComponentTag(Component component, ComponentTag
@@ -38,6 +50,9 @@ public class AjaxSetCheckBoxColum<T> extends SetCheckBoxColum<T> {
         };
     }
 
+    /* (non-Javadoc)
+     * @see org.nocket.component.table.columns.CheckBoxColumn#newCheckBox(java.lang.String, org.apache.wicket.model.IModel)
+     */
     protected CheckBox newCheckBox(String id, final IModel<Boolean> checkModel) {
         final CheckBox checkBox = new CheckBox("check", checkModel) {
             @Override

@@ -4,6 +4,7 @@ apply plugin: "eclipse"
 apply plugin: "eclipse-wtp"
 apply plugin: "lesscss"
 apply plugin: "announce"
+apply plugin: "maven"
 
 ext {
 	// current user
@@ -14,7 +15,8 @@ ext {
 
 // using semantic versioning, see http://semver.org/
 group = "org.nocket"
-version = new Version(major: 0, minor: 1, revision: 0)
+archivesBaseName = "nocket"
+version = new Version(major: 0, minor: 2, revision: 0)
 
 sourceCompatibility = config.java.source
 
@@ -36,7 +38,7 @@ sourceSets {
 	}
 	// example sources -> used for building war-file
 	examples {
-		java { 
+		java {
 			srcDirs = ["examples/java"]
 		}
 		resources {
@@ -45,13 +47,20 @@ sourceSets {
 	}
 	// unit and selenium tests
 	test {
-		java { 
-			srcDirs = ["test/java"] 
+		java {
+			srcDirs = ["test/java"]
 		}
 		resources { 
 			srcDirs = ["test/resources"] 
-		}
+		}	
 	}
+}
+
+test{
+	// should be removed (only temporary enabled)
+	ignoreFailures = true
+	// exclusion of the test suites prevents double execution of test cases.
+	exclude '**/*Suite.class'
 }
 
 eclipse{
@@ -124,50 +133,139 @@ lessc {
 	
 	doLast {
 	   def state = didWork ? "finished" : "with error"
-       announce.local.send "${project.name}: compling LESS", state
-    }
+	   announce.local.send "${project.name}: compling LESS", state
+	}
 }
 
 lesscDaemon {
 	description "Use from shell only! Compiles LESS files automatically on every file change."
-    lesscTaskName = "lessc"
+	lesscTaskName = "lessc"
 
-    engine = config.less.engine
-    lesscExecutable = config.less.executable
+	engine = config.less.engine
+	lesscExecutable = config.less.executable
 	interval = config.less.daemonIntervall
 }
 
 jar {
 	from sourceSets.main.output
-
+	
 	manifest {
 		attributes("Implementation-Title": project.name, "Implementation-Version": version)
 	}
 }
 
+javadoc {
+	failOnError = false
+	options.encoding = "ISO-8859-15"
+}
+
 war {
 	dependsOn "lessc"
-	baseName "${project.name}-examples"
+	appendix =  "examples"
 	
 	from "examples/webapp"
 	classpath sourceSets.examples.runtimeClasspath
 }
 
-assemble {
-    dependsOn "cleanResources"
-    dependsOn "jar"
-    dependsOn "war"
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			repository(url: config.repository.url) {
+				authentication(userName: config.repository.user, password: config.repository.password)
+			}
+  
+			snapshotRepository(url: config.repository.snapshot) {
+				authentication(userName: config.repository.user, password: config.repository.password)
+			}
+			
+			addFilter('default') {artifact, file ->
+				artifact.name == 'nocket'
+			}
+			
+			addFilter('examples') {artifact, file ->
+				artifact.name ==~ '.*-examples'
+			}
+			
+			pom.project {
+				name 'Nocket'
+				description 'Nocket: Naked Objects for Wicket'
+				url 'https://github.com/Nocket/'
+  
+				licenses {
+					license {
+						name 'The MIT License (MIT)'
+						url 'http://opensource.org/licenses/MIT'
+					}
+				}
+			}
+		}
+	}
 }
 
-repositories { 
-	mavenCentral() 
+task cleanResources(type: Delete) {
+	description "Deletes all ressources in the build directory"
+	
+	delete fileTree(dir: "${buildDir}/resources")
+}
+
+task javadocJar(type: Jar) {
+	description "Assembles a jar archive containing the javadoc files"
+	
+	classifier = 'javadoc'
+	from javadoc
+}
+
+task sourcesJar(type: Jar) {
+	description "Assembles a jar archive containing the source files"
+	
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+task buildSnapshot(dependsOn: ["build"]) {
+	description "Assembles the outputs of this project for a SNAPSHOT Release."
+
+	doLast {
+		def state = didWork ? "finished" : "with error"
+		announce.local.send "Snapshot ${project.name}-${version}", state
+	}
+}
+
+task buildRelease(dependsOn: ["build"]) {
+	description "Assembles the outputs of this project for a Release."
+	
+	doLast {
+		def state = didWork ? "finished" : "with error"
+		announce.local.send "Releasing ${project.name}-${version}", state
+	}
+}
+
+task publishRelease {
+	description "Publish a RELEASE to a repository"
+	
+	dependsOn "buildRelease"
+	dependsOn "uploadArchives"
+}
+
+task publishSnapshot {
+	description "Publish a SNAPSHOT to a repository"
+	
+	dependsOn "buildSnapshot"
+	dependsOn "uploadArchives"
+}
+
+artifacts {
+	archives jar, javadocJar, sourcesJar
+}
+
+assemble {
+	dependsOn "cleanResources"
+	dependsOn "jar"
+	dependsOn "war"
 }
 
 dependencies {
 	def wicketVersion = "6.9.+"
-
-	compile files("lib/gengui-1.1.jar")
-	compile files("lib/examples/jfd-loader.jar") // Has to be there because of gengui
 
 	// wicket
 	compile "org.apache.wicket:wicket:${wicketVersion}"
@@ -178,6 +276,7 @@ dependencies {
 	providedCompile "javax.servlet:javax.servlet-api:3.1.+"
 	
 	// utils
+	compile "org.nocket:gengui:1.1"
 	compile "commons-beanutils:commons-beanutils:1.9.2"
 	compile "commons-collections:commons-collections:3.2.1"
 	compile "commons-lang:commons-lang:2.6"
@@ -191,49 +290,38 @@ dependencies {
 	// needed for examples
 	examplesCompile sourceSets.main.output
 	examplesCompile configurations.compile
-	examplesCompile fileTree("lib/examples")
 	
 	// testing
 	testCompile "junit:junit:4.11"
+	
+	// Selenium
+	testCompile "org.seleniumhq.selenium:selenium-firefox-driver:2.43.1"
+	testCompile "org.seleniumhq.selenium:selenium-support:2.43.1"
+	testCompile "com.github.detro.ghostdriver:phantomjsdriver:1.1.0"
+
+}
+
+repositories {
+	mavenCentral()
+	maven { url "https://raw.githubusercontent.com/Nocket/mvn-repository/master/releases" }
 }
 
 buildscript {
-	repositories { 
-		mavenCentral() 
+	repositories {
+		mavenCentral()
 	}
 
-	dependencies { 
-		classpath "com.github.houbie:lesscss-gradle-plugin:1.0.3-less-1.7.0" 
+	dependencies {
+		classpath "com.github.houbie:lesscss-gradle-plugin:1.0.3-less-1.7.0"
 	}
 }
 
-wrapper { 
-	gradleVersion = "2.0" 
-}
-
-task buildSnapshot(dependsOn: ["build"]) { 
-	description "Assembles the outputs of this project for a SNAPSHOT Release."
-
-	doLast { 
-		def state = didWork ? "finished" : "with error"
-		announce.local.send "Snapshot ${project.name}-${version}", state
-	} 
-}
-
-task buildRelease(dependsOn: ["build"]) {
-	description "Assembles the outputs of this project for a Release."
-	
-    doLast { 
-		def state = didWork ? "finished" : "with error"
-        announce.local.send "Releasing ${project.name}-${version}", state
-    } 
-}
-
-task cleanResources(type: Delete) {
-    delete fileTree(dir: "${buildDir}/resources")
+wrapper {
+	gradleVersion = "2.1"
 }
 
 gradle.taskGraph.whenReady { taskGraph ->
+	
 	if( taskGraph.hasTask(buildRelease)) {
 		version.release = true
 		version.conf = "RELEASE"
@@ -247,12 +335,12 @@ gradle.taskGraph.whenReady { taskGraph ->
 	
 	sourceSets.main.resources.srcDir "src/config/${version.configuration}"
 	sourceSets.examples.resources.srcDir "examples/config/${version.configuration}"
-
+	
 	println "*** build configured for: '${version.conf}'\n"
-    
+	
 	tasks.withType(JavaCompile) {
-		compileJava.options.encoding = "ISO-8859-15"
-		compileJava.options.warnings = false
+		[ compileJava, compileTestJava ]*.options*.encoding = "ISO-8859-15"
+		[ compileJava, compileTestJava ]*.options*.warnings = false
 	}
 }
 
@@ -274,16 +362,16 @@ def loadConfiguration() {
 	mkdir("examples/config/${username}")
 
 	try {
-		def configFile = "gradle/" + username + ".config"
+		def configFile = "config/gradle/" + username + ".config"
 		def config = new ConfigSlurper().parse(file(configFile).toURL())
 
 		println "\n*** using *build* configuration for user: '${username}'"
 		return config
 	}
 	catch (all) {
-		def configFile = file("gradle/default.config")
+		def configFile = file("config/gradle/default.config")
 
-        println "\n*** using default *build* configuration!"
+		println "\n*** using default *build* configuration!"
 		return new ConfigSlurper().parse(configFile.toURL())
 	}
 }

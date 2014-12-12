@@ -24,20 +24,49 @@ import org.nocket.gen.page.element.synchronizer.TableButtonCallback;
 import org.nocket.gen.page.element.synchronizer.TableDownloadCallback;
 import org.nocket.gen.page.visitor.bind.builder.components.TableExampleStructureAdopter;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GeneratedGenericDataTableColumnConfigurator.
+ *
+ * @param <T> the generic type
+ */
 public class GeneratedGenericDataTableColumnConfigurator<T extends Serializable> extends
 GenericDataTableColumnConfigurator<T> {
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
+    
+    /** The Constant ICON_ENABLED. */
     public static final String ICON_ENABLED = "{0}.icon.enabled";
+    
+    /** The Constant ICON_DISABLED. */
     public static final String ICON_DISABLED = "{0}.icon.disabled";
 
+    /** The Constant GG_TABLE_HEADER. */
     public static final String GG_TABLE_HEADER = "{0}.table.header";
 
+    /** The table buttons. */
     protected final List<TableButtonCallback> tableButtons;
+    
+    /** The download columns. */
     protected final List<TableDownloadCallback> downloadColumns;
+    
+    /** The form. */
     protected final Form<?> form;
+    
+    /** The e. */
     protected transient TableElement e;
 
+    /**
+     * Instantiates a new generated generic data table column configurator.
+     *
+     * @param columns the columns
+     * @param sortableColumns the sortable columns
+     * @param downloadColumns the download columns
+     * @param tableButtons the table buttons
+     * @param form the form
+     * @param e the e
+     */
     public GeneratedGenericDataTableColumnConfigurator(List<String> columns, List<String> sortableColumns,
 	    List<TableDownloadCallback> downloadColumns, List<TableButtonCallback> tableButtons, Form<?> form,
 	    TableElement e) {
@@ -48,12 +77,20 @@ GenericDataTableColumnConfigurator<T> {
 	this.e = e;
     }
 
+    /**
+     * Instantiates a new generated generic data table column configurator.
+     *
+     * @param e the e
+     */
     public GeneratedGenericDataTableColumnConfigurator(TableElement e) {
 	this(e.getDomainElement().getPropertyColumnNames(), e.getDomainElement().getPropertyColumnNames(), e
 		.getDownloadCallbacks(), e.getButtonCallbacks(), (Form<?>) e.getContext().getComponentRegistry()
 		.getComponent(FormElement.DEFAULT_WICKET_ID), e);
     }
 
+    /* (non-Javadoc)
+     * @see org.nocket.component.table.GenericDataTableColumnConfigurator#newDataColumns(java.util.List)
+     */
     @Override
     protected void newDataColumns(List<IColumn<T, String>> colDefs) {
 	TableExampleStructureAdopter tableStructureAdopter = new TableExampleStructureAdopter(e);
@@ -69,12 +106,20 @@ GenericDataTableColumnConfigurator<T> {
 	}
     }
 
+    /* (non-Javadoc)
+     * @see org.nocket.component.table.GenericDataTableColumnConfigurator#newActionColumns(java.util.List)
+     */
     @Override
     protected void newActionColumns(List<IColumn<T, String>> colDefs) {
 	addDownloadColumns(colDefs);
 	addTableButtonCallbacks(colDefs);
     }
 
+    /**
+     * Adds the download columns.
+     *
+     * @param colDefs the col defs
+     */
     protected void addDownloadColumns(List<IColumn<T, String>> colDefs) {
 	if (downloadColumns == null)
 	    return;
@@ -92,6 +137,11 @@ GenericDataTableColumnConfigurator<T> {
 	}
     }
 
+    /**
+     * Adds the table button callbacks.
+     *
+     * @param colDefs the col defs
+     */
     protected void addTableButtonCallbacks(List<IColumn<T, String>> colDefs) {
 	if (tableButtons == null)
 	    return;
@@ -117,10 +167,9 @@ GenericDataTableColumnConfigurator<T> {
 
     /**
      * Returns name of the column with button. Depends on localization mode.
-     * 
-     * @param button
-     * 
-     * @return
+     *
+     * @param button the button
+     * @return the button column name model
      */
     protected IModel<String> getButtonColumnNameModel(TableButtonCallback button) {
 	if (e.getContext().getConfiguration().isLocalizationWicket()) {
@@ -137,6 +186,12 @@ GenericDataTableColumnConfigurator<T> {
 	}
     }
 
+    /**
+     * Gets the download column name model.
+     *
+     * @param download the download
+     * @return the download column name model
+     */
     protected IModel<String> getDownloadColumnNameModel(TableDownloadCallback download) {
 	if (e.getContext().getConfiguration().isLocalizationWicket()) {
 	    return new ResourceModel(download.getPropertiesWicketId(), download.getPrompt());
@@ -155,10 +210,9 @@ GenericDataTableColumnConfigurator<T> {
     /**
      * Returns name of the column with normal property. Depends on localization
      * mode.
-     * 
-     * @param button
-     * 
-     * @return
+     *
+     * @param property the property
+     * @return the column name model
      */
     @Override
     protected IModel<String> getColumnNameModel(String property) {
@@ -177,10 +231,21 @@ GenericDataTableColumnConfigurator<T> {
 	}
     }
 
+    /**
+     * Gets the domain class reference for table.
+     *
+     * @return the domain class reference for table
+     */
     protected DomainClassReference getDomainClassReferenceForTable() {
 	return e.getDomainElement().getColumnAccessor().getClassRef();
     }
 
+    /**
+     * Gets the column element for property.
+     *
+     * @param property the property
+     * @return the column element for property
+     */
     protected MultivalueColumnElement<DomainObjectReference> getColumnElementForProperty(String property) {
 	property = StringUtils.capitalize(property);
 	List<MultivalueColumnElement<DomainObjectReference>> columns = e.getDomainElement().getColumns();
@@ -192,6 +257,14 @@ GenericDataTableColumnConfigurator<T> {
 	return null;
     }
 
+    /**
+     * Gets the prompt for column.
+     *
+     * @param classRef the class ref
+     * @param method the method
+     * @param defaultBase the default base
+     * @return the prompt for column
+     */
     public String getPromptForColumn(DomainClassReference classRef, Method method, String defaultBase) {
 	DomainClassDecoration interception = classRef.getDecorations(defaultBase);
 	method = interception.getTarget(method.getName(), method);
@@ -201,6 +274,12 @@ GenericDataTableColumnConfigurator<T> {
 	return null;
     }
 
+    /**
+     * Gets the table header key.
+     *
+     * @param key the key
+     * @return the table header key
+     */
     private String getTableHeaderKey(String key) {
 	return MessageFormat.format(GG_TABLE_HEADER, key);
     }

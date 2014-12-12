@@ -9,10 +9,10 @@ abstract public class ModalCallback implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Um bspw. von einer Confirmbox ein modales Panel aufrufen zu können, muss
+     * Um bspw. von einer Confirmbox ein modales Panel aufrufen zu kÃ¶nnen, muss
      * vom Wrapper um die Action der ConfirmBox mitgetielt werden, dass das
      * Show-Flag nicht auf false gesetzt werden darf. Das geht leider derzeit
-     * nur über diesen doofen Rückgabe-Wert, weil beide von einander nichts
+     * nur Ã¼ber diesen doofen RÃ¼ckgabe-Wert, weil beide von einander nichts
      * wissen. Das ist eine lausige Umsetzung.
      */
     abstract public boolean doAction(AjaxRequestTarget target, ButtonFlag result);

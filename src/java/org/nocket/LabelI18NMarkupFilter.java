@@ -20,33 +20,33 @@ import org.nocket.gen.i18n.I18nOrWicketTranslator;
 
 /**
  * In einer HTML-Datei wird es immer wieder statischen Text geben, der
- * internationalisiert werden soll. Das hei�t, dass dieser Text je nach
+ * internationalisiert werden soll. Das heiÃt, dass dieser Text je nach
  * geforderter Sprache (locale der Page) in einer anderen Sprache gerendert
- * werden muss. Diese Texte sollten nicht �ber Wicket verwaltet werden m�ssen
- * und somit eine Wicket-ID haben m�ssen. Das Ziel ist, dass im HTML-File ein
- * <label>mein.statischer.text</label> steht, �bersetzt wird. Dazu wird bei
+ * werden muss. Diese Texte sollten nicht ÃŒber Wicket verwaltet werden mÃŒssen
+ * und somit eine Wicket-ID haben mÃŒssen. Das Ziel ist, dass im HTML-File ein
+ * <label>mein.statischer.text</label> steht, ÃŒbersetzt wird. Dazu wird bei
  * Labels, die kein wicket:id-Attribut, kein wicket:for-Attribut und kein
- * for-Attribut haben, der Wert des Labels als Key f�r einen �bersetzten Text
- * angenommen. �ber den I18nOrWicketTranslator wird dieser, wenn m�glich,
- * �bersetzt. Wird dieser Key nicht gefunden, wird der Original-Text
+ * for-Attribut haben, der Wert des Labels als Key fÃŒr einen ÃŒbersetzten Text
+ * angenommen. Ãber den I18nOrWicketTranslator wird dieser, wenn mÃ¶glich,
+ * ÃŒbersetzt. Wird dieser Key nicht gefunden, wird der Original-Text
  * dargestellt.<br>
- * Leider ist es nicht m�glich, den Wert eines Labels w�hrend des Renders
+ * Leider ist es nicht mÃ¶glich, den Wert eines Labels wÃ€hrend des Renders
  * auszulesen und zu manipulieren ohne die Label-Klasse abzuleiten. Dieses ist
  * jedoch zu vermeiden. Deswegen ist ein zweistufiger Prozess notwendigen.
  * LabelI18NMarkupFilter ist sowohl ein MarkupFilter als auch ComponentResolver.
- * Der MarkupFilter-Teil wird beim Einlesen des HTML-Files ausgef�hrt. Dort wird
+ * Der MarkupFilter-Teil wird beim Einlesen des HTML-Files ausgefÃŒhrt. Dort wird
  * nach label-Tags gesucht, die bestimmte Eigenschaften haben (siehe Methode
  * <code>isLabelTagToTranslate</code>). Bei diesen Labels wird der Wert
- * ausgelesen und in ein dem Label-Tag neu hinzugef�gtes Attribut
- * "_dmdI18N_message_" hinzugef�gt. Der Wert dieses Attributes kann sp�ter
- * ausgelesen und �bersetzt werden.
+ * ausgelesen und in ein dem Label-Tag neu hinzugefÃŒgtes Attribut
+ * "_dmdI18N_message_" hinzugefÃŒgt. Der Wert dieses Attributes kann spÃ€ter
+ * ausgelesen und ÃŒbersetzt werden.
  * 
- * Ein ComponentResolver ist daf�r zust�ndlich ein Tag mit einer
+ * Ein ComponentResolver ist dafÃŒr zustÃ€ndlich ein Tag mit einer
  * Wicket-Komponete zu verbinden. Die resolve()-Methode des
  * LabelI18NMarkupFilter ersetzt, wenn das Attribut "_dmdI18N_message_"
  * vorhanden ist, durch einen speziellen TransparentWebMarkupContainer. Beim
  * Rendern ist das locale der Seite bekant. Dann wird an Stelle des
- * TransparentWebMarkupContainer wiederum ein <label>-Tag mit dem �bersetzten in
+ * TransparentWebMarkupContainer wiederum ein <label>-Tag mit dem ÃŒbersetzten in
  * den Response eingesetzt.
  * 
  * @author meis026

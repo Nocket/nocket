@@ -30,9 +30,9 @@ abstract public class InMemoryClassBuilder {
 
     public InMemoryClassBuilder(Class<?> domainClass) {
         //TODO JL: Konfiguration aus gengui lesen:
-        //  - Soll die dynamische Erzeugung überhaupt passieren? 
+        //  - Soll die dynamische Erzeugung Ã¼berhaupt passieren? 
         //  - Soll sie auch passieren, wenn noch nicht mal das HTML existiert?
-        //TODO L: Prüfung auf Serializable der domainClass
+        //TODO L: PrÃ¼fung auf Serializable der domainClass
         this.domainClass = domainClass;
         this.packageName = ClassUtils.getPackageName(domainClass);
     }

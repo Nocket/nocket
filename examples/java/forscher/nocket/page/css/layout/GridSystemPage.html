@@ -1,0 +1,36 @@
+<!doctype html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<title>Wicket examples</title>
+</head>
+<body>
+	<wicket:extend>
+		<h3>Example #1: Basic syntax</h3>
+		<div class="row-fluid">
+			<div class="span6" style="background-color: #efefef">span6</div>
+			<div class="span6" style="background-color: #efefef">span6</div>
+		</div>
+		<p>&nbsp;</p>
+
+		<h3>Example #2: Offsetting columns</h3>
+		<div class="row-fluid">
+			<div class="span6 offset2" style="background-color: #efefef">span6 offset2</div>
+			<div class="span4" style="background-color: #efefef">span4</div>
+		</div>
+		<p>&nbsp;</p>
+
+		<h3>Example #3: Nesting columns</h3>
+		<div class="row-fluid">
+			<div class="span9" style="background-color: #efefef">
+				Span9
+				<br>&nbsp;
+				<div class="row-fluid">
+					<div class="span6" style="background-color: #999">Span6</div>
+					<div class="span6" style="background-color: #999">Span6</div>
+				</div>
+			</div>
+		</div>
+		<p>&nbsp;</p>
+	</wicket:extend>
+</body>
+</html>

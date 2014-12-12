@@ -1,0 +1,84 @@
+/*!
+ * Nocket Framework Styles.
+ *
+ * File contains supplemntary CSS styles definitions required by
+ * Nocket web applications and not supplied by Bootstrap framework.
+ * 
+ * ATTENTION:
+ * Normally, you shouldn't do any changes in this file. If you 
+ * need some application specific styles, define them in 
+ * "application.less" or configure variables in the "dmdweb-variables.less" file.  
+ * 
+ * Copyright 2013 CRM-IT, BA der arvato business support GmBH
+ */
+@import "../bootstrap/variables.less"; /* From Bootstrap */
+@import "../bootstrap/mixins.less"; /* From Bootstrap */
+@import "nocket-variables.less";
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Please consider the following style guide if writeing CSS or HTML files: http://codeguide.co                 
+//                                                                                                              
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#innerModal * form {
+	margin: 0;
+}
+
+/*
+ * required fields have a colored border
+ */
+input.required, 
+select.required,
+textarea.required
+{
+    border: 1px solid @requiredBorder !important;
+}
+
+/*
+ * and a different colored border for errors
+ */
+input.required.error, 
+select.required.error,
+textarea.required.error
+{
+    border: 1px solid @errorBorder !important;
+}
+
+// "*"-icon shown before required field labels
+label.required:before {
+    font-family: @iconFont;
+    font-weight: 600;
+    content: " * ";
+    
+    color: @requiredMarker;
+}
+
+label.error,
+label.required.error {
+    color: @errorText; 
+}   
+
+// styling for validation error messages
+p.error {
+    margin-bottom: 0px;
+    
+    font-size: @fontSizeSmall;
+    
+    color: @errorText;
+}
+
+/**
+ * Style for the <div> which includes the error icon when using tooltip-based field validation error presentation.
+ * The absolute position with negative margin causes the div to be placed in the upper right corner of the
+ * input control, the error icon is associated to.
+ */
+.error-icon {
+    position: absolute;
+    margin-left: -5px;
+    margin-top: -7px;
+
+    i {
+        color: @errorText;
+    }
+}

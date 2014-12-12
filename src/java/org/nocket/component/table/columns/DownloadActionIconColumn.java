@@ -23,6 +23,7 @@ import org.nocket.component.table.GenericDataTablePanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+// TODO: Auto-generated Javadoc
 /**
  * Column with file download link shown as image.
  * 
@@ -35,47 +36,101 @@ import org.slf4j.LoggerFactory;
 // to figure out how the refactoring must look like.
 @SuppressWarnings("serial")
 public abstract class DownloadActionIconColumn<T> extends DMDAbstractColumn<T> {
+    
+    /** The Constant LOG. */
     public static final Logger LOG = LoggerFactory.getLogger(DownloadActionIconColumn.class);
+    
+    /** The Constant ICON_ENABLED. */
     public static final String ICON_ENABLED = AjaxSubmitActionIconColumn.ICON_ENABLED;
+    
+    /** The Constant ICON_DISBALED. */
     public static final String ICON_DISBALED = AjaxSubmitActionIconColumn.ICON_DISBALED;
+    
+    /** The Constant ACTION_COLUMN. */
     public static final String ACTION_COLUMN = AjaxSubmitActionIconColumn.ACTION_COLUMN;
 
+    /** The enabled icon property key. */
     protected final String enabledIconPropertyKey;
+    
+    /** The disabled icon property key. */
     protected final String disabledIconPropertyKey;
 
+    /** The header component. */
     private transient Component headerComponent;
 
+    /**
+     * Instantiates a new download action icon column.
+     *
+     * @param headerLabel the header label
+     */
     public DownloadActionIconColumn(IModel<String> headerLabel) {
         this(headerLabel, null, null);
     }
 
+    /**
+     * Instantiates a new download action icon column.
+     *
+     * @param headerLabel the header label
+     * @param enabledContextIcon the enabled context icon
+     * @param disabledContextIcon the disabled context icon
+     */
     public DownloadActionIconColumn(IModel<String> headerLabel, String enabledContextIcon, String disabledContextIcon) {
         super(headerLabel, null);
         this.enabledIconPropertyKey = enabledContextIcon;
         this.disabledIconPropertyKey = disabledContextIcon;
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator#populateItem(org.apache.wicket.markup.repeater.Item, java.lang.String, org.apache.wicket.model.IModel)
+     */
     @Override
     public void populateItem(Item<ICellPopulator<T>> cellItem, String componentId, IModel<T> rowModel) {
         cellItem.add(new DownloadLinkImagePanel(componentId, this, rowModel, enabledIconPropertyKey,
                 disabledIconPropertyKey));
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn#getCssClass()
+     */
     @Override
     public String getCssClass() {
         return ACTION_COLUMN;
     }
 
+    /**
+     * File model.
+     *
+     * @param rowModel the row model
+     * @return the i model
+     */
     protected abstract IModel<File> fileModel(IModel<T> rowModel);
 
+    /**
+     * Checks if is enabled.
+     *
+     * @param model the model
+     * @return true, if is enabled
+     */
     protected boolean isEnabled(IModel<T> model) {
         return true;
     }
 
+    /**
+     * Checks if is visible.
+     *
+     * @param model the model
+     * @return true, if is visible
+     */
     protected boolean isVisible(IModel<T> model) {
         return true;
     }
 
+    /**
+     * Gets the tooltip.
+     *
+     * @param model the model
+     * @return the tooltip
+     */
     protected String getTooltip(IModel<T> model) {
         return null;
     }
@@ -85,10 +140,9 @@ public abstract class DownloadActionIconColumn<T> extends DMDAbstractColumn<T> {
      * determined from property file. If property is not found or name is empty,
      * default icons will be displayed. Method differentiates between enabled
      * and disabled icons.
-     * 
-     * @param model
-     *            Model of the line.
-     * 
+     *
+     * @param model            Model of the line.
+     * @param c the c
      * @return Image as Wicket resource.
      */
     protected IResource getIcon(IModel<T> model, Component c) {
@@ -103,9 +157,9 @@ public abstract class DownloadActionIconColumn<T> extends DMDAbstractColumn<T> {
      * Returns name of the icon from property key. Default implementation
      * resolves it with Wickets localizer. Overwrite it if you want something
      * else.
-     * 
-     * @param propertyKey
-     * 
+     *
+     * @param model the model
+     * @param c the c
      * @return name Path to the icon from root context. For instance:
      *         "img/image.gif" will be lookup in "webapp/img/image.gif"
      */
@@ -135,6 +189,9 @@ public abstract class DownloadActionIconColumn<T> extends DMDAbstractColumn<T> {
         return new PackageResourceReference(AjaxSubmitActionIconColumn.class, ICON_DISBALED).getResource();
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn#getHeader(java.lang.String)
+     */
     @Override
     public Component getHeader(String componentId) {
         if (headerComponent == null) {
@@ -143,10 +200,26 @@ public abstract class DownloadActionIconColumn<T> extends DMDAbstractColumn<T> {
         return headerComponent;
     }
 
+    /**
+     * The Class DownloadLinkImagePanel.
+     */
     protected class DownloadLinkImagePanel extends Panel {
+        
+        /** The Constant ICON. */
         private static final String ICON = "icon";
+        
+        /** The Constant TITLE. */
         private static final String TITLE = "title";
 
+        /**
+         * Instantiates a new download link image panel.
+         *
+         * @param id the id
+         * @param column the column
+         * @param rowModel the row model
+         * @param enabledContextIcon the enabled context icon
+         * @param disabledContextIcon the disabled context icon
+         */
         public DownloadLinkImagePanel(String id, final DownloadActionIconColumn<T> column, final IModel<T> rowModel,
                 final String enabledContextIcon, final String disabledContextIcon) {
             super(id);

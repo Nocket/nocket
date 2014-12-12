@@ -10,17 +10,19 @@ import javax.tools.JavaFileObject;
 import javax.tools.JavaFileObject.Kind;
 import javax.tools.StandardJavaFileManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ClassFileManager.
+ */
 public class ClassFileManager extends ForwardingJavaFileManager {
-    /**
-     * Instance of JavaClassObject that will store the compiled bytecode of our
-     * class
-     */
+    
+    /** Instance of JavaClassObject that will store the compiled bytecode of our class. */
     private JavaClassObject jclassObject;
 
     /**
-     * Will initialize the manager with the specified standard java file manager
-     * 
-     * @param standardManger
+     * Will initialize the manager with the specified standard java file manager.
+     *
+     * @param standardManager the standard manager
      */
     public ClassFileManager(StandardJavaFileManager standardManager) {
         super(standardManager);
@@ -31,6 +33,9 @@ public class ClassFileManager extends ForwardingJavaFileManager {
      * creates an anonymous class extending the SecureClassLoader which uses the
      * byte code created by the compiler and stored in the JavaClassObject, and
      * returns the Class for it
+     *
+     * @param location the location
+     * @return the class loader
      */
     @Override
     public ClassLoader getClassLoader(Location location) {
@@ -48,6 +53,13 @@ public class ClassFileManager extends ForwardingJavaFileManager {
     /**
      * Gives the compiler an instance of the JavaClassObject so that the
      * compiler can write the byte code into it.
+     *
+     * @param location the location
+     * @param className the class name
+     * @param kind the kind
+     * @param sibling the sibling
+     * @return the java file for output
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     @Override
     public JavaFileObject getJavaFileForOutput(Location location,

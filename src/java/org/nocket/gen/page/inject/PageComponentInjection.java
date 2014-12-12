@@ -51,7 +51,7 @@ public class PageComponentInjection {
             }
         }
 
-        // Rekuriv durch alle geerbten Klassen gehen, einschließlich Object
+        // Rekuriv durch alle geerbten Klassen gehen, einschlieÃŸlich Object
         // -> beinhaltet keine Eigenschaften und ist Vater von Entity!
         Class<?> superClass = fromClass.getSuperclass();
         if (superClass != null) {

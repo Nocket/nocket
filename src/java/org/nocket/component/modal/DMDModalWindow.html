@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
-    <head> 
-    </head> 
-    <body> 
-        <wicket:panel> 
-            <div wicket:id="innerModal" id="innerModal" class="modal"> 
-            	<span wicket:id="content">[Hier kommen die anderen Panels rein]</span> 
-            </div> 
-        </wicket:panel>  
-    </body>
+<head>
+</head>
+<body>
+	<wicket:panel>
+		<div id="#dmdInnerModal" class="modal" wicket:id="innerModal">
+			<span wicket:id="content">[Hier kommen die anderen Panels rein]</span>
+		</div>
+		<script type="text/javascript">
+			$( '#dmdInnerModal').fadeIn( 600);
+            $( ".nocket-draggable").draggable( {
+	            handle : '.modal-header'
+            });
+            $( '.nocket-draggable').css( {
+	            'margin-left' : function() {
+		            return -($( this).width() / 2);
+	            }
+            });
+		</script>
+	</wicket:panel>
+</body>
 </html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<title>mobilcom-debitel</title>
+</head>
+<body>
+	<wicket:extend>
+		<div class="form-container">
+			<form wicket:id="form" action="#">
+				<header class="section-header section-first">
+					<span class="headline">DMD Choice Components</span>
+				</header>
+				<fieldset>
+					<div class="control-row">
+						<label wicket:for="multi.days">Multi choice</label> <select id="multi.days" wicket:id="multi.days" style="float: left; width: 350px;"
+							multiple="multiple"></select>
+					</div>
+					<div class="control-row">
+						<label wicket:for="one.day">Simple choice</label> <select id="one.day" wicket:id="one.day" style="width: 350px;"></select>
+					</div>
+					<div class="control-row">
+						<label wicket:for="multiDaysClassic">Multi choice list</label> <select id="multiDaysClassic" wicket:id="multiDaysClassic"
+							style="float: left; width: 350px;" multiple="multiple"></select>
+					</div>
+				</fieldset>
+				<footer class="form-actions">
+					<button wicket:id="checkit" class="btn btn-primary" type="submit">Disable</button>
+				</footer>
+			</form>
+		</div>
+	</wicket:extend>
+</body>
+</html>

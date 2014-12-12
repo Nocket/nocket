@@ -9,15 +9,28 @@ import java.util.List;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.nocket.gen.page.element.RepeatingPanelElement;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GeneratedRepeatingPanelModel.
+ */
 @SuppressWarnings("serial")
 public class GeneratedRepeatingPanelModel extends LoadableDetachableModel<List<?>> {
 
+    /** The helper. */
     private final SynchronizerHelper helper;
 
+    /**
+     * Instantiates a new generated repeating panel model.
+     *
+     * @param element the element
+     */
     public GeneratedRepeatingPanelModel(RepeatingPanelElement element) {
         this.helper = new SynchronizerHelper(element);
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.wicket.model.LoadableDetachableModel#load()
+     */
     @Override
     protected List<?> load() {
         Object value = helper.invokeGetterMethod();

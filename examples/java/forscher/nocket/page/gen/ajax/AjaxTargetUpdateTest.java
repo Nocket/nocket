@@ -21,7 +21,7 @@ public class AjaxTargetUpdateTest implements Serializable {
     private boolean toggleEnableStateOfValue;
 
     public void anAjaxButton() {
-        // Nur um einen Ajax request auszuführen
+        // Nur um einen Ajax request auszufuehren
     }
 
     public AjaxTargetUpdateTest anAjaxButtonWithRedirectToThisPage() {

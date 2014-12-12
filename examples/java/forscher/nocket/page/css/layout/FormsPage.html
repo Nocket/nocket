@@ -1,0 +1,94 @@
+<!doctype html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<title>Wicket examples</title>
+</head>
+<body>
+	<wicket:extend>
+		<div class="row-fluid">
+			<section class="span6">
+				<form>
+					<header class="section-header section-first">
+						<span class="headline">Bootstrap default form</span>
+					</header>
+					<fieldset>
+						<div class="control-group">
+							<label class="control-label required" for="firstname2">First name</label>
+							<div class="controls">
+								<input class="required span12" id="firstname2" type="text" value="" name="firstname2" maxlength="20"></input>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label required" for="description2">Description</label>
+							<div class="controls">
+								<textarea class="required span12" id="description2" type="text" value="" name="description" maxlength="2000" rows="4"></textarea>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label for="tag2" class="control-label">Tag</label>
+							<div class="controls">
+								<input class="span4" id="description2" type="text" placeholder="DD.MM.JJJJ" value="" name="description"></input>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<div class="controls">
+								<label for="agbs2" class="checkbox"> <input id="agbs2" type="checkbox" name="agbs">Ja, ich akzeptiere die AGBs</input>
+								</label>
+							</div>
+						</div>
+					</fieldset>
+					<footer class="form-actions">
+						<button class="btn" type="button">Abbrechen</button>
+						<button class="btn btn-primary" type="submit">Speichern</button>
+					</footer>
+				</form>
+			</section>
+			<section class="span6">
+				<form class="form-horizontal">
+					<header class="section-header section-first">
+						<span class="headline">Inline form (should be used in DMDWeb projects)</span>
+					</header>
+					<fieldset>
+						<div class="control-group">
+							<label class="control-label required" for="firstname2">First name</label>
+							<div class="controls">
+								<input class="required span12" id="firstname2" type="text" value="" name="firstname2" maxlength="20"></input>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label required" for="description2">Description</label>
+							<div class="controls">
+								<textarea class="required span12" id="description2" type="text" value="" name="description" maxlength="2000" rows="4"></textarea>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label for="tag2" class="control-label">Tag</label>
+							<div class="controls">
+								<input class="span4" id="description2" type="text" placeholder="DD.MM.JJJJ" value="" name="description"></input>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<div class="controls">
+								<label for="agbs2" class="checkbox"> <input id="agbs2" type="checkbox" name="agbs">Ja, ich akzeptiere die AGBs</input>
+								</label>
+							</div>
+						</div>
+					</fieldset>
+					<footer class="form-actions">
+						<div class="pull-right">
+							<button class="btn" type="button">Abbrechen</button>
+							<button class="btn btn-primary" type="submit">Speichern</button>
+						</div>
+					</footer>
+				</form>
+			</section>
+		</div>
+	</wicket:extend>
+</body>
+</html>

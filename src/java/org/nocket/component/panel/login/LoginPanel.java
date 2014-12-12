@@ -10,6 +10,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.nocket.component.form.BeanValidationForm;
 
+// TODO: Auto-generated Javadoc
 /**
  * Abstract panel with the login form.
  * 
@@ -19,6 +20,12 @@ import org.nocket.component.form.BeanValidationForm;
 @SuppressWarnings("serial")
 public abstract class LoginPanel extends Panel {
 
+    /**
+     * Instantiates a new login panel.
+     *
+     * @param id the id
+     * @param model the model
+     */
     public LoginPanel(String id, IModel<UserLoginData> model) {
         super(id, model);
         final TextField<String> userName = new TextField<String>("username");
@@ -48,9 +55,9 @@ public abstract class LoginPanel extends Panel {
     }
 
     /**
-     * Name og the page, wher the user will be redirected after
-     * 
-     * @return
+     * Name og the page, wher the user will be redirected after.
+     *
+     * @return the default redirect page
      */
     protected Class<? extends Page> getDefaultRedirectPage() {
         return getApplication().getHomePage();
@@ -58,18 +65,34 @@ public abstract class LoginPanel extends Panel {
 
     /**
      * Method which performs authorization of the user.
-     * 
+     *
+     * @param userLogin the user login
      * @return True if authorization was successful. False otherwise.
      */
     public abstract boolean doAuthentication(UserLoginData userLogin);
 
+    /**
+     * The Class PasswordTextField.
+     *
+     * @param <T> the generic type
+     */
     class PasswordTextField<T> extends TextField<T> {
+        
+        /** The Constant serialVersionUID. */
         private static final long serialVersionUID = 1L;
 
+        /**
+         * Instantiates a new password text field.
+         *
+         * @param id the id
+         */
         public PasswordTextField(String id) {
             super(id);
         }
 
+        /* (non-Javadoc)
+         * @see org.apache.wicket.markup.html.form.TextField#getInputType()
+         */
         @Override
         protected String getInputType() {
             return "password";

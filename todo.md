@@ -1,5 +1,6 @@
 # TODOs:
 
+- enhance dmdweb gen with a check and a warning if the given POJO is not serializable (Grrr)
 - Umbennen von DMD-Klassen in Nocket-Klassen
 - Wird der Generator ein eigenes Projekt?
 - Basis-Webseite für Nocket 
@@ -15,5 +16,4 @@
 - ArgReader aus Cuba übernommen
   - Package gelassen
   - cuba.util.ArgumentException durch IllegalArgumentException ersetzt
-- Muss die jetty-all-server-7.5.0.v20110901.jar und servlet-api-2.5.jar mitgeliefert werden?
 

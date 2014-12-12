@@ -26,3 +26,7 @@ examples/webapp/css/application.map
 .settings/org.eclipse.jdt.core.prefs
 .settings/org.eclipse.wst.common.component
 .settings/*.xml
+/bin/
+
+.settings/org.eclipse.wst.validation.prefs
+/phantomjsdriver.log

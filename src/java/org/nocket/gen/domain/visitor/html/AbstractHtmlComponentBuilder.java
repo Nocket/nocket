@@ -216,7 +216,7 @@ abstract public class AbstractHtmlComponentBuilder {
         table.addAttribute(ATTR_WICKET_ID, e.getWicketId());
         table.setID(e.getWicketId());
         if (context.getDomainProperties().getHTMLTableExampleContent()) {
-            //TODO JL: CSS-Klasse ist kopiert aus enericDataTablePanel.html. Das müssen wir statt dessen rausparsen
+            //TODO JL: CSS-Klasse ist kopiert aus enericDataTablePanel.html. Das mÃ¼ssen wir statt dessen rausparsen
             table.addAttribute(ATTR_CLASS, "table table-striped table-hover table-condensed");
             table.addElement(createExampleTableHeader(e));
             table.addElement(createExampleTableBody(e));
@@ -227,12 +227,12 @@ abstract public class AbstractHtmlComponentBuilder {
     protected THead createExampleTableHeader(MultivaluePropertyElement<?> e) {
         THead thead = new THead();
         TR tr = new TR();
-        // TODO JL: CSS-Klasse stammt aus Analyse zur Applikationslaufzeit. Lässt die sich auch irgendwo rausparsen?
+        // TODO JL: CSS-Klasse stammt aus Analyse zur Applikationslaufzeit. LÃ¤sst die sich auch irgendwo rausparsen?
         tr.addAttribute(ATTR_CLASS, "header");
         boolean isFirstColumn = true;
         for (MultivalueColumnElement dataColumn : e.getColumns()) {
             TH th = new TH();
-            // TODO JL: Link und class darf nur rein, wenn man später auch sortieren kann (List vs. Collection)
+            // TODO JL: Link und class darf nur rein, wenn man spÃ¤ter auch sortieren kann (List vs. Collection)
             th.addAttribute(ATTR_CLASS, isFirstColumn ? "wicket_orderUp" : "wicket_orderNone");
             th.setID(dataColumn.getPropertyName());
             A sortLink = new A();

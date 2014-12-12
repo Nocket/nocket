@@ -23,6 +23,7 @@ import org.apache.wicket.request.resource.PackageResourceReference;
 import org.nocket.component.button.DMDOnClickIndicatorAttributeModifier;
 import org.nocket.component.table.GenericDataTablePanel;
 
+// TODO: Auto-generated Javadoc
 /**
  * Column with ajax link displayed as image.
  * 
@@ -31,16 +32,34 @@ import org.nocket.component.table.GenericDataTablePanel;
  *            {@link GenericDataTablePanel}.
  */
 public abstract class AjaxSubmitActionIconColumn<T> extends DMDAbstractColumn<T> {
+    
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
+    
+    /** The Constant ICON_ENABLED. */
     public static final String ICON_ENABLED = "icon-enabled.png";
+    
+    /** The Constant ICON_DISBALED. */
     public static final String ICON_DISBALED = "icon-disabled.png";
+    
+    /** The Constant ACTION_COLUMN. */
     public static final String ACTION_COLUMN = "org.nocket-action-column";
 
+    /** The form. */
     private final Form<?> form;
 
+    /** The enabled icon property key. */
     protected final String enabledIconPropertyKey;
+    
+    /** The disabled icon property key. */
     protected final String disabledIconPropertyKey;
 
+    /**
+     * Instantiates a new ajax submit action icon column.
+     *
+     * @param headerLabel the header label
+     * @param form the form
+     */
     public AjaxSubmitActionIconColumn(IModel<String> headerLabel, Form<?> form) {
         super(headerLabel, null);
         this.form = form;
@@ -48,6 +67,14 @@ public abstract class AjaxSubmitActionIconColumn<T> extends DMDAbstractColumn<T>
         this.disabledIconPropertyKey = null;
     }
 
+    /**
+     * Instantiates a new ajax submit action icon column.
+     *
+     * @param headerLabel the header label
+     * @param form the form
+     * @param enabledContextIcon the enabled context icon
+     * @param disabledContextIcon the disabled context icon
+     */
     public AjaxSubmitActionIconColumn(IModel<String> headerLabel, Form<?> form, String enabledContextIcon,
             String disabledContextIcon) {
         super(headerLabel, null);
@@ -56,11 +83,17 @@ public abstract class AjaxSubmitActionIconColumn<T> extends DMDAbstractColumn<T>
         this.disabledIconPropertyKey = disabledContextIcon;
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator#populateItem(org.apache.wicket.markup.repeater.Item, java.lang.String, org.apache.wicket.model.IModel)
+     */
     @Override
     public void populateItem(Item<ICellPopulator<T>> cellItem, String componentId, IModel<T> rowModel) {
         cellItem.add(new LinkImagePanel<T>(componentId, this, rowModel, form));
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn#getCssClass()
+     */
     @Override
     public String getCssClass() {
         return ACTION_COLUMN;
@@ -110,10 +143,9 @@ public abstract class AjaxSubmitActionIconColumn<T> extends DMDAbstractColumn<T>
      * determined from property file. If property is not found or name is empty,
      * default icons will be displayed. Method differentiates between enabled
      * and disabled icons.
-     * 
-     * @param model
-     *            Model of the line.
-     * 
+     *
+     * @param model            Model of the line.
+     * @param resourceName the resource name
      * @return Image as Wicket resource.
      */
     protected IResource getIcon(IModel<T> model, String resourceName) {
@@ -127,9 +159,9 @@ public abstract class AjaxSubmitActionIconColumn<T> extends DMDAbstractColumn<T>
      * Returns name of the icon from property key. Default implementation
      * resolves it with Wickets localizer. Overwrite it if you want something
      * else.
-     * 
-     * @param propertyKey
-     * 
+     *
+     * @param model the model
+     * @param c the c
      * @return name Path to the icon from root context. For instance:
      *         "img/image.gif" will be lookup in "webapp/img/image.gif"
      */
@@ -173,20 +205,47 @@ public abstract class AjaxSubmitActionIconColumn<T> extends DMDAbstractColumn<T>
 
     /**
      * Called when a link is clicked.
-     * 
-     * @param model
-     *            Model of the line.
+     *
+     * @param model            Model of the line.
+     * @param target the target
      */
     protected abstract void onSubmit(IModel<T> model, AjaxRequestTarget target);
 
+    /**
+     * On error.
+     *
+     * @param model the model
+     * @param target the target
+     */
     protected abstract void onError(IModel<T> model, AjaxRequestTarget target);
 
+    /**
+     * The Class LinkImagePanel.
+     *
+     * @param <T> the generic type
+     */
     private static class LinkImagePanel<T> extends Panel {
+        
+        /** The Constant serialVersionUID. */
         private static final long serialVersionUID = 1L;
+        
+        /** The Constant LINK. */
         private static final String LINK = "link";
+        
+        /** The Constant ICON. */
         private static final String ICON = "icon";
+        
+        /** The Constant TITLE. */
         private static final String TITLE = "title";
 
+        /**
+         * Instantiates a new link image panel.
+         *
+         * @param id the id
+         * @param column the column
+         * @param rowModel the row model
+         * @param form the form
+         */
         public LinkImagePanel(String id, final AjaxSubmitActionIconColumn<T> column, final IModel<T> rowModel,
                 Form<?> form) {
             super(id);

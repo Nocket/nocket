@@ -18,17 +18,36 @@ import org.apache.commons.io.IOUtils;
 import org.nocket.gen.domain.DMDWebGenContext;
 import org.nocket.gen.domain.visitor.AbstractDomainElementVisitor;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AbstractPropertiesVisitor.
+ *
+ * @param <E> the element type
+ */
 public abstract class AbstractPropertiesVisitor<E extends AbstractDomainReference> extends
         AbstractDomainElementVisitor<E> {
 
+    /** The existing properties. */
     private Properties existingProperties;
+    
+    /** The new properties ordered. */
     protected final List<Properties> newPropertiesOrdered;
 
+    /**
+     * Instantiates a new abstract properties visitor.
+     *
+     * @param context the context
+     */
     public AbstractPropertiesVisitor(DMDWebGenContext context) {
         super(context);
         this.newPropertiesOrdered = new ArrayList<Properties>();
     }
 
+    /**
+     * Gets the existing properties.
+     *
+     * @return the existing properties
+     */
     protected Properties getExistingProperties() {
         if (existingProperties == null) {
             existingProperties = loadProperties();
@@ -36,6 +55,11 @@ public abstract class AbstractPropertiesVisitor<E extends AbstractDomainReferenc
         return existingProperties;
     }
 
+    /**
+     * Load properties.
+     *
+     * @return the properties
+     */
     protected Properties loadProperties() {
         File propertiesFile = getPropertiesFile();
         Properties properties = new Properties();
@@ -49,8 +73,20 @@ public abstract class AbstractPropertiesVisitor<E extends AbstractDomainReferenc
         return properties;
     }
 
+    /**
+     * Gets the properties file.
+     *
+     * @return the properties file
+     */
     protected abstract File getPropertiesFile();
 
+    /**
+     * Adds the property.
+     *
+     * @param key the key
+     * @param value the value
+     * @return true, if successful
+     */
     protected boolean addProperty(String key, String value) {
         if (overwriteExistingProperties() || getExistingProperties().get(key) == null) {
             Properties newProperty = new Properties();
@@ -64,13 +100,16 @@ public abstract class AbstractPropertiesVisitor<E extends AbstractDomainReferenc
     /**
      * If true, existing properties will be always overwritten. False by
      * default.
-     * 
-     * @return
+     *
+     * @return true, if successful
      */
     protected boolean overwriteExistingProperties() {
         return false;
     }
 
+    /* (non-Javadoc)
+     * @see org.nocket.gen.domain.visitor.DomainElementVisitorI#finish()
+     */
     @Override
     public void finish() {
         if (newPropertiesOrdered.size() > 0) {

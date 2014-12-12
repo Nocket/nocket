@@ -1,3 +1,4 @@
+
 package org.nocket.component.form;
 
 import gengui.util.SevereGUIException;
@@ -146,9 +147,9 @@ public class BeanValidationForm<T> extends Form<T> {
                                 msg.append(". Descriptor found.");
                                 log.debug(msg.toString());
                             }
-                            c.add(new JSR303Validator<T>(getValidatorPropertyPath(c), getValidatorPropertyPrompt(c),
-                                    desc.getEntityClass(),
-                                    editMode ? c.getModel() : null));
+//                            c.add(new JSR303Validator<T>(getValidatorPropertyPath(c), getValidatorPropertyPrompt(c),
+//                                    desc.getEntityClass(),
+//                                    editMode ? c.getModel() : null));
                             c.add(newValidationStyleBehavior(!belongsToGroupBorder(c)));
                         } else {
                             msg.append(". Descriptor NOT found.");

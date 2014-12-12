@@ -23,9 +23,9 @@ public class Kunde implements Serializable {
 
     public Kunde() {
         historieTabelle = new Historie[3];
-        historieTabelle[0] = newHistorie("12.01.1204", "Vorname geändert", "genehmigt", "ausgeführt");
-        historieTabelle[1] = newHistorie("01.11.2012", "Nachname geändert", "genehmigt", "ausgeführt");
-        historieTabelle[2] = newHistorie("03.04.2013", "Karte neubeantragt", "abgelehnt", "ausgeführt");
+        historieTabelle[0] = newHistorie("12.01.1204", "Vorname geÃ¤ndert", "genehmigt", "ausgefÃ¼hrt");
+        historieTabelle[1] = newHistorie("01.11.2012", "Nachname geÃ¤ndert", "genehmigt", "ausgefÃ¼hrt");
+        historieTabelle[2] = newHistorie("03.04.2013", "Karte neubeantragt", "abgelehnt", "ausgefÃ¼hrt");
     }
 
     private Historie newHistorie(String string1, String string2, String string3, String string4) {
@@ -64,7 +64,7 @@ public class Kunde implements Serializable {
     }
 
     @Group(value = "Karte")
-    @Prompt("Prüfen")
+    @Prompt("PrÃ¼fen")
     public void pruefen() {
         new WebGuiServiceAdapter().status("Button pruefen pressed.");
     }

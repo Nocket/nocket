@@ -13,8 +13,8 @@ public class ForscherWebApplication extends NocketWebApplication {
 	public void init() {
 		super.init();
 		// Let's try a gengui-based translation :-)
-		I18n i18n = new I18nPropertyBasedImpl();
-		System.out.println("UEBERSETZUNGSTEXT: " + i18n.translate("context.menu.copy"));
+//		I18n i18n = new I18nPropertyBasedImpl();
+//		System.out.println("UEBERSETZUNGSTEXT: " + i18n.translate("context.menu.copy"));
 	}
 
 	/**

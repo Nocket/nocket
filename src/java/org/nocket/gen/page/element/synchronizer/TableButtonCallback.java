@@ -29,16 +29,33 @@ import org.nocket.gen.page.guiservice.DMDWebGenGuiServiceProvider;
 
 import de.bertelsmann.coins.general.error.Assert;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TableButtonCallback.
+ */
 public class TableButtonCallback extends TableCallback implements Serializable {
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
+    /** The is remover. */
     private final boolean isRemover;
+    
+    /** The is closer. */
     private final boolean isCloser;
 
+    /** The Constant ICON_ENABLED. */
     private static final String ICON_ENABLED = "{0}.icon.enabled";
+    
+    /** The Constant ICON_DISABLED. */
     private static final String ICON_DISABLED = "{0}.icon.disabled";
 
+    /**
+     * Instantiates a new table button callback.
+     *
+     * @param context the context
+     * @param element the element
+     */
     public TableButtonCallback(DMDWebGenPageContext context, MultivalueButtonElement<DomainObjectReference> element) {
         super(context, element);
         this.isRemover = element.isRemover();
@@ -54,10 +71,20 @@ public class TableButtonCallback extends TableCallback implements Serializable {
         isCloser = !BooleanUtils.isFalse(isCloserMethod);
     }
 
+    /**
+     * Gets the wicket id.
+     *
+     * @return the wicket id
+     */
     public String getWicketId() {
         return propertiesWicketId;
     }
 
+    /**
+     * Gets the name.
+     *
+     * @return the name
+     */
     public String getName() {
         if (isRemover) {
             return helper.getRemoverButtonMethod().getName();
@@ -66,10 +93,21 @@ public class TableButtonCallback extends TableCallback implements Serializable {
         }
     }
 
+    /**
+     * Gets the prompt.
+     *
+     * @return the prompt
+     */
     public String getPrompt() {
         return prompt;
     }
 
+    /**
+     * Checks if is enabled.
+     *
+     * @param targetObject the target object
+     * @return true, if is enabled
+     */
     public boolean isEnabled(Object targetObject) {
         if (isRemover) {
             return helper.isEnabled();
@@ -83,6 +121,12 @@ public class TableButtonCallback extends TableCallback implements Serializable {
         }
     }
 
+    /**
+     * Checks if is forced.
+     *
+     * @param targetObject the target object
+     * @return true, if is forced
+     */
     public boolean isForced(Object targetObject) {
         if (isRemover) {
             return helper.isForced();
@@ -96,6 +140,12 @@ public class TableButtonCallback extends TableCallback implements Serializable {
         }
     }
 
+    /**
+     * On submit.
+     *
+     * @param target the target
+     * @param model the model
+     */
     public void onSubmit(AjaxRequestTarget target, final IModel model) {
         DMDWebGenGuiServiceProvider webGuiServiceProvider = NocketSession.get().getDMDWebGenGuiServiceProvider();
         try {
@@ -147,6 +197,11 @@ public class TableButtonCallback extends TableCallback implements Serializable {
         }
     }
 
+    /**
+     * New method exception hanlder.
+     *
+     * @return the method exception handler i
+     */
     private MethodExceptionHandlerI newMethodExceptionHanlder() {
         final MutableBoolean exceptionOccured = new MutableBoolean(false);
         return new MethodExceptionHandlerI() {
@@ -165,6 +220,12 @@ public class TableButtonCallback extends TableCallback implements Serializable {
         };
     }
 
+    /**
+     * Gets the tooltip.
+     *
+     * @param targetObject the target object
+     * @return the tooltip
+     */
     public String getTooltip(Object targetObject) {
         if (isRemover) {
             return helper.getButtonTooltip();
@@ -178,18 +239,39 @@ public class TableButtonCallback extends TableCallback implements Serializable {
         }
     }
 
+    /**
+     * Update all forms.
+     *
+     * @param target the target
+     */
     public void updateAllForms(AjaxRequestTarget target) {
         helper.updateAllForms(target);
     }
 
+    /**
+     * Gets the form.
+     *
+     * @return the form
+     */
     public Form<?> getForm() {
         return (Form<?>) helper.getContext().getComponentRegistry().getComponent(FormElement.DEFAULT_WICKET_ID);
     }
 
+    /**
+     * Gets the method.
+     *
+     * @return the method
+     */
     public Method getMethod() {
         return helper.getButtonMethod();
     }
 
+    /**
+     * Gets the icon resource name.
+     *
+     * @param targetObject the target object
+     * @return the icon resource name
+     */
     public String getIconResourceName(Object targetObject) {
         if (helper.getContext().getConfiguration().isLocalizationWicket()) {
             String key = isEnabled(targetObject) ? getIconTableKey(ICON_ENABLED, this.getWicketId()) :
@@ -210,10 +292,24 @@ public class TableButtonCallback extends TableCallback implements Serializable {
         return new I18NLabelModel(domainClass, key).getObject();
     }
 
+    /**
+     * Gets the icon table key.
+     *
+     * @param pattern the pattern
+     * @param baseKey the base key
+     * @return the icon table key
+     */
     private String getIconTableKey(String pattern, String baseKey) {
         return MessageFormat.format(pattern, baseKey);
     }
 
+    /**
+     * Localize like wicket.
+     *
+     * @param key the key
+     * @param c the c
+     * @return the string
+     */
     private String localizeLikeWicket(String key, Component c) {
         try {
             // Wicket should recursively search for the property in the component's properties-file and those of its parents down to the application 
@@ -224,6 +320,8 @@ public class TableButtonCallback extends TableCallback implements Serializable {
     }
 
     /**
+     * Checks if is download method.
+     *
      * @return true if the method return file. In such case, the
      */
     public boolean isDownloadMethod() {
@@ -232,6 +330,9 @@ public class TableButtonCallback extends TableCallback implements Serializable {
     }
 
     /**
+     * On download method.
+     *
+     * @param model the model
      * @return Returns file to download from the method of the domain object.
      */
     public File onDownloadMethod(IModel<?> model) {

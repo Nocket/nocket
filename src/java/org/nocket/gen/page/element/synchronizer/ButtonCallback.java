@@ -15,13 +15,28 @@ import org.nocket.gen.page.guiservice.DMDWebGenGuiServiceProvider;
 import de.bertelsmann.coins.general.error.Assert;
 import de.bertelsmann.coins.general.error.AssertionException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ButtonCallback.
+ */
 @SuppressWarnings("serial")
 public class ButtonCallback implements Serializable {
 
+    /** The helper. */
     private final SynchronizerHelper helper;
+    
+    /** The is closer. */
     private boolean isCloser;
+    
+    /** The interceptor. */
     private ButtonCallbackInterceptor interceptor;
 
+    /**
+     * Instantiates a new button callback.
+     *
+     * @param element the element
+     * @param interceptor the interceptor
+     */
     public ButtonCallback(ButtonElement element, ButtonCallbackInterceptor interceptor) {
         this.interceptor = interceptor != null ? interceptor : new ButtonCallbackInterceptor();
 
@@ -41,50 +56,89 @@ public class ButtonCallback implements Serializable {
         isCloser = !BooleanUtils.isFalse(isCloserMethod);
     }
 
+    /**
+     * Instantiates a new button callback.
+     *
+     * @param element the element
+     */
     public ButtonCallback(ButtonElement element) {
         this(element, null);
     }
 
+    /**
+     * Update all forms.
+     *
+     * @param target the target
+     */
     public void updateAllForms(AjaxRequestTarget target) {
         SynchronizerHelper.updateAllFormsFromPage(helper.getContext(), target);
     }
 
+    /**
+     * On submit.
+     *
+     * @param target the target
+     */
     public void onSubmit(AjaxRequestTarget target) {
         interceptor.setButtonCallback(this);
         interceptor.onSubmit(target);
     }
 
+    /**
+     * Checks if is forced.
+     *
+     * @return true, if is forced
+     */
     public boolean isForced() {
         return helper.isForced();
     }
 
+    /**
+     * The Class MethodExceptionHandlerImpl.
+     */
     public class MethodExceptionHandlerImpl implements MethodExceptionHandlerI, Serializable {
+        
+        /** The exception occured. */
         private boolean exceptionOccured;
 
+        /**
+         * Instantiates a new method exception handler impl.
+         */
         private MethodExceptionHandlerImpl() {
         }
 
+        /* (non-Javadoc)
+         * @see org.nocket.gen.page.element.synchronizer.error.MethodExceptionHandlerI#displayError(java.lang.Object, java.lang.Throwable, java.lang.String, java.lang.String)
+         */
         @Override
         public void displayError(Object domainObject, Throwable exception, String title, String message) {
             exceptionOccured = true;
             helper.getContext().getMethodExceptionHandler().displayError(domainObject, exception, title, message);
         }
 
+        /* (non-Javadoc)
+         * @see org.nocket.gen.page.element.synchronizer.error.MethodExceptionHandlerI#exceptionSwallowed(java.lang.Object, java.lang.Throwable)
+         */
         @Override
         public void exceptionSwallowed(Object domainObject, Throwable exception) {
             exceptionOccured = true;
             helper.getContext().getMethodExceptionHandler().exceptionSwallowed(domainObject, exception);
         }
 
+        /**
+         * Checks if is exception occured.
+         *
+         * @return true, if is exception occured
+         */
         public boolean isExceptionOccured() {
             return exceptionOccured;
         }
     }
 
     /**
-     * Interceptor für ButtonCallbacks um in den onSubmit-Process eingreifen zu
-     * können. Dabei gibt es mehrere Punkte an denen man eingreifen kann. Wird
-     * ein Button gedrückt, wird im Interceptor die Method
+     * Interceptor fÃ¼r ButtonCallbacks um in den onSubmit-Process eingreifen zu
+     * kÃ¶nnen. Dabei gibt es mehrere Punkte an denen man eingreifen kann. Wird
+     * ein Button gedrÃ¼ckt, wird im Interceptor die Method
      * 
      * <pre>
      * <code>        protected void onSubmit(AjaxRequestTarget target) {
@@ -105,14 +159,14 @@ public class ButtonCallback implements Serializable {
      * <code>Object onSubmitProcess(MethodExceptionHandlerImpl methodExceptionHandler)</code>
      * , das Verarbeiten von Exceptions bzw das Schliessen von Dialogen
      * <code>onSubmitPost(MethodExceptionHandlerImpl methodExceptionHandler, Object result)</code>
-     * und schließlich das Deregistrieren des AjaxTargets
-     * <code>onSubmitFinally(AjaxRequestTarget target)</code> durchgeführt.<br>
-     * Alle diese Methode können überschrieben werden. Wird eine Methode nicht
-     * überschrieben, wird die entsprechende Methode am ButtonCallback
-     * ausgeführt. In den meisten Fällen wird die Methode
+     * und schlieÃŸlich das Deregistrieren des AjaxTargets
+     * <code>onSubmitFinally(AjaxRequestTarget target)</code> durchgefÃ¼hrt.<br>
+     * Alle diese Methode kÃ¶nnen Ã¼berschrieben werden. Wird eine Methode nicht
+     * Ã¼berschrieben, wird die entsprechende Methode am ButtonCallback
+     * ausgefÃ¼hrt. In den meisten FÃ¤llen wird die Methode
      * <code>Object onSubmitProcess(MethodExceptionHandlerImpl methodExceptionHandler)</code>
-     * überschrieben werden. Gründe dafür könnten sein, es soll vor oder nach
-     * dem Aufruf der Pojo-Button-Methode noch eine Funktion durchgeführt
+     * Ã¼berschrieben werden. GrÃ¼nde dafÃ¼r kÃ¶nnten sein, es soll vor oder nach
+     * dem Aufruf der Pojo-Button-Methode noch eine Funktion durchgefÃ¼hrt
      * werden.<br>
      * Ein Beispiel ist in @see GeneratedPage
      * 
@@ -122,12 +176,23 @@ public class ButtonCallback implements Serializable {
      */
     public static class ButtonCallbackInterceptor implements Serializable {
 
+        /** The button callback. */
         private ButtonCallback buttonCallback;
 
+        /**
+         * Sets the button callback.
+         *
+         * @param buttonCallback the new button callback
+         */
         void setButtonCallback(ButtonCallback buttonCallback) {
             this.buttonCallback = buttonCallback;
         }
 
+        /**
+         * On submit.
+         *
+         * @param target the target
+         */
         protected void onSubmit(AjaxRequestTarget target) {
             try {
                 MethodExceptionHandlerImpl methodExceptionHandler = onSubmitPre(target);
@@ -138,6 +203,11 @@ public class ButtonCallback implements Serializable {
             }
         }
 
+        /**
+         * On submit finally.
+         *
+         * @param target the target
+         */
         protected void onSubmitFinally(AjaxRequestTarget target) {
             DMDWebGenGuiServiceProvider webGuiServiceProvider = NocketSession.get().getDMDWebGenGuiServiceProvider();
             try {
@@ -149,11 +219,23 @@ public class ButtonCallback implements Serializable {
             }
         }
 
+        /**
+         * On submit process.
+         *
+         * @param methodExceptionHandler the method exception handler
+         * @return the object
+         */
         protected Object onSubmitProcess(MethodExceptionHandlerImpl methodExceptionHandler) {
             Object result = buttonCallback.helper.invokeButtonMethod(methodExceptionHandler);
             return result;
         }
 
+        /**
+         * On submit post.
+         *
+         * @param methodExceptionHandler the method exception handler
+         * @param result the result
+         */
         protected void onSubmitPost(MethodExceptionHandlerImpl methodExceptionHandler, Object result) {
             DMDWebGenGuiServiceProvider webGuiServiceProvider = NocketSession.get().getDMDWebGenGuiServiceProvider();
 
@@ -191,6 +273,12 @@ public class ButtonCallback implements Serializable {
             }
         }
 
+        /**
+         * On submit pre.
+         *
+         * @param target the target
+         * @return the method exception handler impl
+         */
         protected MethodExceptionHandlerImpl onSubmitPre(AjaxRequestTarget target) {
             DMDWebGenGuiServiceProvider webGuiServiceProvider = NocketSession.get().getDMDWebGenGuiServiceProvider();
             webGuiServiceProvider.registerAjaxRequestTarget(buttonCallback.helper.getContext(), target);

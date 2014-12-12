@@ -164,8 +164,8 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
 	@Override
 	public void renderHead(Component component, IHeaderResponse response) {
 	    super.renderHead(component, response);
-	    // Stylesheets für PNotify, falls man eine Statusmeldung anzeigen will
-	    // Die Zeilen sorgen dafür, dass man sich nicht darauf verlassen muss,
+	    // Stylesheets fÃ¼r PNotify, falls man eine Statusmeldung anzeigen will
+	    // Die Zeilen sorgen dafÃ¼r, dass man sich nicht darauf verlassen muss,
 	    // dass die Stylesheets im ...Page.html oder einem Basis-HTML bereits
 	    // eingebunden wurden. Insbesondere die modalen Dialoge leiten direkt
 	    // von DMDWebPage ab und erben daher keine HTML-Basisbestandteile
@@ -270,7 +270,7 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
 	target.add(modal);
     }
 
-    // TODO meis026 nur über den NichtGenerischen-Webadapter erreichbar machen
+    // TODO meis026 nur Ã¼ber den NichtGenerischen-Webadapter erreichbar machen
     public synchronized <T> void openModalPanelFromNonGenericContext(DMDModalWindow modal, AjaxRequestTarget target,
 	    Object domainObject) {
 	openModalPanelFromNonGenericContext(modal, target, domainObject, false);
@@ -323,7 +323,7 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
 		    webGuiServiceProvider.unregisterAjaxRequestTarget(ctx, target);
 		}
 		// Wenn es noch ein modaler Dialog gezeigt werden soll, dann muss das mitgeteilt werden
-		return true;//webGuiServiceProvider.activeShowModalPanelConfig == null; Ich kann mir den Grund für diese bedingten Rückgabewert nicht erklären. Es macht scheinbar keinen Sinn.
+		return true;//webGuiServiceProvider.activeShowModalPanelConfig == null; Ich kann mir den Grund fÃ¼r diese bedingten RÃ¼ckgabewert nicht erklÃ¤ren. Es macht scheinbar keinen Sinn.
 	    }
 	};
 	modal.showConfirm(title, message, modalCallback, confirmButtonDefs);

@@ -11,7 +11,6 @@ import org.nocket.component.menu.MenuPanel;
 import org.nocket.component.panel.login.LoginStatusBar;
 import org.nocket.page.DMDWebPage;
 import org.nocket.test.eager.disable.EagerDisableTestPage;
-import org.nocket.test.eager.old.EagerTestPage;
 import org.nocket.test.eager.simple.EagerSimpleTestPage;
 import org.nocket.test.eager.validation.EagerValidationTestPage;
 import org.nocket.test.widgets.choices.ChoicesTestsPage;
@@ -58,17 +57,9 @@ public class BrowserTestsPage extends DMDWebPage {
         eager.addSubItem(new MenuItem("Validation test", EagerValidationTestPage.class));
         eager.addSubItem(new MenuItem("Disable test", EagerDisableTestPage.class));
 
-//        MenuItem tests = new MenuItem("Tests", BrowserTestsPage.class);
-//        tests.addSubItem(new MenuItem("TextField", TextFieldTestPage.class));
-//        tests.addSubItem(new MenuItem("NumberTextField", NumberTextFieldTestPage.class));
-//        tests.addSubItem(new MenuItem("DropDown", DropDownTestPage.class));
-//        tests.addSubItem(new MenuItem("MultipleChoice", MultipleChoiceTestPage.class));
-//        tests.addSubItem(new MenuItem("CheckBox", CheckBoxTestPage.class));
-//        tests.addSubItem(new MenuItem("Tables", TablesTestPage.class));
-
         menuEntries.add(widgets);
         menuEntries.add(eager);
-//        menuEntries.add(tests);
+
 
         return menuEntries;
     }

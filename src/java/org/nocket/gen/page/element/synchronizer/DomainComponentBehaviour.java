@@ -28,8 +28,7 @@ import org.nocket.gen.page.element.TextAreaElement;
 import org.nocket.gen.page.element.TextInputElement;
 import org.nocket.gen.page.visitor.bind.builder.components.GeneratedBeanValidationForm;
 import org.nocket.gen.page.visitor.bind.builder.components.GeneratedButton;
-
-import de.bertelsmann.coins.general.error.Assert;
+import org.nocket.util.Assert;
 
 /**
  * This behavior class manipulates components in several ways.<br/>

@@ -13,10 +13,9 @@ import org.nocket.gen.domain.ref.DomainClassReferenceFactory;
 import org.nocket.gen.domain.ref.DomainReferenceFactoryI;
 import org.nocket.gen.domain.visitor.DMDWebGenVisitor;
 import org.nocket.gen.domain.visitor.DomainElementVisitorI;
+import org.nocket.util.ArgReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import cuba.util.ArgReader;
 
 public class DMDWebGen {
 

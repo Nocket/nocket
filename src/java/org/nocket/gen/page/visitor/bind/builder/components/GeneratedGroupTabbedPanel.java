@@ -31,9 +31,8 @@ import org.nocket.gen.page.DMDWebGenPageContext;
 import org.nocket.gen.page.element.GroupTabbedPanelElement;
 import org.nocket.gen.page.element.synchronizer.SynchronizerHelper;
 import org.nocket.gen.page.guiservice.DMDWebGenGuiServiceProvider;
-
-import de.bertelsmann.coins.general.error.Assert;
-import dmdweb.util.RichtigSchwereOMGException;
+import org.nocket.util.Assert;
+import org.nocket.util.NocketRuntimeException;
 
 public class GeneratedGroupTabbedPanel extends DMDTabbedPanel<ITab> {
 
@@ -98,7 +97,7 @@ public class GeneratedGroupTabbedPanel extends DMDTabbedPanel<ITab> {
 	try {
 	    clazz = Class.forName(panelClassName);
 	} catch (ClassNotFoundException e) {
-	    new RichtigSchwereOMGException(e);
+	    new NocketRuntimeException(e);
 	}
 	return clazz;
     }
@@ -118,17 +117,17 @@ public class GeneratedGroupTabbedPanel extends DMDTabbedPanel<ITab> {
 		    Panel newInstance = constructor.newInstance(panelId, model);
 		    return newInstance;
 		} catch (NoSuchMethodException e) {
-		    new RichtigSchwereOMGException(e);
+		    new NocketRuntimeException(e);
 		} catch (SecurityException e) {
-		    new RichtigSchwereOMGException(e);
+		    new NocketRuntimeException(e);
 		} catch (InstantiationException e) {
-		    new RichtigSchwereOMGException(e);
+		    new NocketRuntimeException(e);
 		} catch (IllegalAccessException e) {
-		    new RichtigSchwereOMGException(e);
+		    new NocketRuntimeException(e);
 		} catch (IllegalArgumentException e) {
-		    new RichtigSchwereOMGException(e);
+		    new NocketRuntimeException(e);
 		} catch (InvocationTargetException e) {
-		    new RichtigSchwereOMGException(e);
+		    new NocketRuntimeException(e);
 		}
 		return null;
 	    }
@@ -248,11 +247,11 @@ public class GeneratedGroupTabbedPanel extends DMDTabbedPanel<ITab> {
 	    }
 
 	} catch (IllegalAccessException e) {
-	    new RichtigSchwereOMGException(e);
+	    new NocketRuntimeException(e);
 	} catch (IllegalArgumentException e) {
-	    new RichtigSchwereOMGException(e);
+	    new NocketRuntimeException(e);
 	} catch (InvocationTargetException e) {
-	    new RichtigSchwereOMGException(e);
+	    new NocketRuntimeException(e);
 	}
 
     }

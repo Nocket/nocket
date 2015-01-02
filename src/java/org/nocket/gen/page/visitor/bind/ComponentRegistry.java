@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.wicket.Component;
-
-import de.bertelsmann.coins.general.error.Assert;
+import org.nocket.util.Assert;
 
 // TODO: Auto-generated Javadoc
 /**

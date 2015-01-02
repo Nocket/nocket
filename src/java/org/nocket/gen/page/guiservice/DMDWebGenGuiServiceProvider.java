@@ -33,10 +33,9 @@ import org.nocket.gen.page.element.ModalElement;
 import org.nocket.gen.page.element.synchronizer.SynchronizerHelper;
 import org.nocket.page.DMDPageFactory;
 import org.nocket.page.DMDPanelFactory;
+import org.nocket.util.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import de.bertelsmann.coins.general.error.Assert;
 
 @SuppressWarnings("serial")
 public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable {

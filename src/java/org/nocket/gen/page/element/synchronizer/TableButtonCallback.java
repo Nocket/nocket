@@ -26,10 +26,8 @@ import org.nocket.gen.page.DMDWebGenPageContext;
 import org.nocket.gen.page.element.FormElement;
 import org.nocket.gen.page.element.synchronizer.error.MethodExceptionHandlerI;
 import org.nocket.gen.page.guiservice.DMDWebGenGuiServiceProvider;
+import org.nocket.util.Assert;
 
-import de.bertelsmann.coins.general.error.Assert;
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class TableButtonCallback.
  */

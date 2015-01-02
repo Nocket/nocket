@@ -11,8 +11,7 @@ import org.nocket.gen.domain.element.ButtonElement;
 import org.nocket.gen.page.DMDWebGenPageContext;
 import org.nocket.gen.page.element.PageElementI;
 import org.nocket.gen.page.element.synchronizer.ButtonCallback;
-
-import de.bertelsmann.coins.general.error.Assert;
+import org.nocket.util.Assert;
 
 public class CloserHandler implements Serializable {
     private static final long serialVersionUID = 1L;

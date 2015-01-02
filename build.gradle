@@ -57,8 +57,7 @@ sourceSets {
 }
 
 test{
-	// should be removed (only temporary enabled)
-	ignoreFailures = true
+	ignoreFailures = false
 	// exclusion of the test suites prevents double execution of test cases.
 	exclude '**/*Suite.class'
 }

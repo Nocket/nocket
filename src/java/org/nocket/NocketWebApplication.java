@@ -24,6 +24,8 @@ import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.cycle.RequestCycleContext;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.util.time.Duration;
+import org.nocket.component.CSSResourceInjector;
+import org.nocket.component.JavaScriptResourceInjector;
 import org.nocket.component.header.jquery.JQueryHelper;
 import org.nocket.gen.WebGUISession;
 import org.nocket.gen.domain.WebDomainProperties;
@@ -52,6 +54,8 @@ abstract public class NocketWebApplication extends WebApplication {
 		getMarkupSettings().setMarkupFactory(getMarkupFactory());
 		getPageSettings().addComponentResolver(new LabelI18NMarkupFilter());
 		getJavaScriptLibrarySettings().setJQueryReference(new PackageResourceReference(JQueryHelper.class, JQueryHelper.getCurrentVersion()));
+		getComponentInstantiationListeners().add(new CSSResourceInjector());
+		getComponentInstantiationListeners().add(new JavaScriptResourceInjector());
 
 		initGenguiWebConfiguration();
 		initGenguiI18N();

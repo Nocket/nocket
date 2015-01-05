@@ -8,6 +8,8 @@ import org.apache.wicket.IRequestCycleProvider;
 import org.apache.wicket.Page;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.Session;
+import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.core.request.mapper.IMapperContext;
 import org.apache.wicket.core.util.resource.locator.ResourceStreamLocator;
 import org.apache.wicket.markup.MarkupFactory;
@@ -16,7 +18,6 @@ import org.apache.wicket.markup.MarkupResourceStream;
 import org.apache.wicket.markup.parser.filter.WicketTagIdentifier;
 import org.apache.wicket.page.CouldNotLockPageException;
 import org.apache.wicket.page.PageAccessSynchronizer;
-import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
 import org.apache.wicket.request.component.IRequestablePage;
@@ -40,7 +41,7 @@ import org.nocket.util.DMDRequestCycle;
  * 
  * @author less02
  */
-abstract public class NocketWebApplication extends WebApplication {
+abstract public class NocketWebApplication extends AuthenticatedWebApplication {
 
 	/**
 	 * @see org.apache.wicket.Application#init()
@@ -111,21 +112,15 @@ abstract public class NocketWebApplication extends WebApplication {
 	}
 
 	/**
-	 * @see org.apache.wicket.Application#newSession(org.apache.wicket.request.Request,
-	 *      org.apache.wicket.request.Response)
-	 */
-	@Override
-	public Session newSession(Request request, Response response) {
-		return new NocketSession(request);
-	}
-
-	/**
 	 * Application subclasses must specify a login page class by implementing
 	 * this abstract method. If application has no login page return null.
 	 * 
 	 * @return Login page class for this application
 	 */
-	abstract public Class<? extends Page> getLoginPage();
+	@Override
+	protected Class<? extends AbstractAuthenticatedWebSession> getWebSessionClass() {
+		return NocketSession.class;
+	}
 
 	@Override
 	public Class<? extends Page> getHomePage() {

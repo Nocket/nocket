@@ -1,6 +1,7 @@
 package org.nocket.test;
 
 import org.apache.wicket.Page;
+import org.apache.wicket.markup.html.WebPage;
 import org.nocket.NocketWebApplication;
 import org.nocket.test.page.BrowserTestsPage;
 
@@ -14,12 +15,9 @@ public class BrowserTestsWebApplication extends NocketWebApplication {
         return BrowserTestsPage.class;
     }
 
-    /**
-     * @see dmdweb.DMDWebApplication#getLoginPage()
-     */
-    @Override
-    public Class<? extends Page> getLoginPage() {
-        return BrowserTestsPage.class;
-    }
+	@Override
+	protected Class<? extends WebPage> getSignInPageClass() {
+		return BrowserTestsPage.class;
+	}
 
 }

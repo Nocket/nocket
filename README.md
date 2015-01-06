@@ -1,9 +1,6 @@
 
 # Nocket
 
-### This is the branch for the ongoing development. If you are looking for a stable release go to the master branch.
-
-
 ### Vorbereitung
 
 zu installierende Eclipse Plug-Ins:
@@ -50,11 +47,10 @@ Die generierten Dateien findet man unter `build/libs`, für das Testen in Eclips
 
     `gradle buildRelease`  // generiert das JAR und ein WAR mit den Beispielen
 
-    
 ### Release in Gradle einbinden
 
     dependencies {
-        compile "org.nocket:nocket:0.1.1"
+        compile "org.nocket:nocket:0.2.0"
     }
     
     repositories { 

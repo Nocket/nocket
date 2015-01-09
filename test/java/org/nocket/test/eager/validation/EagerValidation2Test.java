@@ -24,8 +24,7 @@ public class EagerValidation2Test implements Serializable {
 	@Eager
 	public void setToogler(boolean toogler) {
 		this.toogler = toogler;
-		kontonummer = null;
-		blz = null;
+		doChangesForEager();
 	}
 
 	public String getKontonummer() {
@@ -72,5 +71,16 @@ public class EagerValidation2Test implements Serializable {
 	@Eager
 	public void setTextEager(String textEager) {
 		this.textEager = textEager;
+		doChangesForEager();
 	}
+
+	private void doChangesForEager() {
+		if(toogler) {
+			kontonummer = null;
+			blz = null;
+		}
+		
+	}
+	
+	
 }

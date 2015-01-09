@@ -45,7 +45,6 @@ public class EagerAjaxFormSubmitBehavior extends AjaxFormSubmitBehavior {
 
 	@Override
 	protected void onError(final AjaxRequestTarget target) {
-		//SynchronizerHelper.synchronizeModelsForValidInput(Form.findForm(getComponent()));
 		finalize(target);
 	}
 

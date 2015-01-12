@@ -30,7 +30,11 @@ Falls es Probleme mit einem Proxy gibt, folgende Datei im `.gradle`-Verzeichnis 
     systemProp.http.proxyHost=<proxy ip>
     systemProp.http.proxyPort=8080
     systemProp.http.nonProxyHosts=localhost
-    
+
+### Eigene Features entwickeln
+
+https://github.com/Nocket/nocket/wiki
+
 ### Releasefähige Dateien erzeugen
 
 Die generierten Dateien findet man unter `build/libs`, für das Testen in Eclipse ist das generieren der Artefakte nicht notwendig.

@@ -31,7 +31,7 @@ Falls es Probleme mit einem Proxy gibt, folgende Datei im `.gradle`-Verzeichnis 
     systemProp.http.proxyPort=8080
     systemProp.http.nonProxyHosts=localhost
 
-### Eigene Features entwickeln
+### Eigene Features entwickeln / Arbeiten mit Branches
 
 https://github.com/Nocket/nocket/wiki
 

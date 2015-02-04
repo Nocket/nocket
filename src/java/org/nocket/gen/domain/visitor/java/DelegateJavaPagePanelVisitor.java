@@ -1,4 +1,6 @@
-package org.nocket.gen.domain.visitor.properties;
+package org.nocket.gen.domain.visitor.java;
+
+import gengui.domain.AbstractDomainReference;
 
 import org.nocket.gen.domain.DMDWebGenContext;
 import org.nocket.gen.domain.element.ButtonElement;
@@ -11,35 +13,20 @@ import org.nocket.gen.domain.element.ResourceElement;
 import org.nocket.gen.domain.element.SimplePropertyElement;
 import org.nocket.gen.domain.visitor.AbstractDomainElementVisitor;
 import org.nocket.gen.domain.visitor.DomainElementVisitorI;
-import org.nocket.gen.domain.visitor.DummyVisitor;
 
-import gengui.domain.AbstractDomainReference;
-
-/**
- * The Class DelegatePropertiesVisitor.
- *
- * @param <E> the element type
- */
-public class DelegatePropertiesVisitor<E extends AbstractDomainReference> extends AbstractDomainElementVisitor<E> {
+public class DelegateJavaPagePanelVisitor<E extends AbstractDomainReference> extends AbstractDomainElementVisitor<E>{
 
     /** The delegate. */
     private final DomainElementVisitorI<E> delegate;
 
-    /**
-     * Instantiates a new delegate properties visitor.
-     *
-     * @param context the context
-     */
-    public DelegatePropertiesVisitor(DMDWebGenContext<E> context) {
-        super(context);
-        if (context.getDomainProperties().isJFDLocalizationOnce()) {
-            this.delegate = new DummyVisitor<E>(context);
-        } else if (context.getDomainProperties().isLocalizationWicket()) {
-            this.delegate = new WicketPropertiesVisitor<E>(context);
-        } else {
-            this.delegate = new GenguiPropertiesVisitor<E>(context);
-        }
-    }
+	public DelegateJavaPagePanelVisitor(DMDWebGenContext<E> context) {
+		super(context);
+		if(context.getGeneratePanel()) {
+			delegate = new JavaPanelGeneratorVisitor<E>(context);
+		} else {
+			delegate = new JavaPageGeneratorVisitor<E>(context);
+		}
+	}
 
     /* (non-Javadoc)
      * @see org.nocket.gen.domain.visitor.DomainElementVisitorI#visitSimpleProperty(org.nocket.gen.domain.element.SimplePropertyElement)

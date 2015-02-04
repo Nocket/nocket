@@ -31,7 +31,7 @@ import org.apache.wicket.util.visit.IVisit;
 import org.apache.wicket.util.visit.IVisitor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.nocket.gen.domain.DMDWebGen;
+import org.nocket.gen.domain.NocketGenerator;
 import org.nocket.gen.domain.DMDWebGenContext;
 import org.nocket.gen.domain.DomainProcessor;
 import org.nocket.gen.domain.HTMLDocumentCachingPolicy;
@@ -277,7 +277,7 @@ public class DMDWebGenPageContext implements Serializable {
         Class<? extends MarkupContainer> pageClass = getPage().getClass();
         Class<?> domainClass = getRefFactory().getRootReference().getClassRef().getDomainClass();
         boolean generatePanel = props.getHTMLPanelBaseClass().isAssignableFrom(pageClass);
-        new DMDWebGen().generateHTML(domainClass, generatePanel, null, null, null, null);
+        new NocketGenerator().generateHTML(domainClass, generatePanel, null, null, null, null);
     }
 
     protected InputStream openResourceStream(IResourceStream rstream) {

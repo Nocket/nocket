@@ -6,8 +6,7 @@ import java.text.MessageFormat;
 import java.util.Properties;
 
 import org.apache.commons.io.IOUtils;
-
-import de.bertelsmann.coins.general.error.AssertionException;
+import org.nocket.util.AssertionException;
 
 /**
  * Abstrakte Oberklasse alle Util-Klassen um Property-Dateien zu lesen und zu

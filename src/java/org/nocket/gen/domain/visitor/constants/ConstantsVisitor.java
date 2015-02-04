@@ -26,8 +26,7 @@ import org.nocket.gen.domain.element.MultivaluePropertyElement;
 import org.nocket.gen.domain.element.ResourceElement;
 import org.nocket.gen.domain.element.SimplePropertyElement;
 import org.nocket.gen.domain.visitor.AbstractDomainElementVisitor;
-
-import de.bertelsmann.coins.general.error.Assert;
+import org.nocket.util.Assert;
 
 /**
  * This visitor generates a utility class with constants definitions for the

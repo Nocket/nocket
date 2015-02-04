@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head>
+<link href="../../../../../resources/webapp/css/bootstrap.css"
+	type="text/css" rel="stylesheet" />
+<link href="../../../../../resources/webapp/css/arvatoStyle.css"
+	type="text/css" rel="stylesheet" />
+</head>
+<body>
+	<wicket:extend>
+		<!-- <div wicket:id='feedback'></div>  -->
+		<div wicket:id="modal"></div>
+		<form wicket:id="form" class="form-horizontal">
+			<section>
+				<p><strong>Test Case: Basic usage of "@Eager" annotation</strong></p>
+				<p>Fields: "Text Eager" and "Text Eager Nested" are annotated with "@Eager". Changed done to these fields, are reflected in read-only 
+				field - "Text Eager Echo". Field "Text" is not eager. There are no validations.</p>
+				<p>
+					<strong>Test scenario:</strong>
+				</p>
+				<ol>
+					<li>Focus "Text Eager" field. Write input "abc". Leave the field.</li>
+					<li>Field "Text Eager Echo" equals "Text Eager: abc".</li>
+					<li>Focus "Text Eager Nested" field. Write input "def". Leave the field.</li>
+					<li>Field "Text Eager Echo" equals "Text Eager Nested: def".</li>
+					<li>Focus "Text" field. Write input "qwe". Leave the field.</li>
+					<li>No change.</li>
+				</ol>
+				<fieldset>
+					<div class="control-group">
+						<label for="TextEager" class="control-label">Text Eager</label>
+						<div class="controls">
+							<input id="TextEager" type="text" wicket:id="TextEager" />
+						</div>
+					</div>
+                    <div class="control-group">
+                        <label for="NestedObject.TextEager" class="control-label" wicket:id="NestedObject.TextEager.label">Text Eager</label>
+                        <div class="controls">
+                            <input id="NestedObject.TextEager" type="text" wicket:id="NestedObject.TextEager" />
+                        </div>
+                    </div>
+					<div class="control-group">
+						<label for="TextEagerEcho" class="control-label">Text Eager Echo</label>
+						<div class="controls">
+							<input id="TextEagerEcho" type="text" wicket:id="TextEagerEcho" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label for="Text" class="control-label">Text</label>
+						<div class="controls">
+							<input id="Text" type="text" wicket:id="Text" />
+						</div>
+					</div>
+				</fieldset>
+			</section>
+			<footer class="form-actions">
+				<button id="save" class="btn btn-primary" wicket:id="save"
+					type="submit">
+					<span wicket:id="save.label">Save</span>
+				</button>
+			</footer>
+		</form>
+	</wicket:extend>
+</body>
+</html>

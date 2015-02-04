@@ -11,9 +11,8 @@ import org.nocket.NocketSession;
 import org.nocket.gen.page.element.ButtonElement;
 import org.nocket.gen.page.element.synchronizer.error.MethodExceptionHandlerI;
 import org.nocket.gen.page.guiservice.DMDWebGenGuiServiceProvider;
-
-import de.bertelsmann.coins.general.error.Assert;
-import de.bertelsmann.coins.general.error.AssertionException;
+import org.nocket.util.Assert;
+import org.nocket.util.AssertionException;
 
 // TODO: Auto-generated Javadoc
 /**

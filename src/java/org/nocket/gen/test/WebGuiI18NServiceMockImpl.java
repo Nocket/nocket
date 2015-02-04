@@ -12,8 +12,7 @@ import org.nocket.component.modal.ModalSettings.ButtonDef;
 import org.nocket.gen.page.guiservice.ModalResultCallback;
 import org.nocket.gen.page.guiservice.WebGuiI18NServiceI;
 import org.nocket.gen.page.guiservice.WebGuiServiceI;
-
-import de.bertelsmann.coins.general.error.AssertionException;
+import org.nocket.util.AssertionException;
 
 public class WebGuiI18NServiceMockImpl implements WebGuiI18NServiceI, WebGuiServiceI {
 

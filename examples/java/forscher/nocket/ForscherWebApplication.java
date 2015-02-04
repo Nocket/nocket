@@ -1,11 +1,10 @@
 package forscher.nocket;
 
-import forscher.nocket.page.HomePage;
-import gengui.util.I18n;
-import gengui.util.I18nPropertyBasedImpl;
-
 import org.apache.wicket.Page;
+import org.apache.wicket.markup.html.WebPage;
 import org.nocket.NocketWebApplication;
+
+import forscher.nocket.page.HomePage;
 
 public class ForscherWebApplication extends NocketWebApplication {
 
@@ -13,8 +12,8 @@ public class ForscherWebApplication extends NocketWebApplication {
 	public void init() {
 		super.init();
 		// Let's try a gengui-based translation :-)
-		I18n i18n = new I18nPropertyBasedImpl();
-		System.out.println("UEBERSETZUNGSTEXT: " + i18n.translate("context.menu.copy"));
+//		I18n i18n = new I18nPropertyBasedImpl();
+//		System.out.println("UEBERSETZUNGSTEXT: " + i18n.translate("context.menu.copy"));
 	}
 
 	/**
@@ -25,11 +24,8 @@ public class ForscherWebApplication extends NocketWebApplication {
 		return HomePage.class;
 	}
 
-	/**
-	 * @see org.nocket.NocketWebApplication#getLoginPage()
-	 */
 	@Override
-	public Class<? extends Page> getLoginPage() {
+	protected Class<? extends WebPage> getSignInPageClass() {
 		return null;
 	}
 

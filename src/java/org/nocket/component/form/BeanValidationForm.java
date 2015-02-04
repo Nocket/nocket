@@ -1,3 +1,4 @@
+
 package org.nocket.component.form;
 
 import gengui.util.SevereGUIException;
@@ -23,41 +24,38 @@ import org.nocket.component.form.behaviors.ValidationStyleGroupBehavior;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// TODO: Auto-generated Javadoc
 /**
  * Wicket Form with support for bean validation JSR 302 API.
- *
+ * 
  * @author blaz02
- * @param <T> the generic type
  */
 public class BeanValidationForm<T> extends Form<T> {
 
-    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
-    /** The Constant log. */
     private static final Logger log = LoggerFactory.getLogger(BeanValidationForm.class);
 
-    /** The validators added. */
     private boolean validatorsAdded = false;
 
-    /** The edit mode. */
     private boolean editMode;
 
-    /** The validation style behavior class. */
     private Class<? extends AbstractTransformerBehavior> validationStyleBehaviorClass;
-    
-    /** The validation style group behavior class. */
     private Class<? extends AbstractTransformerBehavior> validationStyleGroupBehaviorClass;
 
     /**
      * Constructor for the form. Entity is a simple POJO with annotations
      * following JSR 303 Bean Validation standard. Entity and its nested POJOs
      * cannot be null. Internally entity will be put
-     * {@link DMDCompoundPropertyModel}.
-     *
-     * @param id            wicket's id of the form.
-     * @param entity            instance of the entity.
+     * {@link DMDCompundPropertyModel}.
+     * 
+     * @param id
+     *            wicket's id of the form.
+     * @param entity
+     *            instance of the entity.
+     * 
+     * @throws IllegalStateException
+     *             if the entity is null or if any nested POJOs is null.
+     * 
      */
     public BeanValidationForm(String id, T entity) {
         this(id, new DMDCompoundPropertyModel<T>(entity));
@@ -67,20 +65,21 @@ public class BeanValidationForm<T> extends Form<T> {
      * Constructor for the form. Entity is a simple POJO with annotations
      * following JSR 303 Bean Validation standard. Entity and its nested POJOs
      * cannot be null. Internally entity will be put
-     * {@link DMDCompoundPropertyModel}.
-     *
-     * @param id            wicket's id of the form.
-     * @param model the model
+     * {@link DMDCompundPropertyModel}.
+     * 
+     * @param id
+     *            wicket's id of the form.
+     * @param entity
+     *            instance of the entity.
+     * 
+     * @throws IllegalStateException
+     *             if the entity is null or if any nested POJOs is null.
+     * 
      */
     public BeanValidationForm(String id, IModel<T> model) {
         this(id, new DMDCompoundPropertyModel<T>(model));
     }
 
-    /**
-     * Adds the with validation.
-     *
-     * @param childs the childs
-     */
     public void addWithValidation(final Component... childs) {
         super.add(childs);
     }
@@ -88,9 +87,16 @@ public class BeanValidationForm<T> extends Form<T> {
     /**
      * Constructor for the form. The model and the object within it cannot be
      * null.
-     *
-     * @param id            Wicket's id of the form.
-     * @param model the model
+     * 
+     * @param id
+     *            Wicket's id of the form.
+     * @param entity
+     *            Instance of {@link DMDCompundPropertyModel}.
+     * 
+     * @throws IllegalStateException
+     *             if the model object entity is null or if any nested POJOs is
+     *             null.
+     * 
      */
     public BeanValidationForm(String id, DMDCompoundPropertyModel<T> model) {
         super(id, model);
@@ -98,27 +104,14 @@ public class BeanValidationForm<T> extends Form<T> {
             throw new IllegalStateException("Model cannot be null.");
     }
 
-    /**
-     * Checks if is edits the mode.
-     *
-     * @return true, if is edits the mode
-     */
     public boolean isEditMode() {
         return editMode;
     }
 
-    /**
-     * Sets the edits the mode.
-     *
-     * @param editMode the new edits the mode
-     */
     public void setEditMode(boolean editMode) {
         this.editMode = editMode;
     }
 
-    /* (non-Javadoc)
-     * @see org.apache.wicket.markup.html.form.Form#onBeforeRender()
-     */
     @Override
     protected void onBeforeRender() {
         super.onBeforeRender();
@@ -154,9 +147,9 @@ public class BeanValidationForm<T> extends Form<T> {
                                 msg.append(". Descriptor found.");
                                 log.debug(msg.toString());
                             }
-                            c.add(new JSR303Validator<T>(getValidatorPropertyPath(c), getValidatorPropertyPrompt(c),
-                                    desc.getEntityClass(),
-                                    editMode ? c.getModel() : null));
+//                            c.add(new JSR303Validator<T>(getValidatorPropertyPath(c), getValidatorPropertyPrompt(c),
+//                                    desc.getEntityClass(),
+//                                    editMode ? c.getModel() : null));
                             c.add(newValidationStyleBehavior(!belongsToGroupBorder(c)));
                         } else {
                             msg.append(". Descriptor NOT found.");
@@ -172,12 +165,6 @@ public class BeanValidationForm<T> extends Form<T> {
         }
     }
 
-    /**
-     * Gets the validator property path.
-     *
-     * @param c the c
-     * @return the validator property path
-     */
     protected String getValidatorPropertyPath(FormComponent c) {
         return c.getId();
     }
@@ -185,8 +172,9 @@ public class BeanValidationForm<T> extends Form<T> {
     /**
      * Methods return True, if the specified component has a parent of Class
      * ComponentGroup.
-     *
-     * @param component the component
+     * 
+     * @param component
+     * 
      * @return true if the specified component has a parent of class
      *         {@link ComponentGroup}.
      */
@@ -221,12 +209,6 @@ public class BeanValidationForm<T> extends Form<T> {
         return null;
     }
 
-    /**
-     * Gets the validator property prompt.
-     *
-     * @param c the c
-     * @return the validator property prompt
-     */
     protected String getValidatorPropertyPrompt(FormComponent c) {
         return getComponentPropertyPath(c);
     }
@@ -234,9 +216,10 @@ public class BeanValidationForm<T> extends Form<T> {
     /**
      * Factory method for the Behavior, which will be added to every
      * FormComponent of the form. Default implementation returns
-     *
-     * @param showInline the show inline
-     * @return the behavior
+     * 
+     * @param showInline
+     * 
+     * @return
      */
     protected Behavior newValidationStyleBehavior(boolean showInline) {
         Behavior result;
@@ -248,13 +231,6 @@ public class BeanValidationForm<T> extends Form<T> {
         return result;
     }
 
-    /**
-     * Invoke behavior.
-     *
-     * @param clazz the clazz
-     * @param showInline the show inline
-     * @return the behavior
-     */
     private Behavior invokeBehavior(Class<? extends AbstractTransformerBehavior> clazz, boolean showInline) {
         try {
             Constructor<? extends AbstractTransformerBehavior> constructor = clazz.getConstructor(boolean.class);
@@ -277,8 +253,10 @@ public class BeanValidationForm<T> extends Form<T> {
     /**
      * Factory method for the Behavior, which will be added to every
      * FormComponent of the form. Default implementation returns
-     *
-     * @return the behavior
+     * 
+     * @param showInline
+     * 
+     * @return
      */
     protected Behavior newValidationStyleGroupBehavior() {
         Behavior result;
@@ -290,12 +268,6 @@ public class BeanValidationForm<T> extends Form<T> {
         return result;
     }
 
-    /**
-     * Invoke behavior.
-     *
-     * @param clazz the clazz
-     * @return the abstract transformer behavior
-     */
     private AbstractTransformerBehavior invokeBehavior(Class<? extends AbstractTransformerBehavior> clazz) {
         try {
             return clazz.newInstance();
@@ -310,39 +282,19 @@ public class BeanValidationForm<T> extends Form<T> {
         }
     }
 
-    /**
-     * Gets the validation style behavior class.
-     *
-     * @return the validation style behavior class
-     */
     public Class<? extends AbstractTransformerBehavior> getValidationStyleBehaviorClass() {
         return validationStyleBehaviorClass;
     }
 
-    /**
-     * Sets the validation style behavior class.
-     *
-     * @param validationStyleBehaviorClass the new validation style behavior class
-     */
     public void setValidationStyleBehaviorClass(
             Class<? extends AbstractTransformerBehavior> validationStyleBehaviorClass) {
         this.validationStyleBehaviorClass = validationStyleBehaviorClass;
     }
 
-    /**
-     * Gets the validation style group behavior class.
-     *
-     * @return the validation style group behavior class
-     */
     public Class<? extends AbstractTransformerBehavior> getValidationStyleGroupBehaviorClass() {
         return validationStyleGroupBehaviorClass;
     }
 
-    /**
-     * Sets the validation style group behavior class.
-     *
-     * @param validationStyleGroupBehaviorClass the new validation style group behavior class
-     */
     public void setValidationStyleGroupBehaviorClass(
             Class<? extends AbstractTransformerBehavior> validationStyleGroupBehaviorClass) {
         this.validationStyleGroupBehaviorClass = validationStyleGroupBehaviorClass;

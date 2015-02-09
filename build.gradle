@@ -11,10 +11,6 @@ ext {
 	// current user
 	username = System.properties["user.name"]
 	
-	// tomcat config for integration tests
-	serverStopPort = 8081
-	serverStopKey = 'stopKey'
-	
 	// define config property to load user specific *build* configuration
 	config = loadConfiguration()
 }
@@ -22,7 +18,7 @@ ext {
 // using semantic versioning, see http://semver.org/
 group = "org.nocket"
 archivesBaseName = "nocket"
-version = new Version(major: 0, minor: 2, revision: 1)
+version = new Version(major: 0, minor: 3, revision: 0)
 
 sourceCompatibility = config.java.source
 
@@ -202,18 +198,18 @@ uploadArchives {
 }
 
 task integrationServerRun(type: com.bmuschko.gradle.tomcat.tasks.TomcatRunWar) {
-	stopPort = serverStopPort
-	stopKey = serverStopKey
+	stopPort = config.server.stopPort
+	stopKey = config.server.stopKey
 	daemon = true
 }
 
 task integrationServerStop(type: com.bmuschko.gradle.tomcat.tasks.TomcatStop) {
-	stopPort = serverStopPort
-	stopKey = serverStopKey
+	stopPort = config.server.stopPort
+	stopKey = config.server.stopKey
 }
 // all tests are selenium tests
 test {
-	ignoreFailures = false
+	ignoreFailures = true
 	// exclusion of the test suites prevents double execution of test cases.
 	exclude '**/*Suite.class'
 
@@ -286,7 +282,6 @@ assemble {
 
 dependencies {
 	def wicketVersion = "6.9.+"
-	def tomcatVersion = '7.0.11'
 	
 	// wicket
 	compile "org.apache.wicket:wicket:${wicketVersion}"
@@ -322,9 +317,9 @@ dependencies {
 	testCompile "com.github.detro.ghostdriver:phantomjsdriver:1.1.0"
 
 	// tomcat for selenium
-	tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}"
-	tomcat "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}"
-	tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}") {
+	tomcat "org.apache.tomcat.embed:tomcat-embed-core:${config.server.version}"
+	tomcat "org.apache.tomcat.embed:tomcat-embed-logging-juli:${config.server.version}"
+	tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${config.server.version}") {
 		exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
 	}
 }

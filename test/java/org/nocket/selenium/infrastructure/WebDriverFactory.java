@@ -1,12 +1,10 @@
 /*
  * WebDriverFactory.java
- *
- * Created on 06.03.2013
- *
- * Copyright (C) 2013 Volkswagen AG, All rights reserved.
  */
 
 package org.nocket.selenium.infrastructure;
+
+import com.gargoylesoftware.htmlunit.BrowserVersion;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,13 +20,10 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import com.gargoylesoftware.htmlunit.BrowserVersion;
-
-// TODO: Auto-generated Javadoc
 /**
  * Factory to instantiate a WebDriver object. It returns an instance of the
  * driver (local invocation) or an instance of RemoteWebDriver
- * 
+ *
  * @author Sebastiano Armeli-Battana
  */
 public final class WebDriverFactory {
@@ -78,7 +73,7 @@ public final class WebDriverFactory {
 
 	/**
 	 * Factory method to return a WebDriver instance given the browser to hit.
-	 * 
+	 *
 	 * @param browser
 	 *            String representing the local browser to hit
 	 * @param username
@@ -87,11 +82,10 @@ public final class WebDriverFactory {
 	 *            password for BASIC authentication on the page to test
 	 * @param start64bitVersion
 	 *            if available start a 64bit version of the browser
-	 * 
+	 *
 	 * @return WebDriver instance
 	 */
-	public static WebDriver getInstance(final String browser, final String username, final String password,
-			final boolean start64bitVersion) {
+	public static WebDriver getInstance(final String browser, final String username, final String password, final boolean start64bitVersion) {
 
 		WebDriver webDriver = null;
 		downloadDir.mkdirs();
@@ -100,16 +94,19 @@ public final class WebDriverFactory {
 			setChromeDriver();
 
 			webDriver = new ChromeDriver();
-		} else if (FIREFOX.equals(browser)) {
+		}
+		else if (FIREFOX.equals(browser)) {
 			FirefoxProfile ffProfile = getFirefoxProfile(username, password);
 
 			webDriver = new FirefoxDriver(ffProfile);
-		} else if (INTERNET_EXPLORER.equals(browser)) {
+		}
+		else if (INTERNET_EXPLORER.equals(browser)) {
 			setIEDriver(start64bitVersion);
 
 			webDriver = new InternetExplorerDriver();
 
-		} else if (PHANTOM_JS.equals(browser)) {
+		}
+		else if (PHANTOM_JS.equals(browser)) {
 			setPhantomJSDriver();
 
 			DesiredCapabilities caps = new DesiredCapabilities();
@@ -117,10 +114,12 @@ public final class WebDriverFactory {
 
 			webDriver = new PhantomJSDriver(caps);
 			webDriver.manage().window().setSize(new Dimension(800, 600));
-		} else {
+		}
+		else {
 			if (username != null && password != null) {
 				webDriver = AuthenticatedHtmlUnitDriver.create(BrowserVersion.INTERNET_EXPLORER_9, username, password);
-			} else {
+			}
+			else {
 				HtmlUnitDriver htmlUnitDriver = new HtmlUnitDriver(BrowserVersion.INTERNET_EXPLORER_9);
 				htmlUnitDriver.setJavascriptEnabled(true);
 				webDriver = htmlUnitDriver;
@@ -145,9 +144,11 @@ public final class WebDriverFactory {
 
 		if (os.equals("win")) {
 			ext = ".exe";
-		} else if (os.equals("mac")) {
+		}
+		else if (os.equals("mac")) {
 			ext = ".osx";
-		} else {
+		}
+		else {
 			ext = ".lnx";
 		}
 
@@ -157,13 +158,14 @@ public final class WebDriverFactory {
 
 	/**
 	 * Helper method to set IEDriver location
-	 * 
+	 *
 	 * @param start64bit
 	 */
 	private static void setIEDriver(boolean start64bit) {
 		if (start64bit) {
 			System.setProperty("webdriver.ie.driver", baseDriverPath + "/IEDriverServer32.exe");
-		} else {
+		}
+		else {
 			System.setProperty("webdriver.ie.driver", baseDriverPath + "/IEDriverServer64.exe");
 		}
 	}
@@ -178,14 +180,11 @@ public final class WebDriverFactory {
 
 		String useProxy = SeleniumProperties.getProperty(SeleniumProperties.ENVIROMENT_USEPROXY);
 		if (useProxy != null && useProxy.equals("true")) {
-			int proxyType = new Integer(SeleniumProperties.getProperty(SeleniumProperties.NETWORK_PROXY_TYPE))
-					.intValue();
+			int proxyType = new Integer(SeleniumProperties.getProperty(SeleniumProperties.NETWORK_PROXY_TYPE)).intValue();
 			String proxyHttp = SeleniumProperties.getProperty(SeleniumProperties.NETWORK_PROXY_HTTP);
-			int proxyPort = new Integer(SeleniumProperties.getProperty(SeleniumProperties.NETWORK_PROXY_HTTP_PORT))
-					.intValue();
+			int proxyPort = new Integer(SeleniumProperties.getProperty(SeleniumProperties.NETWORK_PROXY_HTTP_PORT)).intValue();
 			String ssl = SeleniumProperties.getProperty(SeleniumProperties.NETWORK_PROXY_SSL);
-			int sslPort = new Integer(SeleniumProperties.getProperty(SeleniumProperties.NETWORK_PROXY_SSL_PORT))
-					.intValue();
+			int sslPort = new Integer(SeleniumProperties.getProperty(SeleniumProperties.NETWORK_PROXY_SSL_PORT)).intValue();
 
 			ffProfile.setPreference("network.proxy.type", proxyType);
 			ffProfile.setPreference("network.proxy.http", proxyHttp);
@@ -201,7 +200,8 @@ public final class WebDriverFactory {
 
 		try {
 			ffProfile.addExtension(new File(baseDriverPath + "/firebug-2.0.4.xpi"));
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			// Add-On geht nicht, das ist aber doof .. trotzdem nicht schlimm
 			System.err.println("Firebug-Plugin konnte nicht geladen werden. Mache weiter ...");
 		}
@@ -224,9 +224,11 @@ public final class WebDriverFactory {
 
 		if (os.equals("win")) {
 			ext = ".exe";
-		} else if (os.equals("mac")) {
+		}
+		else if (os.equals("mac")) {
 			ext = ".osx";
-		} else {
+		}
+		else {
 			// liefert zwar nur die Architektur der Java-Version, nicht des BS,
 			// aber hoffen wir mal, dass diese übereinstimmen
 			String arch = System.getProperty("os.arch");
@@ -240,7 +242,8 @@ public final class WebDriverFactory {
 
 			if (arch.endsWith("64")) {
 				ext = "64.lnx";
-			} else {
+			}
+			else {
 				ext = "32.lnx";
 			}
 		}

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -30,7 +31,9 @@ public abstract class SeleniumTestCase {
 	@BeforeClass
 	public static void createDriver() throws Exception {
 		String webDriverName = SeleniumProperties.getProperty(SeleniumProperties.WEBDRIVER);
+		Long timeout = Long.parseLong(SeleniumProperties.getProperty(SeleniumProperties.TIMEOUT));
 		driver = WebDriverFactory.getInstance(webDriverName, null, null, false);
+		driver.manage().timeouts().pageLoadTimeout(timeout, TimeUnit.SECONDS);
 	}
 
 	@AfterClass

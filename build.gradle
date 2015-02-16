@@ -207,10 +207,7 @@ task integrationServerStop(type: com.bmuschko.gradle.tomcat.tasks.TomcatStop) {
 	stopPort = config.server.stopPort
 	stopKey = config.server.stopKey
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> dev
 // all tests are selenium tests
 test {
 	ignoreFailures = true

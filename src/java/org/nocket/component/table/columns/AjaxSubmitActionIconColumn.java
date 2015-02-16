@@ -43,7 +43,7 @@ public abstract class AjaxSubmitActionIconColumn<T> extends DMDAbstractColumn<T>
     public static final String ICON_DISBALED = "icon-disabled.png";
     
     /** The Constant ACTION_COLUMN. */
-    public static final String ACTION_COLUMN = "org.nocket-action-column";
+    public static final String ACTION_COLUMN = "nocket-action-column";
 
     /** The form. */
     private final Form<?> form;

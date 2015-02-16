@@ -8,15 +8,19 @@
 			<span wicket:id="content">[Hier kommen die anderen Panels rein]</span>
 		</div>
 		<script type="text/javascript">
-			$( '#dmdInnerModal').fadeIn( 600);
-            $( ".nocket-draggable").draggable( {
-	            handle : '.modal-header'
-            });
-            $( '.nocket-draggable').css( {
-	            'margin-left' : function() {
-		            return -($( this).width() / 2);
-	            }
-            });
+			if($("#dmdInnerModal").length !== 0) {
+				$('#dmdInnerModal').fadeIn(600);
+			}
+			if($(".nocket-draggable").length !== 0) {
+            	$(".nocket-draggable").draggable( {
+	            	handle : '.modal-header'
+            	});
+            	$('.nocket-draggable').css( {
+	            	'margin-left' : function() {
+		            	return -($( this).width() / 2);
+	            	}
+            	});
+			}
 		</script>
 	</wicket:panel>
 </body>

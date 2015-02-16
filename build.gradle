@@ -18,7 +18,7 @@ ext {
 // using semantic versioning, see http://semver.org/
 group = "org.nocket"
 archivesBaseName = "nocket"
-version = new Version(major: 0, minor: 4, revision: 0)
+version = new Version(major: 0, minor: 3, revision: 1)
 
 sourceCompatibility = config.java.source
 

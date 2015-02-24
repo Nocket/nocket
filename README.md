@@ -35,6 +35,11 @@ Falls es Probleme mit einem Proxy gibt, folgende Datei im `.gradle`-Verzeichnis 
 
 https://github.com/Nocket/nocket/wiki
 
+### Beispielanwendung starten
+
+    gradle tomcatRunWar
+    
+
 ### Releasefähige Dateien erzeugen
 
 Die generierten Dateien findet man unter `build/libs`, für das Testen in Eclipse ist das generieren der Artefakte nicht notwendig.

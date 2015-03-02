@@ -1,4 +1,4 @@
-package org.nocket.gen.domain.visitor.html;
+package org.nocket.gen.domain.visitor.html.layout;
 
 import gengui.guibuilder.FormBuilder;
 import gengui.util.ReflectionUtil;
@@ -32,7 +32,7 @@ import org.nocket.gen.domain.element.ResourceElement;
 import org.nocket.gen.domain.element.SimplePropertyElement;
 import org.nocket.gen.page.element.SelectElement;
 
-abstract public class AbstractHtmlComponentBuilder {
+abstract public class AbstractHtmlLayoutStrategy implements HtmlBuilderStrategyI {
 
     public static final String ATTR_WICKET_ID = "wicket:id";
     public static final String ATTR_WICKET_FOR = "wicket:for";
@@ -44,11 +44,11 @@ abstract public class AbstractHtmlComponentBuilder {
     public static final String ATTR_VALUE_ACTIONCOLUMN = "actionColumn";
     public static final String ATTR_VALUE_WICKET_ORDER_UP = "wicket_orderUp";
     public static final String ATTR_VALUE_WICKET_ORDER_NONE = "wicket_orderNone";
-    public static final String ATTR_VALUE_WICKET_ORDER_DOWN = "wicket_orderDown";
-
+	public static final String ATTR_VALUE_WICKET_ORDER_DOWN = "wicket_orderDown";
+	
     protected final DMDWebGenContext<?> context;
 
-    protected AbstractHtmlComponentBuilder(DMDWebGenContext<?> context) {
+    protected AbstractHtmlLayoutStrategy(DMDWebGenContext<?> context) {
         this.context = context;
     }
 

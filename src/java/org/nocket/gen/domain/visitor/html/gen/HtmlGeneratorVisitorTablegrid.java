@@ -20,9 +20,9 @@ import org.apache.ecs.html.Table;
 import org.nocket.gen.domain.DMDWebGenContext;
 import org.nocket.gen.domain.element.ButtonElement;
 import org.nocket.gen.domain.element.HeadlineElement;
-import org.nocket.gen.domain.visitor.html.HtmlComponentBuilderTablegrid;
+import org.nocket.gen.domain.visitor.html.layout.HtmlComponentBuilderTablegrid;
 
-public class HtmlGeneratorVisitorTablegrid<E extends AbstractDomainReference> extends AbstractHtmlGeneratorVisitor<E> {
+public class HtmlGeneratorVisitorTablegrid<E extends AbstractDomainReference> extends CreateHtmlVisitor<E> {
 
     public static final int NUMBER_GRID_ROWS = 5;
 

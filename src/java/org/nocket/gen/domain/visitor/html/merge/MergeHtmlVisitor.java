@@ -25,21 +25,21 @@ import org.nocket.gen.domain.element.HiddenPropertyElement;
 import org.nocket.gen.domain.element.MultivaluePropertyElement;
 import org.nocket.gen.domain.element.ResourceElement;
 import org.nocket.gen.domain.element.SimplePropertyElement;
-import org.nocket.gen.domain.visitor.html.AbstractHtmlComponentBuilder;
 import org.nocket.gen.domain.visitor.html.AbstractHtmlVisitor;
+import org.nocket.gen.domain.visitor.html.layout.HtmlBuilderStrategyI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AbstractHtmlMergeVisitor<E extends AbstractDomainReference> extends AbstractHtmlVisitor<E> {
+public class MergeHtmlVisitor<E extends AbstractDomainReference> extends AbstractHtmlVisitor<E> {
 
-    final private static Logger log = LoggerFactory.getLogger(AbstractHtmlMergeVisitor.class);
+    final private static Logger log = LoggerFactory.getLogger(MergeHtmlVisitor.class);
 
     private final Deque<AbstractMergeLayer<?>> panelStack = new ArrayDeque<AbstractMergeLayer<?>>();
-    private final AbstractHtmlComponentBuilder componentBuilder;
+    private final HtmlBuilderStrategyI componentBuilder;
     protected final Document document;
     private String originalHtml;
 
-    public AbstractHtmlMergeVisitor(DMDWebGenContext<E> context, AbstractHtmlComponentBuilder componentBuilder) {
+    public MergeHtmlVisitor(DMDWebGenContext<E> context, HtmlBuilderStrategyI componentBuilder) {
         super(context);
         this.componentBuilder = componentBuilder;
         try {

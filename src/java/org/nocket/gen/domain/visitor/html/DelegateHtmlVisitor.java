@@ -1,5 +1,8 @@
 package org.nocket.gen.domain.visitor.html;
 
+import gengui.domain.AbstractDomainReference;
+import gengui.util.DomainProperties.JfdRetentionStrategy;
+
 import org.nocket.gen.domain.DMDWebGenContext;
 import org.nocket.gen.domain.LayoutStrategy;
 import org.nocket.gen.domain.element.AbstractDomainElement;
@@ -13,55 +16,24 @@ import org.nocket.gen.domain.element.ResourceElement;
 import org.nocket.gen.domain.element.SimplePropertyElement;
 import org.nocket.gen.domain.visitor.DomainElementVisitorI;
 import org.nocket.gen.domain.visitor.DummyVisitor;
-import org.nocket.gen.domain.visitor.html.gen.HtmlGeneratorVisitorBootstrap;
-import org.nocket.gen.domain.visitor.html.gen.HtmlGeneratorVisitorTablegrid;
-import org.nocket.gen.domain.visitor.html.merge.HtmlMergeVisitorBootstrap;
+import org.nocket.gen.domain.visitor.html.gen.CreateHtmlVisitor;
+import org.nocket.gen.domain.visitor.html.layout.Bootstrap2HtmlLayoutStrategy;
+import org.nocket.gen.domain.visitor.html.layout.HtmlBuilderStrategyI;
+import org.nocket.gen.domain.visitor.html.layout.HtmlComponentBuilderTablegrid;
+import org.nocket.gen.domain.visitor.html.merge.MergeHtmlVisitor;
 
-import gengui.domain.AbstractDomainReference;
-import gengui.util.DomainProperties.JfdRetentionStrategy;
-
+/**
+ * This visitor is delegates HTML generation to another visitor depending on retention strategy
+ * and layouting strategy. 
+ *  
+ * @param <E>
+ */
 public class DelegateHtmlVisitor<E extends AbstractDomainReference> extends AbstractHtmlVisitor<E> {
 
 	private DomainElementVisitorI<E> delegate;
 
 	public DelegateHtmlVisitor(DMDWebGenContext<E> context) {
 		super(context);
-	}
-
-	protected void lazyInitDelegate(DMDWebGenContext<E> context) {
-		boolean fileExists = getHtmlFile().exists();
-		JfdRetentionStrategy jfdRetentionStrategy = getContext().getDomainProperties().getJFDRetentionStrategy();
-		switch (jfdRetentionStrategy) {
-		case merge:
-		case silentmerge:
-			if (fileExists) {
-				// TODO JL: Instanciate Tablegrid-based Merger when it is
-				// finished
-				this.delegate = new HtmlMergeVisitorBootstrap<E>(context);
-			} else {
-				this.delegate = generatorForLayoutStrategy(context);
-			}
-			break;
-		case keep:
-			if (fileExists) {
-				this.delegate = new DummyVisitor<E>(context);
-			} else {
-				this.delegate = generatorForLayoutStrategy(context);
-			}
-			break;
-		case overwrite:
-			this.delegate = generatorForLayoutStrategy(context);
-			break;
-		case none:
-		default:
-			throw new UnsupportedOperationException("Unsupported " + JfdRetentionStrategy.class.getSimpleName() + ": "
-					+ jfdRetentionStrategy);
-		}
-	}
-
-	protected DomainElementVisitorI<E> generatorForLayoutStrategy(DMDWebGenContext<E> context) {
-		return (context.getLayoutStrategy() == LayoutStrategy.BOOTSTRAP) ? new HtmlGeneratorVisitorBootstrap<E>(context)
-				: new HtmlGeneratorVisitorTablegrid<E>(context);
 	}
 
 	@Override
@@ -124,4 +96,41 @@ public class DelegateHtmlVisitor<E extends AbstractDomainReference> extends Abst
 		delegate.finish();
 	}
 
+	protected void lazyInitDelegate(DMDWebGenContext<E> context) {
+		boolean fileExists = getHtmlFile().exists();
+		JfdRetentionStrategy jfdRetentionStrategy = getContext().getDomainProperties().getJFDRetentionStrategy();
+		switch (jfdRetentionStrategy) {
+		case merge:
+		case silentmerge:
+			if (fileExists) {
+				this.delegate = new MergeHtmlVisitor<E>(context, newLayoutStrategy(context));
+			} else {
+				this.delegate = new CreateHtmlVisitor<E>(context, newLayoutStrategy(context));
+			}
+			break;
+		case keep:
+			if (fileExists) {
+				this.delegate = new DummyVisitor<E>(context);
+			} else {
+				this.delegate = new CreateHtmlVisitor<E>(context, newLayoutStrategy(context));
+			}
+			break;
+		case overwrite:
+			this.delegate = new CreateHtmlVisitor<E>(context, newLayoutStrategy(context));
+			break;
+		case none:
+		default:
+			throw new UnsupportedOperationException("Unsupported " + JfdRetentionStrategy.class.getSimpleName() + ": "
+					+ jfdRetentionStrategy);
+		}
+	}
+
+	private HtmlBuilderStrategyI newLayoutStrategy(DMDWebGenContext<E> context) {
+		if(context.getLayoutStrategy() == LayoutStrategy.BOOTSTRAP) {
+			return new Bootstrap2HtmlLayoutStrategy(context);
+		} 
+		return new HtmlComponentBuilderTablegrid(context);
+	}
+	
+	
 }

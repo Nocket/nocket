@@ -31,17 +31,18 @@ import org.nocket.gen.domain.element.HiddenPropertyElement;
 import org.nocket.gen.domain.element.MultivaluePropertyElement;
 import org.nocket.gen.domain.element.ResourceElement;
 import org.nocket.gen.domain.element.SimplePropertyElement;
-import org.nocket.gen.domain.visitor.html.AbstractHtmlComponentBuilder;
 import org.nocket.gen.domain.visitor.html.AbstractHtmlVisitor;
+import org.nocket.gen.domain.visitor.html.layout.AbstractHtmlLayoutStrategy;
+import org.nocket.gen.domain.visitor.html.layout.HtmlBuilderStrategyI;
 import org.nocket.gen.page.element.ModalElement;
 
-abstract class AbstractHtmlGeneratorVisitor<E extends AbstractDomainReference> extends AbstractHtmlVisitor<E> {
+public class CreateHtmlVisitor<E extends AbstractDomainReference> extends AbstractHtmlVisitor<E> {
 
     protected final Html html;
     protected final Deque<MultiPartElement> panelStack = new ArrayDeque<MultiPartElement>();
-    protected final AbstractHtmlComponentBuilder componentBuilder;
+    protected final HtmlBuilderStrategyI componentBuilder;
 
-    public AbstractHtmlGeneratorVisitor(DMDWebGenContext<E> context, AbstractHtmlComponentBuilder componentBuilder) {
+    public CreateHtmlVisitor(DMDWebGenContext<E> context, HtmlBuilderStrategyI componentBuilder) {
         super(context);
         this.componentBuilder = componentBuilder;
         this.html = newHtml();
@@ -60,16 +61,15 @@ abstract class AbstractHtmlGeneratorVisitor<E extends AbstractDomainReference> e
             wicketContainer = new XML("wicket:extend");
         }
         body.addElement(wicketContainer);
-        wicketContainer.addElement(new Comment(new Div().addAttribute(AbstractHtmlComponentBuilder.ATTR_WICKET_ID,
+        wicketContainer.addElement(new Comment(new Div().addAttribute(AbstractHtmlLayoutStrategy.ATTR_WICKET_ID,
                 "feedback")));
-        wicketContainer.addElement(new Div().addAttribute(AbstractHtmlComponentBuilder.ATTR_WICKET_ID,
-                ModalElement.DEFAULT_WICKET_ID));
+        wicketContainer.addElement(new Div().addAttribute(AbstractHtmlLayoutStrategy.ATTR_WICKET_ID, ModalElement.DEFAULT_WICKET_ID));
         Form form = new Form();
-        form.addAttribute(AbstractHtmlComponentBuilder.ATTR_CLASS, "form-horizontal");
+        form.addAttribute(AbstractHtmlLayoutStrategy.ATTR_CLASS, "form-horizontal");
         form.removeAttribute("accept-charset");
         form.removeAttribute("enctype");
         wicketContainer.addElement(form);
-        form.addAttribute(AbstractHtmlComponentBuilder.ATTR_WICKET_ID, "form");
+        form.addAttribute(AbstractHtmlLayoutStrategy.ATTR_WICKET_ID, "form");
         panelStack.add(form);
         return html;
     }

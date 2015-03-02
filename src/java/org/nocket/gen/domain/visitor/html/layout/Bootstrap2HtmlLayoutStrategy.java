@@ -1,4 +1,4 @@
-package org.nocket.gen.domain.visitor.html;
+package org.nocket.gen.domain.visitor.html.layout;
 
 import org.apache.ecs.Element;
 import org.apache.ecs.html.Div;
@@ -7,9 +7,9 @@ import org.apache.ecs.html.Label;
 import org.nocket.gen.domain.DMDWebGenContext;
 import org.nocket.gen.domain.element.DomainElementI;
 
-public class HtmlComponentBuilderBootstrap extends AbstractHtmlComponentBuilder {
+public class Bootstrap2HtmlLayoutStrategy extends AbstractHtmlLayoutStrategy {
 
-    public HtmlComponentBuilderBootstrap(DMDWebGenContext<?> context) {
+    public Bootstrap2HtmlLayoutStrategy(DMDWebGenContext<?> context) {
         super(context);
     }
 

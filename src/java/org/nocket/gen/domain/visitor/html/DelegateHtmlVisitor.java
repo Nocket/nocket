@@ -16,7 +16,7 @@ import org.nocket.gen.domain.element.ResourceElement;
 import org.nocket.gen.domain.element.SimplePropertyElement;
 import org.nocket.gen.domain.visitor.DomainElementVisitorI;
 import org.nocket.gen.domain.visitor.DummyVisitor;
-import org.nocket.gen.domain.visitor.html.gen.CreateHtmlVisitor;
+import org.nocket.gen.domain.visitor.html.create.CreateHtmlVisitor;
 import org.nocket.gen.domain.visitor.html.layout.Bootstrap2HtmlLayoutStrategy;
 import org.nocket.gen.domain.visitor.html.layout.HtmlBuilderStrategyI;
 import org.nocket.gen.domain.visitor.html.layout.HtmlComponentBuilderTablegrid;

@@ -1,4 +1,4 @@
-package org.nocket.gen.domain.visitor.html.gen;
+package org.nocket.gen.domain.visitor.html.create;
 
 import gengui.domain.AbstractDomainReference;
 
@@ -22,6 +22,7 @@ import org.nocket.gen.domain.element.ButtonElement;
 import org.nocket.gen.domain.element.HeadlineElement;
 import org.nocket.gen.domain.visitor.html.layout.HtmlComponentBuilderTablegrid;
 
+@Deprecated
 public class HtmlGeneratorVisitorTablegrid<E extends AbstractDomainReference> extends CreateHtmlVisitor<E> {
 
     public static final int NUMBER_GRID_ROWS = 5;

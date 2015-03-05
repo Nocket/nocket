@@ -1,4 +1,4 @@
-package org.nocket.gen.domain.visitor.html.gen;
+package org.nocket.gen.domain.visitor.html.create;
 
 import gengui.domain.AbstractDomainReference;
 import gengui.util.SevereGUIException;

@@ -9,7 +9,7 @@ import org.apache.ecs.html.Table;
 import org.nocket.gen.domain.DMDWebGenContext;
 import org.nocket.gen.domain.element.DomainElementI;
 import org.nocket.gen.domain.element.MultivaluePropertyElement;
-import org.nocket.gen.domain.visitor.html.gen.HtmlGeneratorVisitorTablegrid;
+import org.nocket.gen.domain.visitor.html.create.HtmlGeneratorVisitorTablegrid;
 
 @Deprecated
 public class HtmlComponentBuilderTablegrid extends AbstractHtmlLayoutStrategy {

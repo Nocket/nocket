@@ -6,6 +6,7 @@ apply plugin: "lesscss"
 apply plugin: "announce"
 apply plugin: "maven"
 apply plugin: 'com.bmuschko.tomcat'
+apply plugin: "jacoco"
 
 ext {
 	// current user
@@ -141,6 +142,10 @@ lesscDaemon {
 	interval = config.less.daemonIntervall
 }
 
+jacoco {
+	toolVersion = "0.7.1.201405082137"
+}
+
 jar {
 	from sourceSets.main.output
 	
@@ -218,6 +223,10 @@ test {
 	finalizedBy integrationServerStop
 }
 
+tomcat {
+	httpPort  = config.server.httpPort
+	httpsPort = config.server.httpsPort
+}
 
 task cleanResources(type: Delete) {
 	description "Deletes all ressources in the build directory"
@@ -342,7 +351,7 @@ buildscript {
 }
 
 wrapper {
-	gradleVersion = "2.2.1"
+	gradleVersion = "2.3"
 }
 
 gradle.taskGraph.whenReady { taskGraph ->

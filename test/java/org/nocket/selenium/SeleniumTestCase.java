@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -15,9 +16,12 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class SeleniumTestCase {
 
+	private static Logger log = LoggerFactory.getLogger(SeleniumTestCase.class);
 	private static final int DEFAULT_PORT = new Integer(
 			SeleniumProperties.getProperty(SeleniumProperties.WEBDRIVER_PORT)).intValue();
 	private static final String BASE_URL = SeleniumProperties.getProperty(SeleniumProperties.WEBDRIVER_URL);
@@ -27,7 +31,9 @@ public abstract class SeleniumTestCase {
 	@BeforeClass
 	public static void createDriver() throws Exception {
 		String webDriverName = SeleniumProperties.getProperty(SeleniumProperties.WEBDRIVER);
+		Long timeout = Long.parseLong(SeleniumProperties.getProperty(SeleniumProperties.TIMEOUT));
 		driver = WebDriverFactory.getInstance(webDriverName, null, null, false);
+		driver.manage().timeouts().pageLoadTimeout(timeout, TimeUnit.SECONDS);
 	}
 
 	@AfterClass
@@ -36,6 +42,7 @@ public abstract class SeleniumTestCase {
 	}
 
 	protected static void getSite(String siteUrl) {
+		log.debug("{}", BASE_URL + DEFAULT_PORT + siteUrl);
 		driver.get(BASE_URL + DEFAULT_PORT + siteUrl);
 	}
 

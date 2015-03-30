@@ -1,10 +1,12 @@
 function dmdModalWindowSetzeHoeheAnModalBody( hoehe, maxhoehe) {
 	// Find alle divs, die als class= "modal-body" stehen haben
 	// Setze dort die styleangabe fuer die Hoehe
-	$( '#innerModal .modal-body').css( {
-	    "height" : hoehe + "px",
-	    "max-height" : maxhoehe
-	});
+	if( $( "#innerModal .modal-body").length !== 0) {
+		$( '#innerModal .modal-body').css( {
+		    "height" : hoehe + "px",
+		    "max-height" : maxhoehe
+		});
+	}
 }
 
 function dmdModalWindowKorrigiereFormMargin() {}
@@ -26,9 +28,11 @@ function zeigeBlockerWennModalPanelVorhanden() {
 		}
 	}
 	else {
-		// Gibt es keinen modalen Dialog, soll es auch keinen Blocke geben
-		dmdBlockerModal.fadeOut( 400, function() {
-			dmdBlockerModal.remove();
-		});
+		if( dmdBlockerModal.length !== 0) {
+			// Gibt es keinen modalen Dialog, soll es auch keinen Blocke geben
+			dmdBlockerModal.fadeOut( 400, function() {
+				dmdBlockerModal.remove();
+			});
+		}
 	}
 }

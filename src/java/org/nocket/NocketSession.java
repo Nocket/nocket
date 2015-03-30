@@ -12,12 +12,13 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.wicket.PageReference;
 import org.apache.wicket.Session;
-import org.apache.wicket.protocol.http.WebSession;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
+import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.request.Request;
 import org.nocket.component.menu.MenuItem;
 import org.nocket.gen.page.guiservice.DMDWebGenGuiServiceProvider;
 
-public class NocketSession extends WebSession {
+public class NocketSession extends AuthenticatedWebSession {
 
     private static final File META_SESSION_DIR = new File(System.getProperty("java.io.tmpdir"), "org.nocket");
     private static final long serialVersionUID = 1L;
@@ -104,4 +105,14 @@ public class NocketSession extends WebSession {
     public MenuItem getLastSelectedMenuItem() {
 	return lastSelectedMenuItem;
     }
+
+	@Override
+	public boolean authenticate(String username, String password) {
+		return false;
+	}
+
+	@Override
+	public Roles getRoles() {
+		return null;
+	}
 }

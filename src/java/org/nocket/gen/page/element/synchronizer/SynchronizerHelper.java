@@ -81,6 +81,7 @@ public class SynchronizerHelper implements Serializable {
 	private transient Boolean isEager;
 	private transient Boolean isStaticallyDisabled;
 	private transient String help;
+	private transient String prompt;
 
 	private transient Object forcedMethodTargetObject;
 	private transient boolean transientFieldsInitializedFromPrototype;

@@ -314,9 +314,9 @@ public class SynchronizerHelper implements Serializable {
 	public Method getGetterMethod() {
 		initializeTransientMembersFromPrototype();
 		if (getterMethod == null) {
-			getterMethod = getRef().findPropertyAccessor(propertyName, ReflectionUtil.GETTER_PREFIX);
+			getterMethod = findPropertyAccessor(propertyName, ReflectionUtil.GETTER_PREFIX);
 			if (getterMethod == null) {
-				getterMethod = getRef().findPropertyAccessor(propertyName, ReflectionUtil.BOOLEAN_GETTER_PREFIX);
+				getterMethod = findPropertyAccessor(propertyName, ReflectionUtil.BOOLEAN_GETTER_PREFIX);
 			}
 			if (getterMethod == null)
 				getterMethod = NULL_METHOD;
@@ -337,7 +337,7 @@ public class SynchronizerHelper implements Serializable {
 	public Method getChoicerMethod() {
 		initializeTransientMembersFromPrototype();
 		if (choicerMethod == null) {
-			choicerMethod = getRef().findPropertyAccessor(propertyName, ReflectionUtil.CHOICE_PREFIX);
+			choicerMethod = findPropertyAccessor(propertyName, ReflectionUtil.CHOICE_PREFIX);
 			if (choicerMethod == null)
 				choicerMethod = NULL_METHOD;
 		}
@@ -347,7 +347,7 @@ public class SynchronizerHelper implements Serializable {
 	public Method getSetterMethod() {
 		initializeTransientMembersFromPrototype();
 		if (setterMethod == null) {
-			setterMethod = getRef().findPropertyAccessor(propertyName, ReflectionUtil.SETTER_PREFIX);
+			setterMethod = findPropertyAccessor(propertyName, ReflectionUtil.SETTER_PREFIX);
 			if (setterMethod == null)
 				setterMethod = NULL_METHOD;
 		}
@@ -357,8 +357,7 @@ public class SynchronizerHelper implements Serializable {
 	public Method getDisablerMethod() {
 		initializeTransientMembersFromPrototype();
 		if (disablerMethod == null) {
-			// capitalize to find button disablers as well!
-			disablerMethod = getRef().findPropertyAccessor(StringUtils.capitalize(propertyName), ReflectionUtil.DISABLER_PREFIX);
+			disablerMethod = findPropertyAccessor(propertyName, ReflectionUtil.DISABLER_PREFIX);
 			if (disablerMethod == null)
 				disablerMethod = NULL_METHOD;
 		}
@@ -368,8 +367,7 @@ public class SynchronizerHelper implements Serializable {
 	public Method getHiderMethod() {
 		initializeTransientMembersFromPrototype();
 		if (hiderMethod == null) {
-			// capitalize to find button disablers aswell!
-			hiderMethod = getRef().findPropertyAccessor(StringUtils.capitalize(propertyName), ReflectionUtil.HIDE_PREFIX);
+			hiderMethod = findPropertyAccessor(propertyName, ReflectionUtil.HIDE_PREFIX);
 			if (hiderMethod == null)
 				hiderMethod = NULL_METHOD;
 		}
@@ -379,7 +377,7 @@ public class SynchronizerHelper implements Serializable {
 	public Method getValidatorMethod() {
 		initializeTransientMembersFromPrototype();
 		if (validatorMethod == null) {
-			validatorMethod = getRef().findPropertyAccessor(propertyName, ReflectionUtil.VALIDATOR_PREFIX);
+			validatorMethod = findPropertyAccessor(propertyName, ReflectionUtil.VALIDATOR_PREFIX);
 			if (validatorMethod == null)
 				validatorMethod = NULL_METHOD;
 		}
@@ -392,7 +390,7 @@ public class SynchronizerHelper implements Serializable {
 			if (propertyName.startsWith(ReflectionUtil.REMOVER_PREFIX)) {
 				removerButtonMethod = getButtonMethod();
 			} else {
-				removerButtonMethod = getRef().findPropertyAccessor(propertyName, ReflectionUtil.REMOVER_PREFIX);
+				removerButtonMethod = findPropertyAccessor(propertyName, ReflectionUtil.REMOVER_PREFIX);
 			}
 			if (removerButtonMethod == null)
 				removerButtonMethod = NULL_METHOD;
@@ -510,12 +508,12 @@ public class SynchronizerHelper implements Serializable {
 	}
 
 	public boolean isProperty() {
-		Method method = getRef().findPropertyAccessor(getPropertyName(), ReflectionUtil.SETTER_PREFIX);
+		Method method = findPropertyAccessor(getPropertyName(), ReflectionUtil.SETTER_PREFIX);
 		return method != null;
 	}
 	
 	public boolean isEagerProperty(String propertyName) {
-		Method method = getRef().findPropertyAccessor(propertyName, ReflectionUtil.SETTER_PREFIX);
+		Method method = findPropertyAccessor(propertyName, ReflectionUtil.SETTER_PREFIX);
 		return isAnnotationPresent(method, Eager.class);
 	}
 
@@ -853,6 +851,38 @@ public class SynchronizerHelper implements Serializable {
 				}
 			}
 		}, new ClassVisitFilter(Form.class));
+	}
+	
+	public String getPrompt() {
+		if (prompt == null) {
+			Method getter = getGetterMethod();
+			if (getter != null) {
+				Prompt promptAnnotation = new AnnotationHelper(getter).getAnnotation(Prompt.class);
+				if (promptAnnotation != null && !StringUtils.isEmpty(promptAnnotation.value()))
+					prompt = promptAnnotation.value();
+			}
+		}
+		return prompt;
+	}
+	
+	/**
+	 * Copied from {@link gengui.domain.DomainObjectReference} because the
+	 * GenGUI-implementierung uses a String-concat of accessType and
+	 * propertyName when searching for the method rather than using the
+	 * dedicated finder-method with prefix parameter supplied by
+	 * ReflectionUtils.
+	 */
+	private Method findPropertyAccessor(String propertyName, String accessType) {
+		DomainObjectDecoration decoration = getRef().getDecorationsRelative(propertyName);
+		final Class<?> targetClass = decoration.getTargetClass(accessType, getRef());
+		Method targetMethod = (ReflectionUtil.isGetterPrefix(accessType)) ? ReflectionUtil.findGetterMethod(targetClass,
+				propertyName) : ReflectionUtil.findMethod(targetClass, accessType, propertyName);
+		if (targetMethod == null && targetClass != getRef().getDomainClass()) {
+			DefaultSevereExceptionHandler.handler().process(
+					"Class " + targetClass.getName() + " defines a " + accessType
+							+ " decorator with a different name than expected '" + accessType + propertyName + "'");
+		}
+		return targetMethod;
 	}
 
 	protected static class ValidFormComponentSynchronizationVisitor implements IVisitor<FormComponent<?>, Void> {

@@ -36,6 +36,7 @@ public class JSR303Validator<T> implements IValidator<T>, INullAcceptingValidato
 	private static transient ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 
 	private String propertyName;
+	private String propertyPrompt;
 	private Class<T> propertyClass;
 	
 	private boolean violated;
@@ -43,6 +44,7 @@ public class JSR303Validator<T> implements IValidator<T>, INullAcceptingValidato
 	public JSR303Validator(SynchronizerHelper helper) {
 		this.propertyName = StringUtils.uncapitalize(helper.getPropertyName());
 		this.propertyClass = helper.getRef().getDomainClass();
+		this.propertyPrompt = helper.getPrompt();
 	}
 
 	public void validate(IValidatable<T> iv) {
@@ -76,7 +78,7 @@ public class JSR303Validator<T> implements IValidator<T>, INullAcceptingValidato
 		} else {
 			ve.addKey(DEFAULT_KEY);
 		}
-		ve.setVariable("label", StringUtils.capitalize(propertyName));
+		ve.setVariable("label", propertyPrompt != null ? propertyPrompt : StringUtils.capitalize(propertyName));
 		ve.getVariables().putAll(violation.getConstraintDescriptor().getAttributes());
 		if(log.isDebugEnabled()) {
 			log.debug(MessageFormat.format(LOG_ENTRY, propertyName, propertyClass, "Violation " + ve.toString()));

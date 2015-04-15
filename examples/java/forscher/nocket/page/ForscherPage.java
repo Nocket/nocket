@@ -12,6 +12,7 @@ import org.nocket.component.panel.login.LoginStatusBar;
 import org.nocket.gen.GenericMenuItem;
 import org.nocket.page.DMDWebPage;
 
+import forscher.nocket.generator.TestPojo;
 import forscher.nocket.page.error.TestErrorPage;
 import forscher.nocket.page.gen.GeneratedPage;
 import forscher.nocket.page.gen.ajax.AjaxTargetUpdateTest;
@@ -94,6 +95,8 @@ public class ForscherPage extends DMDWebPage {
 	generated.addSubItem(new GenericMenuItem("Bootstrap/Tooltip", AllComponentsBootstrapTooltip.class));
 
 	generated.addSubItem(new GenericMenuItem("AjaxTarget update test", AjaxTargetUpdateTest.class));
+	generated.addSubItem(new GenericMenuItem("Generation", TestPojo.class));
+	
 	// TODO meist026 Die Empty Page funktioniert noch nicht
 	//        generated.addSubItem(new GenericMenuItem("Empty page", EmptyDomainObject.class));
 

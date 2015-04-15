@@ -14,6 +14,7 @@ public class EagerDisableTest implements Serializable {
 
 	private Boolean eagerCheckbox = Boolean.FALSE;
 	private String text;
+	private Integer number;
     	
     public EagerDisableTest() {
     }
@@ -28,6 +29,7 @@ public class EagerDisableTest implements Serializable {
 		this.eagerCheckbox = eagerCheckbox;
 		if(this.eagerCheckbox) {
 			this.text = null;
+			this.number = null;
 		}
 			
 	}
@@ -46,6 +48,17 @@ public class EagerDisableTest implements Serializable {
     	return this.eagerCheckbox ? "Disabled due checkbox" : null;
     }
 	
+	public Integer getNumber() {
+		return number;
+	}
+	
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+	
+	public String disableNumber() {
+		return this.eagerCheckbox ? "Disabled by checkbox" : null;
+	}
 	
 	public void save() {
 		System.out.println("save(): " + this);

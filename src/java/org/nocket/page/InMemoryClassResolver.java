@@ -63,7 +63,7 @@ public class InMemoryClassResolver implements IClassResolver {
     protected Class<?> resolveInMemoryClass(String className) throws ClassNotFoundException {
         Class<?> inMemoryClass = inMemoryClasses.get(className);
         if (inMemoryClass == null)
-            throw new ClassNotFoundException();
+            throw new ClassNotFoundException(className);
         return inMemoryClass;
     }
 

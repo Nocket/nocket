@@ -16,6 +16,7 @@ import java.util.Map;
 import org.apache.commons.lang.StringUtils;
 import org.apache.wicket.MarkupContainer;
 import org.nocket.NocketSession;
+import org.nocket.addons.annotation.ResourceReferenceInjection;
 import org.nocket.gen.domain.element.DomainElementI;
 import org.nocket.gen.page.inject.PageComponentInjection;
 import org.nocket.gen.page.visitor.GeneratedBindingVisitor;
@@ -144,6 +145,7 @@ public class GeneratedBinding {
             this.getContext().rebind(page);
         }
         new PageComponentInjection(context).inject();
+        new ResourceReferenceInjection(context).inject();
         NocketSession.get().getDMDWebGenGuiServiceProvider().onGeneratedBinding(context);
     }
 

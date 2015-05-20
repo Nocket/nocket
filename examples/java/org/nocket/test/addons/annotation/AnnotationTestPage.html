@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <head>
+        <link href="../../../../../../resources/webapp/css/bootstrap.css" type="text/css" rel="stylesheet" />
+        <link href="../../../../../../resources/webapp/css/arvatoStyle.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <wicket:extend>
+            <!-- <div wicket:id='feedback'></div>  -->
+            <div wicket:id="modal"></div>
+            <form wicket:id="form" class="form-horizontal">
+                <div class="control-group">
+                    <label for="Field1" class="control-label" wicket:id="Field1.label">Field1</label>
+                    <div class="controls">
+                        <input id="Field1" type="text" wicket:id="Field1" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="Field2" class="control-label" wicket:id="Field2.label">Field2</label>
+                    <div class="controls">
+                        <input id="Field2" type="text" wicket:id="Field2" />
+                    </div>
+                </div>
+                Der Test demonstriert die Verwendung und Wirkung der Resource-Annotationen. Die Page hat eine CSS-Resource-Annotation, die ausgeführt wird, 
+                wenn die Page neu gezeichnet wird. Field1 hat eine CCS-Resource-Annotation, die ausgeführt wird, wenn Field1 neugezeichnet wird. 
+                An Field2 hängt eine Javascript-Resourec-Annotation.
+                <button id="repaintField2" class="btn" wicket:id="repaintField2" type="submit"><span wicket:id="repaintField2.label">Repaint Field2</span></button>
+                <button id="repaintField1" class="btn" wicket:id="repaintField1" type="submit"><span wicket:id="repaintField1.label">Repaint Field1</span></button>
+            </form>
+        </wicket:extend>
+    </body>
+</html>

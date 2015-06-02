@@ -3,7 +3,6 @@ apply plugin: "war"
 apply plugin: "eclipse"
 apply plugin: "eclipse-wtp"
 apply plugin: "lesscss"
-apply plugin: "announce"
 apply plugin: "maven"
 apply plugin: 'com.bmuschko.tomcat'
 apply plugin: "jacoco"
@@ -19,7 +18,7 @@ ext {
 // using semantic versioning, see http://semver.org/
 group = "org.nocket"
 archivesBaseName = "nocket"
-version = new Version(major: 0, minor: 3, revision: 2)
+version = new Version(major: 0, minor: 3, revision: 3)
 
 sourceCompatibility = config.java.source
 
@@ -77,7 +76,6 @@ eclipse{
 	classpath {
 		defaultOutputDir = file("build/classes-eclipse")
 		downloadSources = true
-		downloadJavadoc = true
 
 		file {
 			withXml {
@@ -126,11 +124,6 @@ lessc {
 	options.sourceMap = true
 	options.sourceMapLessInline = true
 	options.sourceMapURL = "http://localhost:8080/{$war.baseName}/css/application.map"
-	
-	doLast {
-	   def state = didWork ? "finished" : "with error"
-	   announce.local.send "${project.name}: compling LESS", state
-	}
 }
 
 lesscDaemon {
@@ -250,20 +243,10 @@ task sourcesJar(type: Jar) {
 
 task buildSnapshot(dependsOn: ["build"]) {
 	description "Assembles the outputs of this project for a SNAPSHOT Release."
-
-	doLast {
-		def state = didWork ? "finished" : "with error"
-		announce.local.send "Snapshot ${project.name}-${version}", state
-	}
 }
 
 task buildRelease(dependsOn: ["build"]) {
 	description "Assembles the outputs of this project for a Release."
-	
-	doLast {
-		def state = didWork ? "finished" : "with error"
-		announce.local.send "Releasing ${project.name}-${version}", state
-	}
 }
 
 task publishRelease {
@@ -346,7 +329,7 @@ buildscript {
 
 	dependencies {
 		classpath "com.github.houbie:lesscss-gradle-plugin:1.0.3-less-1.7.0"
-		classpath 'com.bmuschko:gradle-tomcat-plugin:2.0'
+		classpath "com.bmuschko:gradle-tomcat-plugin:2.0"
 	}
 }
 

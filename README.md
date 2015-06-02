@@ -38,7 +38,6 @@ https://github.com/Nocket/nocket/wiki
 ### Beispielanwendung starten
 
     ./gradlew tomcatRunWar
-    
 
 ### Releasefähige Dateien erzeugen
 

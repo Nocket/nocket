@@ -14,6 +14,7 @@ import org.nocket.test.eager.disable.EagerDisableTestPage;
 import org.nocket.test.eager.simple.EagerSimpleTestPage;
 import org.nocket.test.eager.validation.EagerValidation2TestPage;
 import org.nocket.test.eager.validation.EagerValidationTestPage;
+import org.nocket.test.prompt.PromptTestPage;
 import org.nocket.test.widgets.choices.ChoicesTestsPage;
 
 @SuppressWarnings("serial")
@@ -59,8 +60,11 @@ public class BrowserTestsPage extends DMDWebPage {
         eager.addSubItem(new MenuItem("Validation 2 test", EagerValidation2TestPage.class));
         eager.addSubItem(new MenuItem("Disable test", EagerDisableTestPage.class));
 
+        MenuItem prompt = new MenuItem("@Prompt", PromptTestPage.class);
+        
         menuEntries.add(widgets);
         menuEntries.add(eager);
+        menuEntries.add(prompt);
 
 
         return menuEntries;

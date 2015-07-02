@@ -37,8 +37,7 @@ https://github.com/Nocket/nocket/wiki
 
 ### Beispielanwendung starten
 
-    gradle tomcatRunWar
-    
+    ./gradlew tomcatRunWar
 
 ### Releasefähige Dateien erzeugen
 
@@ -46,15 +45,15 @@ Die generierten Dateien findet man unter `build/libs`, für das Testen in Eclips
 
 - für die lokale Entwickler Maschine:
 
-    `gradle build`
+    `./gradlew build`
     
 - Aktueller Entwicklungs-Snapshot für Test-Maschinen
 
-    `gradle buildSnapshot` // generiert das JAR und ein WAR mit den Beispielen
+    `./gradlew buildSnapshot` // generiert das JAR und ein WAR mit den Beispielen
     
 - Release
 
-    `gradle buildRelease`  // generiert das JAR und ein WAR mit den Beispielen
+    `./gradlew buildRelease`  // generiert das JAR und ein WAR mit den Beispielen
 
 ### Release in Gradle einbinden
 

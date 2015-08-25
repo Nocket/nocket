@@ -277,7 +277,7 @@ dependencies {
 	def wicketVersion = "6.9.1"
 	
 	// wicket
-	compile "org.apache.wicket:wicket:${wicketVersion}"
+	compile "org.apache.wicket:wicket-core:${wicketVersion}"
 	compile "org.apache.wicket:wicket-extensions:${wicketVersion}"
 	compile "org.apache.wicket:wicket-datetime:${wicketVersion}"
 	compile "org.apache.wicket:wicket-devutils:${wicketVersion}"

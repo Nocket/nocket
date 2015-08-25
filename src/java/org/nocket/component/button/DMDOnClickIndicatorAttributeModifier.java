@@ -78,7 +78,7 @@ public class DMDOnClickIndicatorAttributeModifier extends AttributeModifier {
             @Override
             protected String load() {
                 return String.format(BLOCKER_SCRIPT, parent.getMarkupId(), getIndicatorUrl(),
-                        parent.getPage().getString(LOADING_TITLE));
+                        parent.getString(LOADING_TITLE));
             }
 
             /**

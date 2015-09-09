@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <head>
+        <link href="../../../../resources/webapp/css/bootstrap.css" type="text/css" rel="stylesheet" />
+        <link href="../../../../resources/webapp/css/arvatoStyle.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <wicket:extend>
+            <!-- <div wicket:id='feedback'></div>  -->
+            <div wicket:id="modal"></div>
+            <form wicket:id="form" class="form-horizontal">
+                <div class="control-group">
+                    <label for="FirstName" class="control-label" wicket:id="FirstName.label">First Name</label>
+                    <div class="controls">
+                        <input id="FirstName" type="text" wicket:id="FirstName" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="LastName" class="control-label" wicket:id="LastName.label">Last Name</label>
+                    <div class="controls">
+                        <input id="LastName" type="text" wicket:id="LastName" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="Newsletter" class="control-label" wicket:id="Newsletter.label">Newsletter</label>
+                    <div class="controls">
+                        <input id="Newsletter" type="checkbox" wicket:id="Newsletter" />
+                    </div>
+                </div>
+            </form>
+        </wicket:extend>
+    </body>
+</html>

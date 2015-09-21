@@ -6,21 +6,25 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
-import org.apache.wicket.markup.html.form.CheckBox;
-import org.apache.wicket.markup.html.form.DropDownChoice;
-import org.apache.wicket.markup.html.form.ListMultipleChoice;
-import org.apache.wicket.markup.html.form.PasswordTextField;
-import org.apache.wicket.markup.html.form.TextArea;
-import org.apache.wicket.markup.html.form.upload.FileUploadField;
-import org.apache.wicket.markup.html.image.ContextImage;
 import org.apache.wicket.markup.html.link.DownloadLink;
-import org.apache.wicket.markup.html.link.ExternalLink;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.IModel;
-import org.nocket.component.form.DMDTextField;
-import org.nocket.component.link.DMDResourceLink;
 import org.nocket.component.modal.DMDModalWindow;
-import org.nocket.component.panel.DMDFeedbackPanel;
-import org.nocket.component.select.DMDListMultipleChoice;
+import org.nocket.gen.domain.visitor.html.styling.StylingFactory;
+import org.nocket.gen.domain.visitor.html.styling.common.ButtonBuilderI;
+import org.nocket.gen.domain.visitor.html.styling.common.CheckBoxBuilderI;
+import org.nocket.gen.domain.visitor.html.styling.common.DropDownBuilderI;
+import org.nocket.gen.domain.visitor.html.styling.common.FeedbackPanelBuilderI;
+import org.nocket.gen.domain.visitor.html.styling.common.FileUploadBuilderI;
+import org.nocket.gen.domain.visitor.html.styling.common.ImageBuilderI;
+import org.nocket.gen.domain.visitor.html.styling.common.LinkBuilderI;
+import org.nocket.gen.domain.visitor.html.styling.common.ListMultipleChoiceBuilderI;
+import org.nocket.gen.domain.visitor.html.styling.common.PasswordTextFieldBuilderI;
+import org.nocket.gen.domain.visitor.html.styling.common.RadioChoiceBuilderI;
+import org.nocket.gen.domain.visitor.html.styling.common.RepeatingViewBuilderI;
+import org.nocket.gen.domain.visitor.html.styling.common.TabbedPanelBuilderI;
+import org.nocket.gen.domain.visitor.html.styling.common.TextAreaBuilderI;
+import org.nocket.gen.domain.visitor.html.styling.common.TextFieldBuilderI;
 import org.nocket.gen.page.element.ButtonElement;
 import org.nocket.gen.page.element.CheckboxInputElement;
 import org.nocket.gen.page.element.DivElement;
@@ -42,14 +46,10 @@ import org.nocket.gen.page.element.TableElement;
 import org.nocket.gen.page.element.TextAreaElement;
 import org.nocket.gen.page.element.TextInputElement;
 import org.nocket.gen.page.element.UnknownPageElementI;
-import org.nocket.gen.page.element.synchronizer.ArrayToCollectionModelWrapper;
 import org.nocket.gen.page.visitor.bind.builder.components.GeneratedBeanValidationForm;
 import org.nocket.gen.page.visitor.bind.builder.components.GeneratedButton;
-import org.nocket.gen.page.visitor.bind.builder.components.GeneratedDateTextField;
 import org.nocket.gen.page.visitor.bind.builder.components.GeneratedGenericDataTableFactory;
 import org.nocket.gen.page.visitor.bind.builder.components.GeneratedGroupTabbedPanel;
-import org.nocket.gen.page.visitor.bind.builder.components.GeneratedNumberTextField;
-import org.nocket.gen.page.visitor.bind.builder.components.GeneratedRadioChoice;
 import org.nocket.gen.page.visitor.bind.builder.components.GeneratedRepeatingPanel;
 
 public class DefaultBindingBuilder implements BindingBuilderI {
@@ -62,7 +62,8 @@ public class DefaultBindingBuilder implements BindingBuilderI {
 
     @Override
     public Component createFeedback(FeedbackElement e) {
-        DMDFeedbackPanel feedback = new DMDFeedbackPanel(e.getWicketId());
+    	FeedbackPanelBuilderI builder = StylingFactory.getStylingStrategy().getFeedbackPanelBuilder();
+    	FeedbackPanel feedback = builder.getFeedbackPanel();
         feedback.setOutputMarkupId(true);
         return feedback;
     }
@@ -91,29 +92,23 @@ public class DefaultBindingBuilder implements BindingBuilderI {
     @SuppressWarnings("rawtypes")
     @Override
     public Component createTextInput(TextInputElement e) {
-        if (e.getDomainElement().isNumberType()) {
-            GeneratedNumberTextField textInput = new GeneratedNumberTextField(e);
-            textInput.postInit(e);
-            return textInput;
-        } else if (e.getDomainElement().isDateType()) {
-            GeneratedDateTextField textInput = new GeneratedDateTextField(e);
-            textInput.postInit(e);
-            return textInput;
-        } else {
-            DMDTextField<Object> textInput = new DMDTextField<Object>(e.getWicketId(), e.getModel());
-            return textInput;
-        }
+        TextFieldBuilderI builder = StylingFactory.getStylingStrategy().getTextFieldBuilder();
+        builder.initTextFieldBuilder(e);
+        return builder.getTextField();
     }
 
     @Override
     public Component createFileInput(FileInputElement e) {
-        FileUploadField fileInput = new FileUploadField(e.getWicketId(), (IModel) e.getModel());
-        return fileInput;
+        FileUploadBuilderI builder = StylingFactory.getStylingStrategy().getFileUploadBuilder();
+        builder.initFileUploadBuilder(e.getWicketId());
+        return builder.getFileUploadField();
     }
 
     @Override
     public Component createPasswordInput(PasswordInputElement e) {
-        return new PasswordTextField(e.getWicketId(), (IModel) e.getModel());
+        PasswordTextFieldBuilderI builder = StylingFactory.getStylingStrategy().getPasswordTextFieldBuilder();
+        builder.initPasswordTextFieldBuilder(e.getWicketId(), (IModel) e.getModel());
+        return builder.getPasswordField();
     }
 
     @Override
@@ -125,60 +120,52 @@ public class DefaultBindingBuilder implements BindingBuilderI {
 
     @Override
     public Component createTextArea(TextAreaElement e) {
-        // This is still a bit simple. As a difference to text input fields, this implementation
-        // assumes that text areas are used for text only and not for dates or numbers.
-        TextArea<Object> textArea = new TextArea<Object>(e.getWicketId(), e.getModel());
-        return textArea;
+        TextAreaBuilderI builder = StylingFactory.getStylingStrategy().getTextAreaBuilder();
+        builder.initTextAreaBuilder(e.getWicketId(), e.getModel());
+        return builder.getTextArea();
     }
 
     @Override
     public Component createCheckboxInput(CheckboxInputElement e) {
-        CheckBox checkboxInput = new CheckBox(e.getWicketId(), e.getModel());
-        return checkboxInput;
+        CheckBoxBuilderI builder = StylingFactory.getStylingStrategy().getCheckBoxBuilder();
+        builder.initCheckBoxBuilder(e.getWicketId(), e.getModel());
+        return builder.getCheckBox();
     }
 
     @Override
     public Component createRadioInput(RadioInputElement e) {
-        GeneratedRadioChoice radioInput = new GeneratedRadioChoice(e);
-        return radioInput;
+    	RadioChoiceBuilderI builder = StylingFactory.getStylingStrategy().getRadioChoiceBuilder();
+    	builder.initRadioChoiceBuilder(e.getWicketId(), e.getModel(), e.getChoicesModel(), e.getChoicesRenderer());
+        return builder.getRadioChoice();
     }
 
     @Override
     public Component createImage(ImageElement e) {
-        IModel model = e.getModel();
-        ContextImage image = new ContextImage(e.getWicketId(), model);
-        return image;
+        ImageBuilderI builder = StylingFactory.getStylingStrategy().getImageBuilder();
+        builder.initImageBuilder(e.getWicketId(), e.getModel());
+        return builder.getImage();
     }
 
     @SuppressWarnings({ "unchecked" })
     @Override
     public Component createLink(LinkElement e) {
-        Component component;
-        if (e.isResourceLink()) {
-            component = new DMDResourceLink(e.getWicketId(), (IModel<?>) e.getModel());
-        } else {
-            component = new ExternalLink(e.getWicketId(), e.getModel());
-        }
-        return component;
+    	LinkBuilderI builder = StylingFactory.getStylingStrategy().getLinkBuilder();
+    	builder.initLinkBuilder(e);
+    	return builder.getLink();
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public Component createSelect(SelectElement e) {
         if (!e.isMultiselect()) {
-            DropDownChoice<Object> select = new DropDownChoice<Object>(e.getWicketId(), e.getModel(),
+        	DropDownBuilderI builder = StylingFactory.getStylingStrategy().getDropDownBuilder();
+        	builder.initDropDownBuilder(e.getWicketId(), e.getModel(),
                     e.getChoicesModel(), e.getChoicesRenderer());
-            return select;
+        	return builder.getDropDown();
         } else {
-            IModel<?> model = e.getModel();
-            Class getterMethodType = e.getDomainElement().getMethod().getReturnType();
-            if (getterMethodType.isArray()) {
-                model = new ArrayToCollectionModelWrapper(model, getterMethodType.getComponentType());
-            }
-            boolean compactSelect = (e.getNumberOfVisibleEntries() != null && e.getNumberOfVisibleEntries() == 1);
-            ListMultipleChoice list = compactSelect ?
-                    new DMDListMultipleChoice(e.getWicketId(), model, e.getChoicesModel()) :
-                    new ListMultipleChoice(e.getWicketId(), model, e.getChoicesModel());
-            return list;
+			ListMultipleChoiceBuilderI builder = StylingFactory.getStylingStrategy().getListMultipleChoiceBuilder();
+        	builder.initMultipleChoiceBuilder(e.getWicketId(), e.getModel(), e.getChoicesModel());
+        	return builder.getListMultipleChoice();
         }
     }
 
@@ -189,8 +176,9 @@ public class DefaultBindingBuilder implements BindingBuilderI {
 
     @Override
     public Component createButton(final ButtonElement e) {
-        Button button = new GeneratedButton(e);
-        return button;
+        ButtonBuilderI builder = StylingFactory.getStylingStrategy().getButtonBuilder();
+        builder.initButtonBuilder(e);
+        return builder.getButton();
     }
 
     @Override
@@ -200,13 +188,16 @@ public class DefaultBindingBuilder implements BindingBuilderI {
 
     @Override
     public Component createListView(RepeatingPanelElement e) {
-        return new GeneratedRepeatingPanel(e);
+    	RepeatingViewBuilderI builder = StylingFactory.getStylingStrategy().getRepeatingViewBuilder();
+    	builder.initRepeatingViewBuilder(e.getWicketId(), e.getModel());
+        return builder.getRepeatingView();
     }
 
     @Override
     public Component createGroupTabbedPanel(GroupTabbedPanelElement e) {
-        GeneratedGroupTabbedPanel generatedGroupTabbedPanel = new GeneratedGroupTabbedPanel(e);
-        return generatedGroupTabbedPanel;
+    	TabbedPanelBuilderI builder = StylingFactory.getStylingStrategy().getTabbedPanelBuilder();
+    	builder.initTabbedPanelBuilder(e);
+    	return builder.getTabbedPanel();
     }
 
     @Override

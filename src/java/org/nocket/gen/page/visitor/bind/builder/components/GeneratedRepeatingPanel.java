@@ -23,6 +23,12 @@ public class GeneratedRepeatingPanel extends RepeatingView {
     public GeneratedRepeatingPanel(RepeatingPanelElement e) {
         super(e.getWicketId(), e.getModel());
     }
+    public GeneratedRepeatingPanel(String id) {
+        super(id);
+    }
+    public GeneratedRepeatingPanel(String id, IModel<?> model) {
+        super(id, model);
+    }
 
     public Collection<?> collectionAuspacken(Object defaultModel) {
         if (defaultModel instanceof Collection) {

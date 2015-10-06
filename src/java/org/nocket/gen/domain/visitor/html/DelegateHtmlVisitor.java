@@ -4,7 +4,6 @@ import gengui.domain.AbstractDomainReference;
 import gengui.util.DomainProperties.JfdRetentionStrategy;
 
 import org.nocket.gen.domain.DMDWebGenContext;
-import org.nocket.gen.domain.LayoutStrategy;
 import org.nocket.gen.domain.element.AbstractDomainElement;
 import org.nocket.gen.domain.element.ButtonElement;
 import org.nocket.gen.domain.element.CheckboxPropertyElement;
@@ -17,10 +16,9 @@ import org.nocket.gen.domain.element.SimplePropertyElement;
 import org.nocket.gen.domain.visitor.DomainElementVisitorI;
 import org.nocket.gen.domain.visitor.DummyVisitor;
 import org.nocket.gen.domain.visitor.html.create.CreateHtmlVisitor;
-import org.nocket.gen.domain.visitor.html.layout.Bootstrap2HtmlLayoutStrategy;
-import org.nocket.gen.domain.visitor.html.layout.HtmlBuilderStrategyI;
-import org.nocket.gen.domain.visitor.html.layout.HtmlComponentBuilderTablegrid;
 import org.nocket.gen.domain.visitor.html.merge.MergeHtmlVisitor;
+import org.nocket.gen.domain.visitor.html.styling.StylingFactory;
+import org.nocket.gen.domain.visitor.html.styling.common.StylingStrategyI;
 
 /**
  * This visitor is delegates HTML generation to another visitor depending on retention strategy
@@ -103,20 +101,20 @@ public class DelegateHtmlVisitor<E extends AbstractDomainReference> extends Abst
 		case merge:
 		case silentmerge:
 			if (fileExists) {
-				this.delegate = new MergeHtmlVisitor<E>(context, newLayoutStrategy(context));
+				this.delegate = new MergeHtmlVisitor<E>(context, getStylingStrategy(context));
 			} else {
-				this.delegate = new CreateHtmlVisitor<E>(context, newLayoutStrategy(context));
+				this.delegate = new CreateHtmlVisitor<E>(context, getStylingStrategy(context));
 			}
 			break;
 		case keep:
 			if (fileExists) {
 				this.delegate = new DummyVisitor<E>(context);
 			} else {
-				this.delegate = new CreateHtmlVisitor<E>(context, newLayoutStrategy(context));
+				this.delegate = new CreateHtmlVisitor<E>(context, getStylingStrategy(context));
 			}
 			break;
 		case overwrite:
-			this.delegate = new CreateHtmlVisitor<E>(context, newLayoutStrategy(context));
+			this.delegate = new CreateHtmlVisitor<E>(context, getStylingStrategy(context));
 			break;
 		case none:
 		default:
@@ -125,11 +123,8 @@ public class DelegateHtmlVisitor<E extends AbstractDomainReference> extends Abst
 		}
 	}
 
-	private HtmlBuilderStrategyI newLayoutStrategy(DMDWebGenContext<E> context) {
-		if(context.getLayoutStrategy() == LayoutStrategy.BOOTSTRAP) {
-			return new Bootstrap2HtmlLayoutStrategy(context);
-		} 
-		return new HtmlComponentBuilderTablegrid(context);
+	private StylingStrategyI getStylingStrategy(DMDWebGenContext<E> context) {
+		return StylingFactory.newStylingStrategyInstance(context);
 	}
 	
 	

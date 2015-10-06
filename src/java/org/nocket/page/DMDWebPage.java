@@ -1,10 +1,16 @@
 package org.nocket.page;
 
+import java.util.List;
+
+import org.apache.wicket.markup.head.CssReferenceHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.head.JavaScriptReferenceHeaderItem;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.nocket.component.header.lesscss.LessCSSHelper;
+import org.apache.wicket.request.resource.CssResourceReference;
+import org.apache.wicket.request.resource.JavaScriptResourceReference;
+import org.nocket.gen.domain.visitor.html.styling.StylingFactory;
 import org.nocket.gen.page.DMDWebGenPageContext;
 
 /**
@@ -75,8 +81,26 @@ abstract public class DMDWebPage extends WebPage {
     @Override
     public void renderHead(IHeaderResponse response) {
         // FIXME: funktioniert das wirklich? Im Forscher wird kein Link erzeugt
-        LessCSSHelper.initBootstrapLessCSS(this.getClass(), response, getRequestCycle(), new LessCSSHelper.PathTupel(
-                this.getClass(), "less/application.less", "css/application.css"));
+    	// TODO veit06: Ist das hier wirklich noch nötig? Duch die Styling-Strategie wird jetzt CSS anders eingebunden
+//        LessCSSHelper.initBootstrapLessCSS(this.getClass(), response, getRequestCycle(), new LessCSSHelper.PathTupel(
+//                this.getClass(), "less/application.less", "css/application.css"));
+    	
+    	List<CssResourceReference> cssRefs = StylingFactory.getStylingStrategy().getCssStyleFiles();
+    	List<JavaScriptResourceReference> jsRefs = StylingFactory.getStylingStrategy().getJavascriptFiles();
+    	
+    	if(cssRefs != null) {
+    		// CSS Dateien für die aktuelle Styling Strategie einbinden
+    		for(CssResourceReference cssRef : cssRefs) {
+        		response.render(CssReferenceHeaderItem.forReference(cssRef));
+    		}
+    	}
+    	
+    	if(jsRefs != null) {
+    		// JS Dateien für die aktuelle Styling Strategie einbinden
+    		for(JavaScriptResourceReference jsRef : jsRefs) {
+    			response.render(JavaScriptReferenceHeaderItem.forReference(jsRef));
+    		}
+    	}
     }
 
     public DMDWebGenPageContext getPageContext() {

@@ -7,7 +7,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.nocket.component.table.ColumnSortOrder;
 import org.nocket.component.table.GenericDataTableConfigurator;
-import org.nocket.gen.domain.visitor.html.layout.AbstractHtmlLayoutStrategy;
+import org.nocket.gen.domain.visitor.html.styling.common.AbstractStylingStrategyImpl;
 import org.nocket.gen.page.element.TableElement;
 
 /**
@@ -22,13 +22,13 @@ import org.nocket.gen.page.element.TableElement;
  */
 public class TableExampleStructureAdopter {
 
-    public static final String ATTR_ID = AbstractHtmlLayoutStrategy.ATTR_ID;
-    public static final String ATTR_CLASS = AbstractHtmlLayoutStrategy.ATTR_CLASS;
-    public static final String ATTR_STYLE = AbstractHtmlLayoutStrategy.ATTR_STYLE;
-    public static final String ATTR_VALUE_ACTIONCOLUMN = AbstractHtmlLayoutStrategy.ATTR_VALUE_ACTIONCOLUMN;
-    public static final String ATTR_VALUE_WICKET_ORDER_UP = AbstractHtmlLayoutStrategy.ATTR_VALUE_WICKET_ORDER_UP;
-    public static final String ATTR_VALUE_WICKET_ORDER_NONE = AbstractHtmlLayoutStrategy.ATTR_VALUE_WICKET_ORDER_NONE;
-    public static final String ATTR_VALUE_WICKET_ORDER_DOWN = AbstractHtmlLayoutStrategy.ATTR_VALUE_WICKET_ORDER_DOWN;
+    public static final String ATTR_ID = AbstractStylingStrategyImpl.ATTR_ID;
+    public static final String ATTR_CLASS = AbstractStylingStrategyImpl.ATTR_CLASS;
+    public static final String ATTR_STYLE = AbstractStylingStrategyImpl.ATTR_STYLE;
+    public static final String ATTR_VALUE_ACTIONCOLUMN = AbstractStylingStrategyImpl.ATTR_VALUE_ACTIONCOLUMN;
+    public static final String ATTR_VALUE_WICKET_ORDER_UP = AbstractStylingStrategyImpl.ATTR_VALUE_WICKET_ORDER_UP;
+    public static final String ATTR_VALUE_WICKET_ORDER_NONE = AbstractStylingStrategyImpl.ATTR_VALUE_WICKET_ORDER_NONE;
+    public static final String ATTR_VALUE_WICKET_ORDER_DOWN = AbstractStylingStrategyImpl.ATTR_VALUE_WICKET_ORDER_DOWN;
 
     protected TableElement e;
     protected Elements dataColumns;

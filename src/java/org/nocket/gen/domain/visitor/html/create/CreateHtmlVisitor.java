@@ -32,17 +32,17 @@ import org.nocket.gen.domain.element.MultivaluePropertyElement;
 import org.nocket.gen.domain.element.ResourceElement;
 import org.nocket.gen.domain.element.SimplePropertyElement;
 import org.nocket.gen.domain.visitor.html.AbstractHtmlVisitor;
-import org.nocket.gen.domain.visitor.html.layout.AbstractHtmlLayoutStrategy;
-import org.nocket.gen.domain.visitor.html.layout.HtmlBuilderStrategyI;
+import org.nocket.gen.domain.visitor.html.styling.common.AbstractStylingStrategyImpl;
+import org.nocket.gen.domain.visitor.html.styling.common.StylingStrategyI;
 import org.nocket.gen.page.element.ModalElement;
 
 public class CreateHtmlVisitor<E extends AbstractDomainReference> extends AbstractHtmlVisitor<E> {
 
     protected final Html html;
     protected final Deque<MultiPartElement> panelStack = new ArrayDeque<MultiPartElement>();
-    protected final HtmlBuilderStrategyI componentBuilder;
+    protected final StylingStrategyI componentBuilder;
 
-    public CreateHtmlVisitor(DMDWebGenContext<E> context, HtmlBuilderStrategyI componentBuilder) {
+    public CreateHtmlVisitor(DMDWebGenContext<E> context, StylingStrategyI componentBuilder) {
         super(context);
         this.componentBuilder = componentBuilder;
         this.html = newHtml();
@@ -61,15 +61,15 @@ public class CreateHtmlVisitor<E extends AbstractDomainReference> extends Abstra
             wicketContainer = new XML("wicket:extend");
         }
         body.addElement(wicketContainer);
-        wicketContainer.addElement(new Comment(new Div().addAttribute(AbstractHtmlLayoutStrategy.ATTR_WICKET_ID,
+        wicketContainer.addElement(new Comment(new Div().addAttribute(AbstractStylingStrategyImpl.ATTR_WICKET_ID,
                 "feedback")));
-        wicketContainer.addElement(new Div().addAttribute(AbstractHtmlLayoutStrategy.ATTR_WICKET_ID, ModalElement.DEFAULT_WICKET_ID));
+        wicketContainer.addElement(new Div().addAttribute(AbstractStylingStrategyImpl.ATTR_WICKET_ID, ModalElement.DEFAULT_WICKET_ID));
         Form form = new Form();
-        form.addAttribute(AbstractHtmlLayoutStrategy.ATTR_CLASS, "form-horizontal");
+        form.addAttribute(AbstractStylingStrategyImpl.ATTR_CLASS, "form-horizontal");
         form.removeAttribute("accept-charset");
         form.removeAttribute("enctype");
         wicketContainer.addElement(form);
-        form.addAttribute(AbstractHtmlLayoutStrategy.ATTR_WICKET_ID, "form");
+        form.addAttribute(AbstractStylingStrategyImpl.ATTR_WICKET_ID, "form");
         panelStack.add(form);
         return html;
     }

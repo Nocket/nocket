@@ -20,7 +20,7 @@ import org.apache.ecs.html.Table;
 import org.nocket.gen.domain.DMDWebGenContext;
 import org.nocket.gen.domain.element.ButtonElement;
 import org.nocket.gen.domain.element.HeadlineElement;
-import org.nocket.gen.domain.visitor.html.layout.HtmlComponentBuilderTablegrid;
+import org.nocket.gen.domain.visitor.html.styling.StylingFactory;
 
 @Deprecated
 public class HtmlGeneratorVisitorTablegrid<E extends AbstractDomainReference> extends CreateHtmlVisitor<E> {
@@ -32,7 +32,7 @@ public class HtmlGeneratorVisitorTablegrid<E extends AbstractDomainReference> ex
     protected Stack<List<Element>> collectedButtons = new Stack<List<Element>>();
 
     public HtmlGeneratorVisitorTablegrid(DMDWebGenContext<E> context) {
-        super(context, new HtmlComponentBuilderTablegrid(context));
+        super(context, StylingFactory.newStylingStrategyInstance(context));
         collectedButtons.push(new ArrayList<Element>());
     }
 

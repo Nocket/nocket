@@ -3,12 +3,14 @@ apply plugin: "war"
 apply plugin: "eclipse"
 apply plugin: "eclipse-wtp"
 apply plugin: "lesscss"
-apply plugin: "announce"
 apply plugin: "maven"
+apply plugin: 'com.bmuschko.tomcat'
+apply plugin: "jacoco"
 
 ext {
 	// current user
 	username = System.properties["user.name"]
+	
 	// define config property to load user specific *build* configuration
 	config = loadConfiguration()
 }
@@ -16,7 +18,7 @@ ext {
 // using semantic versioning, see http://semver.org/
 group = "org.nocket"
 archivesBaseName = "nocket"
-version = new Version(major: 0, minor: 1, revision: 2)
+version = new Version(major: 0, minor: 3, revision: 4)
 
 sourceCompatibility = config.java.source
 
@@ -56,12 +58,6 @@ sourceSets {
 	}
 }
 
-test{
-	ignoreFailures = false
-	// exclusion of the test suites prevents double execution of test cases.
-	exclude '**/*Suite.class'
-}
-
 eclipse{
 	jdt {
 		sourceCompatibility = config.java.source
@@ -80,7 +76,6 @@ eclipse{
 	classpath {
 		defaultOutputDir = file("build/classes-eclipse")
 		downloadSources = true
-		downloadJavadoc = true
 
 		file {
 			withXml {
@@ -129,11 +124,6 @@ lessc {
 	options.sourceMap = true
 	options.sourceMapLessInline = true
 	options.sourceMapURL = "http://localhost:8080/{$war.baseName}/css/application.map"
-	
-	doLast {
-	   def state = didWork ? "finished" : "with error"
-	   announce.local.send "${project.name}: compling LESS", state
-	}
 }
 
 lesscDaemon {
@@ -143,6 +133,10 @@ lesscDaemon {
 	engine = config.less.engine
 	lesscExecutable = config.less.executable
 	interval = config.less.daemonIntervall
+}
+
+jacoco {
+	toolVersion = "0.7.1.201405082137"
 }
 
 jar {
@@ -201,6 +195,32 @@ uploadArchives {
 	}
 }
 
+task integrationServerRun(type: com.bmuschko.gradle.tomcat.tasks.TomcatRunWar) {
+	stopPort = config.server.stopPort
+	stopKey = config.server.stopKey
+	daemon = true
+}
+
+task integrationServerStop(type: com.bmuschko.gradle.tomcat.tasks.TomcatStop) {
+	stopPort = config.server.stopPort
+	stopKey = config.server.stopKey
+}
+
+// all tests are selenium tests
+test {
+	ignoreFailures = true
+	// exclusion of the test suites prevents double execution of test cases.
+	exclude '**/*Suite.class'
+
+	dependsOn integrationServerRun
+	finalizedBy integrationServerStop
+}
+
+tomcat {
+	httpPort  = config.server.httpPort
+	httpsPort = config.server.httpsPort
+}
+
 task cleanResources(type: Delete) {
 	description "Deletes all ressources in the build directory"
 	
@@ -223,20 +243,10 @@ task sourcesJar(type: Jar) {
 
 task buildSnapshot(dependsOn: ["build"]) {
 	description "Assembles the outputs of this project for a SNAPSHOT Release."
-
-	doLast {
-		def state = didWork ? "finished" : "with error"
-		announce.local.send "Snapshot ${project.name}-${version}", state
-	}
 }
 
 task buildRelease(dependsOn: ["build"]) {
 	description "Assembles the outputs of this project for a Release."
-	
-	doLast {
-		def state = didWork ? "finished" : "with error"
-		announce.local.send "Releasing ${project.name}-${version}", state
-	}
 }
 
 task publishRelease {
@@ -265,7 +275,7 @@ assemble {
 
 dependencies {
 	def wicketVersion = "6.9.+"
-
+	
 	// wicket
 	compile "org.apache.wicket:wicket:${wicketVersion}"
 	compile "org.apache.wicket:wicket-extensions:${wicketVersion}"
@@ -299,6 +309,12 @@ dependencies {
 	testCompile "org.seleniumhq.selenium:selenium-support:2.43.1"
 	testCompile "com.github.detro.ghostdriver:phantomjsdriver:1.1.0"
 
+	// tomcat for selenium
+	tomcat "org.apache.tomcat.embed:tomcat-embed-core:${config.server.version}"
+	tomcat "org.apache.tomcat.embed:tomcat-embed-logging-juli:${config.server.version}"
+	tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${config.server.version}") {
+		exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
+	}
 }
 
 repositories {
@@ -313,11 +329,12 @@ buildscript {
 
 	dependencies {
 		classpath "com.github.houbie:lesscss-gradle-plugin:1.0.3-less-1.7.0"
+		classpath "com.bmuschko:gradle-tomcat-plugin:2.0"
 	}
 }
 
 wrapper {
-	gradleVersion = "2.1"
+	gradleVersion = "2.3"
 }
 
 gradle.taskGraph.whenReady { taskGraph ->
@@ -336,7 +353,7 @@ gradle.taskGraph.whenReady { taskGraph ->
 	sourceSets.main.resources.srcDir "src/config/${version.configuration}"
 	sourceSets.examples.resources.srcDir "examples/config/${version.configuration}"
 	
-	println "*** build configured for: '${version.conf}'\n"
+	println "*** release configured for: '${version.conf}'\n"
 	
 	tasks.withType(JavaCompile) {
 		[ compileJava, compileTestJava ]*.options*.encoding = "ISO-8859-15"
@@ -360,18 +377,20 @@ class Version {
 
 def loadConfiguration() {
 	mkdir("examples/config/${username}")
+	
+	File defaultConfigFile = file("$rootDir/config/gradle/default.config")
+	File userConfigFile = file("$rootDir/config/gradle/${username}.config")
 
-	try {
-		def configFile = "config/gradle/" + username + ".config"
-		def config = new ConfigSlurper().parse(file(configFile).toURL())
-
+	def parsedConfig = new ConfigSlurper().parse(defaultConfigFile.toURL())
+	
+	if(userConfigFile.exists()) {
+		def parsedUserConfig = new ConfigSlurper().parse(userConfigFile.toURL())
+		parsedConfig = parsedConfig.merge(parsedUserConfig)
+		
 		println "\n*** using *build* configuration for user: '${username}'"
-		return config
-	}
-	catch (all) {
-		def configFile = file("config/gradle/default.config")
-
+	} else {
 		println "\n*** using default *build* configuration!"
-		return new ConfigSlurper().parse(configFile.toURL())
 	}
+	
+	return parsedConfig
 }

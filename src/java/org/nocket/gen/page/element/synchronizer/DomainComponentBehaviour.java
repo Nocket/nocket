@@ -85,11 +85,11 @@ public class DomainComponentBehaviour extends AbstractValidator<Object> {
 
 	private void addValidatorsForComponent() {
 		validators = new ArrayList<IValidator<Object>>();
-		
+
 		// Throw exception is validator required without validator there.
 		helper.assertValidate();
 
-		if(helper.isProperty()) {
+		if (helper.isProperty()) {
 			validators.add(new JSR303Validator<Object>(helper));
 		}
 		validators.add(new NocketValidateMethodValidator<Object>(helper));
@@ -122,10 +122,10 @@ public class DomainComponentBehaviour extends AbstractValidator<Object> {
 	private boolean performValidation(IValidatable<Object> validatable) {
 		GeneratedBeanValidationForm<?> form = getParentForm();
 		if (form.isEagerProcessing()) {
-			if(form.isForcedProcessing()) {
+			if (form.isForcedProcessing()) {
 				return false;
 			}
-			if (Objects.isEqual(validatable.getValue(), component.getDefaultModelObject())) {
+			if (isEqual(validatable.getValue(), component.getDefaultModelObject())) {
 				if (log.isDebugEnabled()) {
 					log.debug(MessageFormat.format("No validation for component: wicket id={0}, old value={1}, new value={2}.",
 							helper.getWicketId(), component.getDefaultModelObject(), validatable.getValue()));
@@ -321,6 +321,16 @@ public class DomainComponentBehaviour extends AbstractValidator<Object> {
 				}
 			});
 		}
+	}
+
+	private boolean isEqual(Object o1, Object o2) {
+		if (o1 == null && o2 == null) {
+			return true;
+		}
+		if (o1 == null || o2 == null) {
+			return false;
+		}
+		return o1.equals(o2);
 	}
 
 }

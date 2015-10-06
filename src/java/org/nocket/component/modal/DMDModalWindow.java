@@ -169,7 +169,7 @@ public class DMDModalWindow extends Panel {
 		}
 
 		JQueryHelper.initJQuery(response);
-		response.render(CssHeaderItem.forReference(new PackageResourceReference(DMDModalWindow.class, "DMDModalWindow.css")));
+		//response.render(CssHeaderItem.forReference(new PackageResourceReference(DMDModalWindow.class, "DMDModalWindow.css")));
 		response.render(JavaScriptHeaderItem.forReference(new PackageResourceReference(DMDModalWindow.class, "DMDModalWindow.js")));
 
 		if (doShow) {

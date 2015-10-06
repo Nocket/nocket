@@ -29,6 +29,9 @@ public abstract class ActionIconColumn<T> extends DMDAbstractColumn<T> {
     /** The Constant ICON_DISBALED. */
     private final static String ICON_DISBALED = "icon-disabled.png";
 
+    /** The Constant ACTION_COLUMN. */
+    public static final String ACTION_COLUMN = "nocket-action-column";
+
     /**
      * Instantiates a new action icon column.
      *
@@ -50,7 +53,7 @@ public abstract class ActionIconColumn<T> extends DMDAbstractColumn<T> {
      */
     @Override
     public String getCssClass() {
-        return "org.nocket-action-column";
+        return ACTION_COLUMN;
     }
 
     /**

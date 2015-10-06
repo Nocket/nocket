@@ -1,24 +1,19 @@
 /*
  * AuthenticatedHtmlUnitDriver.java
- * 
- * Created on 09.03.2013
- * 
- * Copyright (C) 2013 Volkswagen AG, All rights reserved.
  */
 
 package org.nocket.selenium.infrastructure;
-
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.DefaultCredentialsProvider;
 import com.gargoylesoftware.htmlunit.WebClient;
 
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+
 /*
  * Class extending HtmlUnitDriver to support BASIC authentication
- * 
  * @author Sebastiano Armeli-Battana
  */
 /**
@@ -37,34 +32,34 @@ public class AuthenticatedHtmlUnitDriver extends HtmlUnitDriver {
 	 */
 	public AuthenticatedHtmlUnitDriver() {
 		super();
-		this.setJavascriptEnabled(true);
+		setJavascriptEnabled(true);
 	}
 
 	/**
 	 * Instantiates a new authenticated html unit driver.
-	 * 
+	 *
 	 * @param version
 	 *            the version
 	 */
 	public AuthenticatedHtmlUnitDriver(final BrowserVersion version) {
 		super(version);
-		this.setJavascriptEnabled(true);
+		setJavascriptEnabled(true);
 	}
 
 	/**
 	 * Instantiates a new authenticated html unit driver.
-	 * 
+	 *
 	 * @param capabilities
 	 *            the capabilities
 	 */
 	public AuthenticatedHtmlUnitDriver(final Capabilities capabilities) {
 		super(capabilities);
-		this.setJavascriptEnabled(true);
+		setJavascriptEnabled(true);
 	}
 
 	/**
 	 * Creates the.
-	 * 
+	 *
 	 * @param username
 	 *            the username
 	 * @param password
@@ -79,7 +74,7 @@ public class AuthenticatedHtmlUnitDriver extends HtmlUnitDriver {
 
 	/**
 	 * Creates the.
-	 * 
+	 *
 	 * @param version
 	 *            the version
 	 * @param username
@@ -96,7 +91,7 @@ public class AuthenticatedHtmlUnitDriver extends HtmlUnitDriver {
 
 	/**
 	 * Creates the.
-	 * 
+	 *
 	 * @param capabilities
 	 *            the capabilities
 	 * @param username
@@ -113,7 +108,6 @@ public class AuthenticatedHtmlUnitDriver extends HtmlUnitDriver {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * org.openqa.selenium.htmlunit.HtmlUnitDriver#newWebClient(com.gargoylesoftware
 	 * .htmlunit.BrowserVersion)

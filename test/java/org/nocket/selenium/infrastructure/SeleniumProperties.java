@@ -15,6 +15,7 @@ public class SeleniumProperties extends AbstractProperties {
 	public static final String WEBDRIVER = "webdriver";
 	public static final String WEBDRIVER_PORT = "webdriver.port";
 	public static final String WEBDRIVER_URL = "webdriver.url";
+	public static final String TIMEOUT = "webdriver.timeout.pageload";
 
 	protected SeleniumProperties() {
 		super();

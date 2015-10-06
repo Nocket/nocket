@@ -22,12 +22,14 @@ hs_err_pid*
 examples/webapp/css/application.css
 examples/webapp/css/application.map
 
+.settings/
 .settings/gradle
 .settings/org.eclipse.jdt.core.prefs
 .settings/org.eclipse.wst.common.component
+.settings/org.eclipse.wst.validation.prefs
+.settings/org.sonar.ide.eclipse.core.prefs
 .settings/*.xml
+
 /bin/
 
-.settings/org.eclipse.wst.validation.prefs
 /phantomjsdriver.log
-/.settings/

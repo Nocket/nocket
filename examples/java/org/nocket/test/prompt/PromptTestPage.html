@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <head>
+        <link href="../../../../../resources/webapp/css/bootstrap.css" type="text/css" rel="stylesheet" />
+        <link href="../../../../../resources/webapp/css/arvatoStyle.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <wicket:extend>
+            <!-- <div wicket:id='feedback'></div>  -->
+            <div wicket:id="modal"></div>
+            <form wicket:id="form" class="form-horizontal">
+	            <section>
+					<p><strong>Test Case: Basic usage of "@Prompt" annotation</strong></p>
+					<p>The field "someVeryComplicatedVariableName" in PromptTest is annotated with @Prompt("Complicated Text"), causing two things:</p>
+					<ol>
+						<li>DMDWebGen generates SomeVeryComplicatedVariableName=Complicated Text"" in PromptTestPage.properties rather than "Some Very Complicated Variable Name"</li>
+						<li>Validation messages use the @Prompt-value instead of the property name</li>
+					</ol>
+					<p>The field "simpleText" is not annotated and therefore uses default behavior.</p>
+					<p>
+						<strong>Test scenario:</strong>
+					</p>
+					<ol>
+						<li>Click "save"</li>
+						<li>Both fields are marked as invalid with their respective names being used.</li>
+					</ol>
+	                <div class="control-group">
+	                    <label for="SomeVeryComplicatedVariableName" class="control-label" wicket:id="SomeVeryComplicatedVariableName.label">Complicated Text</label>
+	                    <div class="controls">
+	                        <input id="SomeVeryComplicatedVariableName" type="text" wicket:id="SomeVeryComplicatedVariableName" />
+	                    </div>
+	                </div>
+	                <div class="control-group">
+	                    <label for="SimpleText" class="control-label" wicket:id="SimpleText.label">Simple Text</label>
+	                    <div class="controls">
+	                        <input id="SimpleText" type="text" wicket:id="SimpleText" />
+	                    </div>
+	                </div>
+                </section>
+                <footer class="form-actions">
+	                <button id="save" class="btn" wicket:id="save" type="submit"><span wicket:id="save.label">Save</span></button>
+                </footer>
+            </form>
+        </wicket:extend>
+    </body>
+</html>

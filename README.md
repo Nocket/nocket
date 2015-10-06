@@ -1,9 +1,6 @@
 
 # Nocket
 
-### This is the branch for the ongoing development. If you are looking for a stable release go to the master branch.
-
-
 ### Vorbereitung
 
 zu installierende Eclipse Plug-Ins:
@@ -33,28 +30,35 @@ Falls es Probleme mit einem Proxy gibt, folgende Datei im `.gradle`-Verzeichnis 
     systemProp.http.proxyHost=<proxy ip>
     systemProp.http.proxyPort=8080
     systemProp.http.nonProxyHosts=localhost
-    
+
+### Eigene Features entwickeln / Arbeiten mit Branches
+
+https://github.com/Nocket/nocket/wiki
+
+### Beispielanwendung starten
+
+    ./gradlew tomcatRunWar
+
 ### Releasefähige Dateien erzeugen
 
 Die generierten Dateien findet man unter `build/libs`, für das Testen in Eclipse ist das generieren der Artefakte nicht notwendig.
 
 - für die lokale Entwickler Maschine:
 
-    `gradle build`
+    `./gradlew build`
     
 - Aktueller Entwicklungs-Snapshot für Test-Maschinen
 
-    `gradle buildSnapshot` // generiert das JAR und ein WAR mit den Beispielen
+    `./gradlew buildSnapshot` // generiert das JAR und ein WAR mit den Beispielen
     
 - Release
 
-    `gradle buildRelease`  // generiert das JAR und ein WAR mit den Beispielen
+    `./gradlew buildRelease`  // generiert das JAR und ein WAR mit den Beispielen
 
-    
 ### Release in Gradle einbinden
 
     dependencies {
-        compile "org.nocket:nocket:0.1.1"
+        compile "org.nocket:nocket:0.3.2"
     }
     
     repositories { 

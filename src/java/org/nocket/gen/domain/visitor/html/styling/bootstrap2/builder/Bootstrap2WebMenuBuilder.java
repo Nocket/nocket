@@ -8,14 +8,19 @@ import java.util.List;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.markup.head.CssHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.request.resource.PackageResourceReference;
 import org.nocket.NocketSession;
 import org.nocket.component.menu.MenuItem;
+import org.nocket.component.menu.MenuPanel;
 import org.nocket.gen.domain.visitor.html.styling.common.WebMenuBuilderI;
 
 /**
@@ -109,6 +114,16 @@ public class Bootstrap2WebMenuBuilder implements WebMenuBuilderI {
             container.setVisible(menuEntry.getSubItems().size() > 0);
             item.add(container);
         }
+        
+
+
+        @Override
+        public void renderHead(IHeaderResponse response) {
+            response.render(JavaScriptHeaderItem
+                    .forReference(new PackageResourceReference(MenuPanel.class, "MenuPanel.js")));
+            response.render(CssHeaderItem.forReference(new PackageResourceReference(MenuPanel.class, "MenuPanel.css")));
+        }
+        
 
         protected boolean displayMenuOpenedForItem(MenuItem menuEntry) {
             return menuEntry.equals(NocketSession.get().getLastSelectedMenuItem());

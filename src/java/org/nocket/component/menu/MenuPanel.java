@@ -2,11 +2,7 @@ package org.nocket.component.menu;
 
 import java.util.List;
 
-import org.apache.wicket.markup.head.CssHeaderItem;
-import org.apache.wicket.markup.head.IHeaderResponse;
-import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.request.resource.PackageResourceReference;
 import org.nocket.gen.domain.visitor.html.styling.StylingFactory;
 import org.nocket.gen.domain.visitor.html.styling.common.WebMenuBuilderI;
 
@@ -26,14 +22,6 @@ public class MenuPanel extends Panel {
         menuBuilder.initMenuBuilder("menuList", list);
         add(menuBuilder.getMenu());
     }
-
-    @Override
-    public void renderHead(IHeaderResponse response) {
-        response.render(JavaScriptHeaderItem
-                .forReference(new PackageResourceReference(MenuPanel.class, "MenuPanel.js")));
-        response.render(CssHeaderItem.forReference(new PackageResourceReference(MenuPanel.class, "MenuPanel.css")));
-    }
-
     
 
 }

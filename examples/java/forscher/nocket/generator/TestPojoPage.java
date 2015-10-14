@@ -3,9 +3,10 @@ package forscher.nocket.generator;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.nocket.gen.page.GeneratedBinding;
-import org.nocket.page.DMDWebPage;
 
-public class TestPojoPage extends DMDWebPage {
+import forscher.nocket.page.ForscherPage;
+
+public class TestPojoPage extends ForscherPage {
 
 	private static final long serialVersionUID = 1L;
 

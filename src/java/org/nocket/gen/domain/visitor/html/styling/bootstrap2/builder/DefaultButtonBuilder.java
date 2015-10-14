@@ -13,7 +13,7 @@ import org.nocket.gen.page.visitor.bind.builder.components.GeneratedButton;
  * @author Thomas.Veit@Bertelsmann.de
  *
  */
-public class Bootstrap2ButtonBuilder implements ButtonBuilderI {
+public class DefaultButtonBuilder implements ButtonBuilderI {
 
 	private GeneratedButton button = null;
 	

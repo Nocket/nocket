@@ -17,7 +17,7 @@ import org.nocket.gen.page.visitor.bind.builder.components.GeneratedNumberTextFi
  * @author Thomas.Veit@Bertelsmann.de
  *
  */
-public class Bootstrap2TextFieldBuilder implements TextFieldBuilderI {
+public class DefaultTextFieldBuilder implements TextFieldBuilderI {
 	
 	private TextField textField = null;
 //	private GeneratedNumberTextField genTextField = null;

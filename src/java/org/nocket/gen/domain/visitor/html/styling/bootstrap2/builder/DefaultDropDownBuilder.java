@@ -17,7 +17,7 @@ import org.nocket.gen.domain.visitor.html.styling.common.DropDownBuilderI;
  *
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class Bootstrap2DropDownBuilder implements DropDownBuilderI {
+public class DefaultDropDownBuilder implements DropDownBuilderI {
 	
 	private DropDownChoice field = null;
 

@@ -14,7 +14,7 @@ import org.nocket.gen.page.visitor.bind.builder.components.GeneratedRepeatingPan
  * @author Thomas.Veit@Bertelsmann.de
  *
  */
-public class Bootstrap2RepeatingViewBuilder implements RepeatingViewBuilderI {
+public class DefaultRepeatingViewBuilder implements RepeatingViewBuilderI {
 	
 	private GeneratedRepeatingPanel view = null;
 

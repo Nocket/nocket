@@ -5,11 +5,10 @@ import java.io.File;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.link.DownloadLink;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
+import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
-import org.nocket.component.modal.DMDModalWindow;
 import org.nocket.gen.domain.visitor.html.styling.StylingFactory;
 import org.nocket.gen.domain.visitor.html.styling.common.ButtonBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.CheckBoxBuilderI;
@@ -19,6 +18,7 @@ import org.nocket.gen.domain.visitor.html.styling.common.FileUploadBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.ImageBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.LinkBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.ListMultipleChoiceBuilderI;
+import org.nocket.gen.domain.visitor.html.styling.common.ModalWindowBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.PasswordTextFieldBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.RadioChoiceBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.RepeatingViewBuilderI;
@@ -47,16 +47,15 @@ import org.nocket.gen.page.element.TextAreaElement;
 import org.nocket.gen.page.element.TextInputElement;
 import org.nocket.gen.page.element.UnknownPageElementI;
 import org.nocket.gen.page.visitor.bind.builder.components.GeneratedBeanValidationForm;
-import org.nocket.gen.page.visitor.bind.builder.components.GeneratedButton;
 import org.nocket.gen.page.visitor.bind.builder.components.GeneratedGenericDataTableFactory;
-import org.nocket.gen.page.visitor.bind.builder.components.GeneratedGroupTabbedPanel;
-import org.nocket.gen.page.visitor.bind.builder.components.GeneratedRepeatingPanel;
 
 public class DefaultBindingBuilder implements BindingBuilderI {
 
     @Override
     public Component createModal(ModalElement e) {
-        DMDModalWindow modal = new DMDModalWindow(e.getWicketId());
+         ModalWindowBuilderI builder = StylingFactory.getStylingStrategy().getModalWindowBuilder();
+         builder.initModalWindowBuilder(e.getWicketId());
+         Panel modal = builder.getModalWindow();
         return modal;
     }
 

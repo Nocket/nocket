@@ -148,4 +148,9 @@ public interface StylingStrategyI {
 	 * Generatorcontext in die Styling-Strategie setzen
 	 */
 	public void setContext(DMDWebGenContext<?> context);
+	
+	/**
+	 * Builder für Modale Dialoge
+	 */
+	public ModalWindowBuilderI getModalWindowBuilder();
 }

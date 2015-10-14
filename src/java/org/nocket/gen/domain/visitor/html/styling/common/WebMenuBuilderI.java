@@ -2,7 +2,7 @@ package org.nocket.gen.domain.visitor.html.styling.common;
 
 import java.util.List;
 
-import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.panel.Panel;
 import org.nocket.component.menu.MenuItem;
 
 /**
@@ -27,5 +27,5 @@ public interface WebMenuBuilderI {
 	 * 
 	 * @return Fertig erstelltes Menü
 	 */
-	public ListView getMenu();
+	public Panel getMenu();
 }

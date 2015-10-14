@@ -18,22 +18,23 @@ import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 import org.nocket.gen.domain.element.DomainElementI;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.Bootstrap2ButtonBuilder;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.Bootstrap2CheckBoxBuilder;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.Bootstrap2DropDownBuilder;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.Bootstrap2FeedbackPanelBuilder;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.Bootstrap2FileUploadFieldBuilder;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.Bootstrap2ImageBuilder;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.Bootstrap2LinkBuilder;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.Bootstrap2ListMultipleChoiceBuilder;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.Bootstrap2PasswordTextFieldBuilder;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.Bootstrap2RadioChoiceBuilder;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.Bootstrap2RepeatingViewBuilder;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.Bootstrap2TabbedPanelBuilder;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.Bootstrap2TablePanelBuilder;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.Bootstrap2TextAreaBuilder;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.Bootstrap2TextFieldBuilder;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.Bootstrap2WebMenuBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultButtonBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultCheckBoxBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultDropDownBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultFeedbackPanelBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultFileUploadFieldBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultImageBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultLinkBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultListMultipleChoiceBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultModalWindowBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultPasswordTextFieldBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultRadioChoiceBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultRepeatingViewBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultTabbedPanelBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultTablePanelBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultTextAreaBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultTextFieldBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultWebMenuBuilder;
 import org.nocket.gen.domain.visitor.html.styling.common.AbstractStylingStrategyImpl;
 import org.nocket.gen.domain.visitor.html.styling.common.ButtonBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.CheckBoxBuilderI;
@@ -43,6 +44,7 @@ import org.nocket.gen.domain.visitor.html.styling.common.FileUploadBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.ImageBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.LinkBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.ListMultipleChoiceBuilderI;
+import org.nocket.gen.domain.visitor.html.styling.common.ModalWindowBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.PasswordTextFieldBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.RadioChoiceBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.RepeatingViewBuilderI;
@@ -58,7 +60,7 @@ import org.nocket.gen.domain.visitor.html.styling.common.WebMenuBuilderI;
  * @author Thomas.Veit@Bertelsmann.de
  *
  */
-public class Bootstrap2StylingStrategy extends AbstractStylingStrategyImpl {
+public class DefaultStylingStrategy extends AbstractStylingStrategyImpl {
 
 	@Override
 	protected Element wrapComponent(DomainElementI<?> e, Element element) {
@@ -86,32 +88,32 @@ public class Bootstrap2StylingStrategy extends AbstractStylingStrategyImpl {
 	
 	@Override
 	public WebMenuBuilderI getWebMenuBuilder() {
-		return new Bootstrap2WebMenuBuilder();
+		return new DefaultWebMenuBuilder();
 	}
 
 	@Override
 	public FeedbackPanelBuilderI getFeedbackPanelBuilder() {
-		return new Bootstrap2FeedbackPanelBuilder();
+		return new DefaultFeedbackPanelBuilder();
 	}
 
 	@Override
 	public ListMultipleChoiceBuilderI<String> getListMultipleChoiceBuilder() {
-		return new Bootstrap2ListMultipleChoiceBuilder();
+		return new DefaultListMultipleChoiceBuilder();
 	}
 
 	@Override
 	public RadioChoiceBuilderI<?> getRadioChoiceBuilder() {
-		return new Bootstrap2RadioChoiceBuilder();
+		return new DefaultRadioChoiceBuilder();
 	}
 
 	@Override
 	public TabbedPanelBuilderI<ITab> getTabbedPanelBuilder() {
-		return new Bootstrap2TabbedPanelBuilder();
+		return new DefaultTabbedPanelBuilder();
 	}
 
 	@Override
 	public TablePanelBuilderI<?> getTablePanelBuilder() {
-		return new Bootstrap2TablePanelBuilder();
+		return new DefaultTablePanelBuilder();
 	}
 
 	
@@ -139,51 +141,56 @@ public class Bootstrap2StylingStrategy extends AbstractStylingStrategyImpl {
 
 	@Override
 	public TextFieldBuilderI getTextFieldBuilder() {
-		return new Bootstrap2TextFieldBuilder();
+		return new DefaultTextFieldBuilder();
 	}
 
 	@Override
 	public FileUploadBuilderI getFileUploadBuilder() {
-		return new Bootstrap2FileUploadFieldBuilder();
+		return new DefaultFileUploadFieldBuilder();
 	}
 
 	@Override
 	public PasswordTextFieldBuilderI getPasswordTextFieldBuilder() {
-		return new Bootstrap2PasswordTextFieldBuilder();
+		return new DefaultPasswordTextFieldBuilder();
 	}
 
 	@Override
 	public TextAreaBuilderI getTextAreaBuilder() {
-		return new Bootstrap2TextAreaBuilder();
+		return new DefaultTextAreaBuilder();
 	}
 
 	@Override
 	public CheckBoxBuilderI getCheckBoxBuilder() {
-		return new Bootstrap2CheckBoxBuilder();
+		return new DefaultCheckBoxBuilder();
 	}
 
 	@Override
 	public ImageBuilderI getImageBuilder() {
-		return new Bootstrap2ImageBuilder();
+		return new DefaultImageBuilder();
 	}
 
 	@Override
 	public LinkBuilderI getLinkBuilder() {
-		return new Bootstrap2LinkBuilder();
+		return new DefaultLinkBuilder();
 	}
 	
 	@Override
 	public DropDownBuilderI getDropDownBuilder() {
-		return new Bootstrap2DropDownBuilder();
+		return new DefaultDropDownBuilder();
 	}
 
 	@Override
 	public ButtonBuilderI getButtonBuilder() {
-		return new Bootstrap2ButtonBuilder();
+		return new DefaultButtonBuilder();
 	}
 	
 	@Override
 	public RepeatingViewBuilderI getRepeatingViewBuilder() {
-		return new Bootstrap2RepeatingViewBuilder();
+		return new DefaultRepeatingViewBuilder();
+	}
+	
+	@Override
+	public ModalWindowBuilderI getModalWindowBuilder() {
+		return new DefaultModalWindowBuilder();
 	}
 }

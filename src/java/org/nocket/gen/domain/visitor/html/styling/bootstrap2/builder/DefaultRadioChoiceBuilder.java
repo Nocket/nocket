@@ -16,7 +16,7 @@ import org.nocket.gen.domain.visitor.html.styling.common.RadioChoiceBuilderI;
  * @author Thomas.Veit@Bertelsmann.de
  *
  */
-public class Bootstrap2RadioChoiceBuilder implements RadioChoiceBuilderI<Object> {
+public class DefaultRadioChoiceBuilder implements RadioChoiceBuilderI<Object> {
 
 	private DMDRadioChoice<Object> radioChoice = null;
 	

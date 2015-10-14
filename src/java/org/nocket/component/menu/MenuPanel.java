@@ -19,7 +19,7 @@ public class MenuPanel extends Panel {
     public MenuPanel(String id, List<MenuItem> list) {
         super(id);
         WebMenuBuilderI menuBuilder = StylingFactory.getStylingStrategy().getWebMenuBuilder();
-        menuBuilder.initMenuBuilder("menuList", list);
+        menuBuilder.initMenuBuilder("realMainMenu", list);
         add(menuBuilder.getMenu());
     }
     

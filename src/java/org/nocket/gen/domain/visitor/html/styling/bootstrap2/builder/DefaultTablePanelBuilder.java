@@ -15,7 +15,7 @@ import org.nocket.gen.domain.visitor.html.styling.common.TablePanelBuilderI;
  * @author Thomas.Veit@Bertelsmann.de
  *
  */
-public class Bootstrap2TablePanelBuilder implements TablePanelBuilderI<GenericDataTablePanel> {
+public class DefaultTablePanelBuilder implements TablePanelBuilderI<GenericDataTablePanel> {
 
 	private GenericDataTablePanel panel = null;
 	

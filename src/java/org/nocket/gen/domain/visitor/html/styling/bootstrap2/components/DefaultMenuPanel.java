@@ -1,7 +1,4 @@
-/**
- * 
- */
-package org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder;
+package org.nocket.gen.domain.visitor.html.styling.bootstrap2.components;
 
 import java.util.List;
 
@@ -19,52 +16,26 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.nocket.NocketSession;
+import org.nocket.component.header.jquery.JQueryHelper;
 import org.nocket.component.menu.MenuItem;
-import org.nocket.component.menu.MenuPanel;
-import org.nocket.gen.domain.visitor.html.styling.common.WebMenuBuilderI;
 
-/**
- * Menü-Builder für das Hauptmenü unter Bootstrap 2
- *
- * @author Thomas.Veit@Bertelsmann.de
- *
- */
-public class Bootstrap2WebMenuBuilder implements WebMenuBuilderI {
-	
-	private ItemList menu = null;
+@SuppressWarnings({ "serial" })
+public class DefaultMenuPanel extends Panel {
 
-	/* (non-Javadoc)
-	 * @see org.nocket.gen.domain.visitor.html.styling.common.WebMenuBuilderI#initMenuBuilder(java.lang.String, java.util.List)
-	 */
-	@Override
-	public void initMenuBuilder(String wicketId, List<MenuItem> menuItems) {
-		menu = new ItemList(wicketId, menuItems);
-	}
+    public DefaultMenuPanel(String id, List<MenuItem> list) {
+        super(id);
+        add(new ItemList("menuList", list));
+    }
 
-	/* (non-Javadoc)
-	 * @see org.nocket.gen.domain.visitor.html.styling.common.WebMenuBuilderI#getMenu()
-	 */
-	@Override
-	public ListView getMenu() {
-		return menu;
-	}
+    @Override
+    public void renderHead(IHeaderResponse response) {
+        JQueryHelper.initJQuery(response);
+        response.render(JavaScriptHeaderItem
+                .forReference(new PackageResourceReference(DefaultMenuPanel.class, "DefaultMenuPanel.js")));
+        response.render(CssHeaderItem.forReference(new PackageResourceReference(DefaultMenuPanel.class, "DefaultMenuPanel.css")));
+    }
 
-	
-	
-	
-	
-	
-	
-	
-	
-	/**
-	 * Private Klasse für die Darstellung der Menüpunkte. 
-	 * Implementierung wurde aus dem MenuPanel hier her verschoben
-	 *
-	 * @author Thomas.Veit@Bertelsmann.de
-	 *
-	 */
-	private static class ItemList extends ListView<MenuItem> {
+    private static class ItemList extends ListView<MenuItem> {
 
         private static final String CSS_CLASS_UL = "nav nav-tabs nav-stacked";
         private static final String ACTIVE = "active";
@@ -114,16 +85,6 @@ public class Bootstrap2WebMenuBuilder implements WebMenuBuilderI {
             container.setVisible(menuEntry.getSubItems().size() > 0);
             item.add(container);
         }
-        
-
-
-        @Override
-        public void renderHead(IHeaderResponse response) {
-            response.render(JavaScriptHeaderItem
-                    .forReference(new PackageResourceReference(MenuPanel.class, "MenuPanel.js")));
-            response.render(CssHeaderItem.forReference(new PackageResourceReference(MenuPanel.class, "MenuPanel.css")));
-        }
-        
 
         protected boolean displayMenuOpenedForItem(MenuItem menuEntry) {
             return menuEntry.equals(NocketSession.get().getLastSelectedMenuItem());
@@ -135,4 +96,5 @@ public class Bootstrap2WebMenuBuilder implements WebMenuBuilderI {
         }
 
     }
+
 }

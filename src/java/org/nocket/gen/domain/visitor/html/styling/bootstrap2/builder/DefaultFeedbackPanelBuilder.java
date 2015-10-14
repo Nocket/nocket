@@ -14,7 +14,7 @@ import org.nocket.gen.domain.visitor.html.styling.common.FeedbackPanelBuilderI;
  * @author Thomas.Veit@Bertelsmann.de
  *
  */
-public class Bootstrap2FeedbackPanelBuilder implements FeedbackPanelBuilderI {
+public class DefaultFeedbackPanelBuilder implements FeedbackPanelBuilderI {
 
 	private DMDFeedbackPanel panel = null;
 	

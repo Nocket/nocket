@@ -8,7 +8,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.nocket.component.form.DMDTextField.InputStringConvertStrategy;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.Bootstrap2StylingStrategy;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.DefaultStylingStrategy;
 import org.nocket.page.DMDWebPage;
 
 /**
@@ -139,7 +139,7 @@ public class WebDomainProperties extends DomainProperties {
      * If no Configuration is found so the Bootstrap2StylingStrategy is used.
      */
     public String getStylingStrategyClass() {
-        String value = getProperty(STYLING_STRATEGY, Bootstrap2StylingStrategy.class.getName());
+        String value = getProperty(STYLING_STRATEGY, DefaultStylingStrategy.class.getName());
         return value;
     }
 }

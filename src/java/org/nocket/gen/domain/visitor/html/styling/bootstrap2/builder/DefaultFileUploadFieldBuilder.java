@@ -7,7 +7,7 @@ import org.apache.wicket.markup.html.form.upload.FileUploadField;
 import org.apache.wicket.model.IModel;
 import org.nocket.gen.domain.visitor.html.styling.common.FileUploadBuilderI;
 
-public class Bootstrap2FileUploadFieldBuilder implements FileUploadBuilderI {
+public class DefaultFileUploadFieldBuilder implements FileUploadBuilderI {
 
 	private FileUploadField field = null;
 	

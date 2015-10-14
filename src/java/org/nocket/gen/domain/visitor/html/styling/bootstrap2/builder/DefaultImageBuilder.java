@@ -13,7 +13,7 @@ import org.nocket.gen.domain.visitor.html.styling.common.ImageBuilderI;
  * @author Thomas.Veit@Bertelsmann.de
  *
  */
-public class Bootstrap2ImageBuilder implements ImageBuilderI {
+public class DefaultImageBuilder implements ImageBuilderI {
 	
 	private ContextImage image = null;
 

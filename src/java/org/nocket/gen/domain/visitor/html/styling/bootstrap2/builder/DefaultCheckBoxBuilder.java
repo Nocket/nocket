@@ -13,7 +13,7 @@ import org.nocket.gen.domain.visitor.html.styling.common.CheckBoxBuilderI;
  * @author Thomas.Veit@Bertelsmann.de
  *
  */
-public class Bootstrap2CheckBoxBuilder implements CheckBoxBuilderI {
+public class DefaultCheckBoxBuilder implements CheckBoxBuilderI {
 	
 	private CheckBox field = null;
 

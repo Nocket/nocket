@@ -15,7 +15,7 @@ import org.nocket.gen.page.visitor.bind.builder.components.GeneratedGroupTabbedP
  * @author Thomas.Veit@Bertelsmann.de
  *
  */
-public class Bootstrap2TabbedPanelBuilder implements TabbedPanelBuilderI<ITab> {
+public class DefaultTabbedPanelBuilder implements TabbedPanelBuilderI<ITab> {
 	
 	private GeneratedGroupTabbedPanel panel = null;
 

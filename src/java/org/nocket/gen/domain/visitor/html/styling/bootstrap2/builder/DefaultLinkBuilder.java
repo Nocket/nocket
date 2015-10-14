@@ -16,7 +16,7 @@ import org.nocket.gen.page.element.LinkElement;
  * @author Thomas.Veit@Bertelsmann.de
  *
  */
-public class Bootstrap2LinkBuilder implements LinkBuilderI {
+public class DefaultLinkBuilder implements LinkBuilderI {
 
 	private Component component = null;
 	

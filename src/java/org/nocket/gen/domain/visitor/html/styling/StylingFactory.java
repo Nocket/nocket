@@ -5,7 +5,7 @@ package org.nocket.gen.domain.visitor.html.styling;
 
 import org.nocket.gen.domain.DMDWebGenContext;
 import org.nocket.gen.domain.WebDomainProperties;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.Bootstrap2StylingStrategy;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.DefaultStylingStrategy;
 import org.nocket.gen.domain.visitor.html.styling.common.StylingStrategyI;
 
 /**
@@ -55,7 +55,7 @@ public class StylingFactory {
 			
 		} catch (Exception e) {
 			// wenn ein Fehler passiert, dann die Default Strategie nehmen
-			newInstance = new Bootstrap2StylingStrategy();
+			newInstance = new DefaultStylingStrategy();
 		}
 		
 		if(context != null) {

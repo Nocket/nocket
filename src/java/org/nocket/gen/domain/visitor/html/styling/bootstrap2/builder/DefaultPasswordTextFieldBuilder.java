@@ -13,7 +13,7 @@ import org.nocket.gen.domain.visitor.html.styling.common.PasswordTextFieldBuilde
  * @author Thomas.Veit@Bertelsmann.de
  *
  */
-public class Bootstrap2PasswordTextFieldBuilder implements
+public class DefaultPasswordTextFieldBuilder implements
 		PasswordTextFieldBuilderI {
 	
 	private PasswordTextField field = null;

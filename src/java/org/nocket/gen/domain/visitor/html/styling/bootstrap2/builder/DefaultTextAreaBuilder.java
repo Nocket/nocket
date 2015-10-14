@@ -13,7 +13,7 @@ import org.nocket.gen.domain.visitor.html.styling.common.TextAreaBuilderI;
  * @author Thomas.Veit@Bertelsmann.de
  *
  */
-public class Bootstrap2TextAreaBuilder implements TextAreaBuilderI {
+public class DefaultTextAreaBuilder implements TextAreaBuilderI {
 
 	private TextArea<Object> textArea = null;
 	

@@ -3,10 +3,13 @@
  */
 package org.nocket.gen.domain.visitor.html.styling;
 
+import org.nocket.component.form.behaviors.ValidationTooltipStyleGroupBehavior;
 import org.nocket.gen.domain.DMDWebGenContext;
 import org.nocket.gen.domain.WebDomainProperties;
 import org.nocket.gen.domain.visitor.html.styling.bootstrap2.Bootstrap2StylingStrategy;
 import org.nocket.gen.domain.visitor.html.styling.common.StylingStrategyI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Diese Factory verwaltet die zu nutzende Styling-Strategie. 
@@ -24,7 +27,7 @@ import org.nocket.gen.domain.visitor.html.styling.common.StylingStrategyI;
 public class StylingFactory {
 	
 	private static StylingStrategyI strategyInstance;
-	
+	final private static Logger log = LoggerFactory.getLogger(StylingFactory.class);
 	
 	/**
 	 * Accessor an den Singleton der Styling-Strategie
@@ -52,10 +55,11 @@ public class StylingFactory {
 			Class<? extends StylingStrategyI> clazz = (Class<? extends StylingStrategyI>) Class.forName(strategyClass);
 			
 			newInstance = clazz.newInstance();
-			
+			log.debug("Choosed styling strategy: " + strategyClass);
 		} catch (Exception e) {
 			// wenn ein Fehler passiert, dann die Default Strategie nehmen
 			newInstance = new Bootstrap2StylingStrategy();
+			log.warn("Choosed styling strategy: Could not choose from properties, take default Bootstrap2StylingStrategy instead");
 		}
 		
 		if(context != null) {

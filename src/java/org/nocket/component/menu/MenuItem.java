@@ -23,8 +23,21 @@ public class MenuItem implements IClusterable {
     private Class<? extends Page> targetPage;
     private final List<MenuItem> subItems;
     private PageParameters pageParameters;
+    private String fontAwesomeIcon;
 
-    public String getLabel() {
+    public String getFontAwesomeIcon() {
+		return fontAwesomeIcon;
+	}
+
+    /**
+     * Not used by all StylingStrategies. E.g. Bootstrap2StylingStrategy does not make use of this.
+     * @param fontAwesomeIcon
+     */
+	public void setFontAwesomeIcon(String fontAwesomeIcon) {
+		this.fontAwesomeIcon = fontAwesomeIcon;
+	}
+
+	public String getLabel() {
 	return label;
     }
 
@@ -40,14 +53,19 @@ public class MenuItem implements IClusterable {
 	this.targetPage = targetPage;
     }
 
-    public MenuItem(String label, Class<? extends Page> targetPage) {
-	super();
-	this.label = label;
-	this.targetPage = targetPage;
-	this.subItems = new ArrayList<MenuItem>();
-    }
+	public MenuItem(String label, Class<? extends Page> targetPage) {
+		this(label, targetPage, "");
+	}
 
-    public void addSubItem(MenuItem subItem) {
+    public MenuItem(String label, Class<? extends Page> targetPage, String fontAwesomeIcon) {
+		super();
+		this.label = label;
+		this.targetPage = targetPage;
+		this.fontAwesomeIcon = fontAwesomeIcon;
+		this.subItems = new ArrayList<MenuItem>();
+	}
+
+	public void addSubItem(MenuItem subItem) {
 	subItems.add(subItem);
     }
 

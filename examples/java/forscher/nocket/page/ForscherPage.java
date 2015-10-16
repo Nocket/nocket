@@ -10,6 +10,8 @@ import org.nocket.component.menu.MenuItem;
 import org.nocket.component.menu.MenuPanel;
 import org.nocket.component.panel.login.LoginStatusBar;
 import org.nocket.gen.GenericMenuItem;
+import org.nocket.gen.domain.visitor.html.styling.StylingFactory;
+import org.nocket.gen.domain.visitor.html.styling.common.LoginStatusBarBuilderI;
 import org.nocket.page.DMDWebPage;
 
 import forscher.nocket.generator.TestPojo;
@@ -36,20 +38,8 @@ public class ForscherPage extends DMDWebPage {
 	super(model);
 
 	MenuPanel menuPanel = new MenuPanel("menu", getMenuItems());
-	LoginStatusBar loginBar = new LoginStatusBar("loginstatus") {
-	    private static final long serialVersionUID = 1L;
-
-	    @Override
-	    protected String getLoggedInUserName() {
-		// TODO meis026 Muss das Login nach SWJ?
-		return "TODO"; //NocketSession.get().getUser();
-	    }
-
-	    @Override
-	    protected Class<? extends WebPage> getLoginPage() {
-		return null; // LoginPage.class;
-	    }
-	};
+	
+	LoginStatusBar loginBar = new LoginStatusBar("loginstatus", "TODO", null);
 
 	loginBar.setRenderBodyOnly(true);
 	menuPanel.setRenderBodyOnly(true);

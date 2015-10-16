@@ -26,6 +26,7 @@ import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultFile
 import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultImageBuilder;
 import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultLinkBuilder;
 import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultListMultipleChoiceBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultLoginStatusBarBuilder;
 import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultModalWindowBuilder;
 import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultPasswordTextFieldBuilder;
 import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultRadioChoiceBuilder;
@@ -44,6 +45,7 @@ import org.nocket.gen.domain.visitor.html.styling.common.FileUploadBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.ImageBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.LinkBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.ListMultipleChoiceBuilderI;
+import org.nocket.gen.domain.visitor.html.styling.common.LoginStatusBarBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.ModalWindowBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.PasswordTextFieldBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.RadioChoiceBuilderI;
@@ -192,5 +194,10 @@ public class DefaultStylingStrategy extends AbstractStylingStrategyImpl {
 	@Override
 	public ModalWindowBuilderI getModalWindowBuilder() {
 		return new DefaultModalWindowBuilder();
+	}
+
+	@Override
+	public LoginStatusBarBuilderI getLoginStatusBarBuilder() {
+		return new DefaultLoginStatusBarBuilder();
 	}
 }

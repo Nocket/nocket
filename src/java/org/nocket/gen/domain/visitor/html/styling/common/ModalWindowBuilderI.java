@@ -3,7 +3,7 @@
  */
 package org.nocket.gen.domain.visitor.html.styling.common;
 
-import org.apache.wicket.markup.html.panel.Panel;
+import org.nocket.component.modal.AbstractModalWindow;
 
 /**
  *
@@ -21,5 +21,5 @@ public interface ModalWindowBuilderI {
 	/**
 	 * Methode gibt das fertig erstellte Panel für den modalen Dialog zurück
 	 */
-	public Panel getModalWindow();
+	public AbstractModalWindow getModalWindow();
 }

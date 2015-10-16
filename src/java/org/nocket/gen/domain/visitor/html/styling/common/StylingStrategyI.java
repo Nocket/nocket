@@ -153,4 +153,9 @@ public interface StylingStrategyI {
 	 * Builder für Modale Dialoge
 	 */
 	public ModalWindowBuilderI getModalWindowBuilder();
+	
+	/**
+	 * Builder für Login-Status-Bar
+	 */
+	public LoginStatusBarBuilderI getLoginStatusBarBuilder();
 }

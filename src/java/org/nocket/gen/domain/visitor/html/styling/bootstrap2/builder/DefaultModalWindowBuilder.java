@@ -3,7 +3,7 @@
  */
 package org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder;
 
-import org.apache.wicket.markup.html.panel.Panel;
+import org.nocket.component.modal.AbstractModalWindow;
 import org.nocket.component.modal.DMDModalWindow;
 import org.nocket.gen.domain.visitor.html.styling.common.ModalWindowBuilderI;
 
@@ -28,7 +28,7 @@ public class DefaultModalWindowBuilder implements ModalWindowBuilderI {
 	 * @see org.nocket.gen.domain.visitor.html.styling.common.ModalWindowBuilderI#getModalWindow()
 	 */
 	@Override
-	public Panel getModalWindow() {
+	public AbstractModalWindow getModalWindow() {
 		return window;
 	}
 

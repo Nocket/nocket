@@ -12,7 +12,7 @@ public class ModalPanel extends AbstractModalPanel {
 
     private final WebMarkupContainer emptyWebMarkup = new WebMarkupContainer("innerContent");
 
-    public ModalPanel(String id, IModel<String> title, AbstractModalWindow dmdModalWindow) {
+    public ModalPanel(String id, IModel<String> title, DMDModalWindow dmdModalWindow) {
         super(id, title, dmdModalWindow);
 
         Form form = new Form("modalPanelform");

@@ -15,7 +15,6 @@ import org.nocket.gen.domain.visitor.DummyVisitor;
 
 import gengui.domain.AbstractDomainReference;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class DelegatePropertiesVisitor.
  *

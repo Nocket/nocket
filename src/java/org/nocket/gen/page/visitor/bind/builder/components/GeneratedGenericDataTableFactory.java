@@ -1,14 +1,12 @@
 package org.nocket.gen.page.visitor.bind.builder.components;
 
 import gengui.domain.DomainObjectReference;
-import gengui.util.SevereGUIException;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.List;
 
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.util.convert.IConverter;
@@ -20,6 +18,8 @@ import org.nocket.component.table.GenericDataTablePanel;
 import org.nocket.component.table.TableItemPosition;
 import org.nocket.component.table.TableSortType;
 import org.nocket.gen.domain.element.MultivalueColumnElement;
+import org.nocket.gen.domain.visitor.html.styling.StylingFactory;
+import org.nocket.gen.domain.visitor.html.styling.common.TablePanelBuilderI;
 import org.nocket.gen.page.DMDWebGenPageContext;
 import org.nocket.gen.page.element.FormElement;
 import org.nocket.gen.page.element.TableElement;
@@ -30,7 +30,6 @@ import org.nocket.gen.page.element.synchronizer.TableDownloadCallback;
 public class GeneratedGenericDataTableFactory {
 
     protected TableElement e;
-    protected Class<? extends GenericDataTablePanel> clazz = GenericDataTablePanel.class;
     protected String[] overrideSortableColumns;
     protected final GenericDataTableConfigurator<?> config;
 
@@ -46,16 +45,11 @@ public class GeneratedGenericDataTableFactory {
         this.config = config;
     }
 
-    public GeneratedGenericDataTableFactory withTableClass(Class<? extends GenericDataTablePanel> clazz) {
-        this.clazz = clazz;
-        return this;
-    }
-
     public GenericDataTablePanel<?> createTable() {
         IModel<List<?>> data = e.getModel();
         DMDWebGenPageContext context = e.getContext();
         config.withColumnConfigurator(createColumnConfigurator());
-        GenericDataTablePanel<?> table = createTable(clazz, e.getWicketId(), data, config);
+        GenericDataTablePanel<?> table = createTable(e.getWicketId(), data, config);
         addCellContentConverters(table);
         return table;
     }
@@ -109,33 +103,11 @@ public class GeneratedGenericDataTableFactory {
         return null;
     }
 
-    public static GenericDataTablePanel createTable(Class<? extends GenericDataTablePanel> clazz, String wicketId,
+    public static GenericDataTablePanel createTable(String wicketId,
             IModel<List<?>> data, GenericDataTableConfigurator<?> config) {
-
-        if (clazz == null) {
-            return new GenericDataTablePanel(wicketId, data, config);
-        }
-
-        Class<?>[] paramTypes = new Class<?>[] { String.class, IModel.class, GenericDataTableConfigurator.class };
-
-        Object[] params = new Object[] { wicketId, data, config };
-
-        try {
-            Constructor<? extends GenericDataTablePanel> constructor = clazz.getConstructor(paramTypes);
-            return constructor.newInstance(params);
-        } catch (NoSuchMethodException e) {
-            throw new SevereGUIException(e);
-        } catch (SecurityException e) {
-            throw new SevereGUIException(e);
-        } catch (InstantiationException e) {
-            throw new SevereGUIException(e);
-        } catch (IllegalAccessException e) {
-            throw new SevereGUIException(e);
-        } catch (IllegalArgumentException e) {
-            throw new SevereGUIException(e);
-        } catch (InvocationTargetException e) {
-            throw new SevereGUIException(e);
-        }
+        TablePanelBuilderI builder = StylingFactory.getStylingStrategy().getTablePanelBuilder();
+        builder.initTablePanelBuilder(wicketId, data, config);
+        return builder.getTablePanel();
     }
 
     protected List<String> createSortableColumns() {

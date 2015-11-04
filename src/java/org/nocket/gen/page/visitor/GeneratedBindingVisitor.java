@@ -46,10 +46,14 @@ public class GeneratedBindingVisitor extends AbstractPageElementVisitor {
 
     private final List<PageElementVisitorI> visitors = new ArrayList<PageElementVisitorI>();
 
-    public GeneratedBindingVisitor(GeneratedBinding parent) {
+    public GeneratedBindingVisitor(GeneratedBinding parent, PageElementVisitorI... additionalVisitors) {
         super(parent.getContext());
         visitors.add(new BindingVisitor(parent.getContext(), new InterceptingBindingBuilder(parent.getInterceptors())));
         visitors.add(new PageRegistryVisitor(parent.getContext()));
+        
+        for(PageElementVisitorI visitor : additionalVisitors) {
+        	visitors.add(visitor);
+        }
     }
 
     @Override

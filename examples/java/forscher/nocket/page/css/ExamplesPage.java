@@ -2,7 +2,6 @@ package forscher.nocket.page.css;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.devutils.debugbar.DebugBar;
-import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.IModel;
 import org.nocket.component.panel.login.LoginStatusBar;
@@ -23,20 +22,7 @@ public class ExamplesPage extends DMDWebPage {
 
         add(new DebugBar("debug"));
 
-        add(new LoginStatusBar("loginstatus") {
-            private static final long serialVersionUID = 1L;
-
-            @Override
-            protected String getLoggedInUserName() {
-                return "dummy";
-            }
-
-            @Override
-            protected Class<? extends WebPage> getLoginPage() {
-                return ExamplesPage.this.getClass();
-            }
-
-        });
+        add(new LoginStatusBar("loginstatus", "TODO", ExamplesPage.this.getClass()));
 
         // Navigation pages
         add(new BookmarkablePageLink<Page>("layouts", GridSystemPage.class));

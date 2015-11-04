@@ -3,11 +3,12 @@ package org.nocket;
 import gengui.WindowOperation;
 import gengui.guiadapter.table.TableModelFactory;
 
+import java.util.Map;
+
 import org.apache.wicket.DefaultMapperContext;
 import org.apache.wicket.IRequestCycleProvider;
 import org.apache.wicket.Page;
 import org.apache.wicket.RuntimeConfigurationType;
-import org.apache.wicket.Session;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.core.request.mapper.IMapperContext;
@@ -18,16 +19,16 @@ import org.apache.wicket.markup.MarkupResourceStream;
 import org.apache.wicket.markup.parser.filter.WicketTagIdentifier;
 import org.apache.wicket.page.CouldNotLockPageException;
 import org.apache.wicket.page.PageAccessSynchronizer;
-import org.apache.wicket.request.Request;
-import org.apache.wicket.request.Response;
 import org.apache.wicket.request.component.IRequestablePage;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.cycle.RequestCycleContext;
 import org.apache.wicket.request.resource.PackageResourceReference;
+import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.util.time.Duration;
 import org.nocket.component.header.jquery.JQueryHelper;
 import org.nocket.gen.WebGUISession;
 import org.nocket.gen.domain.WebDomainProperties;
+import org.nocket.gen.domain.visitor.html.styling.StylingFactory;
 import org.nocket.gen.resources.DMDCachingResourceStreamLocator;
 import org.nocket.listener.DMDLoggingRequestCycleListener;
 import org.nocket.page.InMemoryClassResolver;
@@ -59,6 +60,20 @@ abstract public class NocketWebApplication extends AuthenticatedWebApplication {
 		initInMemoryCompilation();
 		initOnTheFlyHTMLCreation();
 		initGenguiClassbasedCaching();
+		initStylingResourceMounting();
+	}
+	
+	/**
+	 * Methode bindet die globalen Ressourcen auf die angegebenen URLs
+	 */
+	protected void initStylingResourceMounting() {
+		Map<String, ResourceReference> globalResources = StylingFactory.getStylingStrategy().getGlobalResources();
+		
+		if(globalResources != null) {
+			for(String url : globalResources.keySet()) {
+				mountResource(url, globalResources.get(url));
+			}
+		}
 	}
 
 	protected MarkupFactory getMarkupFactory() {

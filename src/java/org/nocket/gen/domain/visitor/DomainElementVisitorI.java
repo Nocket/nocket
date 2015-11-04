@@ -14,26 +14,26 @@ import gengui.domain.AbstractDomainReference;
 
 public interface DomainElementVisitorI<E extends AbstractDomainReference> {
 
-    DMDWebGenContext<E> getContext();
+	DMDWebGenContext<E> getContext();
 
-    void visitSimpleProperty(SimplePropertyElement<E> e);
+	void visitSimpleProperty(SimplePropertyElement<E> e);
 
-    void visitChoicerProperty(ChoicerPropertyElement<E> e);
+	void visitChoicerProperty(ChoicerPropertyElement<E> e);
 
-    void visitCheckboxProperty(CheckboxPropertyElement<E> e);
+	void visitCheckboxProperty(CheckboxPropertyElement<E> e);
 
-    void visitButton(ButtonElement<E> e);
+	void visitButton(ButtonElement<E> e);
 
-    void visitResource(ResourceElement<E> e);
+	void visitResource(ResourceElement<E> e);
 
-    void visitFieldsetOpen(HeadlineElement<E> e);
+	void visitFieldsetOpen(HeadlineElement<E> e);
 
-    void visitMultivalueProperty(MultivaluePropertyElement<E> e);
+	void visitMultivalueProperty(MultivaluePropertyElement<E> e);
 
-    void visitFieldsetClose();
+	void visitFieldsetClose();
 
-    void visitHiddenProperty(HiddenPropertyElement<E> e);
+	void visitHiddenProperty(HiddenPropertyElement<E> e);
 
-    void finish();
+	void finish();
 
 }

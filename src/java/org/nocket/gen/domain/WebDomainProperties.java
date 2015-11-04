@@ -8,6 +8,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.nocket.component.form.DMDTextField.InputStringConvertStrategy;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.DefaultStylingStrategy;
 import org.nocket.page.DMDWebPage;
 
 /**
@@ -31,6 +32,7 @@ public class WebDomainProperties extends DomainProperties {
     public static final String VALIDATION_ERROR_PRESENTATION = "validation.error.presentation";
     public static final String DMDTEXTFIELD_INPUTSTRING_CONVERT_STRATEGY = "dmdtextfield.inputstring.convert.strategy";
     public static final String LOCALIZATION_WICKET = "wicket";
+    public static final String STYLING_STRATEGY = "nocket.styling.strategy";
 
     public WebDomainProperties() {
         super();
@@ -59,11 +61,6 @@ public class WebDomainProperties extends DomainProperties {
     public InputStringConvertStrategy getInputStringConvertStrategy() {
         return InputStringConvertStrategy.valueOf(getProperty(DMDTEXTFIELD_INPUTSTRING_CONVERT_STRATEGY,
                 InputStringConvertStrategy.trimAndEmptyToNull.name()));
-    }
-
-    public LayoutStrategy getHTMLLayoutStrategie() {
-        String value = getProperty(HTML_LAYOUT_STRATEGY, LayoutStrategy.BOOTSTRAP.name());
-        return LayoutStrategy.valueOf(value.toUpperCase());
     }
 
     public boolean getHTMLTableExampleContent() {
@@ -130,5 +127,14 @@ public class WebDomainProperties extends DomainProperties {
      */
     public void init() {
         lazyinitAllowedConstants();
+    }
+    
+    /**
+     * This Method get the configured Styling-Strategy.
+     * If no Configuration is found so the Bootstrap2StylingStrategy is used.
+     */
+    public String getStylingStrategyClass() {
+        String value = getProperty(STYLING_STRATEGY, DefaultStylingStrategy.class.getName());
+        return value;
     }
 }

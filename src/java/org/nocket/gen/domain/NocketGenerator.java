@@ -204,7 +204,7 @@ public class NocketGenerator {
 
 	private static void printHelp() {
 		System.err.println("Usage:\tjava " + NocketGenerator.class.getName()
-			+ " -s <SRC_DIR> -g <GEN_DIR> [-t (page | panel)] [-y (bootstrap | table)] [-l <CSS_FILE>]* <JAVA_CLASS_1> (<JAVA_CLASS_2> ... <JAVA_CLASS_n>)");
+			+ " -s <SRC_DIR> -g <GEN_DIR> [-t (page | panel)] [-l <CSS_FILE>]* <JAVA_CLASS_1> (<JAVA_CLASS_2> ... <JAVA_CLASS_n>)");
 		System.err.println("Params:\t-s\tThe directory where HTML-Output will be written into package specific directories. Usually the \"src\" directory of the project.");
 		System.err.println("\t-g\tThe directory where Constants-Class-Output will be written into package specific directories. Usually the \"gen\" directory of the project.");
 		System.err.println("\t-t\tThe type of HTML artefact to create. By default, the generator tries to derive the type from existing Page/Panel classes. Pages are the fallback.");

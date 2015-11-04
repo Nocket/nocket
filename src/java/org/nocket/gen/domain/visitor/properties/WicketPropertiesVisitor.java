@@ -17,7 +17,6 @@ import org.nocket.gen.domain.element.MultivaluePropertyElement;
 import org.nocket.gen.domain.element.ResourceElement;
 import org.nocket.gen.domain.element.SimplePropertyElement;
 
-// TODO: Auto-generated Javadoc
 /**
  * This visitor creates property file according to Wicket rules. The file is
  * placed in the same package as the domain class. If file does exists, new

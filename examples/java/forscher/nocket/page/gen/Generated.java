@@ -41,8 +41,8 @@ public class Generated implements IClusterable, GeneratedConstraints {
 	private TimeUnit enumChoicer = TimeUnit.DAYS;
 	private TimeUnit notNullableEnumChoicer = TimeUnit.HOURS;
 	private String simpleChoicer = "simpleChoiceValue";
-	private String[] listChoicer = new String[] { "1", "2" };
-	private String[] blazekChoicer = new String[] { "1", "3" }; // Multiple
+	private List<String> listChoicer = new ArrayList<String>() {{ add("1"); add("2"); }};
+	private List<String> blazekChoicer = new ArrayList<String>() {{ add("1"); add("3"); }}; // Multiple
 	// choice,
 	// displayed as
 	// Blazek
@@ -232,11 +232,11 @@ public class Generated implements IClusterable, GeneratedConstraints {
 		return new String[] { "1", "2", "3", "4" };
 	}
 
-	public String[] getListChoicer() {
+	public List<String> getListChoicer() {
 		return listChoicer;
 	}
 
-	public void setListChoicer(String[] listChoicer) {
+	public void setListChoicer(List<String> listChoicer) {
 		System.out.println("listChoicer set to " + Arrays.asList(listChoicer));
 		this.listChoicer = listChoicer;
 	}
@@ -245,11 +245,11 @@ public class Generated implements IClusterable, GeneratedConstraints {
 		return new String[] { "1", "2", "3" };
 	}
 
-	public String[] getBlazekChoicer() {
+	public List<String> getBlazekChoicer() {
 		return blazekChoicer;
 	}
 
-	public void setBlazekChoicer(String[] blazekChoicer) {
+	public void setBlazekChoicer(List<String> blazekChoicer) {
 		this.blazekChoicer = blazekChoicer;
 	}
 

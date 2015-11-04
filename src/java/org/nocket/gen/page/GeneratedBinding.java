@@ -19,6 +19,7 @@ import org.nocket.NocketSession;
 import org.nocket.gen.domain.element.DomainElementI;
 import org.nocket.gen.page.inject.PageComponentInjection;
 import org.nocket.gen.page.visitor.GeneratedBindingVisitor;
+import org.nocket.gen.page.visitor.PageElementVisitorI;
 import org.nocket.gen.page.visitor.bind.builder.BindingInterceptor;
 
 public class GeneratedBinding {
@@ -27,6 +28,7 @@ public class GeneratedBinding {
     private transient MarkupContainer page;
     private transient boolean rebound;
     private List<BindingInterceptor> interceptors = new ArrayList<BindingInterceptor>();
+    private List<PageElementVisitorI> additionalPageVisitors = new ArrayList<PageElementVisitorI>();
 
     /**
      * TODO JL: Using this cache is still experimental as there are some open
@@ -83,6 +85,15 @@ public class GeneratedBinding {
         return context;
     }
 
+    public GeneratedBinding withVisitors(PageElementVisitorI... visitors) {
+    	return withVisitors(Arrays.asList(visitors));
+    }
+
+    public GeneratedBinding withVisitors(List<PageElementVisitorI> visitors) {
+    	this.additionalPageVisitors.addAll(visitors);
+    	return this;
+    }
+
     /**
      * Interceptors will be called in the order in which they have been added.
      * The first one to provide a component instead of null will get used.
@@ -119,7 +130,7 @@ public class GeneratedBinding {
 
     public void bind() {
         if (!rebound) {
-            GeneratedBindingVisitor visitor = new GeneratedBindingVisitor(this);
+            GeneratedBindingVisitor visitor = new GeneratedBindingVisitor(this, additionalPageVisitors.toArray(new PageElementVisitorI[0]));
             try {
                 new PageProcessor(visitor).process();
             } catch (ElementNotFoundException enfx1) {

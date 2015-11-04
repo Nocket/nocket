@@ -1,0 +1,20 @@
+<!doctype html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<title>DefaultLoginStatusBar</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+	<wicket:panel>
+		<ul class="nav navbar-nav pull-right">
+			<li><a wicket:id="loggedin">[username]</a></li>
+			<!--  logout button -->
+			<li><a class="navbar-last" href="#" wicket:id="actionlink"> <span wicket:id="loginactionlabel" href="#">[login]</span><span
+					wicket:id="logoutactionlabel" href="#">[logout]</span>
+			</a></li>
+		</ul>
+	</wicket:panel>
+</body>
+</html>

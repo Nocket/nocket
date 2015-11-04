@@ -9,6 +9,8 @@ public final class EagerDisableTestConstants {
     public static final String EagerCheckbox = "EagerCheckbox";
     /** SimplePropertyElement: Text */
     public static final String Text = "Text";
+	/** SimplePropertyElement: Number */
+    public static final String Number = "Number";
     /** ButtonElement: Save */
     public static final String save = "save";
 
@@ -20,6 +22,8 @@ public final class EagerDisableTestConstants {
         public static final String EagerCheckbox = "EagerCheckbox";
         /** Text */
         public static final String Text = "Text";
+		/** Number */
+		public static final String Number = "Number";
         /** Save */
         public static final String save = "save";
     }

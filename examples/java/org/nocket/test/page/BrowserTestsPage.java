@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.wicket.devutils.debugbar.DebugBar;
-import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
 import org.nocket.component.menu.MenuItem;
 import org.nocket.component.menu.MenuPanel;
@@ -32,20 +31,7 @@ public class BrowserTestsPage extends DMDWebPage {
         add(menuPanel);
         add(new DebugBar("debug"));
 
-        add(new LoginStatusBar("loginstatus") {
-            private static final long serialVersionUID = 1L;
-
-            @Override
-            protected String getLoggedInUserName() {
-        		// TODO meis026 Muss das Login nach SWJ?
-        		return "TODO"; //NocketSession.get().getUser();;
-            }
-
-            @Override
-            protected Class<? extends WebPage> getLoginPage() {
-                return BrowserTestsPage.this.getClass();
-            }
-        });
+        add(new LoginStatusBar("loginstatus", "TODO", BrowserTestsPage.this.getClass()));
     }
 
     protected List<MenuItem> getMenuItems() {

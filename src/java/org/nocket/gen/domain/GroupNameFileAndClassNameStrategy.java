@@ -54,7 +54,7 @@ public class GroupNameFileAndClassNameStrategy<E extends AbstractDomainReference
 
     @Override
     public boolean isPanel() {
-        return StringUtils.isNotBlank(groupName);
+        return StringUtils.isNotBlank(groupName) || context.getGeneratePanel();
     }
 
     public boolean isStrategyForMainObject() {

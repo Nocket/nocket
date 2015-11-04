@@ -11,12 +11,11 @@ public class DMDWebGenContext<E extends AbstractDomainReference> {
     private final Boolean generatePanel;
     private final File srcDir;
     private final File genDir;
-    private final LayoutStrategy layoutStrategy;
     private final DomainReferenceFactoryI<E> refFactory;
     private final WebDomainProperties domainProperties;
     private FileAndClassNameStrategy<E> fileAndClassNameStrategy;
 
-    public DMDWebGenContext(Boolean generatePanel, String srcDir, String genDir, LayoutStrategy layoutStrategy,
+    public DMDWebGenContext(Boolean generatePanel, String srcDir, String genDir, 
             DomainReferenceFactoryI<E> refFactory) {
         if (srcDir != null) {
             this.srcDir = new File(srcDir);
@@ -30,7 +29,6 @@ public class DMDWebGenContext<E extends AbstractDomainReference> {
         }
         this.generatePanel = generatePanel;
         this.refFactory = refFactory;
-        this.layoutStrategy = layoutStrategy;
         this.domainProperties = new WebDomainProperties(refFactory.getRootReference().getRef().getDomainClass());
     }
 
@@ -52,10 +50,6 @@ public class DMDWebGenContext<E extends AbstractDomainReference> {
 
     public WebDomainProperties getDomainProperties() {
         return domainProperties;
-    }
-
-    public LayoutStrategy getLayoutStrategy() {
-        return layoutStrategy != null ? layoutStrategy : domainProperties.getHTMLLayoutStrategie();
     }
 
     public String[] getHeaderlinks() {

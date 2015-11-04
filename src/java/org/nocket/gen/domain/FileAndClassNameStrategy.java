@@ -27,7 +27,7 @@ public class FileAndClassNameStrategy<E extends AbstractDomainReference> {
     public boolean isPanel() {
         if (context.getGeneratePanel() != null)
             return context.getGeneratePanel();
-
+        
         File javaPanelFile = new File(context.getSrcDir() + File.separator + getFilenamePartAsPath() + "Panel.java");
         return javaPanelFile.exists();
 

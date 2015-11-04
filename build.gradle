@@ -274,16 +274,16 @@ assemble {
 }
 
 dependencies {
-	def wicketVersion = "6.9.+"
+	def wicketVersion = "6.9.1"
 	
 	// wicket
-	compile "org.apache.wicket:wicket:${wicketVersion}"
+	compile "org.apache.wicket:wicket-core:${wicketVersion}"
 	compile "org.apache.wicket:wicket-extensions:${wicketVersion}"
 	compile "org.apache.wicket:wicket-datetime:${wicketVersion}"
 	compile "org.apache.wicket:wicket-devutils:${wicketVersion}"
 	compile "org.apache.wicket:wicket-auth-roles:${wicketVersion}"
 
-	providedCompile "javax.servlet:javax.servlet-api:3.1.+"
+	providedCompile "javax.servlet:javax.servlet-api:3.1.0"
 	
 	// utils
 	compile "org.nocket:gengui:1.1"
@@ -295,7 +295,7 @@ dependencies {
 	compile "ecs:ecs:1.4.2"
 	compile "javax.validation:validation-api:1.1.0.Final"
 	compile "org.hibernate:hibernate-validator:4.0.1.GA"
-	compile "org.slf4j:slf4j-log4j12:1.+"
+	compile "org.slf4j:slf4j-log4j12:1.6.4"
 
 	// needed for examples
 	examplesCompile sourceSets.main.output

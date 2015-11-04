@@ -11,8 +11,8 @@ import org.apache.wicket.MarkupContainer;
 import org.nocket.gen.domain.NocketGenerator.GenerationContext.FileData;
 import org.nocket.gen.domain.ref.DomainClassReferenceFactory;
 import org.nocket.gen.domain.ref.DomainReferenceFactoryI;
-import org.nocket.gen.domain.visitor.NocketGenerationVisitor;
 import org.nocket.gen.domain.visitor.DomainElementVisitorI;
+import org.nocket.gen.domain.visitor.NocketGenerationVisitor;
 import org.nocket.util.ArgReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,9 +26,9 @@ public class NocketGenerator {
 		private final GenerationContext generationContext;
 
 		@SuppressWarnings({ "rawtypes", "unchecked" })
-		public GenerationProcessDMDWebGenContext(Boolean generatePanel, String srcDir, String genDir, LayoutStrategy layoutStrategy,
+		public GenerationProcessDMDWebGenContext(Boolean generatePanel, String srcDir, String genDir,
 				DomainReferenceFactoryI refFactory, GenerationContext generationContext) {
-			super(generatePanel, srcDir, genDir, layoutStrategy, refFactory);
+			super(generatePanel, srcDir, genDir, refFactory);
 			this.generationContext = generationContext;
 		}
 
@@ -71,7 +71,6 @@ public class NocketGenerator {
 
 
 	public void run(String[] args) {
-		LayoutStrategy layoutStrategy = LayoutStrategy.BOOTSTRAP;
 		String sourceDir = null;
 		String genDir = null;
 		Boolean generatePanel = false;
@@ -81,9 +80,6 @@ public class NocketGenerator {
 		do {
 			try {
 				switch (option = argReader.getArg()) {
-				case 'y':
-					layoutStrategy = LayoutStrategy.valueOf(argReader.getArgValue().trim().toUpperCase());
-					break;
 				case 'h':
 					printHelp();
 					break;
@@ -122,7 +118,7 @@ public class NocketGenerator {
 					log.error("Ignoring: " + clazz + "! It is a MarkupContainer not a Pojo!");
 					continue;
 				}
-				generateHTML(domainClass, generatePanel, sourceDir, genDir, layoutStrategy, generationContext);
+				generateHTML(domainClass, generatePanel, sourceDir, genDir, generationContext);
 			} catch (Throwable e) {
 				if (log.isErrorEnabled()) {
 					log.error(e.getMessage(), e);
@@ -182,7 +178,7 @@ public class NocketGenerator {
 		}
 	}
 
-	public void generateHTML(Class<?> domainClass, Boolean generatePanel, String sourceDir, String genDir, LayoutStrategy layoutStrategy,
+	public void generateHTML(Class<?> domainClass, Boolean generatePanel, String sourceDir, String genDir, 
 			GenerationContext generationContext) {
 		DomainClassReferenceFactory refFactory = new DomainClassReferenceFactory(domainClass, false);
 
@@ -190,10 +186,10 @@ public class NocketGenerator {
 		if (generationContext != null) {
 			// If there is a need for some statistic, an the specialized
 			// DMDWebGenContext will be used
-			context = new GenerationProcessDMDWebGenContext<DomainClassReference>(generatePanel, sourceDir, genDir, layoutStrategy,
+			context = new GenerationProcessDMDWebGenContext<DomainClassReference>(generatePanel, sourceDir, genDir, 
 					refFactory, generationContext);
 		} else {
-			context = new DMDWebGenContext<DomainClassReference>(generatePanel, sourceDir, genDir, layoutStrategy, refFactory);
+			context = new DMDWebGenContext<DomainClassReference>(generatePanel, sourceDir, genDir, refFactory);
 		}
 
 		new DomainProcessor<DomainClassReference>(context, new MultiPassStrategy<DomainClassReference>() {

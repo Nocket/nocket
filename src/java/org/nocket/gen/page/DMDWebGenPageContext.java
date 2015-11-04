@@ -31,10 +31,10 @@ import org.apache.wicket.util.visit.IVisit;
 import org.apache.wicket.util.visit.IVisitor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.nocket.gen.domain.NocketGenerator;
 import org.nocket.gen.domain.DMDWebGenContext;
 import org.nocket.gen.domain.DomainProcessor;
 import org.nocket.gen.domain.HTMLDocumentCachingPolicy;
+import org.nocket.gen.domain.NocketGenerator;
 import org.nocket.gen.domain.WebDomainProperties;
 import org.nocket.gen.domain.ref.DomainObjectReferenceFactory;
 import org.nocket.gen.domain.visitor.registry.DomainRegistry;
@@ -184,7 +184,7 @@ public class DMDWebGenPageContext implements Serializable {
     protected DomainRegistry<DomainObjectReference> constructDomainRegistry() {
         DomainRegistry<DomainObjectReference> registry;
         DMDWebGenContext<DomainObjectReference> ctx = new DMDWebGenContext<DomainObjectReference>(null, null,
-                null, null, getRefFactory());
+                null, getRefFactory());
         DomainRegistryVisitor<DomainObjectReference> visitor = new DomainRegistryVisitor<DomainObjectReference>(
                 ctx);
         new DomainProcessor<DomainObjectReference>(ctx, visitor).process();
@@ -277,7 +277,7 @@ public class DMDWebGenPageContext implements Serializable {
         Class<? extends MarkupContainer> pageClass = getPage().getClass();
         Class<?> domainClass = getRefFactory().getRootReference().getClassRef().getDomainClass();
         boolean generatePanel = props.getHTMLPanelBaseClass().isAssignableFrom(pageClass);
-        new NocketGenerator().generateHTML(domainClass, generatePanel, null, null, null, null);
+        new NocketGenerator().generateHTML(domainClass, generatePanel, null, null, null);
     }
 
     protected InputStream openResourceStream(IResourceStream rstream) {

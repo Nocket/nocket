@@ -63,11 +63,6 @@ public class WebDomainProperties extends DomainProperties {
                 InputStringConvertStrategy.trimAndEmptyToNull.name()));
     }
 
-    public LayoutStrategy getHTMLLayoutStrategie() {
-        String value = getProperty(HTML_LAYOUT_STRATEGY, LayoutStrategy.BOOTSTRAP.name());
-        return LayoutStrategy.valueOf(value.toUpperCase());
-    }
-
     public boolean getHTMLTableExampleContent() {
         String value = getProperty(HTML_TABLE_EXAMPLE_CONTENT, Boolean.TRUE.toString()).trim();
         return !value.equals(Boolean.FALSE.toString());

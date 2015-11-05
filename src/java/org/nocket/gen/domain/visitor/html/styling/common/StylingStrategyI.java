@@ -73,9 +73,10 @@ public interface StylingStrategyI {
 	public TabbedPanelBuilderI<ITab> getTabbedPanelBuilder();
 	
 	/**
-	 * Methode liefert den TablePanelBuilder für die aktuell genutzte Styling-Strategie
+	 * Methode liefert den TableBuilder für die aktuell genutzte Styling-Strategie.
+	 * Hier werden für Tabellen spezifische Klassen generiert.
 	 */
-	public TablePanelBuilderI<?> getTablePanelBuilder();
+	public TableBuilderI<?, ?> getTableBuilder();
 	
 	/**
 	 * Methode liefert den TextFieldBuilder für die aktuell genutzte Styling-Strategie

@@ -74,6 +74,8 @@ public class GeneratedPage extends ForscherPage {
                 return new GeneratedGenericDataTableFactory(e).withRowsPerPage(2).createTable();
             }
         });
+        
+        
         generatedBinding.bind();
 
         // fetch and modify custom component later

@@ -4,22 +4,16 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.nocket.component.button.DMDFormOverlayAjaxButton;
-import org.nocket.gen.page.guiservice.CloserHandler;
 
 @SuppressWarnings("serial")
-public class ModalPanel extends Panel {
+public class ModalPanel extends AbstractModalPanel {
 
-    private final DMDModalWindow dmdModalWindow;
     private final WebMarkupContainer emptyWebMarkup = new WebMarkupContainer("innerContent");
-    private Panel content;
-    private CloserHandler defaultCloserButtonCallback;
 
     public ModalPanel(String id, IModel<String> title, DMDModalWindow dmdModalWindow) {
-        super(id, null);
-        this.dmdModalWindow = dmdModalWindow;
+        super(id, title, dmdModalWindow);
 
         Form form = new Form("modalPanelform");
         add(form);
@@ -70,17 +64,5 @@ public class ModalPanel extends Panel {
         };
         form.add(divModal);
         setOutputMarkupId(true);
-    }
-
-    public void setContent(Panel content) {
-        this.content = content;
-    }
-
-    public void close(AjaxRequestTarget target) {
-        dmdModalWindow.close(target);
-    }
-
-    public void setDefaultCloserButtonCallback(CloserHandler closerHandler) {
-        this.defaultCloserButtonCallback = closerHandler;
     }
 }

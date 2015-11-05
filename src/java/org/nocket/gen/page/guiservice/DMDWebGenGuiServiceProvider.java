@@ -21,8 +21,9 @@ import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.util.visit.IVisit;
 import org.apache.wicket.util.visit.IVisitor;
 import org.nocket.NocketSession;
+import org.nocket.component.modal.AbstractModalPanel;
+import org.nocket.component.modal.AbstractModalWindow;
 import org.nocket.component.modal.ButtonFlag;
-import org.nocket.component.modal.DMDModalWindow;
 import org.nocket.component.modal.ModalCallback;
 import org.nocket.component.modal.ModalPanel;
 import org.nocket.component.modal.ModalSettings.ButtonDef;
@@ -50,16 +51,16 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
         private Object showModalPanel;
         private boolean modalPanelActive;
         private boolean closeModalPanel;
-        public DMDModalWindow dmdModalWindowFromANonGenericContext;
+        public AbstractModalWindow modalWindowFromANonGenericContext;
         public boolean hideCloseButton;
 
         void close() {
             if (showModalPanelParentContext != null) {
-                DMDModalWindow modal;
-                if (dmdModalWindowFromANonGenericContext != null) {
-                    modal = dmdModalWindowFromANonGenericContext;
+                AbstractModalWindow modal;
+                if (modalWindowFromANonGenericContext != null) {
+                    modal = modalWindowFromANonGenericContext;
                 } else {
-                    modal = (DMDModalWindow) showModalPanelParentContext.getComponentRegistry().getComponent(
+                    modal = (AbstractModalWindow) showModalPanelParentContext.getComponentRegistry().getComponent(
                             ModalElement.DEFAULT_WICKET_ID);
                 }
                 if (modal != null) {
@@ -124,7 +125,7 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
 
     public synchronized void onGeneratedBinding(final DMDWebGenPageContext ctx) {
         lastTouchedRegistry = ctx.getTouchedRegistry();
-        DMDModalWindow modal = (DMDModalWindow) ctx.getComponentRegistry().getComponent(ModalElement.DEFAULT_WICKET_ID);
+        Component modal = ctx.getComponentRegistry().getComponent(ModalElement.DEFAULT_WICKET_ID);
         if (modal != null && !onloadAdded) {
             onloadAdded = true;
             ctx.getPage().add(new OnModalGeneratedBindingBehavior(ctx));
@@ -233,7 +234,7 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
             boolean openModalPanel = activeShowModalPanelConfig != null
                     && activeShowModalPanelConfig.showModalPanelParentContext == null;
             if (openModalMessage || openModalConfirm || openModalPanel) {
-                final DMDModalWindow modal = (DMDModalWindow) ctx.getComponentRegistry().getComponent(
+                final AbstractModalWindow modal = (AbstractModalWindow) ctx.getComponentRegistry().getComponent(
                         ModalElement.DEFAULT_WICKET_ID);
                 Assert.test(modal != null, "There is no modal component in " + ctx.getPage().getClass().getSimpleName()
                         + ". You need to add a tag for it for this to work: <div wicket:id=\"modal\"></div>");
@@ -256,7 +257,7 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
         Notifier.info(target, status);
     }
 
-    private void openModalPanel(DMDWebGenPageContext ctx, DMDModalWindow modal, AjaxRequestTarget target) {
+    private void openModalPanel(DMDWebGenPageContext ctx, AbstractModalWindow modal, AjaxRequestTarget target) {
         activeShowModalPanelConfig.showModalPanelParentContext = ctx;
         String title = ReflectionUtil.toTitle(activeShowModalPanelConfig.showModalPanel);
         Panel panel = activeShowModalPanelConfig.newPanel(WICKET_ID_PANEL_INNER_CONTENT);
@@ -268,25 +269,25 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
     }
 
     // TODO meis026 nur über den NichtGenerischen-Webadapter erreichbar machen
-    public synchronized <T> void openModalPanelFromNonGenericContext(DMDModalWindow modal, AjaxRequestTarget target,
+    public synchronized <T> void openModalPanelFromNonGenericContext(AbstractModalWindow modal, AjaxRequestTarget target,
             Object domainObject) {
         openModalPanelFromNonGenericContext(modal, target, domainObject, false);
     }
 
-    public synchronized <T> void openModalPanelFromNonGenericContext(DMDModalWindow modal, AjaxRequestTarget target,
+    public synchronized <T> void openModalPanelFromNonGenericContext(AbstractModalWindow modal, AjaxRequestTarget target,
             Object domainObject, boolean hideCloseButton) {
         showModalPanel(domainObject, hideCloseButton);
         Panel panel = activeShowModalPanelConfig.newPanel(WICKET_ID_PANEL_INNER_CONTENT);
         CloserHandler closerHandler = new CloserHandler(getNewPanelContext(), hideCloseButton);
-        activeShowModalPanelConfig.dmdModalWindowFromANonGenericContext = modal;
+        activeShowModalPanelConfig.modalWindowFromANonGenericContext = modal;
         activeShowModalPanelConfig.showModalPanelParentContext = getNewPanelContext();
         String title = ReflectionUtil.toTitle(activeShowModalPanelConfig.showModalPanel);
         showPanel(modal, panel, title, closerHandler);
         target.add(modal);
     }
 
-    private void showPanel(DMDModalWindow modal, Panel panel, String title, CloserHandler closeHandler) {
-        ModalPanel modalPanel = new ModalPanel("content", Model.of(title), modal);
+    private void showPanel(AbstractModalWindow modal, Panel panel, String title, CloserHandler closeHandler) {
+        AbstractModalPanel modalPanel = modal.getNewModalPanel("content", Model.of(title));
         modalPanel.setDefaultCloserButtonCallback(closeHandler);
         modalPanel.setContent(panel);
         modal.setModalPanel(modalPanel);
@@ -303,7 +304,7 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
         return width != null && height != null ? new Dimension(width, height) : null;
     }
 
-    private void openModalConfirm(final DMDWebGenPageContext ctx, final DMDModalWindow modal) {
+    private void openModalConfirm(final DMDWebGenPageContext ctx, final AbstractModalWindow modal) {
         
         ModalCallback modalCallback = new ModalCallback() {
             
@@ -335,7 +336,7 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
         modal.showConfirm(title, message, modalCallback, confirmButtonDefs);
     }
 
-    private void openModalMessage(final DMDModalWindow modal) {
+    private void openModalMessage(final AbstractModalWindow modal) {
         switch (messageType) {
         case INFO:
             modal.showInfo(title, message);

@@ -24,7 +24,8 @@ public class MenuItem implements IClusterable {
     private final List<MenuItem> subItems;
     private PageParameters pageParameters;
 
-    public String getLabel() {
+
+	public String getLabel() {
 	return label;
     }
 
@@ -41,13 +42,13 @@ public class MenuItem implements IClusterable {
     }
 
     public MenuItem(String label, Class<? extends Page> targetPage) {
-	super();
-	this.label = label;
-	this.targetPage = targetPage;
-	this.subItems = new ArrayList<MenuItem>();
-    }
+		super();
+		this.label = label;
+		this.targetPage = targetPage;
+		this.subItems = new ArrayList<MenuItem>();
+	}
 
-    public void addSubItem(MenuItem subItem) {
+	public void addSubItem(MenuItem subItem) {
 	subItems.add(subItem);
     }
 

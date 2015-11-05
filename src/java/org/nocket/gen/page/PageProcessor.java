@@ -12,7 +12,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.nocket.gen.domain.element.DomainElementI;
-import org.nocket.gen.domain.visitor.html.AbstractHtmlComponentBuilder;
+import org.nocket.gen.domain.visitor.html.styling.common.AbstractStylingStrategyImpl;
 import org.nocket.gen.page.element.AbstractNoDomainPageElement;
 import org.nocket.gen.page.element.BodyElement;
 import org.nocket.gen.page.element.ButtonElement;
@@ -126,16 +126,16 @@ public class PageProcessor {
     }
 
     private PageElementI<?> detectPageElement(Element element) {
-        String wicketId = element.attr(AbstractHtmlComponentBuilder.ATTR_WICKET_ID);
+        String wicketId = element.attr(AbstractStylingStrategyImpl.ATTR_WICKET_ID);
         if (StringUtils.isBlank(wicketId)) {
             return null;
         }
 
         if (element.tagName().equals("div")) {
-            if (element.attr(AbstractHtmlComponentBuilder.ATTR_WICKET_ID).equals(FeedbackElement.DEFAULT_WICKET_ID)) {
+            if (element.attr(AbstractStylingStrategyImpl.ATTR_WICKET_ID).equals(FeedbackElement.DEFAULT_WICKET_ID)) {
                 return new FeedbackElement(getContext(), element);
             }
-            if (element.attr(AbstractHtmlComponentBuilder.ATTR_WICKET_ID).equals(ModalElement.DEFAULT_WICKET_ID)) {
+            if (element.attr(AbstractStylingStrategyImpl.ATTR_WICKET_ID).equals(ModalElement.DEFAULT_WICKET_ID)) {
                 return new ModalElement(getContext(), element);
             } else {
                 return new DivElement(getContext(), element);
@@ -195,7 +195,7 @@ public class PageProcessor {
         if (element.tagName().equals("a")) {
             return new LinkElement(getContext(), element);
         }
-        if (StringUtils.isNotBlank(element.attr(AbstractHtmlComponentBuilder.ATTR_WICKET_ID))) {
+        if (StringUtils.isNotBlank(element.attr(AbstractStylingStrategyImpl.ATTR_WICKET_ID))) {
             return new UnknownDomainElement(getContext(), element);
         } else {
             return null;

@@ -22,11 +22,11 @@ public abstract class AbstractHtmlVisitor<E extends AbstractDomainReference> ext
 
         String filenamePart = getContext().getFileAndClassNameStrategy().getFilenamePartAsPath();
 
-        File htmlPanelFile = new File(getContext().getSrcDir() + File.separator + filenamePart + "Panel.html");
+        File htmlPanelFile = new File(getContext().getGenDir() + File.separator + filenamePart + "Panel.html");
         if (htmlPanelFile.exists() || isPanel()) {
             return htmlPanelFile;
         } else {
-            String pagePath = getContext().getSrcDir() + File.separator + filenamePart + "Page.html";
+            String pagePath = getContext().getGenDir() + File.separator + filenamePart + "Page.html";
             return new File(pagePath);
         }
     }
@@ -50,8 +50,7 @@ public abstract class AbstractHtmlVisitor<E extends AbstractDomainReference> ext
         if (!(getContext().getFileAndClassNameStrategy() instanceof GroupNameFileAndClassNameStrategy)) {
             return;
         }
-        GroupNameFileAndClassNameStrategy strategy = (GroupNameFileAndClassNameStrategy) getContext()
-                .getFileAndClassNameStrategy();
+        GroupNameFileAndClassNameStrategy strategy = (GroupNameFileAndClassNameStrategy) getContext().getFileAndClassNameStrategy();
         if (!strategy.isDomainObjectWithGroupAnnotations() || !strategy.isStrategyForMainObject()) {
             return;
         }

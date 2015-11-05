@@ -32,7 +32,7 @@ import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultPass
 import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultRadioChoiceBuilder;
 import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultRepeatingViewBuilder;
 import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultTabbedPanelBuilder;
-import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultTablePanelBuilder;
+import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultTableBuilder;
 import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultTextAreaBuilder;
 import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultTextFieldBuilder;
 import org.nocket.gen.domain.visitor.html.styling.bootstrap2.builder.DefaultWebMenuBuilder;
@@ -51,7 +51,7 @@ import org.nocket.gen.domain.visitor.html.styling.common.PasswordTextFieldBuilde
 import org.nocket.gen.domain.visitor.html.styling.common.RadioChoiceBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.RepeatingViewBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.TabbedPanelBuilderI;
-import org.nocket.gen.domain.visitor.html.styling.common.TablePanelBuilderI;
+import org.nocket.gen.domain.visitor.html.styling.common.TableBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.TextAreaBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.TextFieldBuilderI;
 import org.nocket.gen.domain.visitor.html.styling.common.WebMenuBuilderI;
@@ -114,8 +114,8 @@ public class DefaultStylingStrategy extends AbstractStylingStrategyImpl {
 	}
 
 	@Override
-	public TablePanelBuilderI<?> getTablePanelBuilder() {
-		return new DefaultTablePanelBuilder();
+	public TableBuilderI<?, ?> getTableBuilder() {
+		return new DefaultTableBuilder();
 	}
 
 	

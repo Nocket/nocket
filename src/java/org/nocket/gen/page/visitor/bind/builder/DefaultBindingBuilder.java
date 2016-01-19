@@ -62,6 +62,7 @@ public class DefaultBindingBuilder implements BindingBuilderI {
     @Override
     public Component createFeedback(FeedbackElement e) {
     	FeedbackPanelBuilderI builder = StylingFactory.getStylingStrategy().getFeedbackPanelBuilder();
+    	builder.initFeedbackPanelBuilder(e.getWicketId());
     	FeedbackPanel feedback = builder.getFeedbackPanel();
         feedback.setOutputMarkupId(true);
         return feedback;

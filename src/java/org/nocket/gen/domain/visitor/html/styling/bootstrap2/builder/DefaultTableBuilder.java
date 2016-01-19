@@ -24,9 +24,10 @@ import org.nocket.gen.page.element.synchronizer.TableDownloadCallback;
  */
 public class DefaultTableBuilder implements TableBuilderI<GenericDataTablePanel, GenericDataTableConfigurator> {
 
-	private GenericDataTablePanel panel = null;
 	private GenericDataTableConfigurator<?> config = null;
 	private TableElement element = null;
+	private IModel<List<?>> modelData = null;
+	private String wicketId;
 	
 	@Override
 	public void initTableBuilder(TableElement element) {
@@ -34,19 +35,20 @@ public class DefaultTableBuilder implements TableBuilderI<GenericDataTablePanel,
 		
 		config = new GenericDataTableConfigurator();
         config.withColumnConfigurator(createColumnConfigurator());
-        
-		panel = new GenericDataTablePanel(element.getWicketId(), element.getModel(), config);
+        modelData = element.getModel();
+        this.wicketId = element.getWicketId();
 	}
 	
 	@Override
 	public void initTableBuilder(String wicketId, IModel<List<?>> data, GenericDataTableConfigurator<?> config) {
 		this.config = config;
-		this.panel = new GenericDataTablePanel(wicketId, data, config);
+		this.modelData = data;
+		this.wicketId = wicketId;
 	}
 
 	@Override
 	public GenericDataTablePanel getTablePanel() {
-		return panel;
+		return new GenericDataTablePanel(wicketId, modelData, config);
 	}
 
 

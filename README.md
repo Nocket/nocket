@@ -6,16 +6,16 @@
 zu installierende Eclipse Plug-Ins:
 
  - Eclipse WTP (Help -> "Install new Software..")
- - fÃ¼r Tomcat: Eclipse JST Server Adapters (Help -> "Install new Software..")
- - fÃ¼r Jetty: Update-Site - <http://download.Eclipse.org/jetty/updates/jetty-wtp>
+ - für Tomcat: Eclipse JST Server Adapters (Help -> "Install new Software..")
+ - für Jetty: Update-Site - <http://download.Eclipse.org/jetty/updates/jetty-wtp>
  - Gradle Plug-In (Help -> "Eclipse Marketplace...")
 
 ### Projekt in Eclipse einrichten und konfigurieren:
 
  - In Eclipse eine Tomcat 7 Runtime konfigurieren (Einstellungen -> Server -> Runtime Environments). 
    Name sollte `Apache Tomcat 7.0` sein, wird in der Regel von Eclipse so vorgegeben   
- - Projekt in Eclipse importieren (File -> Import... -> Gradle Project). Alternativ kann man auch Ã¼ber die Shell das Eclipse 
-   Projekt generieren (`gradlew cleanEclipse eclipse`) und dann als regulÃ¤res Eclipse Projekt importieren.
+ - Projekt in Eclipse importieren (File -> Import... -> Gradle Project). Alternativ kann man auch über die Shell das Eclipse 
+   Projekt generieren (`gradlew cleanEclipse eclipse`) und dann als reguläres Eclipse Projekt importieren.
 
 Bei Bedarf kann der Gradle-Build benutzerspezifisch konfiguriert werden. Hierzu geht man wie folgt vor:
 
@@ -39,15 +39,15 @@ https://github.com/Nocket/nocket/wiki
 
     ./gradlew tomcatRunWar
 
-### ReleasefÃ¤hige Dateien erzeugen
+### Releasefähige Dateien erzeugen
 
-Die generierten Dateien findet man unter `build/libs`, fÃ¼r das Testen in Eclipse ist das generieren der Artefakte nicht notwendig.
+Die generierten Dateien findet man unter `build/libs`, für das Testen in Eclipse ist das generieren der Artefakte nicht notwendig.
 
-- fÃ¼r die lokale Entwickler Maschine:
+- für die lokale Entwickler Maschine:
 
     `./gradlew build`
     
-- Aktueller Entwicklungs-Snapshot fÃ¼r Test-Maschinen
+- Aktueller Entwicklungs-Snapshot für Test-Maschinen
 
     `./gradlew buildSnapshot` // generiert das JAR und ein WAR mit den Beispielen
     
@@ -58,7 +58,7 @@ Die generierten Dateien findet man unter `build/libs`, fÃ¼r das Testen in Eclips
 ### Release in Gradle einbinden
 
     dependencies {
-        compile "org.nocket:nocket:0.4.2"
+        compile "org.nocket:nocket:0.4.3"
     }
     
     repositories { 

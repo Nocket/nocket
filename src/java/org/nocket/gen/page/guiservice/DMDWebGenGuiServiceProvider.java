@@ -1,8 +1,5 @@
 package org.nocket.gen.page.guiservice;
 
-import gengui.GUIServiceI.MessageType;
-import gengui.util.ReflectionUtil;
-
 import java.awt.Dimension;
 import java.io.Serializable;
 
@@ -25,7 +22,6 @@ import org.nocket.component.modal.AbstractModalPanel;
 import org.nocket.component.modal.AbstractModalWindow;
 import org.nocket.component.modal.ButtonFlag;
 import org.nocket.component.modal.ModalCallback;
-import org.nocket.component.modal.ModalPanel;
 import org.nocket.component.modal.ModalSettings.ButtonDef;
 import org.nocket.gen.notify.Notifier;
 import org.nocket.gen.page.DMDWebGenPageContext;
@@ -34,9 +30,14 @@ import org.nocket.gen.page.element.ModalElement;
 import org.nocket.gen.page.element.synchronizer.SynchronizerHelper;
 import org.nocket.page.DMDPageFactory;
 import org.nocket.page.DMDPanelFactory;
+import org.nocket.page.DMDWebPage;
 import org.nocket.util.Assert;
+import org.nocket.util.AssertionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import gengui.GUIServiceI.MessageType;
+import gengui.util.ReflectionUtil;
 
 @SuppressWarnings("serial")
 public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable {
@@ -60,8 +61,7 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
                 if (modalWindowFromANonGenericContext != null) {
                     modal = modalWindowFromANonGenericContext;
                 } else {
-                    modal = (AbstractModalWindow) showModalPanelParentContext.getComponentRegistry().getComponent(
-                            ModalElement.DEFAULT_WICKET_ID);
+                    modal = getModalWindow(showModalPanelParentContext);
                 }
                 if (modal != null) {
                     modal.close(target);
@@ -125,7 +125,7 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
 
     public synchronized void onGeneratedBinding(final DMDWebGenPageContext ctx) {
         lastTouchedRegistry = ctx.getTouchedRegistry();
-        Component modal = ctx.getComponentRegistry().getComponent(ModalElement.DEFAULT_WICKET_ID);
+        Component modal = getModalWindow(ctx);
         if (modal != null && !onloadAdded) {
             onloadAdded = true;
             ctx.getPage().add(new OnModalGeneratedBindingBehavior(ctx));
@@ -234,10 +234,9 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
             boolean openModalPanel = activeShowModalPanelConfig != null
                     && activeShowModalPanelConfig.showModalPanelParentContext == null;
             if (openModalMessage || openModalConfirm || openModalPanel) {
-                final AbstractModalWindow modal = (AbstractModalWindow) ctx.getComponentRegistry().getComponent(
-                        ModalElement.DEFAULT_WICKET_ID);
-                Assert.test(modal != null, "There is no modal component in " + ctx.getPage().getClass().getSimpleName()
-                        + ". You need to add a tag for it for this to work: <div wicket:id=\"modal\"></div>");
+            	
+            	final AbstractModalWindow modal = getModalWindow(ctx);
+                
                 if (openModalPanel) {
                     openModalPanel(ctx, modal, target);
                 } else if (openModalConfirm) {
@@ -249,6 +248,31 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
             renderStatusMessage();
             clear(false);
         }
+    }
+    
+    /**
+     * Modalen Dialog wenn möglich von oberster Page laden
+     * @param ctx
+     * @return
+     */
+    private AbstractModalWindow getModalWindow(DMDWebGenPageContext ctx) {
+    	try {
+			MarkupContainer container = ctx.getPage();
+			while(container.getParent() != null) {
+				container = container.getParent();
+			}
+			
+			final AbstractModalWindow modal = (AbstractModalWindow) ((DMDWebPage)container).getPageContext().getComponentRegistry().getComponent(ModalElement.DEFAULT_WICKET_ID);
+
+			Assert.test(modal != null, "There is no modal component in " + ctx.getPage().getClass().getSimpleName()
+			        + ". You need to add a tag for it for this to work once on the root of the page: <div wicket:id=\"modal\"></div>");
+			
+			return modal;
+		} catch (AssertionException e) {
+			throw e;
+		} catch (ClassCastException e) {
+			return null;
+		}
     }
 
     private void renderStatusMessage() {

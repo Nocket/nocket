@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <head>
+        <link href="../../../../../../../resources/webapp/css/bootstrap.css" type="text/css" rel="stylesheet" />
+        <link href="../../../../../../../resources/webapp/css/arvatoStyle.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <wicket:extend>
+            <!-- <div wicket:id='feedback'></div>  -->
+            <div wicket:id="modal"></div>
+            <form wicket:id="form" class="form-horizontal">
+                <fieldset>
+                    <legend><label>Personen.text</label></legend>
+                    <table id="Personen" class="table table-striped table-hover table-condensed" wicket:id="Personen">
+                        <thead>
+                            <tr class="header">
+                                <th id="Nachname" class="wicket_orderUp"><a href="#">Nachname</a></th>
+                                <th id="Alter" class="wicket_orderNone"><a href="#">Alter</a></th>
+                                <th id="Vorname" class="wicket_orderNone"><a href="#">Vorname</a></th>
+                                <th id="zeigeModal" class="actionColumn">Zeige Modal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+                <button id="generatedSite" class="btn" wicket:id="generatedSite" type="submit"><span wicket:id="generatedSite.label">Generated Site</span></button>
+            </form>
+        </wicket:extend>
+    </body>
+</html>

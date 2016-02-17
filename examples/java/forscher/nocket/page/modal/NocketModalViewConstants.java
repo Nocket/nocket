@@ -17,6 +17,14 @@ public final class NocketModalViewConstants {
 	public static final String Personen_columns_zeigeModal = "zeigeModal";
 	/** ButtonElement: Generated Site */
 	public static final String generatedSite = "generatedSite";
+	
+	public static final String confirmation = "confirmation";
+	
+	public static final String info = "info";
+	
+	public static final String error = "error";
+	
+	public static final String warning = "warning";
 
 	public final class Properties {
 
@@ -34,6 +42,14 @@ public final class NocketModalViewConstants {
 		public static final String generatedSite = "generatedSite";
 		/** Zeige Modal */
 		public static final String zeigeModal = "zeigeModal";
+		
+		public static final String confirmation = "confirmation";
+		
+		public static final String info = "info";
+		
+		public static final String error = "error";
+		
+		public static final String warning = "warning";
 	}
 
 }

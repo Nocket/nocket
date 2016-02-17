@@ -61,7 +61,7 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
                 if (modalWindowFromANonGenericContext != null) {
                     modal = modalWindowFromANonGenericContext;
                 } else {
-                    modal = getModalWindow(showModalPanelParentContext);
+                    modal = getModalWindow(pageContext);
                 }
                 if (modal != null) {
                     modal.close(target);
@@ -113,6 +113,7 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
     private ShowModalPanelConfig activeShowModalPanelConfig;
     private ShowModalPanelConfig nextActiveShowModalPanelConfig;
     private transient DMDWebGenPageContext newPanelContext;
+    private DMDWebGenPageContext pageContext = null;
 
     private ShowModalPanelConfig getActiveShowModalPanelConfig() {
         if (activeShowModalPanelConfig != null && activeShowModalPanelConfig.modalPanelActive
@@ -251,7 +252,7 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
     }
     
     /**
-     * Modalen Dialog wenn möglich von oberster Page laden
+     * Modalen Dialog wenn mï¿½glich von oberster Page laden
      * @param ctx
      * @return
      */
@@ -266,6 +267,8 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
 
 			Assert.test(modal != null, "There is no modal component in " + ctx.getPage().getClass().getSimpleName()
 			        + ". You need to add a tag for it for this to work once on the root of the page: <div wicket:id=\"modal\"></div>");
+			
+			pageContext = ((DMDWebPage)container).getPageContext();
 			
 			return modal;
 		} catch (AssertionException e) {
@@ -285,7 +288,7 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
         activeShowModalPanelConfig.showModalPanelParentContext = ctx;
         String title = ReflectionUtil.toTitle(activeShowModalPanelConfig.showModalPanel);
         Panel panel = activeShowModalPanelConfig.newPanel(WICKET_ID_PANEL_INNER_CONTENT);
-        CloserHandler closerHandler = new CloserHandler(getNewPanelContext(),
+        CloserHandler closerHandler = new CloserHandler(activeShowModalPanelConfig.showModalPanelParentContext,
                 activeShowModalPanelConfig.hideCloseButton);
 
         showPanel(modal, panel, title, closerHandler);
@@ -348,7 +351,7 @@ public class DMDWebGenGuiServiceProvider implements WebGuiServiceI, Serializable
                 }
                 /*
                  * Wenn es noch ein modaler Dialog gezeigt werden soll, dann
-                 * muss das mitgeteilt werden. Boolean.TRUE sorgt dafür, dass
+                 * muss das mitgeteilt werden. Boolean.TRUE sorgt dafï¿½r, dass
                  * genau dann das SchließŸen des Modal Windows verhindert wird,
                  * damit nachfolgend im ModalWindow eingereichte Panels auch
                  * angezeigt werden.

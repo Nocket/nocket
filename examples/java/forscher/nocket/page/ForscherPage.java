@@ -4,14 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.wicket.devutils.debugbar.DebugBar;
-import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
 import org.nocket.component.menu.MenuItem;
 import org.nocket.component.menu.MenuPanel;
 import org.nocket.component.panel.login.LoginStatusBar;
 import org.nocket.gen.GenericMenuItem;
-import org.nocket.gen.domain.visitor.html.styling.StylingFactory;
-import org.nocket.gen.domain.visitor.html.styling.common.LoginStatusBarBuilderI;
 import org.nocket.page.DMDWebPage;
 
 import forscher.nocket.generator.TestPojo;
@@ -26,6 +23,7 @@ import forscher.nocket.page.gen.layout.AllComponentsTableTooltip;
 import forscher.nocket.page.gen.modalByGuiService.BookLendingPage;
 import forscher.nocket.page.gen.tabs.KundePage;
 import forscher.nocket.page.modal.ModalExamplePage;
+import forscher.nocket.page.modal.NocketModalViewPage;
 
 @SuppressWarnings("serial")
 public class ForscherPage extends DMDWebPage {
@@ -99,7 +97,8 @@ public class ForscherPage extends DMDWebPage {
 	//	tables.addSubItem(new MenuItem("PageReference", BenutzerTabelleViewPage.class));
 
 	modal.addSubItem(new MenuItem("MessageBox", ModalExamplePage.class));
-
+	modal.addSubItem(new MenuItem("Nocket Modal", NocketModalViewPage.class));
+	
 	ex.addSubItem(new MenuItem("Exception Test", TestErrorPage.class));
 
 	deprecated.addSubItem(new GenericMenuItem("Table/Tooltip", AllComponentsTableTooltip.class));

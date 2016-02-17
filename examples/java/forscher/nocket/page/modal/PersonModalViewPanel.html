@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <head>
+        <link href="../../../../../../../resources/webapp/css/bootstrap.css" type="text/css" rel="stylesheet" />
+        <link href="../../../../../../../resources/webapp/css/arvatoStyle.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <wicket:panel>
+            <!-- <div wicket:id='feedback'></div>  -->
+            <div wicket:id="modal"></div>
+            <form wicket:id="form" class="form-horizontal">
+                <div class="control-group">
+                    <label for="Person.Nachname" class="control-label" wicket:id="Person.Nachname.label">Nachname</label>
+                    <div class="controls">
+                        <input id="Person.Nachname" type="text" wicket:id="Person.Nachname" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="Person.Alter" class="control-label" wicket:id="Person.Alter.label">Alter</label>
+                    <div class="controls">
+                        <input id="Person.Alter" type="text" wicket:id="Person.Alter" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="Person.Vorname" class="control-label" wicket:id="Person.Vorname.label">Vorname</label>
+                    <div class="controls">
+                        <input id="Person.Vorname" type="text" wicket:id="Person.Vorname" />
+                    </div>
+                </div>
+                <button id="Person.zeigeModal" class="btn" wicket:id="Person.zeigeModal" type="submit" style="display: none;"><span wicket:id="Person.zeigeModal.label">Zeige Modal</span></button>
+                <div style="text-align: right;">
+                	<button id="schliessen" class="btn" wicket:id="schliessen" type="submit"><span wicket:id="schliessen.label">Schliessen</span></button>
+                </div>
+            </form>
+        </wicket:panel>
+    </body>
+</html>

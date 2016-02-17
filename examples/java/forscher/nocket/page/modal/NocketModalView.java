@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.nocket.component.modal.ButtonFlag;
+import org.nocket.gen.page.guiservice.ModalResultCallback;
 import org.nocket.gen.page.guiservice.WebGuiServiceAdapter;
 
 public class NocketModalView implements Serializable {
@@ -41,4 +44,27 @@ public class NocketModalView implements Serializable {
 	public void generatedSite() {
 		new WebGuiServiceAdapter().showModalPanel(new PersonModalView(personen.get(0)));
 	}
+	
+	public void confirmation() {
+		new WebGuiServiceAdapter().confirmMessage("Titel", "Meine Nachricht", new ModalResultCallback<ButtonFlag>() {
+			@Override
+			public void onResult(ButtonFlag result) {
+				System.out.println("Ergebnis: " + ReflectionToStringBuilder.toString(result));
+			}
+		});
+	}
+	
+	public void error() {
+		new WebGuiServiceAdapter().errorMessage("Fehlernachricht");
+	}
+	
+	public void warning() {
+		new WebGuiServiceAdapter().warningMessage("Warnnachricht");
+	}
+	
+	public void info() {
+		new WebGuiServiceAdapter().infoMessage("Infonachricht");
+	}
+	
+	
 }

@@ -58,7 +58,7 @@ Die generierten Dateien findet man unter `build/libs`, für das Testen in Eclips
 ### Release in Gradle einbinden
 
     dependencies {
-        compile "org.nocket:nocket:0.4.0"
+        compile "org.nocket:nocket:0.4.3"
     }
     
     repositories { 

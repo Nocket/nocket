@@ -294,19 +294,19 @@ dependencies {
 	compile "org.jsoup:jsoup:1.7.3"
 	compile "ecs:ecs:1.4.2"
 	compile "javax.validation:validation-api:1.1.0.Final"
-	compile "org.hibernate:hibernate-validator:4.0.1.GA"
-	compile "org.slf4j:slf4j-log4j12:1.6.4"
+	compile "org.hibernate:hibernate-validator:4.3.2.Final"
+	compile "org.slf4j:slf4j-log4j12:1.7.12"
 
 	// needed for examples
 	examplesCompile sourceSets.main.output
 	examplesCompile configurations.compile
 	
 	// testing
-	testCompile "junit:junit:4.11"
+	testCompile "junit:junit:4.12"
 	
 	// Selenium
-	testCompile "org.seleniumhq.selenium:selenium-firefox-driver:2.43.1"
-	testCompile "org.seleniumhq.selenium:selenium-support:2.43.1"
+	testCompile "org.seleniumhq.selenium:selenium-firefox-driver:2.53.0"
+	testCompile "org.seleniumhq.selenium:selenium-support:2.53.0"
 	testCompile "com.github.detro.ghostdriver:phantomjsdriver:1.1.0"
 
 	// tomcat for selenium

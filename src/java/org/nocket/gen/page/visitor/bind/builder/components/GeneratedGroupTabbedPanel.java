@@ -112,7 +112,7 @@ public class GeneratedGroupTabbedPanel extends DMDTabbedPanel<ITab> {
 		try {
 			clazz = Class.forName(panelClassName);
 		} catch (ClassNotFoundException e) {
-			new NocketRuntimeException(e);
+			throw new NocketRuntimeException(e);
 		}
 		return clazz;
 	}
@@ -133,20 +133,9 @@ public class GeneratedGroupTabbedPanel extends DMDTabbedPanel<ITab> {
 									IModel.class });
 					Panel newInstance = constructor.newInstance(panelId, model);
 					return newInstance;
-				} catch (NoSuchMethodException e) {
-					new NocketRuntimeException(e);
-				} catch (SecurityException e) {
-					new NocketRuntimeException(e);
-				} catch (InstantiationException e) {
-					new NocketRuntimeException(e);
-				} catch (IllegalAccessException e) {
-					new NocketRuntimeException(e);
-				} catch (IllegalArgumentException e) {
-					new NocketRuntimeException(e);
-				} catch (InvocationTargetException e) {
-					new NocketRuntimeException(e);
+				} catch (NoSuchMethodException|SecurityException|InstantiationException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
+					throw new NocketRuntimeException(e);
 				}
-				return null;
 			}
 		};
 	}
@@ -273,15 +262,9 @@ public class GeneratedGroupTabbedPanel extends DMDTabbedPanel<ITab> {
 								mapGroupNamePanelClass.get(groupnames[i]),
 								defaultModel));
 			}
-
-		} catch (IllegalAccessException e) {
-			new NocketRuntimeException(e);
-		} catch (IllegalArgumentException e) {
-			new NocketRuntimeException(e);
-		} catch (InvocationTargetException e) {
-			new NocketRuntimeException(e);
+		} catch (IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
+			throw new NocketRuntimeException(e);
 		}
-
 	}
 
 	@Override
